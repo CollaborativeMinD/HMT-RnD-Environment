@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/2#discussion_r4383065610",
+    "body": "After `lookup_or_cancel` returns `NOT_EXECUTED`, a new reservation ID with the same principal/effect but a different digest can commit because the effect-level collision check only examines completed effects. This loses the immutable input binding established by the cancelled reservation. Check prior reservation digests too, and add a cancelled-then-changed-payload regression.",
+    "path": "src/hmt_rnd/custody_endpoint.py",
+    "created_at": "2026-10-26T22:09:12Z"
+  },
+  {
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/2#discussion_r4383065731",
+    "body": "Grant roots are unrestricted strings and are stored unchanged, so an accepted grant with `root=\".\"` is reinterpreted against the process working directory on every admission. Provisioning it in `/work/project` and restarting in `/work` silently expands the same grant to sibling projects; restarting in `/` expands it to the entire filesystem. Reject relative grant roots here, or canonicalize them once during trusted provisioning instead of resolving them anew at use.",
+    "path": "src/hmt_rnd/host_checks.py",
+    "created_at": "2026-10-26T22:09:12Z"
+  },
+  {
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/2#discussion_r4383065789",
+    "body": "An audio path naming a FIFO inside `audio_root` blocks in `open()` waiting for a writer, before the subprocess timeout starts. This lets one admitted request occupy a transcription worker indefinitely despite the byte limit. Open the input nonblocking and validate the opened descriptor as a regular file before reading; a pathname-only check still permits replacement races.",
+    "path": "src/hmt_rnd/voice_assets.py",
+    "created_at": "2026-10-26T22:09:12Z"
+  },
+  {
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/2#discussion_r4383065848",
+    "body": "If the CLI forks a descendant that closes its inherited pipes and the parent exits successfully, `drain` returns while the descendant can keep running beyond the deadline. Cleanup currently runs only on exceptions. Terminate the process group on successful exits too, and add a regression showing that background engine work cannot outlive the admitted call.",
+    "path": "src/hmt_rnd/voice_process.py",
+    "created_at": "2026-10-26T22:09:13Z"
+  },
+  {
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/2#discussion_r4383065912",
+    "body": "This uniqueness check accepts both `HMT-F01` and `I-F01`, but `verification_sql.PRODUCT` converts the former to `I-F01` when constructing candidate IDs. With the same mechanism and gate, the two distinct accepted invariants therefore collide at the unique index, making `create_ledger` fail with `sqlite3.IntegrityError` after creating the destination. Check uniqueness of the normalized invariant identities before any ledger creation.",
+    "path": "src/hmt_rnd/verification_models.py",
+    "created_at": "2026-10-26T22:09:13Z"
+  },
+  {
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/2#discussion_r4383065960",
+    "body": "If the child closes stdout and stderr but continues running, this wait can exhaust the deadline and raise subprocess.TimeoutExpired instead of TimeoutError(\"VOICE_PROCESS_TIMEOUT\"). run_local rethrows it unchanged, so the timeout contract exercised by test_real_subprocess_timeout depends on whether the child kept its pipes open. Translate TimeoutExpired here to the same timeout exception used by the drain loop.",
+    "path": "src/hmt_rnd/voice_process.py",
+    "created_at": "2026-10-26T22:09:14Z"
+  },
+  {
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383190537",
+    "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Recognize gate-evidence drift when reopening a candidate**\n\nIf a SEALED candidate's gate-evidence file changes while its main artifact remains unchanged, `check_parent()` rejects all downstream submissions with `LANE_EVIDENCE_DRIFT`, but this check rejects an `ARTIFACT_DRIFT` reopen with `LANE_REOPEN_WITHOUT_ARTIFACT_CHANGE`. `discover_changes()` likewise checks only the main artifact. With unchanged policy and a SEALED outcome, neither other reopen reason applies, leaving no supported way to regenerate the affected stage without deliberately changing an otherwise valid artifact. Include the receipt's evidence hashes in both explicit drift validation and earliest-change discovery.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+    "path": "src/hmt_rnd/lane_reopen.py",
+    "created_at": "2026-10-26T22:26:03Z"
+  },
+  {
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383190541",
+    "body": "**<sub><sub>![P2 Badge](https://img.shields.io/badge/P2-yellow?style=flat)</sub></sub>  Reject already-invalidated change references before reopening**\n\nAfter a DENIED candidate has been repaired through a typed reopen and replaced by a SEALED successor, another `DENIED_REPAIR` event can still reference the original DENIED receipt: `changed()` loads historical receipts without checking `lane_invalidations`, and their original outcome still satisfies the predicate. The subsequent lineage-wide invalidation then invalidates the healthy successor and its descendants even though no current candidate needs repair. Unlike `discover_changes()`, explicitly supplied change references must be restricted to current, non-invalidated candidates so an already-resolved failure cannot repeatedly invalidate repaired work.\n\nUseful? React with 👍 / 👎.\n\n<!-- codex-code-review-finding:v1 -->",
+    "path": "src/hmt_rnd/lane_reopen.py",
+    "created_at": "2026-10-26T22:26:03Z"
+  },
+  {
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383221895",
+    "body": "An event can reference an already-invalidated receipt whose old artifact still differs from its stored hash, causing `reopen_candidate()` to invalidate a healthy replacement and its descendants. Reject invalidated `changed_candidates` before using them to authorize a new reopening.",
+    "path": "src/hmt_rnd/lane_reopen.py",
+    "created_at": "2026-10-26T22:30:21Z"
+  },
+  {
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383221947",
+    "body": "With simultaneous policy and artifact drift, a builder can select ARTIFACT_DRIFT to bypass the architect requirement; reason-filtered discovery can also omit an earlier affected owner. For example, DENIED_REPAIR at CMAD2 ignores artifact drift at CMAD1, leaving the designated successor blocked by its predecessor. Detect all supported changes independently of the supplied reason, route to the earliest affected owner, and require `human_architect` whenever affected receipts have policy/epoch drift.",
+    "path": "src/hmt_rnd/lane_reopen.py",
+    "created_at": "2026-10-26T22:30:22Z"
+  },
+  {
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383221994",
+    "body": "After a CMAD1 repair and CMAD2 regeneration, reopening CMAD2 still allows an unrelated CMAD2 candidate without `reopen_id` because its parent has the older closed reopen. That candidate leaves the new event open and blocks its designated successor. Require the explicit successor whenever a reopen rooted at this stage is pending.",
+    "path": "src/hmt_rnd/lane_submission.py",
+    "created_at": "2026-10-26T22:30:22Z"
+  },
+  {
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383222061",
+    "body": "When only gate evidence changes, or an in-scope artifact disappears, predecessor validation blocks progression but ARTIFACT_DRIFT cannot open a repair. Use a shared, scope-safe drift detector covering candidate artifacts, gate evidence, and missing sources in both this check and `lane_discovery.py:20–22`, without weakening sealing validation.",
+    "path": "src/hmt_rnd/lane_reopen.py",
+    "created_at": "2026-10-26T22:30:23Z"
+  },
+  {
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383222102",
+    "body": "The package-wide percentage does not establish the changed-code threshold required by HMT-N11 (`contracts/requirements.json:1645`). The newly added lane/MCP modules cover 118/136 branches (86.76%); unchanged code supplies the other 172 covered branches. Report the changed-code denominator separately and do not claim the 90% gate passes until additional coverage meets it.",
+    "path": "evidence/p1_assurance_final.json",
+    "created_at": "2026-10-26T22:30:23Z"
+  },
+  {
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#issuecomment-6428955612",
+    "body": "OWNER-DIRECTED HOLD — reconciliation before further progression.\n\nThe owner explicitly requested this update: “Send the HOLD update and have them reconcile it. The build will get built. But properly. Focused work.” This follows the earlier instruction to HOLD until the six carried-forward findings are reconciled according to requirements.\n\nBuild supervisor: propagate this HOLD to workers. Stop further feature/lifecycle progression and promotion until requirement-linked reconciliation is complete. Focused reproduction, diagnosis, derivative repair, regression testing and evidence reconciliation are the permitted work toward clearing it. Please acknowledge receipt.\n\nAt inspected head 9f2d3bf7db042cd400b57ee78c288ca32342d9f3, six PR #2 findings remain in unchanged implementations:\n1. Cancelled reservation permits a changed payload under the same effect identity.\n2. Relative grant roots can change scope with working-directory changes.\n3. FIFO audio input can block before the subprocess timeout.\n4. Successful parent CLI exit can leave descendants running.\n5. Normalized invariant IDs can collide during ledger creation.\n6. Closed-pipe process timeout does not preserve the VOICE_PROCESS_TIMEOUT contract.\nOriginal review: https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/2#pullrequestreview-5659776738\n\nAlso reconcile the two PR #3 reopening findings before acceptance:\n- Evidence-only drift cannot trigger the supported reopen path: https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383190537\n- Invalidated historical DENIED receipts can reopen healthy successors: https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383190541\n\nThese are unresolved reviewer findings and inspected source patterns, not a claim that all eight were independently reproduced by this supervisory review. Reproduce or explicitly refute each against the pinned requirements.\n\nRRCA evidence audit at that head: Reverse_RCA_Ledger.csv and hash-verified build_ledgers.sqlite.gz contain one earlier CUSTODY-ENDPOINT-SCOPE-001 incident, not these findings; the cumulative ledger has 16 aggregate rows. No matching case/initiation/cause/corrective-task/regression/disposition chain was found for these eight. The rrca.compile binding remains DESIGN_PINNED_EXECUTION_BLOCKED and HMT-F14 remains NOT_EXECUTED. Unpublished local work may exist; reconcile and publish its evidence rather than assuming the shared ledger demonstrates it.\n\nRequired closeout per finding: case identity, requirement/boundary, retained failing or refuting witness, causal investigation, explicit corrective task, derivative change with reference invariants preserved, targeted and regression results, exact candidate identity, and disposition. Existing aggregate passing-test counts do not close these cases. Keep original references read-only and preserve historical failures.\n\nThe existing build supervisor retains implementation ownership. No separate repair team is modifying this repository. Please report acknowledgment and the requirement-linked reconciliation ledger before resuming progression.",
+    "path": null,
+    "created_at": "2026-10-26T22:35:36Z"
+  },
+  {
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#issuecomment-6429026658",
+    "body": "Owner-directed workflow refinement for reconciliation and subsequent phased work:\n\n“Have them make small commits for each scoped task they complete instead of large PRs with massive change logs and diffs. Should help them also keep in line with their phases and reconciliation targets.”\n\nPlease use one coherent scoped task per small commit. Link each commit to its requirement/RRCA case or work-package identity, include the corresponding focused tests and evidence, and preserve the failing witness where applicable. Keep unrelated feature work out of reconciliation commits. Keep review batches/PRs bounded to the relevant phase or reconciliation target rather than collecting a broad feature sweep. Do not split artificially into commits that conceal dependencies or leave an unexplained broken state.\n\nThe existing owner-directed HOLD remains in force: this changes review granularity, not the conditions for proceeding. Please acknowledge and propagate the commit discipline to workers.",
+    "path": null,
+    "created_at": "2026-10-26T22:40:00Z"
+  }
+]
