@@ -1,0 +1,16 @@
+{
+  "version": "0.1.3",
+  "change_id": "CR-REFERENCE-DERIVATION-003",
+  "parent_manifest_sha256": "699be75b3e0821fabf3b74c9bb2768226e4a0323ec3add2a750bff5c98419a74",
+  "repository": "CollaborativeMinD/HMT-RnD-Environment",
+  "repository_base_commit": "18615ca27b1fb6ca30a88b74a440c90c21b58c98",
+  "status": "IMPLEMENTATION_IN_PROGRESS_NOT_QUALIFIED",
+  "integration_host_candidate": "Repository-owned derivative informed by pinned framework/baseline references",
+  "host_commit": "Reference-only d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+  "voice_primary": "Wispr Flow, allowed connected scopes",
+  "voice_alternate": "OpenAI Whisper through whisper.cpp, explicit local/offline selection or admitted availability failover",
+  "future_candidate": "NVIDIA Parakeet: documentation-only exploration; absent from active provider chains",
+  "runtime": "Repository-owned Python derivative tested on 3.13; actual dependencies pinned in uv.lock",
+  "authority": "User authorized build, repository writes, and delegation; deployment, publication, merge and human closeout remain separately governed",
+  "reference_treatment": "ALL supplied HMT packages and frameworks are read-only reference implementations. Retain/extend needed behavior and invariants into repository-owned derivatives. No runtime reference package import, reference host installation, or modifications to references."
+}

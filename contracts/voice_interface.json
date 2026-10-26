@@ -1,0 +1,27 @@
+{
+  "version": "0.1.2",
+  "selected_provider": "Wispr Flow",
+  "selection_authority": "Charles, current user instruction",
+  "scope": "First-class dictation and voice-origin steering; speech synthesis, always-on wake-word listening, and meeting recording are outside this addition.",
+  "integration": "Supported Wispr client -> editable HMT command composer -> explicit submitted intent -> current admission -> scoped task action -> receipt",
+  "native_linux": "Not supported by vendor documentation inspected on 2026-10-26; supported client may access HMT web UI subject to qualification.",
+  "embedding_api_mcp": "Not established from official pages inspected; third-party install-auth skill claims are not accepted as a contract.",
+  "cloud_boundary": "Wispr audio/cloud processing precedes HMT text ingress. HMT text admission cannot retrospectively prevent provider egress. Qualify device/account/context/retention controls before admitting sensitive dictation.",
+  "provenance": "Keep HMT-received text and submitted revisions; no claim of raw/verbatim audio or authenticated provider metadata unless actually supplied and verified.",
+  "reference_urls": [
+    "https://wisprflow.ai/developers",
+    "https://wisprflow.ai/privacy",
+    "https://docs.wisprflow.ai/articles/1036674442-Supported-devices-and-system-requirements",
+    "https://docs.wisprflow.ai/articles/6478598909-using-flow-with-linux-wsl-and-terminal-applications",
+    "https://docs.wisprflow.ai/articles/4048537120-what-to-expect-from-flow-accuracy-and-known-limitations"
+  ],
+  "qualification": "NOT_EXECUTED",
+  "local_provider": "OpenAI Whisper via whisper.cpp",
+  "initial_model_candidates": [
+    "small.en",
+    "base.en for constrained CPU subject to qualification"
+  ],
+  "future_candidate": "NVIDIA Parakeet: documentation only, not primary/alternate",
+  "fallback": "HMT-owned retained authorized audio may be transcribed locally under current policy; Wispr-only capture requires explicit redictation when raw audio is unavailable. Terminal HOLD and unresolved commands cannot switch providers.",
+  "offline": "Runtime, model, audio conversion and VAD assets provisioned and pinned before use; deny network during offline qualification. No download at inference time."
+}

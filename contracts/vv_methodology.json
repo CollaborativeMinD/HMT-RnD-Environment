@@ -1,0 +1,46 @@
+{
+  "verification_vs_validation": "Verification proves each bounded contract; validation exercises expected operator/agent mission sequences on the declared target and checks that the artifacts support the intended decisions. Neither substitutes for the other.",
+  "campaign_order": [
+    "C0: pin host/implementation/contract sources and build an exact invocation manifest; all unresolved production bindings remain blocked.",
+    "C1: tracer-first direct/MCP authority parity and one upstream/downstream handoff; inject known bad outcomes to qualify each oracle.",
+    "C2: custody/continuity tracer, including revoke-interrupt-restart-reconcile, delayed request races, and outcome uncertainty.",
+    "C3: lane-specific functional witnesses using existing kernels and reference parity; numerical experiments only under MR model profile.",
+    "C4: unit, negative, integration, API/boundary, semantic/structural, temporal-drift, and mutation families.",
+    "C5: edge-specific causal families and pressure sequences; retain alternate-path observations.",
+    "C6: speed/resource/recovery benchmarks and E2E operator/agent workflows on exact target.",
+    "C7: cumulative regression, public/private package inspection, independent assurance, and exact-build human acceptance packet."
+  ],
+  "test_families": {
+    "unit": "Pure transformations and decisions at smallest bounded seam.",
+    "negative": "Absent/invalid/stale/contradictory inputs with zero forbidden effect.",
+    "mutation": "Delete gate invocation, weaken threshold, swap identity, omit proof, invert predicate, suppress failure; record operator and killed/surviving evidence. Critical survivor blocks.",
+    "integration": "Real adjacent canonical components with one authority/store and observed seam behavior.",
+    "behavioral": "Ordered sequences S01-S14 with cut points; compare states, rights, effects, and receipts, not only final return.",
+    "API": "Direct versus MCP parity, schemas, auth, error mapping, transport interruption, and bounded bodies.",
+    "semantic_structural": "Declared semantic delta and unchanged-invariant parity; exact LOC bands plus inherited complexity gates.",
+    "boundary": "One below, equal, one above bounds; zero/empty/large input; exact expiry and race ordering.",
+    "temporal_authorization_drift": "Revoke/rotate/expire/change epoch between lookup, admission, reservation, dispatch, commit, and receipt.",
+    "causal_edge_deletion": "Each named edge has intact, deletion, restoration, matched/sham, alternate-on and alternate-off arms; record physical realizability and confounders.",
+    "speed": "Pinned workload/host, warmup, all raw timings including failures, fixed percentile calculation, and resource peaks.",
+    "E2E": "Human/agent intake through lawful handoffs, completion/recovery, and exact-artifact review; real required witnesses, no substitution with fixtures."
+  },
+  "candidate_space": {
+    "dimensions": "56 invariant requirements x 14 mechanisms x 13 owning gates = 10192",
+    "applicable": 181,
+    "not_applicable": 10011,
+    "preservation": "Every tuple is materialized, exported, and hashed. P_GATE_OWNER and P_MECHANISM explain exclusions. Eligibility mapping is an explicit design assumption reviewed at P0, not experimental proof of irrelevance.",
+    "cross_cutting": "Authority/egress/custody gates apply to every operation through F01-F04/F18/F20 and B01-B09. Owning-gate exclusion avoids duplicate assertion ownership; it does not exempt an operation from cross-cutting controls.",
+    "sequence_overlay": "S01-S16 cover pressure/cut-point behavior separately. Do not multiply every axis blindly. A new causal interaction adds versioned dimensions/cases or a separately complete campaign with a justified boundary.",
+    "not_claimed": "The finite product is not all possible program executions; pairwise or sampled campaigns cannot replace its ledger."
+  },
+  "supersession": "An append-only relation binds old/new test identities, same requirement revision, fault mechanism, boundary set, original failure, repair observation, and decision. A changed contract requires successor requirement and explicit approval; old failure remains historically true.",
+  "execution_evidence": "Record raw observations, provenance, authenticated producer, target/source/policy/schema hashes, environment, UTC and monotonic timing, assertion ID, candidate ID, run ID, and disposition. Hashes alone prove neither producer authenticity nor correctness.",
+  "causal_reporting": "State observed vs inferred vs unknown. Failure of edge deletion to change output under redundancy is not evidence that the edge is irrelevant.",
+  "cumulative_regression": "After each completed work item rerun all previously passing required gates in the cumulative ledger against the current candidate; cache reuse alone does not satisfy the governing policy. Gate executions are not new unique requirements.",
+  "dual_runners": "pytest and unittest independently execute entrypoints against the same reviewed observer/oracle contracts. Shared assertions/fixtures are not independent implementation evidence; independent numerical/reference checks remain separate.",
+  "current_harness_scope": "Only planning-ledger, complexity-overlay, and known suppression/mutation checks are implemented here. All 181 target cases require target-specific observers and independent oracles; by default both suites FAIL with TARGET_HARNESS_UNBOUND. This is an admission blocker, not a target defect.",
+  "anti_suppression": "Inspect AST/config plus runtime collection/results. Fail on skip/xfail equivalents, missing declared cases, empty suites, nonzero ignored exits, missing required command, or silent deselection. Static named checks are bounded; dynamic bypass mutation is required at target integration.",
+  "acceptance": "All applicable required witnesses current and passing, critical mutants killed, required branch coverage >=90%, no pending contradiction or unresolved external effect in accepted scope, no forbidden export, and human closeout. NOT_APPLICABLE rows are not PASS and are excluded only with their explicit predicate.",
+  "failure_disposition": "Test outcomes PASS/FAIL/NOT_EXECUTED/NOT_APPLICABLE remain distinct from operation state, task state, and the five mission-assurance dispositions. A failed gate blocks affected promotion; prior passes never erase a blocker.",
+  "voice_campaign": "Corpus >=100 utterances: negation, units/numbers, acronyms/identifiers, self-correction, focus transfer, repeated paste, late transcription, unsupported client, cloud/context policy, screen-reader navigation, and revoke-interrupt-restart-reconcile. Report WER and critical semantic errors separately; raw accuracy is measured, accepted-command fidelity is required."
+}

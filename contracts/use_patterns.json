@@ -1,0 +1,436 @@
+[
+  {
+    "id": "S01",
+    "name": "Intake to accepted handoff",
+    "sequence": [
+      "valid intake",
+      "source-backed requirements",
+      "ordered lane receipts",
+      "B3 implementation",
+      "review",
+      "human closeout"
+    ],
+    "requirements": [
+      "HMT-F01",
+      "HMT-F05",
+      "HMT-F12",
+      "HMT-F17",
+      "HMT-B15"
+    ],
+    "expected": "All linked requirements remain true at each causal cut; otherwise preserve evidence and HOLD affected progression.",
+    "pressures": [
+      "MLCOA",
+      "MDCOA",
+      "DENIED",
+      "DEGRADED",
+      "INTERMITTENT",
+      "LIMITED",
+      "OUT_OF_DISTRIBUTION"
+    ]
+  },
+  {
+    "id": "S02",
+    "name": "Read/cache/provider fallback",
+    "sequence": [
+      "admit",
+      "primary transient fault",
+      "fresh guard",
+      "cache or alternate",
+      "result receipt"
+    ],
+    "requirements": [
+      "HMT-B02",
+      "HMT-B05",
+      "HMT-N03"
+    ],
+    "expected": "All linked requirements remain true at each causal cut; otherwise preserve evidence and HOLD affected progression.",
+    "pressures": [
+      "MLCOA",
+      "MDCOA",
+      "DENIED",
+      "DEGRADED",
+      "INTERMITTENT",
+      "LIMITED",
+      "OUT_OF_DISTRIBUTION"
+    ]
+  },
+  {
+    "id": "S03",
+    "name": "Revoked worker recovery",
+    "sequence": [
+      "claim",
+      "commit intent",
+      "revoke",
+      "interrupt",
+      "restart",
+      "fresh classification",
+      "reconcile or HOLD"
+    ],
+    "requirements": [
+      "HMT-B01",
+      "HMT-B06",
+      "HMT-N05",
+      "HMT-N06",
+      "HMT-N07"
+    ],
+    "expected": "All linked requirements remain true at each causal cut; otherwise preserve evidence and HOLD affected progression.",
+    "pressures": [
+      "MLCOA",
+      "MDCOA",
+      "DENIED",
+      "DEGRADED",
+      "INTERMITTENT",
+      "LIMITED",
+      "OUT_OF_DISTRIBUTION"
+    ]
+  },
+  {
+    "id": "S04",
+    "name": "Lost external completion",
+    "sequence": [
+      "persist uncertainty",
+      "send",
+      "endpoint commits",
+      "drop reply",
+      "restart",
+      "lookup exact effect",
+      "proof-bound close"
+    ],
+    "requirements": [
+      "HMT-B03",
+      "HMT-B06",
+      "HMT-F18"
+    ],
+    "expected": "All linked requirements remain true at each causal cut; otherwise preserve evidence and HOLD affected progression.",
+    "pressures": [
+      "MLCOA",
+      "MDCOA",
+      "DENIED",
+      "DEGRADED",
+      "INTERMITTENT",
+      "LIMITED",
+      "OUT_OF_DISTRIBUTION"
+    ]
+  },
+  {
+    "id": "S05",
+    "name": "Durable cancellation race",
+    "sequence": [
+      "reserve",
+      "delay original request",
+      "revoke",
+      "lookup/cancel with current authority",
+      "late original arrives",
+      "fresh authorized attempt only if proven safe"
+    ],
+    "requirements": [
+      "HMT-B04",
+      "HMT-N07"
+    ],
+    "expected": "All linked requirements remain true at each causal cut; otherwise preserve evidence and HOLD affected progression.",
+    "pressures": [
+      "MLCOA",
+      "MDCOA",
+      "DENIED",
+      "DEGRADED",
+      "INTERMITTENT",
+      "LIMITED",
+      "OUT_OF_DISTRIBUTION"
+    ]
+  },
+  {
+    "id": "S06",
+    "name": "Nested retry",
+    "sequence": [
+      "single owner",
+      "SDK/HTTP retry attempt",
+      "budget accounting",
+      "exhaustion",
+      "no worker restart reset"
+    ],
+    "requirements": [
+      "HMT-B05",
+      "HMT-N03"
+    ],
+    "expected": "All linked requirements remain true at each causal cut; otherwise preserve evidence and HOLD affected progression.",
+    "pressures": [
+      "MLCOA",
+      "MDCOA",
+      "DENIED",
+      "DEGRADED",
+      "INTERMITTENT",
+      "LIMITED",
+      "OUT_OF_DISTRIBUTION"
+    ]
+  },
+  {
+    "id": "S07",
+    "name": "Changed upstream contract",
+    "sequence": [
+      "sealed predecessor",
+      "downstream candidate",
+      "change predecessor",
+      "invalidate descendants",
+      "typed successor",
+      "rerun"
+    ],
+    "requirements": [
+      "HMT-B07",
+      "HMT-F17"
+    ],
+    "expected": "All linked requirements remain true at each causal cut; otherwise preserve evidence and HOLD affected progression.",
+    "pressures": [
+      "MLCOA",
+      "MDCOA",
+      "DENIED",
+      "DEGRADED",
+      "INTERMITTENT",
+      "LIMITED",
+      "OUT_OF_DISTRIBUTION"
+    ]
+  },
+  {
+    "id": "S08",
+    "name": "Credential/destination change",
+    "sequence": [
+      "inspect binding",
+      "rotate credential",
+      "redirect destination",
+      "re-admit",
+      "deny or in-flight classify"
+    ],
+    "requirements": [
+      "HMT-B08",
+      "HMT-F04"
+    ],
+    "expected": "All linked requirements remain true at each causal cut; otherwise preserve evidence and HOLD affected progression.",
+    "pressures": [
+      "MLCOA",
+      "MDCOA",
+      "DENIED",
+      "DEGRADED",
+      "INTERMITTENT",
+      "LIMITED",
+      "OUT_OF_DISTRIBUTION"
+    ]
+  },
+  {
+    "id": "S09",
+    "name": "Restored memory",
+    "sequence": [
+      "checkpoint context",
+      "change authority/source",
+      "restart",
+      "retrieve old context",
+      "revalidate",
+      "HOLD conflict"
+    ],
+    "requirements": [
+      "HMT-B09",
+      "HMT-N12"
+    ],
+    "expected": "All linked requirements remain true at each causal cut; otherwise preserve evidence and HOLD affected progression.",
+    "pressures": [
+      "MLCOA",
+      "MDCOA",
+      "DENIED",
+      "DEGRADED",
+      "INTERMITTENT",
+      "LIMITED",
+      "OUT_OF_DISTRIBUTION"
+    ]
+  },
+  {
+    "id": "S10",
+    "name": "Contradictory tracer",
+    "sequence": [
+      "pin assumption",
+      "observe contradiction",
+      "freeze affected work",
+      "RRCA/impact",
+      "architecture decision",
+      "new revision",
+      "regression"
+    ],
+    "requirements": [
+      "HMT-B10",
+      "HMT-B07"
+    ],
+    "expected": "All linked requirements remain true at each causal cut; otherwise preserve evidence and HOLD affected progression.",
+    "pressures": [
+      "MLCOA",
+      "MDCOA",
+      "DENIED",
+      "DEGRADED",
+      "INTERMITTENT",
+      "LIMITED",
+      "OUT_OF_DISTRIBUTION"
+    ]
+  },
+  {
+    "id": "S11",
+    "name": "Test supersession",
+    "sequence": [
+      "preserve original fail",
+      "propose replacement",
+      "compare mechanism/boundaries",
+      "reproduce old failure",
+      "prove repair or contract delta"
+    ],
+    "requirements": [
+      "HMT-B11",
+      "HMT-N09"
+    ],
+    "expected": "All linked requirements remain true at each causal cut; otherwise preserve evidence and HOLD affected progression.",
+    "pressures": [
+      "MLCOA",
+      "MDCOA",
+      "DENIED",
+      "DEGRADED",
+      "INTERMITTENT",
+      "LIMITED",
+      "OUT_OF_DISTRIBUTION"
+    ]
+  },
+  {
+    "id": "S12",
+    "name": "Causal experiment",
+    "sequence": [
+      "intact baseline",
+      "delete edge",
+      "restore edge",
+      "matched sham",
+      "alternate path on",
+      "alternate path off",
+      "bounded conclusion"
+    ],
+    "requirements": [
+      "HMT-B12",
+      "HMT-F14"
+    ],
+    "expected": "All linked requirements remain true at each causal cut; otherwise preserve evidence and HOLD affected progression.",
+    "pressures": [
+      "MLCOA",
+      "MDCOA",
+      "DENIED",
+      "DEGRADED",
+      "INTERMITTENT",
+      "LIMITED",
+      "OUT_OF_DISTRIBUTION"
+    ]
+  },
+  {
+    "id": "S13",
+    "name": "Pressure transition",
+    "sequence": [
+      "pin profile",
+      "admitted work",
+      "fault/posture transition",
+      "fresh gate",
+      "bounded outcome",
+      "recovery hysteresis"
+    ],
+    "requirements": [
+      "HMT-B13",
+      "HMT-B02"
+    ],
+    "expected": "All linked requirements remain true at each causal cut; otherwise preserve evidence and HOLD affected progression.",
+    "pressures": [
+      "MLCOA",
+      "MDCOA",
+      "DENIED",
+      "DEGRADED",
+      "INTERMITTENT",
+      "LIMITED",
+      "OUT_OF_DISTRIBUTION"
+    ]
+  },
+  {
+    "id": "S14",
+    "name": "Concurrent cancellation",
+    "sequence": [
+      "race claims",
+      "fence loser",
+      "cancel winner",
+      "interrupt child",
+      "cleanup",
+      "reconcile external state"
+    ],
+    "requirements": [
+      "HMT-B14",
+      "HMT-F18"
+    ],
+    "expected": "All linked requirements remain true at each causal cut; otherwise preserve evidence and HOLD affected progression.",
+    "pressures": [
+      "MLCOA",
+      "MDCOA",
+      "DENIED",
+      "DEGRADED",
+      "INTERMITTENT",
+      "LIMITED",
+      "OUT_OF_DISTRIBUTION"
+    ]
+  },
+  {
+    "id": "S15",
+    "name": "Dictate, review, correct, and steer",
+    "sequence": [
+      "focus command composer",
+      "dictate with Wispr Flow",
+      "receive editable draft",
+      "correct critical terms",
+      "explicit submit",
+      "resolve current task and authority",
+      "acknowledge accepted intent"
+    ],
+    "requirements": [
+      "HMT-V01",
+      "HMT-V02",
+      "HMT-V03",
+      "HMT-V04",
+      "HMT-V05"
+    ],
+    "expected": "No command effect before explicit submit; submitted intent and receipt preserve accepted semantics.",
+    "pressures": [
+      "MLCOA",
+      "MDCOA",
+      "DENIED",
+      "DEGRADED",
+      "INTERMITTENT",
+      "LIMITED",
+      "OUT_OF_DISTRIBUTION"
+    ]
+  },
+  {
+    "id": "S16",
+    "name": "Voice interruption and recovery",
+    "sequence": [
+      "dictate steering",
+      "provider delayed",
+      "task authority changes",
+      "receive late text as draft",
+      "submit or correct",
+      "revalidate",
+      "interrupt and restart",
+      "deduplicate delivery",
+      "reconcile existing effect"
+    ],
+    "requirements": [
+      "HMT-V06",
+      "HMT-V07",
+      "HMT-V08",
+      "HMT-B01",
+      "HMT-B03"
+    ],
+    "expected": "No automatic execution, authority restoration, alternate-provider bypass, or unresolved-write repeat.",
+    "pressures": [
+      "MLCOA",
+      "MDCOA",
+      "DENIED",
+      "DEGRADED",
+      "INTERMITTENT",
+      "LIMITED",
+      "OUT_OF_DISTRIBUTION"
+    ]
+  }
+]
