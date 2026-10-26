@@ -1,0 +1,12 @@
+test_collision_rejected_before_destination_creation (test_reconcile_verification_identity.CanonicalIdentityTests.test_collision_rejected_before_destination_creation) ... ok
+test_controls_preserve_complete_product_and_existing_ids (test_reconcile_verification_identity.CanonicalIdentityTests.test_controls_preserve_complete_product_and_existing_ids) ... ok
+test_import_does_not_claim_a_gate_run (test_reconcile_verification_structure.StructuralGateTests.test_import_does_not_claim_a_gate_run) ... ok
+test_nominal_source_has_no_warning (test_reconcile_verification_structure.StructuralGateTests.test_nominal_source_has_no_warning) ... ok
+test_refactor_required_rejects_candidate (test_reconcile_verification_structure.StructuralGateTests.test_refactor_required_rejects_candidate) ... ok
+test_suppression_rejects_candidate (test_reconcile_verification_structure.StructuralGateTests.test_suppression_rejects_candidate) ... ok
+test_watch_warns_without_rejecting (test_reconcile_verification_structure.StructuralGateTests.test_watch_warns_without_rejecting) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.198s
+
+OK

@@ -1,0 +1,28 @@
+[
+  {
+    "command": [
+      "uv",
+      "run",
+      "ruff",
+      "check",
+      "src/hmt_rnd/verification_models.py",
+      "tests/test_reconcile_verification_identity.py",
+      "tests/test_reconcile_verification_structure.py"
+    ],
+    "exit_code": 0,
+    "stdout": "All checks passed!\n",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "uv",
+      "run",
+      "pyrefly",
+      "check",
+      "src/hmt_rnd/verification_models.py"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": " INFO 0 errors\nNo `pyrefly.toml` found \u2014 using preset `basic`.\nRun `pyrefly init` to continue setting up Pyrefly.\nDocs: https://pyrefly.org/en/docs/installation/\n"
+  }
+]
