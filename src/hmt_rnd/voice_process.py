@@ -47,8 +47,7 @@ def run_local(command: list[str], timeout: float, limit: int) -> ProcessResult:
                           env={"LANG": "C.UTF-8"}) as process:
         try:
             output = drain(process, timeout, limit)
-        except BaseException:
+        finally:
             terminate(process)
-            raise
         assert process.returncode is not None
         return ProcessResult(returncode=process.returncode, stdout=output)
