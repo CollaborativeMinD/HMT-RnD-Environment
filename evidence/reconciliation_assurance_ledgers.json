@@ -1,0 +1,890 @@
+{
+  "review_id": "HMT-RECONCILIATION-MA-LEDGERS-001",
+  "as_of": "2026-10-26T23:10:58.765958+00:00",
+  "primary_disposition": "STABLE_AS_IS",
+  "scope": "Data-only integrity, historical row retention, traceability and parity of consolidated reconciliation ledgers and12case closure register. This disposition applies only to this ledger scope.",
+  "whole_forge_disposition": "INSUFFICIENT_EVIDENCE",
+  "method": "Read-only CSV/JSON parsing, hashes, gzip decompression and in-memory SQLite deserialization/read queries; no target/tests/repair executed. Authoritative baseline Git tree retrieved read-only from GitHub.",
+  "sqlite_integrity_check": [
+    "ok"
+  ],
+  "compressed_bytes_equal_local_sqlite": true,
+  "manifest_hash_checks": [
+    {
+      "path": "evidence/Cumulative_Gate_Ledger.csv",
+      "expected_sha256": "766382d24405bf701b2b97008238647f845690fa2a809d3c6b14fe8a0d410fac",
+      "actual_sha256": "766382d24405bf701b2b97008238647f845690fa2a809d3c6b14fe8a0d410fac",
+      "matches": true
+    },
+    {
+      "path": "evidence/Reverse_RCA_Ledger.csv",
+      "expected_sha256": "f9560b1b100f4b54408919d13194a389409b839162dfbd7581f75af5755673eb",
+      "actual_sha256": "f9560b1b100f4b54408919d13194a389409b839162dfbd7581f75af5755673eb",
+      "matches": true
+    },
+    {
+      "path": "evidence/build_ledgers.sqlite",
+      "expected_sha256": "f0cbaef15f6ec7f41c729c7d5aed2171b5303dd30ec485ce47ffa11cc527dbd6",
+      "actual_sha256": "f0cbaef15f6ec7f41c729c7d5aed2171b5303dd30ec485ce47ffa11cc527dbd6",
+      "matches": true
+    },
+    {
+      "path": "evidence/build_ledgers.sqlite.gz",
+      "expected_sha256": "71e159c566da81ab939e99ccf2fdc6e633fc641da6a547a511d06c74b9189066",
+      "actual_sha256": "71e159c566da81ab939e99ccf2fdc6e633fc641da6a547a511d06c74b9189066",
+      "matches": true
+    }
+  ],
+  "tables": [
+    {
+      "table": "cumulative_gate_ledger",
+      "rows": 40,
+      "columns": [
+        "timestamp",
+        "task",
+        "gate_id",
+        "requirement",
+        "status",
+        "evidence_ref",
+        "evidence_hash_reason",
+        "sub_agent_task_attestation"
+      ],
+      "column_count": 8,
+      "csv_sqlite_ordered_row_parity": true,
+      "blank_attestations": 0,
+      "historical_prefix_rows": 16,
+      "historical_rows_exactly_retained": true
+    },
+    {
+      "table": "reverse_rca_ledger",
+      "rows": 90,
+      "columns": [
+        "timestamp",
+        "incident_id",
+        "checkpoint",
+        "observed_state",
+        "causal_evidence",
+        "validation_test",
+        "disposition",
+        "sub_agent_task_attestation"
+      ],
+      "column_count": 8,
+      "csv_sqlite_ordered_row_parity": true,
+      "blank_attestations": 0,
+      "historical_prefix_rows": 1,
+      "historical_rows_exactly_retained": true
+    }
+  ],
+  "worker_rows": {
+    "count": 41,
+    "all_retained_with_multiplicity": true,
+    "sources": [
+      "evidence/reconcile_custody_rrca.csv",
+      "evidence/reconcile_voice_rrca.csv",
+      "evidence/reconcile_verification_identity_rrca.csv",
+      "evidence/reconcile_verification_coverage_rrca.csv",
+      "evidence/reconcile_lane_Reverse_RCA_Ledger.csv"
+    ]
+  },
+  "canonical_case_rows": {
+    "case_count": 12,
+    "supervisor_rows_added": 48,
+    "checkpoints_per_case": [
+      "INITIATION",
+      "CAUSAL_CORRECTION",
+      "REGRESSION",
+      "DISPOSITION"
+    ],
+    "cases": [
+      {
+        "case_id": "RC-CUSTODY-01",
+        "status": "CLOSED_SCOPED_RECONCILIATION",
+        "requirements": [
+          "HMT-F18",
+          "HMT-B04"
+        ],
+        "evidence_refs": [
+          {
+            "kind": "investigation",
+            "path": "evidence/reconcile_custody_case.json",
+            "sha256": "d746d5d814640755819bb8eec58c523a8bb639fc79a8f64005b6ae4b51da61a7",
+            "matches": true
+          },
+          {
+            "kind": "regression",
+            "path": "evidence/reconcile_sequence_custody.json",
+            "sha256": "cd0d996a95c2cbcb9b9d2bcdbc42a4834aa8ae6d35b1cdb4628f57a5e96e9f9e",
+            "matches": true
+          },
+          {
+            "kind": "independent_review",
+            "path": "evidence/reconciliation_assurance_final.json",
+            "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+            "matches": true
+          }
+        ],
+        "required_checkpoints_present": true,
+        "scope_limit_retained": true
+      },
+      {
+        "case_id": "RC-HOST-01",
+        "status": "CLOSED_SCOPED_RECONCILIATION",
+        "requirements": [
+          "HMT-F02",
+          "HMT-N04"
+        ],
+        "evidence_refs": [
+          {
+            "kind": "investigation",
+            "path": "evidence/reconcile_host_case.json",
+            "sha256": "96761d780f72e27cd82b31ed15b2bcd4e7ac6a280c4e92c9d945c1e68406e342",
+            "matches": true
+          },
+          {
+            "kind": "regression",
+            "path": "evidence/reconcile_host_exact.json",
+            "sha256": "e834c6e7796fcfc558865dabfd3d8ee868894e9e6dd77196e863d41a7ca7ba49",
+            "matches": true
+          },
+          {
+            "kind": "independent_review",
+            "path": "evidence/reconciliation_assurance_final.json",
+            "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+            "matches": true
+          }
+        ],
+        "required_checkpoints_present": true,
+        "scope_limit_retained": true
+      },
+      {
+        "case_id": "RC-VOICE-01",
+        "status": "CLOSED_SCOPED_RECONCILIATION",
+        "requirements": [
+          "HMT-N02",
+          "HMT-N03",
+          "HMT-V09"
+        ],
+        "evidence_refs": [
+          {
+            "kind": "investigation",
+            "path": "evidence/reconcile_voice_case_1.json",
+            "sha256": "a1f5dd44af27b4987cdf70c0403de635583d43ee577ac1de9d698a28053c219f",
+            "matches": true
+          },
+          {
+            "kind": "regression",
+            "path": "evidence/reconcile_sequence_voice1.json",
+            "sha256": "df0c2e5e6ee08453b4fb8b88f9c660fa2a2f080443badcc9039bc50935e5267b",
+            "matches": true
+          },
+          {
+            "kind": "independent_review",
+            "path": "evidence/reconciliation_assurance_final.json",
+            "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+            "matches": true
+          }
+        ],
+        "required_checkpoints_present": true,
+        "scope_limit_retained": true
+      },
+      {
+        "case_id": "RC-VOICE-02",
+        "status": "CLOSED_SCOPED_RECONCILIATION",
+        "requirements": [
+          "HMT-N03",
+          "HMT-B14",
+          "HMT-V09"
+        ],
+        "evidence_refs": [
+          {
+            "kind": "investigation",
+            "path": "evidence/reconcile_voice_case_2.json",
+            "sha256": "d1ba3b9ff7e06f54b2971e3ef029a2686503d606da665c2a4baa29709309d129",
+            "matches": true
+          },
+          {
+            "kind": "regression",
+            "path": "evidence/reconcile_sequence_voice2.json",
+            "sha256": "5e9ac111f5879fb93886b3a2bb4f75010448a79828ef163c82400b2aa2394320",
+            "matches": true
+          },
+          {
+            "kind": "independent_review",
+            "path": "evidence/reconciliation_assurance_final.json",
+            "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+            "matches": true
+          }
+        ],
+        "required_checkpoints_present": true,
+        "scope_limit_retained": true
+      },
+      {
+        "case_id": "RC-VOICE-03",
+        "status": "CLOSED_SCOPED_RECONCILIATION",
+        "requirements": [
+          "HMT-F03",
+          "HMT-N03",
+          "HMT-V09"
+        ],
+        "evidence_refs": [
+          {
+            "kind": "investigation",
+            "path": "evidence/reconcile_voice_case_3.json",
+            "sha256": "1fb4ff9bba15dda58b3c2de5dc15f46792e867482a6283ad61ff88183dcca773",
+            "matches": true
+          },
+          {
+            "kind": "regression",
+            "path": "evidence/reconcile_sequence_voice3.json",
+            "sha256": "478be23b64f736f36d5c42b39a20d30feb819170330e74e564423416d4a81da0",
+            "matches": true
+          },
+          {
+            "kind": "independent_review",
+            "path": "evidence/reconciliation_assurance_final.json",
+            "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+            "matches": true
+          }
+        ],
+        "required_checkpoints_present": true,
+        "scope_limit_retained": true
+      },
+      {
+        "case_id": "RC-LEDGER-01",
+        "status": "CLOSED_SCOPED_RECONCILIATION",
+        "requirements": [
+          "HMT-F03",
+          "HMT-N10",
+          "HMT-N12"
+        ],
+        "evidence_refs": [
+          {
+            "kind": "investigation",
+            "path": "evidence/reconcile_verification_identity_case.json",
+            "sha256": "97f2d5f0508e75da84f771cd7b96a18adc67d54b4f02f306ecc6a08ace67e656",
+            "matches": true
+          },
+          {
+            "kind": "regression",
+            "path": "evidence/reconcile_sequence_identity.json",
+            "sha256": "9cef5b2780264ea0af68b04c0973c6814eef2147a01bd5c34f80a43b81773dd5",
+            "matches": true
+          },
+          {
+            "kind": "independent_review",
+            "path": "evidence/reconciliation_assurance_final.json",
+            "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+            "matches": true
+          }
+        ],
+        "required_checkpoints_present": true,
+        "scope_limit_retained": true
+      },
+      {
+        "case_id": "RC-LANE-01",
+        "status": "CLOSED_SCOPED_RECONCILIATION",
+        "requirements": [
+          "HMT-B07"
+        ],
+        "evidence_refs": [
+          {
+            "kind": "investigation",
+            "path": "evidence/reconcile_lane_case_1.json",
+            "sha256": "418adcb38e54c7de5a9eaa464fa22cbb8483d48c1c328839601842b49cd680bd",
+            "matches": true
+          },
+          {
+            "kind": "regression",
+            "path": "evidence/reconcile_sequence_lane1.json",
+            "sha256": "e26ad3a5baa52c4677d403e381a3bfd05dd32e1876a2fde6c28caca98b5a1c9f",
+            "matches": true
+          },
+          {
+            "kind": "independent_review",
+            "path": "evidence/reconciliation_assurance_final.json",
+            "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+            "matches": true
+          }
+        ],
+        "required_checkpoints_present": true,
+        "scope_limit_retained": true
+      },
+      {
+        "case_id": "RC-LANE-02",
+        "status": "CLOSED_SCOPED_RECONCILIATION",
+        "requirements": [
+          "HMT-B07"
+        ],
+        "evidence_refs": [
+          {
+            "kind": "investigation",
+            "path": "evidence/reconcile_lane_case_2.json",
+            "sha256": "7aaaa0da4bed7cf9d141fe4986b2893a2ba1ba6fc905e5162e55cc6379a382d6",
+            "matches": true
+          },
+          {
+            "kind": "regression",
+            "path": "evidence/reconcile_sequence_lane2.json",
+            "sha256": "717be442148e30b6ddd5e02c22e4c67a9da3596f8322db02bc7eaed196c268f3",
+            "matches": true
+          },
+          {
+            "kind": "independent_review",
+            "path": "evidence/reconciliation_assurance_final.json",
+            "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+            "matches": true
+          }
+        ],
+        "required_checkpoints_present": true,
+        "scope_limit_retained": true
+      },
+      {
+        "case_id": "RC-LANE-03",
+        "status": "CLOSED_SCOPED_RECONCILIATION",
+        "requirements": [
+          "HMT-B07",
+          "HMT-F02"
+        ],
+        "evidence_refs": [
+          {
+            "kind": "investigation",
+            "path": "evidence/reconcile_lane_case_3.json",
+            "sha256": "45ee38cc5240ea879d4ba9e6036d623913919049886ccf6bd1cc1ad6c0615b06",
+            "matches": true
+          },
+          {
+            "kind": "regression",
+            "path": "evidence/reconcile_sequence_lane3.json",
+            "sha256": "adc07f58de7ea33a370df2ef27a36d1f230c289d98458600b467cbc3edbed89d",
+            "matches": true
+          },
+          {
+            "kind": "independent_review",
+            "path": "evidence/reconciliation_assurance_final.json",
+            "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+            "matches": true
+          }
+        ],
+        "required_checkpoints_present": true,
+        "scope_limit_retained": true
+      },
+      {
+        "case_id": "RC-LANE-04",
+        "status": "CLOSED_SCOPED_RECONCILIATION",
+        "requirements": [
+          "HMT-B07"
+        ],
+        "evidence_refs": [
+          {
+            "kind": "investigation",
+            "path": "evidence/reconcile_lane_case_4.json",
+            "sha256": "627a56c4e092a67f30dc34943dda98aa5f0dd54af449f5b235fd019bacf7922a",
+            "matches": true
+          },
+          {
+            "kind": "regression",
+            "path": "evidence/reconcile_sequence_lane4.json",
+            "sha256": "e15b85fd21fa3996aa9dde3c4cf302cced9223210fe8ad754f2e768f1c67278f",
+            "matches": true
+          },
+          {
+            "kind": "independent_review",
+            "path": "evidence/reconciliation_assurance_final.json",
+            "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+            "matches": true
+          }
+        ],
+        "required_checkpoints_present": true,
+        "scope_limit_retained": true
+      },
+      {
+        "case_id": "RC-COVERAGE-01",
+        "status": "CLOSED_SCOPED_RECONCILIATION",
+        "requirements": [
+          "HMT-N11",
+          "HMT-N12",
+          "HMT-B10"
+        ],
+        "evidence_refs": [
+          {
+            "kind": "investigation",
+            "path": "evidence/reconcile_verification_coverage_correction.json",
+            "sha256": "583f2efcdcb239fdcb7f3891e0b60205204559f3310c6fa463bb9a7c462c23c1",
+            "matches": true
+          },
+          {
+            "kind": "regression",
+            "path": "evidence/reconciliation_changed_coverage.json",
+            "sha256": "5e6a5de568d65395471cd2f08f95ab6875132400c6238eb2fcab90f24a3dd609",
+            "matches": true
+          },
+          {
+            "kind": "independent_review",
+            "path": "evidence/reconciliation_assurance_final.json",
+            "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+            "matches": true
+          }
+        ],
+        "required_checkpoints_present": true,
+        "scope_limit_retained": true
+      },
+      {
+        "case_id": "RC-HARNESS-01",
+        "status": "CLOSED_SCOPED_RECONCILIATION",
+        "requirements": [
+          "HMT-N12",
+          "HMT-B10",
+          "HMT-B11",
+          "HMT-B15"
+        ],
+        "evidence_refs": [
+          {
+            "kind": "investigation",
+            "path": "evidence/reconcile_harness_case.json",
+            "sha256": "06eec9692a97dbbcda1669732e609eafe19824998574e47c80a36c387804685e",
+            "matches": true
+          },
+          {
+            "kind": "regression",
+            "path": "evidence/reconciliation_sequence_validation.json",
+            "sha256": "560f9d4e5404198395ed95255168856c2bc719e5cb2d7d0d44ff26d8596098f4",
+            "matches": true
+          },
+          {
+            "kind": "independent_review",
+            "path": "evidence/reconciliation_assurance_final.json",
+            "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+            "matches": true
+          }
+        ],
+        "required_checkpoints_present": true,
+        "scope_limit_retained": true
+      }
+    ]
+  },
+  "hashed_rrca_refs": [
+    {
+      "row": 42,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_custody_case.json",
+      "sha256": "d746d5d814640755819bb8eec58c523a8bb639fc79a8f64005b6ae4b51da61a7",
+      "matches": true
+    },
+    {
+      "row": 43,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_custody_case.json",
+      "sha256": "d746d5d814640755819bb8eec58c523a8bb639fc79a8f64005b6ae4b51da61a7",
+      "matches": true
+    },
+    {
+      "row": 44,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_sequence_custody.json",
+      "sha256": "cd0d996a95c2cbcb9b9d2bcdbc42a4834aa8ae6d35b1cdb4628f57a5e96e9f9e",
+      "matches": true
+    },
+    {
+      "row": 45,
+      "field": "causal_evidence",
+      "path": "evidence/reconciliation_assurance_final.json",
+      "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+      "matches": true
+    },
+    {
+      "row": 46,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_host_case.json",
+      "sha256": "96761d780f72e27cd82b31ed15b2bcd4e7ac6a280c4e92c9d945c1e68406e342",
+      "matches": true
+    },
+    {
+      "row": 47,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_host_case.json",
+      "sha256": "96761d780f72e27cd82b31ed15b2bcd4e7ac6a280c4e92c9d945c1e68406e342",
+      "matches": true
+    },
+    {
+      "row": 48,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_host_exact.json",
+      "sha256": "e834c6e7796fcfc558865dabfd3d8ee868894e9e6dd77196e863d41a7ca7ba49",
+      "matches": true
+    },
+    {
+      "row": 49,
+      "field": "causal_evidence",
+      "path": "evidence/reconciliation_assurance_final.json",
+      "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+      "matches": true
+    },
+    {
+      "row": 50,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_voice_case_1.json",
+      "sha256": "a1f5dd44af27b4987cdf70c0403de635583d43ee577ac1de9d698a28053c219f",
+      "matches": true
+    },
+    {
+      "row": 51,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_voice_case_1.json",
+      "sha256": "a1f5dd44af27b4987cdf70c0403de635583d43ee577ac1de9d698a28053c219f",
+      "matches": true
+    },
+    {
+      "row": 52,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_sequence_voice1.json",
+      "sha256": "df0c2e5e6ee08453b4fb8b88f9c660fa2a2f080443badcc9039bc50935e5267b",
+      "matches": true
+    },
+    {
+      "row": 53,
+      "field": "causal_evidence",
+      "path": "evidence/reconciliation_assurance_final.json",
+      "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+      "matches": true
+    },
+    {
+      "row": 54,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_voice_case_2.json",
+      "sha256": "d1ba3b9ff7e06f54b2971e3ef029a2686503d606da665c2a4baa29709309d129",
+      "matches": true
+    },
+    {
+      "row": 55,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_voice_case_2.json",
+      "sha256": "d1ba3b9ff7e06f54b2971e3ef029a2686503d606da665c2a4baa29709309d129",
+      "matches": true
+    },
+    {
+      "row": 56,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_sequence_voice2.json",
+      "sha256": "5e9ac111f5879fb93886b3a2bb4f75010448a79828ef163c82400b2aa2394320",
+      "matches": true
+    },
+    {
+      "row": 57,
+      "field": "causal_evidence",
+      "path": "evidence/reconciliation_assurance_final.json",
+      "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+      "matches": true
+    },
+    {
+      "row": 58,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_voice_case_3.json",
+      "sha256": "1fb4ff9bba15dda58b3c2de5dc15f46792e867482a6283ad61ff88183dcca773",
+      "matches": true
+    },
+    {
+      "row": 59,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_voice_case_3.json",
+      "sha256": "1fb4ff9bba15dda58b3c2de5dc15f46792e867482a6283ad61ff88183dcca773",
+      "matches": true
+    },
+    {
+      "row": 60,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_sequence_voice3.json",
+      "sha256": "478be23b64f736f36d5c42b39a20d30feb819170330e74e564423416d4a81da0",
+      "matches": true
+    },
+    {
+      "row": 61,
+      "field": "causal_evidence",
+      "path": "evidence/reconciliation_assurance_final.json",
+      "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+      "matches": true
+    },
+    {
+      "row": 62,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_verification_identity_case.json",
+      "sha256": "97f2d5f0508e75da84f771cd7b96a18adc67d54b4f02f306ecc6a08ace67e656",
+      "matches": true
+    },
+    {
+      "row": 63,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_verification_identity_case.json",
+      "sha256": "97f2d5f0508e75da84f771cd7b96a18adc67d54b4f02f306ecc6a08ace67e656",
+      "matches": true
+    },
+    {
+      "row": 64,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_sequence_identity.json",
+      "sha256": "9cef5b2780264ea0af68b04c0973c6814eef2147a01bd5c34f80a43b81773dd5",
+      "matches": true
+    },
+    {
+      "row": 65,
+      "field": "causal_evidence",
+      "path": "evidence/reconciliation_assurance_final.json",
+      "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+      "matches": true
+    },
+    {
+      "row": 66,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_lane_case_1.json",
+      "sha256": "418adcb38e54c7de5a9eaa464fa22cbb8483d48c1c328839601842b49cd680bd",
+      "matches": true
+    },
+    {
+      "row": 67,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_lane_case_1.json",
+      "sha256": "418adcb38e54c7de5a9eaa464fa22cbb8483d48c1c328839601842b49cd680bd",
+      "matches": true
+    },
+    {
+      "row": 68,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_sequence_lane1.json",
+      "sha256": "e26ad3a5baa52c4677d403e381a3bfd05dd32e1876a2fde6c28caca98b5a1c9f",
+      "matches": true
+    },
+    {
+      "row": 69,
+      "field": "causal_evidence",
+      "path": "evidence/reconciliation_assurance_final.json",
+      "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+      "matches": true
+    },
+    {
+      "row": 70,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_lane_case_2.json",
+      "sha256": "7aaaa0da4bed7cf9d141fe4986b2893a2ba1ba6fc905e5162e55cc6379a382d6",
+      "matches": true
+    },
+    {
+      "row": 71,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_lane_case_2.json",
+      "sha256": "7aaaa0da4bed7cf9d141fe4986b2893a2ba1ba6fc905e5162e55cc6379a382d6",
+      "matches": true
+    },
+    {
+      "row": 72,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_sequence_lane2.json",
+      "sha256": "717be442148e30b6ddd5e02c22e4c67a9da3596f8322db02bc7eaed196c268f3",
+      "matches": true
+    },
+    {
+      "row": 73,
+      "field": "causal_evidence",
+      "path": "evidence/reconciliation_assurance_final.json",
+      "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+      "matches": true
+    },
+    {
+      "row": 74,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_lane_case_3.json",
+      "sha256": "45ee38cc5240ea879d4ba9e6036d623913919049886ccf6bd1cc1ad6c0615b06",
+      "matches": true
+    },
+    {
+      "row": 75,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_lane_case_3.json",
+      "sha256": "45ee38cc5240ea879d4ba9e6036d623913919049886ccf6bd1cc1ad6c0615b06",
+      "matches": true
+    },
+    {
+      "row": 76,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_sequence_lane3.json",
+      "sha256": "adc07f58de7ea33a370df2ef27a36d1f230c289d98458600b467cbc3edbed89d",
+      "matches": true
+    },
+    {
+      "row": 77,
+      "field": "causal_evidence",
+      "path": "evidence/reconciliation_assurance_final.json",
+      "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+      "matches": true
+    },
+    {
+      "row": 78,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_lane_case_4.json",
+      "sha256": "627a56c4e092a67f30dc34943dda98aa5f0dd54af449f5b235fd019bacf7922a",
+      "matches": true
+    },
+    {
+      "row": 79,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_lane_case_4.json",
+      "sha256": "627a56c4e092a67f30dc34943dda98aa5f0dd54af449f5b235fd019bacf7922a",
+      "matches": true
+    },
+    {
+      "row": 80,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_sequence_lane4.json",
+      "sha256": "e15b85fd21fa3996aa9dde3c4cf302cced9223210fe8ad754f2e768f1c67278f",
+      "matches": true
+    },
+    {
+      "row": 81,
+      "field": "causal_evidence",
+      "path": "evidence/reconciliation_assurance_final.json",
+      "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+      "matches": true
+    },
+    {
+      "row": 82,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_verification_coverage_correction.json",
+      "sha256": "583f2efcdcb239fdcb7f3891e0b60205204559f3310c6fa463bb9a7c462c23c1",
+      "matches": true
+    },
+    {
+      "row": 83,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_verification_coverage_correction.json",
+      "sha256": "583f2efcdcb239fdcb7f3891e0b60205204559f3310c6fa463bb9a7c462c23c1",
+      "matches": true
+    },
+    {
+      "row": 84,
+      "field": "causal_evidence",
+      "path": "evidence/reconciliation_changed_coverage.json",
+      "sha256": "5e6a5de568d65395471cd2f08f95ab6875132400c6238eb2fcab90f24a3dd609",
+      "matches": true
+    },
+    {
+      "row": 85,
+      "field": "causal_evidence",
+      "path": "evidence/reconciliation_assurance_final.json",
+      "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+      "matches": true
+    },
+    {
+      "row": 86,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_harness_case.json",
+      "sha256": "06eec9692a97dbbcda1669732e609eafe19824998574e47c80a36c387804685e",
+      "matches": true
+    },
+    {
+      "row": 87,
+      "field": "causal_evidence",
+      "path": "evidence/reconcile_harness_case.json",
+      "sha256": "06eec9692a97dbbcda1669732e609eafe19824998574e47c80a36c387804685e",
+      "matches": true
+    },
+    {
+      "row": 88,
+      "field": "causal_evidence",
+      "path": "evidence/reconciliation_sequence_validation.json",
+      "sha256": "560f9d4e5404198395ed95255168856c2bc719e5cb2d7d0d44ff26d8596098f4",
+      "matches": true
+    },
+    {
+      "row": 89,
+      "field": "causal_evidence",
+      "path": "evidence/reconciliation_assurance_final.json",
+      "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+      "matches": true
+    }
+  ],
+  "published_baseline": {
+    "commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+    "tree": "17cea57e6f521b540562dee3faa8f1725f4c644a",
+    "read_url": "https://api.github.com/repos/CollaborativeMinD/HMT-RnD-Environment/git/trees/17cea57e6f521b540562dee3faa8f1725f4c644a?recursive=1",
+    "archive_checks": [
+      {
+        "path": "evidence/reconciliation_history/Cumulative_Gate_Ledger.csv",
+        "published_baseline_git_blob_sha": "7d5966a1af735869cdc2901ad0819a5b5e292acf",
+        "actual_git_blob_sha": "7d5966a1af735869cdc2901ad0819a5b5e292acf",
+        "matches": true
+      },
+      {
+        "path": "evidence/reconciliation_history/Reverse_RCA_Ledger.csv",
+        "published_baseline_git_blob_sha": "69456d42fffd06df5d6d2e88bc4372df313370d4",
+        "actual_git_blob_sha": "69456d42fffd06df5d6d2e88bc4372df313370d4",
+        "matches": true
+      },
+      {
+        "path": "evidence/reconciliation_history/build_ledgers.sqlite.gz",
+        "published_baseline_git_blob_sha": "79e1014dec2694b3e7f41587144f112d5011155d",
+        "actual_git_blob_sha": "79e1014dec2694b3e7f41587144f112d5011155d",
+        "matches": true
+      }
+    ]
+  },
+  "acceptance_preservation": {
+    "requirement_count": 58,
+    "unchanged_published_blobs": [
+      {
+        "path": "contracts/requirements.json",
+        "baseline_git_blob_sha": "1ebaeb1d2b86b8b6427fd2d7285963b08571d8ab",
+        "current_git_blob_sha": "1ebaeb1d2b86b8b6427fd2d7285963b08571d8ab",
+        "matches": true
+      },
+      {
+        "path": "evidence/verification_candidate_ledger.csv.gz",
+        "baseline_git_blob_sha": "af389ac624d5527394ec4d1d5d322d6e1e7c6935",
+        "current_git_blob_sha": "af389ac624d5527394ec4d1d5d322d6e1e7c6935",
+        "matches": true
+      },
+      {
+        "path": "evidence/verification_candidate_ledger.sqlite.gz",
+        "baseline_git_blob_sha": "f71606a035c5eec7282de2550afd52b774990cdf",
+        "current_git_blob_sha": "f71606a035c5eec7282de2550afd52b774990cdf",
+        "matches": true
+      }
+    ],
+    "change_record_requirement_union_exact": true,
+    "integration_status": "HOLD; owner has withheld remaining integration instructions; no integration progression authorized by this record.",
+    "historical_qualification_holds": {
+      "H01": "Host/source namespace reconciliation; derivative override may alter release basis, explicit disposition needed",
+      "H02": "Production principal/credential/egress witnesses absent",
+      "H03": "Actual external endpoint custody capabilities absent",
+      "H04": "Full requirement-specific target-oracle mapping absent",
+      "H05": "Host/mission numerical and performance profiles absent",
+      "H06": "Cleared export/provenance qualification incomplete",
+      "H07": "Actual Wispr device/UI/cloud/steering qualification absent"
+    },
+    "qualification_statuses_not_promoted": true
+  },
+  "correction_to_prior_review": {
+    "record": "evidence/reconciliation_assurance_final.json#harness_history.remaining_unknown",
+    "prior_observation": "Two evidence CSVs in host_exact differ from local p1_publish_metadata expected hashes.",
+    "corrected_interpretation": "The local prepublication metadata contains different CSV hashes from the actual published Git tree. Fresh authoritative Git tree retrieval shows7d5966a1\u2026 and69456d42\u2026 are the actual published baseline CSV hashes and match preserved archives/previously observed host_exact copies. No CSV corruption or post-reconstruction drift follows from the local metadata mismatch.",
+    "preservation": "Prior review remains unchanged; this additive correction supersedes only that metadata-based caveat. Executable102file identity and all scoped case conclusions remain supported."
+  },
+  "limits": [
+    "No target execution or independent producer-authentication claim; hashes bind bytes only.",
+    "No global integration/deployment release or complete requirement satisfaction.",
+    "HMT-N11 branch subcondition is supported separately; full applicable assertions/critical mutations remain unestablished.",
+    "Twelve scoped case closures retain explicit reopening and all historical qualification holds."
+  ],
+  "records_sha256": {
+    "evidence/reconciliation_ledger_manifest.json": "c170e28a9d60df4bc3daeb76d8002f8eed414fed4c1b9208d73df66dfe78a384",
+    "evidence/reconciliation_closure_register.json": "8fb21ed031f8d8ecc6832eeea446b314334fb03b1b90ca53cae46cccb3a543fb",
+    "contracts/CR-RECONCILIATION-004.json": "36e84c81ce85fefffd794707f2d305fbdf27db2b91ca38458126fc075e45fcc5",
+    "evidence/reconciliation_assurance_final.json": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377",
+    "evidence/reconciliation_assurance_publication.json": "90ac10ce3481dfa220d8396893eb42cbce24c263ecc6e3ec71060c95c9232c9d"
+  },
+  "sub_agent_task_attestation": {
+    "agent": "/root/assurance_reconciliation",
+    "scope": "read-only data consolidation audit",
+    "target_execution": false,
+    "implementation_modification": false,
+    "promotion_authority": false,
+    "unsigned": true
+  }
+}

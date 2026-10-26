@@ -23,3 +23,12 @@ All supplied HMT implementations are read-only references. Runtime imports from 
 The five earlier engine tests in evidence/custody_reference_parity.json are historical reference observations only; current derivative tests live under tests/test_custody*.py. They do not establish vendor, process-kill, power-loss or hardware fidelity.
 
 Run full source type checks with `uv run --group dev pyrefly check src`. The prior missing-reference-import failure is retained as historical evidence of the corrected dependency interpretation.
+
+## Reconciliation and HOLD procedure
+
+1. Read `evidence/reconciliation_closure_register.json` and the named case record before admitting further work. A closed scoped repair is not whole-requirement satisfaction or integration permission.
+2. Preserve the original source identity, failing command/observation, and causal frontier when a tracer contradicts a claim. Reopen its case and affected requirement under `contracts/CR-RECONCILIATION-004.json`; never replace a failure with an unrelated passing test.
+3. Inspect the eight-column `Cumulative_Gate_Ledger.csv` and `Reverse_RCA_Ledger.csv`. The identical tables are exported in `evidence/build_ledgers.sqlite.gz`. Keep worker attestations and previous rows intact.
+4. Reproduce only in a disposable copy with explicitly pinned source overlays. Compare source inventories before and after execution. The initial replay-precondition failure is retained in `evidence/reconcile_sequence_custody_initial.json`.
+5. Run the cumulative suite and local gates above. For branch measurement include both production code and executable scripts with `PYTHONPATH=src uv run coverage run --source=hmt_rnd,scripts -m pytest -q`; combine subprocess coverage and compare changed files to the pinned parent. Do not replace a changed-code denominator with the whole package percentage.
+6. Have mission assurance review the recorded evidence read-only. Keep integration on HOLD until its separately stated evidence and human instructions are present. Never select fallback to bypass HOLD or retry an unresolved effect.

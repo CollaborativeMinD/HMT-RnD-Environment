@@ -25,3 +25,11 @@ Each closure requires a retained before witness or supported refutation, causal 
 Operational qualification is a separate boundary. Production identities/egress, actual external endpoint capabilities, complete oracle mapping, mission/hardware measurements, export qualification, and Wispr UI/device evidence cannot be silently marked closed by this repair campaign. The assessment does not release owner HOLD or authorize the withheld integration stage.
 
 Method: source/record reading and arithmetic over existing coverage JSON only. No target imports, execution, attacks, tests, or implementation modifications. This is a manual skill-guided review; the four mission-assurance MCP tools were unavailable.
+
+## Candidate evidence review
+
+Ten bounded defect groups now have retained failing witnesses and matching repair/regression records. Custody reports34passes; host28; voice31including deterministic regular-to-FIFO substitution; lane43including owner/current-task controls; normalized-ledger identity29. These counts overlap and must not be summed. All70 declared source/evidence digest comparisons match. Worker ledgers have eight columns and no blank attestation fields. See `evidence/reconciliation_assurance_candidate.json`.
+
+The first voice harness records remain retained but two observations were invalid: FIFO import failed before target access, and a namespace-local PID did not establish host process identity. Corrected before witnesses fail all three original assertions; the repaired cases preserve the same boundary and expected error.
+
+HOLD remains pending exact-candidate cumulative gates and complete changed-code coverage. Historical coverage omitted the changed structural runner as well as using unchanged code to inflate the ratio. Explicit correction preserves this failed claim; aggregate historical passing tests do not close it.

@@ -1,0 +1,378 @@
+{
+  "review_id": "HMT-RECONCILIATION-MA-FINAL-001",
+  "as_of": "2026-10-26T23:06:41.221050+00:00",
+  "primary_disposition": "INSUFFICIENT_EVIDENCE",
+  "scope": "Independent read-only reconciliation of11review groups plus1supervisor replay harness incident. Scoped case evidence now matches; complete Forge acceptance remains unestablished.",
+  "scope_denominators": {
+    "repair_groups": 12,
+    "requirements_total": 58,
+    "applicable_candidate_assertions": 189,
+    "interpretation": "Twelve repaired case groups are not a replacement denominator for58requirements or189applicable assertions."
+  },
+  "method": "Read source/tests and existing records; independently recomputed digests, Git blob changed-file identities, coverage sums, JUnit counts and ordered repair overlays in memory. No target imports, tests, attacks, repair or mission-assurance MCP execution.",
+  "case_assessments": [
+    {
+      "case_id": "RC-CUSTODY-01",
+      "requirements": [
+        "HMT-F18",
+        "HMT-B04"
+      ],
+      "scoped_disposition": "STABLE_AS_IS",
+      "basis": "Matching original-boundary repair and regression witnesses retained; exact-candidate cumulative195test result contains unchanged case oracle. HMT requirement acceptance beyond this case is not established."
+    },
+    {
+      "case_id": "RC-HOST-01",
+      "requirements": [
+        "HMT-F02",
+        "HMT-N04"
+      ],
+      "scoped_disposition": "STABLE_AS_IS",
+      "basis": "Matching original-boundary repair and regression witnesses retained; exact-candidate cumulative195test result contains unchanged case oracle. HMT requirement acceptance beyond this case is not established."
+    },
+    {
+      "case_id": "RC-VOICE-01",
+      "requirements": [
+        "HMT-N02",
+        "HMT-N03",
+        "HMT-V09"
+      ],
+      "scoped_disposition": "STABLE_AS_IS",
+      "basis": "Matching original-boundary repair and regression witnesses retained; exact-candidate cumulative195test result contains unchanged case oracle. HMT requirement acceptance beyond this case is not established."
+    },
+    {
+      "case_id": "RC-VOICE-02",
+      "requirements": [
+        "HMT-N03",
+        "HMT-B14",
+        "HMT-V09"
+      ],
+      "scoped_disposition": "STABLE_AS_IS",
+      "basis": "Matching original-boundary repair and regression witnesses retained; exact-candidate cumulative195test result contains unchanged case oracle. HMT requirement acceptance beyond this case is not established."
+    },
+    {
+      "case_id": "RC-VOICE-03",
+      "requirements": [
+        "HMT-F03",
+        "HMT-N03",
+        "HMT-V09"
+      ],
+      "scoped_disposition": "STABLE_AS_IS",
+      "basis": "Matching original-boundary repair and regression witnesses retained; exact-candidate cumulative195test result contains unchanged case oracle. HMT requirement acceptance beyond this case is not established."
+    },
+    {
+      "case_id": "RC-LEDGER-01",
+      "requirements": [
+        "HMT-F03",
+        "HMT-N10",
+        "HMT-N12"
+      ],
+      "scoped_disposition": "STABLE_AS_IS",
+      "basis": "Matching original-boundary repair and regression witnesses retained; exact-candidate cumulative195test result contains unchanged case oracle. HMT requirement acceptance beyond this case is not established."
+    },
+    {
+      "case_id": "RC-LANE-01",
+      "requirements": [
+        "HMT-B07"
+      ],
+      "scoped_disposition": "STABLE_AS_IS",
+      "basis": "Matching original-boundary repair and regression witnesses retained; exact-candidate cumulative195test result contains unchanged case oracle. HMT requirement acceptance beyond this case is not established."
+    },
+    {
+      "case_id": "RC-LANE-02",
+      "requirements": [
+        "HMT-B07"
+      ],
+      "scoped_disposition": "STABLE_AS_IS",
+      "basis": "Matching original-boundary repair and regression witnesses retained; exact-candidate cumulative195test result contains unchanged case oracle. HMT requirement acceptance beyond this case is not established."
+    },
+    {
+      "case_id": "RC-LANE-03",
+      "requirements": [
+        "HMT-B07",
+        "HMT-F02"
+      ],
+      "scoped_disposition": "STABLE_AS_IS",
+      "basis": "Matching original-boundary repair and regression witnesses retained; exact-candidate cumulative195test result contains unchanged case oracle. HMT requirement acceptance beyond this case is not established."
+    },
+    {
+      "case_id": "RC-LANE-04",
+      "requirements": [
+        "HMT-B07"
+      ],
+      "scoped_disposition": "STABLE_AS_IS",
+      "basis": "Matching original-boundary repair and regression witnesses retained; exact-candidate cumulative195test result contains unchanged case oracle. HMT requirement acceptance beyond this case is not established."
+    },
+    {
+      "case_id": "RC-COVERAGE-01",
+      "requirements": [
+        "HMT-N11",
+        "HMT-N12",
+        "HMT-B10"
+      ],
+      "scoped_disposition": "STABLE_AS_IS",
+      "basis": "Historical denominator claim withdrawn with retained record. Exact changed26file branch subcondition independently recomputes206/222=92.7928percent and0exclusions. FullN11 assertions/mutations remain NOT_EXECUTED."
+    },
+    {
+      "case_id": "RC-HARNESS-01",
+      "requirements": [
+        "HMT-N12",
+        "HMT-B10",
+        "HMT-B11",
+        "HMT-B15"
+      ],
+      "scoped_disposition": "STABLE_AS_IS",
+      "basis": "Retained original custody4failure record exactly matches initial incident digest. Rebuilt isolated host164case candidate and all12ordered overlays independently match supplied source manifests; final executable inventory equals cumulative coverage candidate. No attribution beyond missing replay precondition is inferred."
+    }
+  ],
+  "final_executable_candidate": {
+    "declared_files": 102,
+    "all_current_source_hashes_match": true,
+    "manifest_sha256": "549b41522acb8767870ce5a88845b90c0502a915e5362ef0c17e840e94104f85",
+    "manifest_source": "evidence/reconciliation_final_gates.json#candidate_sha256",
+    "identity_limit": "Publication commit binding is supervisor responsibility; this review binds exact source/test/script bytes and supplied records."
+  },
+  "cumulative_result": {
+    "tests": 195,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "prior_failed_oracles_retained": true
+  },
+  "changed_code": {
+    "parent_commit": "9a5eb22bb0f430449c5465a229b5c0205eabfd93",
+    "changed_files": 26,
+    "selection": "All changed first-party .py blobs outside tests/evidence; entire changed-file branch denominator, no exclusions.",
+    "independent_current_git_blob_comparison_matches": true,
+    "independent_raw_coverage_summary_comparison_matches": true,
+    "covered_branches": 206,
+    "total_branches": 222,
+    "percent": 92.7927927927928,
+    "excluded_lines": 0,
+    "unmeasured_changed_files": [],
+    "structural_script_branches": "12/12",
+    "branch_subcondition": "PASS",
+    "whole_HMT_N11": "NOT_EXECUTED; full applicable assertion and critical mutation obligations remain open"
+  },
+  "static_gates_reported": {
+    "ruff_exit": 0,
+    "pyrefly_exit": 0,
+    "pyrefly_profile": "basic",
+    "structure_exit": 0,
+    "qualification_limit": "Reported basic typecheck and syntax-based suppression checks; no stronger profile or dynamic suppression completeness claim."
+  },
+  "sequential_replay": [
+    {
+      "stage": "host",
+      "record": "evidence/reconcile_host_exact.json",
+      "record_sha256": "e834c6e7796fcfc558865dabfd3d8ee868894e9e6dd77196e863d41a7ca7ba49",
+      "record_digest_matches": true,
+      "junit_sha256": "b014ee5b61576fbaf2bedbce47d6fa0c36ae54bd88c4e0d2c00face4302cb03d",
+      "junit_digest_matches": true,
+      "tests": 164,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_overlay_inventory_independently_matches": true,
+      "producer_reports_source_unchanged_during_execution": true
+    },
+    {
+      "stage": "custody",
+      "record": "evidence/reconcile_sequence_custody.json",
+      "record_sha256": "cd0d996a95c2cbcb9b9d2bcdbc42a4834aa8ae6d35b1cdb4628f57a5e96e9f9e",
+      "record_digest_matches": true,
+      "junit_sha256": "5d78ce7bd1f41cfa806295a7978d5e63a5135ed470c3d1098f0d0851d59f5bf2",
+      "junit_digest_matches": true,
+      "tests": 170,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_overlay_inventory_independently_matches": true,
+      "producer_reports_source_unchanged_during_execution": true
+    },
+    {
+      "stage": "voice1",
+      "record": "evidence/reconcile_sequence_voice1.json",
+      "record_sha256": "df0c2e5e6ee08453b4fb8b88f9c660fa2a2f080443badcc9039bc50935e5267b",
+      "record_digest_matches": true,
+      "junit_sha256": "ce7276e25ab4f862a110bd5b6125dee9bbed3b25c1178b4751688956ff37223d",
+      "junit_digest_matches": true,
+      "tests": 172,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_overlay_inventory_independently_matches": true,
+      "producer_reports_source_unchanged_during_execution": true
+    },
+    {
+      "stage": "voice2",
+      "record": "evidence/reconcile_sequence_voice2.json",
+      "record_sha256": "5e9ac111f5879fb93886b3a2bb4f75010448a79828ef163c82400b2aa2394320",
+      "record_digest_matches": true,
+      "junit_sha256": "9a0e1fbd677f1a28581c594bf565d26e3834ed6a02bd6e60a40f8efa8f3dda71",
+      "junit_digest_matches": true,
+      "tests": 173,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_overlay_inventory_independently_matches": true,
+      "producer_reports_source_unchanged_during_execution": true
+    },
+    {
+      "stage": "voice3",
+      "record": "evidence/reconcile_sequence_voice3.json",
+      "record_sha256": "478be23b64f736f36d5c42b39a20d30feb819170330e74e564423416d4a81da0",
+      "record_digest_matches": true,
+      "junit_sha256": "9abaefa456adfc29d0aa35e774d30226fe15042299c859863207445b5f136178",
+      "junit_digest_matches": true,
+      "tests": 174,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_overlay_inventory_independently_matches": true,
+      "producer_reports_source_unchanged_during_execution": true
+    },
+    {
+      "stage": "identity",
+      "record": "evidence/reconcile_sequence_identity.json",
+      "record_sha256": "9cef5b2780264ea0af68b04c0973c6814eef2147a01bd5c34f80a43b81773dd5",
+      "record_digest_matches": true,
+      "junit_sha256": "3d57d6a46c37f420679b846bdb7bffc380c7272ffe4a3f5aba41a7866f60ab7a",
+      "junit_digest_matches": true,
+      "tests": 176,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_overlay_inventory_independently_matches": true,
+      "producer_reports_source_unchanged_during_execution": true
+    },
+    {
+      "stage": "lane1",
+      "record": "evidence/reconcile_sequence_lane1.json",
+      "record_sha256": "e26ad3a5baa52c4677d403e381a3bfd05dd32e1876a2fde6c28caca98b5a1c9f",
+      "record_digest_matches": true,
+      "junit_sha256": "2edd35d90ad4276b277dffdae9c12f5fb809986f9541a4216348753bdf24d09e",
+      "junit_digest_matches": true,
+      "tests": 181,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_overlay_inventory_independently_matches": true,
+      "producer_reports_source_unchanged_during_execution": true
+    },
+    {
+      "stage": "lane2",
+      "record": "evidence/reconcile_sequence_lane2.json",
+      "record_sha256": "717be442148e30b6ddd5e02c22e4c67a9da3596f8322db02bc7eaed196c268f3",
+      "record_digest_matches": true,
+      "junit_sha256": "fc8f000037a19608881db3a6365e46c46466e9ebcbcf0cbeb9f0b32d7895f666",
+      "junit_digest_matches": true,
+      "tests": 183,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_overlay_inventory_independently_matches": true,
+      "producer_reports_source_unchanged_during_execution": true
+    },
+    {
+      "stage": "lane3",
+      "record": "evidence/reconcile_sequence_lane3.json",
+      "record_sha256": "adc07f58de7ea33a370df2ef27a36d1f230c289d98458600b467cbc3edbed89d",
+      "record_digest_matches": true,
+      "junit_sha256": "1343f77f2d7f98d53de5e40750edd501337541547280f9aa1d545e8d00bfd6ef",
+      "junit_digest_matches": true,
+      "tests": 185,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_overlay_inventory_independently_matches": true,
+      "producer_reports_source_unchanged_during_execution": true
+    },
+    {
+      "stage": "lane4",
+      "record": "evidence/reconcile_sequence_lane4.json",
+      "record_sha256": "e15b85fd21fa3996aa9dde3c4cf302cced9223210fe8ad754f2e768f1c67278f",
+      "record_digest_matches": true,
+      "junit_sha256": "822ced506da06bde41255589d2a814ed5c98ee867525396ffc21064a75b4a711",
+      "junit_digest_matches": true,
+      "tests": 186,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_overlay_inventory_independently_matches": true,
+      "producer_reports_source_unchanged_during_execution": true
+    },
+    {
+      "stage": "lane5",
+      "record": "evidence/reconcile_sequence_lane5.json",
+      "record_sha256": "1e4a5c9bd6639041570a714734a263bfb43641d12be8acff785d6f191673e476",
+      "record_digest_matches": true,
+      "junit_sha256": "96684e65cbc5d855146cca59861d7f848709794d2c3a1f9f4e9dd925de9cb5e9",
+      "junit_digest_matches": true,
+      "tests": 190,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_overlay_inventory_independently_matches": true,
+      "producer_reports_source_unchanged_during_execution": true
+    },
+    {
+      "stage": "coverage",
+      "record": "evidence/reconcile_sequence_coverage.json",
+      "record_sha256": "b14a9b37510b93daf0232835e5ba06963323fb8397f830e78bfdc431408d7b7a",
+      "record_digest_matches": true,
+      "junit_sha256": "54a6f7eafd4400215408ea4bc95e9cc8bf9c51a1ffa54ca95a1abdbaf49ab082",
+      "junit_digest_matches": true,
+      "tests": 195,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_overlay_inventory_independently_matches": true,
+      "producer_reports_source_unchanged_during_execution": true
+    }
+  ],
+  "harness_history": {
+    "original_manifest_preserved": "evidence/reconcile_sequence_custody_initial.json",
+    "original_junit_preserved": "evidence/reconcile_sequence_custody_initial.xml",
+    "exact_original_digests_match_prior_independent_incident": true,
+    "initial_failed_tests": 4,
+    "host_only_accepted_record": "evidence/reconcile_host_exact.json",
+    "host_only_accepted_test_count": 164,
+    "excluded_as_host_only_evidence": "reconcile_sequence_host170run; retained but includes custody tests",
+    "remaining_unknown": "No writer attribution for prior replay file contents. Current isolated replay executable inventory is exact; historical all175baseline file reconstruction is supervisor-supplied observation. Two evidence CSVs in host_exact currently differ, so independent equality claim is limited to src/tests/scripts."
+  },
+  "historical_report_retention": [
+    "p1_assurance_final coverage claim remains retained and explicitly contradicted by reconcile_verification_coverage_correction.",
+    "reconciliation_assurance_initial/candidate HOLD assessments remain true at their respective as-of times; this addendum supplies later evidence without rewriting them.",
+    "Invalid first voice harness retained with correction explanation; corrected original failure mechanisms remain tested."
+  ],
+  "ledger_review": "Worker eight-column ledgers checked earlier; final supervisor merged CSV/SQLite assembly still pending separate data-only reconciliation.",
+  "limitations": [
+    "No global HOLD release, integration authorization, deployment or human final closeout from this reviewer.",
+    "H01-H07 operational/source/export qualification obligations remain separately tracked; repair closure does not manufacture missing real-device, provider, identity, numerical, performance or egress evidence.",
+    "STABLE_AS_IS case dispositions apply only to declared repair scenarios, not full requirements or whole-system readiness.",
+    "Unsigned producer records/hashes establish content continuity, not producer authenticity or independently witnessed execution.",
+    "Full critical mutation families,189applicable assertion witnesses, actual stage-domain evaluators and production isolation remain unestablished."
+  ],
+  "records_sha256": {
+    "evidence/reconciliation_final_gates.json": "8eae63d7ac1829a256397473ac8ba19fe266a4463eccc1ee42c54081a72f582b",
+    "evidence/reconciliation_final_tests.xml": "e005605951b4ea00a5a3fa89c1bef0518c903e1d0092d5f98b8bdee5de259dae",
+    "evidence/reconciliation_final_coverage.json": "3259c71b4aee22fa1b6c7437d0f926434aa0c1662fcd0ac8d1377153a50b3d10",
+    "evidence/reconciliation_changed_coverage.json": "5e6a5de568d65395471cd2f08f95ab6875132400c6238eb2fcab90f24a3dd609",
+    "evidence/reconciliation_sequence_validation.json": "560f9d4e5404198395ed95255168856c2bc719e5cb2d7d0d44ff26d8596098f4",
+    "evidence/reconcile_host_exact.json": "e834c6e7796fcfc558865dabfd3d8ee868894e9e6dd77196e863d41a7ca7ba49",
+    "evidence/reconcile_harness_case.json": "06eec9692a97dbbcda1669732e609eafe19824998574e47c80a36c387804685e",
+    "evidence/reconciliation_assurance_candidate.json": "2114c490c8e3132b2c176bef00885c356aa4859f7002deacbd563922ebd9094d",
+    "evidence/reconciliation_assurance_harness_incident.json": "d70e3864069a46d70341f532ee0806280bf03bfe491497e7843db974407b101a",
+    "evidence/reconcile_verification_coverage_correction.json": "583f2efcdcb239fdcb7f3891e0b60205204559f3310c6fa463bb9a7c462c23c1",
+    "evidence/reconciliation_replay_driver.json": "dece9fab9711863c395a1d0ba04c1729b1cd20b5956faeb60833d36adeaceb4f"
+  },
+  "sub_agent_task_attestation": {
+    "agent": "/root/assurance_reconciliation",
+    "role": "read-only independent assurance",
+    "target_execution": false,
+    "repair_authority": false,
+    "promotion_authority": false,
+    "writes": "New assurance report only for this addendum",
+    "unsigned": true
+  }
+}

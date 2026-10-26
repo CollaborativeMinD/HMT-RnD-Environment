@@ -1,0 +1,791 @@
+{
+  "review_id": "HMT-RECONCILIATION-MA-CANDIDATE-001",
+  "as_of": "2026-10-26T22:54:05.301020+00:00",
+  "primary_disposition": "HOLD",
+  "scope": "Ten bounded defect groups have matching supplied repair witnesses; historical coverage claim corrected; final exact-candidate cumulative gates and changed-code measurement pending.",
+  "method": "Read-only source/test inspection, digest comparisons and parsing supplied XML/JSON/CSV. No target/test imports or execution.",
+  "baseline_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+  "cases": [
+    {
+      "case_id": "RC-CUSTODY-01",
+      "requirements": [
+        "HMT-F18",
+        "HMT-B04"
+      ],
+      "assessment": "MATCHING_SCOPED_REPAIR_WITNESSES_PENDING_SUPERVISOR_CUMULATIVE",
+      "expected_observation": "Cancel original reservation, then submit changed digest/new reservation: reject collision with no new effect; identical retry uses fresh authority and original binding."
+    },
+    {
+      "case_id": "RC-HOST-01",
+      "requirements": [
+        "HMT-F02",
+        "HMT-N04"
+      ],
+      "assessment": "MATCHING_SCOPED_REPAIR_WITNESSES_PENDING_SUPERVISOR_CUMULATIVE",
+      "expected_observation": "Reject relative grant or canonically freeze scope at trusted provisioning; after cwd change sibling root remains denied."
+    },
+    {
+      "case_id": "RC-VOICE-01",
+      "requirements": [
+        "HMT-N02",
+        "HMT-N03",
+        "HMT-V09"
+      ],
+      "assessment": "MATCHING_SCOPED_REPAIR_WITNESSES_PENDING_SUPERVISOR_CUMULATIVE",
+      "expected_observation": "FIFO and replacement-race input are rejected boundedly using opened descriptor; valid regular WAV still produces same draft."
+    },
+    {
+      "case_id": "RC-VOICE-02",
+      "requirements": [
+        "HMT-N03",
+        "HMT-B14",
+        "HMT-V09"
+      ],
+      "assessment": "MATCHING_SCOPED_REPAIR_WITNESSES_PENDING_SUPERVISOR_CUMULATIVE",
+      "expected_observation": "After parent success descendants in admitted process group cannot continue work; cleanup failure is explicit and bounded; normal output preserved."
+    },
+    {
+      "case_id": "RC-VOICE-03",
+      "requirements": [
+        "HMT-F03",
+        "HMT-N03",
+        "HMT-V09"
+      ],
+      "assessment": "MATCHING_SCOPED_REPAIR_WITNESSES_PENDING_SUPERVISOR_CUMULATIVE",
+      "expected_observation": "Child closes stdout/stderr and keeps running: same TimeoutError/VOICE_PROCESS_TIMEOUT as open-pipe deadline, bounded cleanup."
+    },
+    {
+      "case_id": "RC-LEDGER-01",
+      "requirements": [
+        "HMT-F03",
+        "HMT-N10",
+        "HMT-N12"
+      ],
+      "assessment": "MATCHING_SCOPED_REPAIR_WITNESSES_PENDING_SUPERVISOR_CUMULATIVE",
+      "expected_observation": "HMT-F01 and I-F01 collision rejects before destination creation; distinct IDs preserve full CROSS JOIN cardinality and NA tuples."
+    },
+    {
+      "case_id": "RC-LANE-01",
+      "requirements": [
+        "HMT-B07"
+      ],
+      "assessment": "MATCHING_SCOPED_REPAIR_WITNESSES_PENDING_SUPERVISOR_CUMULATIVE",
+      "expected_observation": "Evidence-only change and missing in-scope artifact/evidence route typed reopen to earliest affected owner while unchanged sources do not reopen and unsafe roots remain denied."
+    },
+    {
+      "case_id": "RC-LANE-02",
+      "requirements": [
+        "HMT-B07"
+      ],
+      "assessment": "MATCHING_SCOPED_REPAIR_WITNESSES_PENDING_SUPERVISOR_CUMULATIVE",
+      "expected_observation": "Repeat old DENIED_REPAIR or old artifact drift reference rejects without invalidating healthy replacement/descendants; current genuine repair remains possible."
+    },
+    {
+      "case_id": "RC-LANE-03",
+      "requirements": [
+        "HMT-B07",
+        "HMT-F02"
+      ],
+      "assessment": "MATCHING_SCOPED_REPAIR_WITNESSES_PENDING_SUPERVISOR_CUMULATIVE",
+      "expected_observation": "Detect supported changes independently of caller reason; any policy/epoch drift requires human_architect and earliest changed owner governs even across mixed denial/artifact reasons."
+    },
+    {
+      "case_id": "RC-LANE-04",
+      "requirements": [
+        "HMT-B07"
+      ],
+      "assessment": "MATCHING_SCOPED_REPAIR_WITNESSES_PENDING_SUPERVISOR_CUMULATIVE",
+      "expected_observation": "A pending reopen rooted at this stage requires exact designated successor/event; old ancestor closure cannot admit unrelated candidate or strand the event."
+    },
+    {
+      "case_id": "RC-COVERAGE-01",
+      "requirements": [
+        "HMT-N11",
+        "HMT-N12",
+        "HMT-B10"
+      ],
+      "assessment": "HOLD_CURRENT_CHANGED_CODE_MEASUREMENT_PENDING",
+      "expected_observation": "Pin exact changed-first-party executable set and branch denominator; report coverage >=90% with zero exclusions only when observed; full assertion/mutation clauses remain separately open."
+    }
+  ],
+  "witnesses": [
+    {
+      "path": "evidence/reconcile_custody_before.xml",
+      "sha256": "dc5b8a88bc56986c981c227cef49b572ba209a051a9db2aa71d7a65897b3c3ab",
+      "tests": 5,
+      "failures": 4,
+      "errors": 0,
+      "skipped": 0,
+      "failed_test_ids": [
+        "tests.test_reconcile_custody_identity::test_cancelled_effect_rejects_changed_input[False-apply]",
+        "tests.test_reconcile_custody_identity::test_cancelled_effect_rejects_changed_input[False-lookup_or_cancel]",
+        "tests.test_reconcile_custody_identity::test_cancelled_effect_rejects_changed_input[True-apply]",
+        "tests.test_reconcile_custody_identity::test_cancelled_effect_rejects_changed_input[True-lookup_or_cancel]"
+      ]
+    },
+    {
+      "path": "evidence/reconcile_custody_after.xml",
+      "sha256": "4ddd5f3780f36092bae4ad97c9a75bd78f5cccef6d02b2d1e5c13d11c1cd514e",
+      "tests": 34,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "failed_test_ids": []
+    },
+    {
+      "path": "evidence/reconcile_host_before.xml",
+      "sha256": "12021b0e01261bdfc92197c4a88dd169ae75a9d862ff1687fd3b402101e0b4a7",
+      "tests": 5,
+      "failures": 4,
+      "errors": 0,
+      "skipped": 0,
+      "failed_test_ids": [
+        "tests.test_reconcile_host_roots::test_relative_grant_rejected_before_provision[.]",
+        "tests.test_reconcile_host_roots::test_relative_grant_rejected_before_provision[project]",
+        "tests.test_reconcile_host_roots::test_relative_grant_rejected_before_provision[../sibling]",
+        "tests.test_reconcile_host_roots::test_legacy_relative_grant_cannot_expand_after_restart"
+      ]
+    },
+    {
+      "path": "evidence/reconcile_host_after.xml",
+      "sha256": "a062ab37bebb17ee41cdc2c6db9fa854323b24e3d4bce992f2ccbc9a219da3dd",
+      "tests": 28,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "failed_test_ids": []
+    },
+    {
+      "path": "evidence/reconcile_voice_before_valid.xml",
+      "sha256": "486055943ebcd10b512d6d546bcb0333e079998efd1416d219275082ed4072f3",
+      "tests": 3,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0,
+      "failed_test_ids": [
+        "tests.test_reconcile_voice_input::test_fifo_audio_rejected_without_writer",
+        "tests.test_reconcile_voice_lifetime::test_successful_parent_does_not_leave_running_descendant",
+        "tests.test_reconcile_voice_lifetime::test_closed_pipes_preserve_typed_deadline_failure"
+      ]
+    },
+    {
+      "path": "evidence/reconcile_voice_extended.xml",
+      "sha256": "86b2ad09fa5499750ab062f2bd8489a28041291d26175fb76ae89c438aa3b282",
+      "tests": 31,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "failed_test_ids": []
+    },
+    {
+      "path": "evidence/reconcile_lane_before.xml",
+      "sha256": "1450a7789e19af999765c92679c39255f3a892dae4ee14f0a08735ef53777678",
+      "tests": 10,
+      "failures": 9,
+      "errors": 0,
+      "skipped": 0,
+      "failed_test_ids": [
+        "tests.test_reconcile_lane_drift::test_drift_repair_reachable[evidence-False]",
+        "tests.test_reconcile_lane_drift::test_drift_repair_reachable[evidence-True]",
+        "tests.test_reconcile_lane_drift::test_drift_repair_reachable[artifact-True]",
+        "tests.test_reconcile_lane_drift::test_discovery_includes_earlier_evidence",
+        "tests.test_reconcile_lane_historical::test_resolved_history_cannot_reopen_again[DENIED_REPAIR]",
+        "tests.test_reconcile_lane_historical::test_resolved_history_cannot_reopen_again[ARTIFACT_DRIFT]",
+        "tests.test_reconcile_lane_authority::test_artifact_reason_cannot_bypass_policy_authority",
+        "tests.test_reconcile_lane_authority::test_denial_reason_cannot_hide_earlier_artifact_drift",
+        "tests.test_reconcile_lane_pending::test_old_closed_ancestor_cannot_bypass_new_pending_reopen"
+      ]
+    },
+    {
+      "path": "evidence/reconcile_lane_controls.xml",
+      "sha256": "37314c1af01c9c4ef24ad49c2abdc675c6cb2fea881136255246fd7e9128add2",
+      "tests": 43,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "failed_test_ids": []
+    },
+    {
+      "path": "evidence/reconcile_verification_identity_before.xml",
+      "sha256": "24319df4e4d9d3c4d367ba7f31356715a9e7899ef413c51c0227202d021327ed",
+      "tests": 2,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "failed_test_ids": [
+        "tests.test_reconcile_verification_identity.CanonicalIdentityTests::test_collision_rejected_before_destination_creation"
+      ]
+    },
+    {
+      "path": "evidence/reconcile_verification_identity_after.xml",
+      "sha256": "cf3c1c680317d056bcbca59b9a097b684f503d1121a8b98e05c845028b468dce",
+      "tests": 29,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "failed_test_ids": []
+    }
+  ],
+  "integrity_checks": [
+    {
+      "record": "evidence/reconcile_custody_case.json",
+      "path": "evidence/reconcile_custody_before.xml",
+      "expected_sha256": "dc5b8a88bc56986c981c227cef49b572ba209a051a9db2aa71d7a65897b3c3ab",
+      "actual_sha256": "dc5b8a88bc56986c981c227cef49b572ba209a051a9db2aa71d7a65897b3c3ab",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_custody_case.json",
+      "path": "evidence/reconcile_custody_before.log",
+      "expected_sha256": "e8514a0264fb4bfa7eea7a8cd9b9bd393ea09b2a1a76302115231f83f8f0865f",
+      "actual_sha256": "e8514a0264fb4bfa7eea7a8cd9b9bd393ea09b2a1a76302115231f83f8f0865f",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_custody_case.json",
+      "path": "evidence/reconcile_custody_baseline.json",
+      "expected_sha256": "287b79457233cf8fb3a2b3b28a646e394101710e5a84a6dcb69d2c96ce834cda",
+      "actual_sha256": "287b79457233cf8fb3a2b3b28a646e394101710e5a84a6dcb69d2c96ce834cda",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_custody_case.json",
+      "path": "evidence/reconcile_custody_test_baseline.json",
+      "expected_sha256": "ebe1cef9cb796abdaf93ddd3d542c0135f586b999cbb4cd4ebbe16724be187a0",
+      "actual_sha256": "ebe1cef9cb796abdaf93ddd3d542c0135f586b999cbb4cd4ebbe16724be187a0",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_custody_case.json",
+      "path": "evidence/reconcile_custody_after.xml",
+      "expected_sha256": "4ddd5f3780f36092bae4ad97c9a75bd78f5cccef6d02b2d1e5c13d11c1cd514e",
+      "actual_sha256": "4ddd5f3780f36092bae4ad97c9a75bd78f5cccef6d02b2d1e5c13d11c1cd514e",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_custody_case.json",
+      "path": "evidence/reconcile_custody_after.log",
+      "expected_sha256": "08ce942816e9e6eff75f865a652c7eedbc21fd436ebc775b892e8bfe41d6a04b",
+      "actual_sha256": "08ce942816e9e6eff75f865a652c7eedbc21fd436ebc775b892e8bfe41d6a04b",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_custody_case.json",
+      "path": "src/hmt_rnd/custody_endpoint.py",
+      "expected_sha256": "a3fd05954c01cb82290e7b7d26a147a258dd6fcac65404b9fed775a3b9b0c56f",
+      "actual_sha256": "a3fd05954c01cb82290e7b7d26a147a258dd6fcac65404b9fed775a3b9b0c56f",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_custody_case.json",
+      "path": "tests/test_reconcile_custody_identity.py",
+      "expected_sha256": "3f26250bb3507085c97e597e23491ca1e7f62f92f72b953ba2b733da61cbbc28",
+      "actual_sha256": "3f26250bb3507085c97e597e23491ca1e7f62f92f72b953ba2b733da61cbbc28",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_host_case.json",
+      "path": "src/hmt_rnd/host_models.py",
+      "expected_sha256": "d6024f59bdb8da8bd95adee1aefb1dafacd426728b1f07576673368bebdb81b3",
+      "actual_sha256": "d6024f59bdb8da8bd95adee1aefb1dafacd426728b1f07576673368bebdb81b3",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_host_case.json",
+      "path": "tests/test_reconcile_host_roots.py",
+      "expected_sha256": "887c2d3328ea506ca2d74e92ec8ff617473c35d0eb631bb6ebfe709718d8061c",
+      "actual_sha256": "887c2d3328ea506ca2d74e92ec8ff617473c35d0eb631bb6ebfe709718d8061c",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_host_case.json",
+      "path": "evidence/reconcile_host_before.xml",
+      "expected_sha256": "12021b0e01261bdfc92197c4a88dd169ae75a9d862ff1687fd3b402101e0b4a7",
+      "actual_sha256": "12021b0e01261bdfc92197c4a88dd169ae75a9d862ff1687fd3b402101e0b4a7",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_host_case.json",
+      "path": "evidence/reconcile_host_before_source.json",
+      "expected_sha256": "963c058c42ea5bfbfede347578eaadd07dd96641e3ef1347818aef04e4e2cf89",
+      "actual_sha256": "963c058c42ea5bfbfede347578eaadd07dd96641e3ef1347818aef04e4e2cf89",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_host_case.json",
+      "path": "evidence/reconcile_host_after.xml",
+      "expected_sha256": "a062ab37bebb17ee41cdc2c6db9fa854323b24e3d4bce992f2ccbc9a219da3dd",
+      "actual_sha256": "a062ab37bebb17ee41cdc2c6db9fa854323b24e3d4bce992f2ccbc9a219da3dd",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_snapshots/assets_before.txt",
+      "expected_sha256": "1aa6d28efe2d2ae0071792c7ac70d703abe8d509684a92ffd453664740a55cce",
+      "actual_sha256": "1aa6d28efe2d2ae0071792c7ac70d703abe8d509684a92ffd453664740a55cce",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_snapshots/assets_fifo_after.txt",
+      "expected_sha256": "a0fd2d18e69dffc79de76b954f80e3cc86af196f9809e5e62067c47e54e70b1d",
+      "actual_sha256": "a0fd2d18e69dffc79de76b954f80e3cc86af196f9809e5e62067c47e54e70b1d",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_snapshots/deadline_test_final.txt",
+      "expected_sha256": "beed1a9a2b5c5f8a26404f01f5bb98cbe15c911a8a9c09e35a69dbac7be8816a",
+      "actual_sha256": "beed1a9a2b5c5f8a26404f01f5bb98cbe15c911a8a9c09e35a69dbac7be8816a",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_snapshots/input_initial_harness.txt",
+      "expected_sha256": "6f30830248faf473f1950aa6bc3f34fb64d8a51d89118c6fd4dd9f16bc88de1c",
+      "actual_sha256": "6f30830248faf473f1950aa6bc3f34fb64d8a51d89118c6fd4dd9f16bc88de1c",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_snapshots/input_race_test_final.txt",
+      "expected_sha256": "184247f18abcb1f14302cee38438d8ff7af6bc67a5790cce3e165411b74167bf",
+      "actual_sha256": "184247f18abcb1f14302cee38438d8ff7af6bc67a5790cce3e165411b74167bf",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_snapshots/input_test_before_valid.txt",
+      "expected_sha256": "9a5ed87a9797a8977cac73af9e9115bb07f2e325354cd00dd296a129fd833927",
+      "actual_sha256": "9a5ed87a9797a8977cac73af9e9115bb07f2e325354cd00dd296a129fd833927",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_snapshots/input_test_final.txt",
+      "expected_sha256": "9a5ed87a9797a8977cac73af9e9115bb07f2e325354cd00dd296a129fd833927",
+      "actual_sha256": "9a5ed87a9797a8977cac73af9e9115bb07f2e325354cd00dd296a129fd833927",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_snapshots/lifetime_initial_harness.txt",
+      "expected_sha256": "9313271a27bdd4988d64b49b597a5bbb0585d750908b292927e965af2ee3037f",
+      "actual_sha256": "9313271a27bdd4988d64b49b597a5bbb0585d750908b292927e965af2ee3037f",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_snapshots/lifetime_test_before_valid.txt",
+      "expected_sha256": "e16e9a687691d5e7116f394125f1c7efd60ff4e0d316c9d758e254f2c063770c",
+      "actual_sha256": "e16e9a687691d5e7116f394125f1c7efd60ff4e0d316c9d758e254f2c063770c",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_snapshots/lifetime_test_final.txt",
+      "expected_sha256": "aad46fbb3931eee7e8716d913d0c4a2142268064419135cfb92b8a15325829e1",
+      "actual_sha256": "aad46fbb3931eee7e8716d913d0c4a2142268064419135cfb92b8a15325829e1",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_snapshots/process_before.txt",
+      "expected_sha256": "9351e9ae196b8c4d74c3657628b64728777dd9d31feeaad9e72a7faef4e7076e",
+      "actual_sha256": "9351e9ae196b8c4d74c3657628b64728777dd9d31feeaad9e72a7faef4e7076e",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_snapshots/process_descendant_after.txt",
+      "expected_sha256": "e6b9dd68c9c5df549aec81ad03e3d9512d9a00ea76064bad4ea7b459291264e9",
+      "actual_sha256": "e6b9dd68c9c5df549aec81ad03e3d9512d9a00ea76064bad4ea7b459291264e9",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_snapshots/process_timeout_after.txt",
+      "expected_sha256": "3227a9af6440f80929988d08f2772bec70154390806bc9f0d44000d5ea2d698f",
+      "actual_sha256": "3227a9af6440f80929988d08f2772bec70154390806bc9f0d44000d5ea2d698f",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_after.log",
+      "expected_sha256": "4f998bbc54e26008659cdfb66af91ce9850980f2bbb9db3d10e47d41484a33af",
+      "actual_sha256": "4f998bbc54e26008659cdfb66af91ce9850980f2bbb9db3d10e47d41484a33af",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_after.xml",
+      "expected_sha256": "d1d5a5ceb3aedf7427e78a7f131e31ddff13b44231a23e7112c7e78355e0c2b4",
+      "actual_sha256": "d1d5a5ceb3aedf7427e78a7f131e31ddff13b44231a23e7112c7e78355e0c2b4",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_before.log",
+      "expected_sha256": "99f61d52da55d54aa6c2d06c1a64e1a749c2c417b8a2d6482b74462c66c0b83c",
+      "actual_sha256": "99f61d52da55d54aa6c2d06c1a64e1a749c2c417b8a2d6482b74462c66c0b83c",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_before.xml",
+      "expected_sha256": "d330d7c497a5add7992e55de4c4bb1226bd782569e2d7fad3b01bf66fb441a8c",
+      "actual_sha256": "d330d7c497a5add7992e55de4c4bb1226bd782569e2d7fad3b01bf66fb441a8c",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_before_valid.log",
+      "expected_sha256": "86459f15b0636a925f9c2b9d3b5d86cb13eb817b7c9f359b40bca5c15c87293e",
+      "actual_sha256": "86459f15b0636a925f9c2b9d3b5d86cb13eb817b7c9f359b40bca5c15c87293e",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_before_valid.xml",
+      "expected_sha256": "486055943ebcd10b512d6d546bcb0333e079998efd1416d219275082ed4072f3",
+      "actual_sha256": "486055943ebcd10b512d6d546bcb0333e079998efd1416d219275082ed4072f3",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_descendant_after.log",
+      "expected_sha256": "681b203fdd4d659ddf9dd79f771397aa41f262d4a9607c8d522eff0e04d100aa",
+      "actual_sha256": "681b203fdd4d659ddf9dd79f771397aa41f262d4a9607c8d522eff0e04d100aa",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_descendant_after.xml",
+      "expected_sha256": "2417e6efca267288f5dc1233330b28be49b4e37e2d05476477ebca64a5a58638",
+      "actual_sha256": "2417e6efca267288f5dc1233330b28be49b4e37e2d05476477ebca64a5a58638",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_fifo_after.log",
+      "expected_sha256": "ab1ceb7dbebaa7c4f5bb21ff08fc96cc0693fcfe86a06d960d641f03fb342a3c",
+      "actual_sha256": "ab1ceb7dbebaa7c4f5bb21ff08fc96cc0693fcfe86a06d960d641f03fb342a3c",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_fifo_after.xml",
+      "expected_sha256": "8d3025708b2313d77e851f4fe1e7d57b6c1151042a676019aa4724f263214515",
+      "actual_sha256": "8d3025708b2313d77e851f4fe1e7d57b6c1151042a676019aa4724f263214515",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_final.log",
+      "expected_sha256": "efab4caf4041755c00962239bcb23137d22aaa5ae6f8865b1d8939358728da05",
+      "actual_sha256": "efab4caf4041755c00962239bcb23137d22aaa5ae6f8865b1d8939358728da05",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_final.xml",
+      "expected_sha256": "019cf5d92b485339462500f8adfbadbc8f753c198ed54b7c0c890e8fcc1b6d1b",
+      "actual_sha256": "019cf5d92b485339462500f8adfbadbc8f753c198ed54b7c0c890e8fcc1b6d1b",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_structure.log",
+      "expected_sha256": "7c6430f6d8bb04dc13d4361e92282d50c22fa0cb126d84d618b73cfd8c8bd696",
+      "actual_sha256": "7c6430f6d8bb04dc13d4361e92282d50c22fa0cb126d84d618b73cfd8c8bd696",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_extended.xml",
+      "expected_sha256": "86b2ad09fa5499750ab062f2bd8489a28041291d26175fb76ae89c438aa3b282",
+      "actual_sha256": "86b2ad09fa5499750ab062f2bd8489a28041291d26175fb76ae89c438aa3b282",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_extended.log",
+      "expected_sha256": "4b86569fbf002977f9d434d399149c43e97b4075c09f267e762049767527c273",
+      "actual_sha256": "4b86569fbf002977f9d434d399149c43e97b4075c09f267e762049767527c273",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_ruff.log",
+      "expected_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "actual_sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_pyrefly.log",
+      "expected_sha256": "05d3adb250ea5d9900fd29288c6bfc6d7b9b2734aca99f5e4a115c28729dee3d",
+      "actual_sha256": "05d3adb250ea5d9900fd29288c6bfc6d7b9b2734aca99f5e4a115c28729dee3d",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_voice_cases.json",
+      "path": "evidence/reconcile_voice_structure_final.log",
+      "expected_sha256": "7c6430f6d8bb04dc13d4361e92282d50c22fa0cb126d84d618b73cfd8c8bd696",
+      "actual_sha256": "7c6430f6d8bb04dc13d4361e92282d50c22fa0cb126d84d618b73cfd8c8bd696",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_report.json",
+      "path": "src/hmt_rnd/lane_artifacts.py",
+      "expected_sha256": "6d45fbe94b98a7b61e5e8697141dca8a3e41ead641609a8cd00561237f91e735",
+      "actual_sha256": "6d45fbe94b98a7b61e5e8697141dca8a3e41ead641609a8cd00561237f91e735",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_report.json",
+      "path": "src/hmt_rnd/lane_discovery.py",
+      "expected_sha256": "7d34db0c2cee5915abbee6c0fe7f41bcdaac1160f0bcc47ec122dad0ad47899e",
+      "actual_sha256": "7d34db0c2cee5915abbee6c0fe7f41bcdaac1160f0bcc47ec122dad0ad47899e",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_report.json",
+      "path": "src/hmt_rnd/lane_drift.py",
+      "expected_sha256": "25c14ea8d82cbb6a037ae4d3c1fb38eabc489275782408aa79e386b253ae207b",
+      "actual_sha256": "25c14ea8d82cbb6a037ae4d3c1fb38eabc489275782408aa79e386b253ae207b",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_report.json",
+      "path": "src/hmt_rnd/lane_evidence.py",
+      "expected_sha256": "bbe9b135f3d275483252206a6b481ba26d8f619e302818d64bebb607ac00b083",
+      "actual_sha256": "bbe9b135f3d275483252206a6b481ba26d8f619e302818d64bebb607ac00b083",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_report.json",
+      "path": "src/hmt_rnd/lane_handoff.py",
+      "expected_sha256": "14afaffb90d4f3e33c0247ef3c54e21216703e312f4cd6738bf1a00bff5b96fa",
+      "actual_sha256": "14afaffb90d4f3e33c0247ef3c54e21216703e312f4cd6738bf1a00bff5b96fa",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_report.json",
+      "path": "src/hmt_rnd/lane_models.py",
+      "expected_sha256": "fd1f45e5416c2c31d2d6d6562724196e31913dfa32cafe73c265c4a9ed5080e6",
+      "actual_sha256": "fd1f45e5416c2c31d2d6d6562724196e31913dfa32cafe73c265c4a9ed5080e6",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_report.json",
+      "path": "src/hmt_rnd/lane_queries.py",
+      "expected_sha256": "41e3966acf63f27a229d9cd22339c0f58944d73376815b429155e7a378f7333a",
+      "actual_sha256": "41e3966acf63f27a229d9cd22339c0f58944d73376815b429155e7a378f7333a",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_report.json",
+      "path": "src/hmt_rnd/lane_records.py",
+      "expected_sha256": "386597142f6a6dffa7c59f19de92e29c97cfa653828b9d70ee9878503d5577b7",
+      "actual_sha256": "386597142f6a6dffa7c59f19de92e29c97cfa653828b9d70ee9878503d5577b7",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_report.json",
+      "path": "src/hmt_rnd/lane_reopen.py",
+      "expected_sha256": "4d2b56937cd00eff3aba1bfebc642bc400e2f3c67409111ab236e2a6b1cf6bcf",
+      "actual_sha256": "4d2b56937cd00eff3aba1bfebc642bc400e2f3c67409111ab236e2a6b1cf6bcf",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_report.json",
+      "path": "src/hmt_rnd/lane_schema.py",
+      "expected_sha256": "86e3868aed1ad9d2e651657d811d5cd64023e24c71de2ba1a5f215bfabe1ab57",
+      "actual_sha256": "86e3868aed1ad9d2e651657d811d5cd64023e24c71de2ba1a5f215bfabe1ab57",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_report.json",
+      "path": "src/hmt_rnd/lane_stages.py",
+      "expected_sha256": "0746aaa8a8ad6cbf0359f43f0e371712c1835bd5de42efa6554b1a2e36110d97",
+      "actual_sha256": "0746aaa8a8ad6cbf0359f43f0e371712c1835bd5de42efa6554b1a2e36110d97",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_report.json",
+      "path": "src/hmt_rnd/lane_store.py",
+      "expected_sha256": "1fef69c0d5c817af941a3b3a72051105229c227338860132b2840b457bfdb6bc",
+      "actual_sha256": "1fef69c0d5c817af941a3b3a72051105229c227338860132b2840b457bfdb6bc",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_report.json",
+      "path": "src/hmt_rnd/lane_submission.py",
+      "expected_sha256": "b0d0c0385439d58378ebd1a366e4e142667056234346f7602d89779c14535081",
+      "actual_sha256": "b0d0c0385439d58378ebd1a366e4e142667056234346f7602d89779c14535081",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_report.json",
+      "path": "src/hmt_rnd/lane_successor.py",
+      "expected_sha256": "381f6489953b135e093e093a2f6b0ad7a053ec250cf482bd740f182954509ae5",
+      "actual_sha256": "381f6489953b135e093e093a2f6b0ad7a053ec250cf482bd740f182954509ae5",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_controls_report.json",
+      "path": "evidence/reconcile_lane_controls.xml",
+      "expected_sha256": "37314c1af01c9c4ef24ad49c2abdc675c6cb2fea881136255246fd7e9128add2",
+      "actual_sha256": "37314c1af01c9c4ef24ad49c2abdc675c6cb2fea881136255246fd7e9128add2",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_controls_report.json",
+      "path": "evidence/reconcile_lane_controls.log",
+      "expected_sha256": "5fc6bd1d97be49ed108d44139e026ee7aa36df08419f79c05c1606ee3e37675a",
+      "actual_sha256": "5fc6bd1d97be49ed108d44139e026ee7aa36df08419f79c05c1606ee3e37675a",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_controls_report.json",
+      "path": "evidence/reconcile_lane_controls_coverage.json",
+      "expected_sha256": "1591a611dac801d6f688ec8bb6218f3b428bff3697848e3c9bde56680924e782",
+      "actual_sha256": "1591a611dac801d6f688ec8bb6218f3b428bff3697848e3c9bde56680924e782",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_lane_controls_report.json",
+      "path": "evidence/reconcile_lane_step5.json",
+      "expected_sha256": "490afd74051bd470f562a8ed2e848255b27e015599c0463c55abb089bb28377c",
+      "actual_sha256": "490afd74051bd470f562a8ed2e848255b27e015599c0463c55abb089bb28377c",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_verification_identity_case.json",
+      "path": "src/hmt_rnd/verification_models.py",
+      "expected_sha256": "0735ead7becc5e2760455e48c28f9a4a4e55987b95ba939c80819fee520cde9c",
+      "actual_sha256": "0735ead7becc5e2760455e48c28f9a4a4e55987b95ba939c80819fee520cde9c",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_verification_identity_case.json",
+      "path": "tests/test_reconcile_verification_identity.py",
+      "expected_sha256": "551a30046096174f50ff2255ed9e6864c45d13fe11a74b447d4049842129048f",
+      "actual_sha256": "551a30046096174f50ff2255ed9e6864c45d13fe11a74b447d4049842129048f",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_verification_identity_case.json",
+      "path": "evidence/reconcile_verification_identity_before_sources.json",
+      "expected_sha256": "cd096951c36c3934c914b870d275ccab9d66accbed778270cd5ab746a9008267",
+      "actual_sha256": "cd096951c36c3934c914b870d275ccab9d66accbed778270cd5ab746a9008267",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_verification_identity_case.json",
+      "path": "evidence/reconcile_verification_identity_before.log",
+      "expected_sha256": "2306116aa901b212259d0143ee97eed988e7a69500450d2fa5c9f388f5803478",
+      "actual_sha256": "2306116aa901b212259d0143ee97eed988e7a69500450d2fa5c9f388f5803478",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_verification_identity_case.json",
+      "path": "evidence/reconcile_verification_identity_before.xml",
+      "expected_sha256": "24319df4e4d9d3c4d367ba7f31356715a9e7899ef413c51c0227202d021327ed",
+      "actual_sha256": "24319df4e4d9d3c4d367ba7f31356715a9e7899ef413c51c0227202d021327ed",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_verification_identity_case.json",
+      "path": "evidence/reconcile_verification_identity_after.log",
+      "expected_sha256": "6d8b08c37f61ca47b02166fe634db19368a7f79c3e4e6f017119ec1dd95b5717",
+      "actual_sha256": "6d8b08c37f61ca47b02166fe634db19368a7f79c3e4e6f017119ec1dd95b5717",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_verification_identity_case.json",
+      "path": "evidence/reconcile_verification_identity_after.xml",
+      "expected_sha256": "cf3c1c680317d056bcbca59b9a097b684f503d1121a8b98e05c845028b468dce",
+      "actual_sha256": "cf3c1c680317d056bcbca59b9a097b684f503d1121a8b98e05c845028b468dce",
+      "matches": true
+    },
+    {
+      "record": "evidence/reconcile_verification_identity_case.json",
+      "path": "evidence/reconcile_verification_identity_parity.json",
+      "expected_sha256": "cca8f28a3e4c747d9dc0f55b665abc6f2813271225553b826e9dfb092c9e81ae",
+      "actual_sha256": "cca8f28a3e4c747d9dc0f55b665abc6f2813271225553b826e9dfb092c9e81ae",
+      "matches": true
+    }
+  ],
+  "worker_ledger_checks": [
+    {
+      "path": "evidence/reconcile_custody_rrca.csv",
+      "columns": 8,
+      "rows": 3,
+      "blank_attestations": 0,
+      "sha256": "1d801c76c8acf29b36be2d98784d2841a04af8d15f9e75edf2629edcff643d7d"
+    },
+    {
+      "path": "evidence/reconcile_verification_coverage_rrca.csv",
+      "columns": 8,
+      "rows": 4,
+      "blank_attestations": 0,
+      "sha256": "b199c56c9f1486d66a59f4053d4cd23178f3154344737997bf84160960ebffea"
+    },
+    {
+      "path": "evidence/reconcile_verification_identity_rrca.csv",
+      "columns": 8,
+      "rows": 5,
+      "blank_attestations": 0,
+      "sha256": "f506e3c388734445ef5bd41b432a73f3047a922b9fcec1681ec0f4cc7a0986c1"
+    },
+    {
+      "path": "evidence/reconcile_voice_rrca.csv",
+      "columns": 8,
+      "rows": 13,
+      "blank_attestations": 0,
+      "sha256": "c6bfa110eca809c58714554ff6211c4a39c8bbfe6e936a89d3177b1ddb99f468"
+    },
+    {
+      "path": "evidence/reconcile_lane_Reverse_RCA_Ledger.csv",
+      "columns": 8,
+      "rows": 16,
+      "blank_attestations": 0,
+      "sha256": "addb9a54c77e3aa66c507cc2d6ea6f6791bb5dac597190aa58de24c0273c5ac6"
+    },
+    {
+      "path": "evidence/reconcile_lane_Cumulative_Gate_Ledger.csv",
+      "columns": 8,
+      "rows": 4,
+      "blank_attestations": 0,
+      "sha256": "46e3f2191bfe09ac7122815ebc5b9afcbb22788842213cad356e4dfa7a2ed817"
+    }
+  ],
+  "records_sha256": {
+    "evidence/reconcile_custody_case.json": "d746d5d814640755819bb8eec58c523a8bb639fc79a8f64005b6ae4b51da61a7",
+    "evidence/reconcile_host_case.json": "96761d780f72e27cd82b31ed15b2bcd4e7ac6a280c4e92c9d945c1e68406e342",
+    "evidence/reconcile_voice_cases.json": "4ea4efcc330128aa7dfa53172b3aca89e3437e62657882b85a30a75392d9cba1",
+    "evidence/reconcile_lane_report.json": "28146fa625914f3c33da32e30e79b0fffe80f3427a37dfdba9ffeadb621d1ed8",
+    "evidence/reconcile_lane_controls_report.json": "16ee5d026ca428e2b3cc2dd4a22d220a6d8ce7f8232c8900a8fd1c4b2ca98842",
+    "evidence/reconcile_verification_identity_case.json": "97f2d5f0508e75da84f771cd7b96a18adc67d54b4f02f306ecc6a08ace67e656",
+    "evidence/reconcile_verification_identity_parity.json": "cca8f28a3e4c747d9dc0f55b665abc6f2813271225553b826e9dfb092c9e81ae",
+    "evidence/reconcile_verification_coverage_correction.json": "583f2efcdcb239fdcb7f3891e0b60205204559f3310c6fa463bb9a7c462c23c1",
+    "evidence/reconcile_verification_coverage_denominator.json": "a20878ffe9f932a4a3b7e1a8d47514f04893579f77cb478a11bbfd9d75ccf69b"
+  },
+  "notable_reconciliation": [
+    "Custody and host before-source snapshots match the exact source digests retained by prior P1 review.",
+    "The first voice FIFO harness failed import and initial descendant PID observer did not establish process identity; those records are retained and excluded explicitly as defect witnesses. Corrected harness before_valid fails all three original assertions, and all are retained in current passing suite.",
+    "Deterministic regular-to-FIFO substitution immediately before actual os.open is additionally observed as rejected; arbitrary directory replacement and hostile descendant session escape remain unqualified.",
+    "Lane step1..4 embedded source snapshots hash correctly; each case references exact before failure and focused34/36/38/39test intermediate records; later43test controls retain original cases.",
+    "Verification identity repair retains exact baseline10556candidate rows and applicability predicates; no requirement PASS generated by ledger creation.",
+    "Historical changed-code subset118/136 is below90percent and changed scripts/check_structure.py was unmeasured. Package290/308 does not satisfy this gate. Original claims remain retained and explicit correction exists."
+  ],
+  "limitations": [
+    "Supplied execution records and unsigned task attestations do not independently authenticate producer/execution. Hashes establish integrity only.",
+    "Matching bounded repair witnesses are not full HMT-F02/F18/B04/B07/V09/N11 or mission acceptance.",
+    "No complete critical mutant/family qualification asserted.",
+    "Production identity/egress, external endpoint, numerical/hardware profiles, full requirement-oracle coverage, export and Wispr qualification remain outside these11groups.",
+    "Owner withheld integration instructions; this report neither releases owner HOLD nor authorizes integration."
+  ]
+}

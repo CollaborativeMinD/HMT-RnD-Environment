@@ -1,0 +1,310 @@
+[
+  {
+    "cases": [
+      "RC-HOST-01"
+    ],
+    "sha": "f3189c2b2f7f5ad9d32be3a3793322c8077b47e1",
+    "tree": "5c9c53525e98238a62a32f3848ced5c89d1dc015",
+    "paths": [
+      "src/hmt_rnd/host_models.py",
+      "tests/test_reconcile_host_roots.py",
+      "docs/reconcile_host.md",
+      "evidence/reconcile_host_before.xml",
+      "evidence/reconcile_host_before_source.json",
+      "evidence/reconcile_host_after.xml",
+      "evidence/reconcile_host_case.json",
+      "evidence/reconcile_host_cumulative.xml"
+    ]
+  },
+  {
+    "cases": [
+      "RC-CUSTODY-01"
+    ],
+    "sha": "c968ddf000c206bdef0393f5f94446ed925dbef6",
+    "tree": "83e9c227d0a7d792c09ee1f775df4c8526e8dbee",
+    "paths": [
+      "src/hmt_rnd/custody_endpoint.py",
+      "tests/test_reconcile_custody_identity.py",
+      "docs/reconcile_custody.md",
+      "evidence/reconcile_custody_after.log",
+      "evidence/reconcile_custody_after.xml",
+      "evidence/reconcile_custody_baseline.json",
+      "evidence/reconcile_custody_before.log",
+      "evidence/reconcile_custody_before.xml",
+      "evidence/reconcile_custody_case.json",
+      "evidence/reconcile_custody_rrca.csv",
+      "evidence/reconcile_custody_rrca.sqlite.gz",
+      "evidence/reconcile_custody_test_baseline.json",
+      "evidence/reconcile_custody_manifest.json",
+      "evidence/reconcile_sequence_custody.json",
+      "evidence/reconcile_sequence_custody.xml.gz",
+      "evidence/reconcile_sequence_custody.log"
+    ]
+  },
+  {
+    "cases": [
+      "RC-VOICE-01"
+    ],
+    "sha": "514987959637f06ad81c6c7725448671e5eb0ef2",
+    "tree": "40261cace9b5d04efcaace73838b235cdfd9667a",
+    "paths": [
+      "src/hmt_rnd/voice_assets.py",
+      "tests/test_reconcile_voice_input.py",
+      "tests/test_reconcile_voice_input_race.py",
+      "evidence/reconcile_voice_case_1.json",
+      "evidence/reconcile_voice_before.xml",
+      "evidence/reconcile_voice_before.log",
+      "evidence/reconcile_voice_before_valid.xml",
+      "evidence/reconcile_voice_before_valid.log",
+      "evidence/reconcile_voice_fifo_after.xml",
+      "evidence/reconcile_voice_snapshots/assets_before.txt",
+      "evidence/reconcile_voice_snapshots/assets_fifo_after.txt",
+      "evidence/reconcile_sequence_voice1.json",
+      "evidence/reconcile_sequence_voice1.xml.gz",
+      "evidence/reconcile_sequence_voice1.log"
+    ]
+  },
+  {
+    "cases": [
+      "RC-VOICE-02"
+    ],
+    "sha": "e8293e3548b890a09b8ebd149fa3c23a91b0e5e1",
+    "tree": "c2d7325ba5f16fe0cfcffec0a77b5d520bf27ab5",
+    "paths": [
+      "src/hmt_rnd/voice_process.py",
+      "tests/test_reconcile_voice_lifetime.py",
+      "evidence/reconcile_voice_case_2.json",
+      "evidence/reconcile_voice_descendant_after.xml",
+      "evidence/reconcile_voice_snapshots/process_before.txt",
+      "evidence/reconcile_voice_snapshots/process_descendant_after.txt",
+      "evidence/reconcile_sequence_voice2.json",
+      "evidence/reconcile_sequence_voice2.xml.gz",
+      "evidence/reconcile_sequence_voice2.log"
+    ]
+  },
+  {
+    "cases": [
+      "RC-VOICE-03"
+    ],
+    "sha": "9f7a32e7a356f8361b6758b9b0566e14ad1af318",
+    "tree": "f90b35162d90066b9ae6fd59ee39876d1e9f51f5",
+    "paths": [
+      "docs/reconcile_voice.md",
+      "evidence/reconcile_voice_after.xml",
+      "evidence/reconcile_voice_pyrefly.log",
+      "evidence/reconcile_voice_ruff.log",
+      "evidence/reconcile_voice_descendant_after.log",
+      "evidence/reconcile_voice_case_3.json",
+      "evidence/reconcile_voice_fifo_after.log",
+      "evidence/reconcile_voice_rrca.csv",
+      "evidence/reconcile_voice_extended.xml",
+      "evidence/reconcile_voice_cases.json",
+      "evidence/reconcile_voice_extended.log",
+      "evidence/reconcile_voice_final.log",
+      "evidence/reconcile_voice_after.log",
+      "evidence/reconcile_voice_structure_final.log",
+      "evidence/reconcile_voice_structure.log",
+      "evidence/reconcile_voice_final.xml",
+      "evidence/reconcile_voice_snapshots/lifetime_test_before_valid.txt",
+      "evidence/reconcile_voice_snapshots/input_race_test_final.txt",
+      "evidence/reconcile_voice_snapshots/input_test_before_valid.txt",
+      "evidence/reconcile_voice_snapshots/input_test_final.txt",
+      "evidence/reconcile_voice_snapshots/lifetime_initial_harness.txt",
+      "evidence/reconcile_voice_snapshots/input_initial_harness.txt",
+      "evidence/reconcile_voice_snapshots/deadline_test_final.txt",
+      "evidence/reconcile_voice_snapshots/process_timeout_after.txt",
+      "evidence/reconcile_voice_snapshots/lifetime_test_final.txt",
+      "src/hmt_rnd/voice_process.py",
+      "tests/test_reconcile_voice_deadline.py",
+      "evidence/reconcile_sequence_voice3.json",
+      "evidence/reconcile_sequence_voice3.xml.gz",
+      "evidence/reconcile_sequence_voice3.log"
+    ]
+  },
+  {
+    "cases": [
+      "RC-LEDGER-01"
+    ],
+    "sha": "c131e11d9271d0135e99dcbaca60fe2b4bd39f21",
+    "tree": "fbfdf71bf49224f34ddd816f25cab40817d5aa96",
+    "paths": [
+      "src/hmt_rnd/verification_models.py",
+      "tests/test_reconcile_verification_identity.py",
+      "docs/reconcile_verification_identity.md",
+      "evidence/reconcile_verification_identity_after.log",
+      "evidence/reconcile_verification_identity_after.xml",
+      "evidence/reconcile_verification_identity_before.log",
+      "evidence/reconcile_verification_identity_before.xml",
+      "evidence/reconcile_verification_identity_before_sources.json",
+      "evidence/reconcile_verification_identity_case.json",
+      "evidence/reconcile_verification_identity_parity.json",
+      "evidence/reconcile_verification_identity_rrca.csv",
+      "evidence/reconcile_verification_identity_rrca.sqlite.gz",
+      "evidence/reconcile_verification_identity_manifest.json",
+      "evidence/reconcile_sequence_identity.json",
+      "evidence/reconcile_sequence_identity.xml.gz",
+      "evidence/reconcile_sequence_identity.log"
+    ]
+  },
+  {
+    "cases": [
+      "RC-LANE-01"
+    ],
+    "sha": "57ba6cc0ec5d03143936ddaf82d9c70f19b48562",
+    "tree": "8796aa92e54f166cb15b561c01b754603541b455",
+    "paths": [
+      "src/hmt_rnd/lane_drift.py",
+      "src/hmt_rnd/lane_reopen.py",
+      "src/hmt_rnd/lane_discovery.py",
+      "tests/test_reconcile_lane_support.py",
+      "tests/test_reconcile_lane_drift.py",
+      "evidence/reconcile_lane_step1.json",
+      "evidence/reconcile_lane_case_1.json",
+      "evidence/reconcile_lane_drift_after.xml",
+      "evidence/reconcile_lane_drift_after.log",
+      "evidence/reconcile_sequence_lane1.json",
+      "evidence/reconcile_sequence_lane1.xml.gz",
+      "evidence/reconcile_sequence_lane1.log",
+      "evidence/reconcile_lane_before.xml",
+      "evidence/reconcile_lane_before.log",
+      "evidence/reconcile_lane_before_sources.json",
+      "evidence/reconcile_lane_before_tests.json"
+    ]
+  },
+  {
+    "cases": [
+      "RC-LANE-02"
+    ],
+    "sha": "e3d30c03d1cd887a285dc03e9d565d2536639cb3",
+    "tree": "f585710d6c135b09b8ac139c3ffb03fe96037ee1",
+    "paths": [
+      "src/hmt_rnd/lane_reopen.py",
+      "tests/test_reconcile_lane_historical.py",
+      "evidence/reconcile_lane_step2.json",
+      "evidence/reconcile_lane_case_2.json",
+      "evidence/reconcile_lane_historical_after.xml",
+      "evidence/reconcile_lane_historical_after.log",
+      "evidence/reconcile_sequence_lane2.json",
+      "evidence/reconcile_sequence_lane2.xml.gz",
+      "evidence/reconcile_sequence_lane2.log"
+    ]
+  },
+  {
+    "cases": [
+      "RC-LANE-03"
+    ],
+    "sha": "370863cc378ee011d46654e102739f09d82d3282",
+    "tree": "bc4f85ee5e662638d71b4b59ab5a9a0111ab84cc",
+    "paths": [
+      "src/hmt_rnd/lane_reopen.py",
+      "src/hmt_rnd/lane_discovery.py",
+      "tests/test_reconcile_lane_authority.py",
+      "evidence/reconcile_lane_step3.json",
+      "evidence/reconcile_lane_case_3.json",
+      "evidence/reconcile_lane_authority_after.xml",
+      "evidence/reconcile_lane_authority_after.log",
+      "evidence/reconcile_sequence_lane3.json",
+      "evidence/reconcile_sequence_lane3.xml.gz",
+      "evidence/reconcile_sequence_lane3.log"
+    ]
+  },
+  {
+    "cases": [
+      "RC-LANE-04"
+    ],
+    "sha": "a3006d56837bf981cd84e36503cf48e60ed088ce",
+    "tree": "4f347383751b3149486f5febdbf7e61b32ce6a6e",
+    "paths": [
+      "src/hmt_rnd/lane_successor.py",
+      "src/hmt_rnd/lane_submission.py",
+      "tests/test_reconcile_lane_pending.py",
+      "evidence/reconcile_lane_step4.json",
+      "evidence/reconcile_lane_case_4.json",
+      "evidence/reconcile_lane_pending_after.xml",
+      "evidence/reconcile_lane_pending_after.log",
+      "evidence/reconcile_sequence_lane4.json",
+      "evidence/reconcile_sequence_lane4.xml.gz",
+      "evidence/reconcile_sequence_lane4.log"
+    ]
+  },
+  {
+    "cases": [
+      "RC-LANE-01",
+      "RC-LANE-02",
+      "RC-LANE-03",
+      "RC-LANE-04"
+    ],
+    "sha": "8be0680019bbf417dcabb147518f3f739b55c95a",
+    "tree": "1028ca323bab24165a419b62fa44e2708c12ca87",
+    "paths": [
+      "docs/reconcile_lane.md",
+      "evidence/reconcile_lane_controls_coverage.json",
+      "evidence/reconcile_lane_ledgers.sqlite.gz",
+      "evidence/reconcile_lane_coverage.json",
+      "evidence/reconcile_lane_report.json",
+      "evidence/reconcile_lane_controls.xml",
+      "evidence/reconcile_lane_controls.log",
+      "evidence/reconcile_lane_Cumulative_Gate_Ledger.csv",
+      "evidence/reconcile_lane_step5.json",
+      "evidence/reconcile_lane_final.xml",
+      "evidence/reconcile_lane_Reverse_RCA_Ledger.csv",
+      "evidence/reconcile_lane_final.log",
+      "evidence/reconcile_lane_controls_report.json",
+      "tests/test_reconcile_lane_controls.py",
+      "evidence/reconcile_sequence_lane5.json",
+      "evidence/reconcile_sequence_lane5.xml.gz",
+      "evidence/reconcile_sequence_lane5.log"
+    ]
+  },
+  {
+    "cases": [
+      "RC-COVERAGE-01"
+    ],
+    "sha": "343aff8339c59faa0d86d5682fc05d1b907d3f4b",
+    "tree": "1ac98a163c57e5623581370a1aa40afc14a4edd5",
+    "paths": [
+      "tests/test_reconcile_verification_structure.py",
+      "docs/reconcile_verification_coverage.md",
+      "evidence/reconcile_verification_all.log",
+      "evidence/reconcile_verification_all.xml",
+      "evidence/reconcile_verification_coverage_correction.json",
+      "evidence/reconcile_verification_coverage_denominator.json",
+      "evidence/reconcile_verification_coverage_rrca.csv",
+      "evidence/reconcile_verification_coverage_rrca.sqlite.gz",
+      "evidence/reconcile_verification_legacy_unittest.log",
+      "evidence/reconcile_verification_local_coverage.json.gz",
+      "evidence/reconcile_verification_static.json",
+      "evidence/reconcile_verification_structure.log",
+      "evidence/reconcile_verification_structure.xml",
+      "evidence/reconcile_verification_unittest.log",
+      "evidence/reconcile_verification_coverage_manifest.json",
+      "evidence/reconcile_sequence_coverage.json",
+      "evidence/reconcile_sequence_coverage.xml.gz",
+      "evidence/reconcile_sequence_coverage.log",
+      "evidence/reconciliation_final_gates.json",
+      "evidence/reconciliation_final_tests.xml.gz",
+      "evidence/reconciliation_final_coverage.json.gz",
+      "evidence/reconciliation_changed_coverage.json",
+      "evidence/reconciliation_archive_index.json"
+    ]
+  },
+  {
+    "cases": [
+      "RC-HARNESS-01"
+    ],
+    "sha": "ce754d63cc9f8541da945e6636f519a17e04aefb",
+    "tree": "abebd845b77da6c3e2eb1dfbe3367843751358cb",
+    "paths": [
+      "evidence/reconcile_harness_case.json",
+      "evidence/reconcile_sequence_custody_initial.json",
+      "evidence/reconcile_sequence_custody_initial.xml",
+      "evidence/reconcile_sequence_custody_initial.log",
+      "evidence/reconcile_host_exact.json",
+      "evidence/reconcile_host_exact.xml.gz",
+      "evidence/reconcile_host_exact.log",
+      "evidence/reconciliation_sequence_validation.json",
+      "evidence/reconciliation_replay_driver.json",
+      "evidence/reconciliation_assurance_harness_incident.json"
+    ]
+  }
+]

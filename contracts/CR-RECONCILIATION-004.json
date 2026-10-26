@@ -1,0 +1,28 @@
+{
+  "change_id": "CR-RECONCILIATION-004",
+  "baseline": "0.2.0",
+  "trigger_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+  "affected_requirements": [
+    "HMT-B04",
+    "HMT-B07",
+    "HMT-B10",
+    "HMT-B11",
+    "HMT-B14",
+    "HMT-B15",
+    "HMT-F02",
+    "HMT-F03",
+    "HMT-F18",
+    "HMT-N02",
+    "HMT-N03",
+    "HMT-N04",
+    "HMT-N10",
+    "HMT-N11",
+    "HMT-N12",
+    "HMT-V09"
+  ],
+  "trigger": "Reviewer counterexamples and changed-code claim contradiction; later supervisor replay-precondition contradiction",
+  "change_type": "Bounded corrective implementation and evidence reconciliation; no acceptance criteria weakened",
+  "record": "evidence/reconciliation_closure_register.json",
+  "reopen_policy": "Any contradicting tracer reopens named case and affected requirement explicitly; worker cannot redefine success",
+  "qualification": "All full-requirement statuses retained; integration remains HOLD"
+}
