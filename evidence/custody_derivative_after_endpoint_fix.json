@@ -1,0 +1,275 @@
+{
+  "task": "WP-03-STANDALONE-CUSTODY-DERIVATIVE",
+  "classification": "STANDALONE_REFERENCE_DERIVATIVE",
+  "reference_policy": "Read-only references only. No supplied package imports, installations, or source environment variables required.",
+  "scope": "custody_* tables composed in one file with host_*; no task store/dispatcher/retry loop. Independent local simulated endpoint authority domain.",
+  "command": "uv run --group dev python -m pytest tests/test_custody_transitions.py tests/test_custody_authority.py tests/test_custody_ordering.py tests/test_custody_endpoint_scope.py -q --junitxml=/tmp/custody_derivative.xml",
+  "result": "9 passed in 0.34s",
+  "cases": [
+    {
+      "name": "test_uncertainty_reopen_and_completion_once",
+      "status": "PASS"
+    },
+    {
+      "name": "test_cancellation_fences_late_dispatch_and_stale_proof",
+      "status": "PASS"
+    },
+    {
+      "name": "test_revoke_before_reservation_leaves_staged",
+      "status": "PASS"
+    },
+    {
+      "name": "test_reconcile_requires_current_authority",
+      "status": "PASS"
+    },
+    {
+      "name": "test_tampered_proof_cannot_close_uncertainty",
+      "status": "PASS"
+    },
+    {
+      "name": "test_intent_collision_and_closed_wire",
+      "status": "PASS"
+    },
+    {
+      "name": "test_revoke_serializes_after_admitted_reservation",
+      "status": "PASS"
+    },
+    {
+      "name": "test_trusted_other_endpoint_cannot_complete_reservation",
+      "status": "PASS"
+    },
+    {
+      "name": "test_authenticated_wrong_target_proof_is_rejected_by_store",
+      "status": "PASS"
+    }
+  ],
+  "junit_xml": "<?xml version=\"1.0\" encoding=\"utf-8\"?><testsuites name=\"pytest tests\"><testsuite name=\"pytest\" errors=\"0\" failures=\"0\" skipped=\"0\" tests=\"9\" time=\"0.337\" timestamp=\"2026-10-26T17:32:49.372685-04:00\" hostname=\"812233b2011d\"><testcase classname=\"tests.test_custody_transitions\" name=\"test_uncertainty_reopen_and_completion_once\" time=\"0.032\" /><testcase classname=\"tests.test_custody_transitions\" name=\"test_cancellation_fences_late_dispatch_and_stale_proof\" time=\"0.030\" /><testcase classname=\"tests.test_custody_authority\" name=\"test_revoke_before_reservation_leaves_staged\" time=\"0.021\" /><testcase classname=\"tests.test_custody_authority\" name=\"test_reconcile_requires_current_authority\" time=\"0.025\" /><testcase classname=\"tests.test_custody_authority\" name=\"test_tampered_proof_cannot_close_uncertainty\" time=\"0.019\" /><testcase classname=\"tests.test_custody_authority\" name=\"test_intent_collision_and_closed_wire\" time=\"0.016\" /><testcase classname=\"tests.test_custody_ordering\" name=\"test_revoke_serializes_after_admitted_reservation\" time=\"0.019\" /><testcase classname=\"tests.test_custody_endpoint_scope\" name=\"test_trusted_other_endpoint_cannot_complete_reservation\" time=\"0.032\" /><testcase classname=\"tests.test_custody_endpoint_scope\" name=\"test_authenticated_wrong_target_proof_is_rejected_by_store\" time=\"0.026\" /></testsuite></testsuites>",
+  "ruff": "All checks passed",
+  "pyrefly": "0 errors under basic preset",
+  "code_metrics": [
+    {
+      "path": "src/hmt_rnd/custody_adapter.py",
+      "sha256": "84942c052c4c3dd0e4a36aee4b73fd13ade1d4ade691def221653711bac03dad",
+      "loc": 36,
+      "functions": [
+        {
+          "name": "__init__",
+          "loc": 6
+        },
+        {
+          "name": "stage",
+          "loc": 2
+        },
+        {
+          "name": "reserve",
+          "loc": 2
+        },
+        {
+          "name": "reconcile",
+          "loc": 2
+        },
+        {
+          "name": "status",
+          "loc": 8
+        }
+      ]
+    },
+    {
+      "path": "src/hmt_rnd/custody_database.py",
+      "sha256": "2469edce2875cb6f37e6e8fe2fc5cc3f65413a8f8aff89587ef9a5dd94d3909b",
+      "loc": 42,
+      "functions": [
+        {
+          "name": "__init__",
+          "loc": 13
+        },
+        {
+          "name": "transaction",
+          "loc": 14
+        }
+      ]
+    },
+    {
+      "path": "src/hmt_rnd/custody_endpoint.py",
+      "sha256": "bdc64495a302bb44301fc932cff60a11dd788463424f40f07abf24783c1df3df",
+      "loc": 48,
+      "functions": [
+        {
+          "name": "__init__",
+          "loc": 5
+        },
+        {
+          "name": "apply",
+          "loc": 2
+        },
+        {
+          "name": "lookup_or_cancel",
+          "loc": 2
+        },
+        {
+          "name": "_transition",
+          "loc": 27
+        }
+      ]
+    },
+    {
+      "path": "src/hmt_rnd/custody_models.py",
+      "sha256": "b3f5cb013415f9502a8f996d9d7faf3675822f17d05fac3297578025dda0863e",
+      "loc": 33,
+      "functions": []
+    },
+    {
+      "path": "src/hmt_rnd/custody_operations.py",
+      "sha256": "dd50121fefdc8639d9114dd9c03bce74dfba32ba73636d04eb6eb46d172aed8e",
+      "loc": 36,
+      "functions": [
+        {
+          "name": "stage",
+          "loc": 10
+        },
+        {
+          "name": "reserve",
+          "loc": 17
+        }
+      ]
+    },
+    {
+      "path": "src/hmt_rnd/custody_reconcile.py",
+      "sha256": "9366e0d93ccc80b86091efedffc6688cb3ec4b63c5850cc484b9515e9212ed62",
+      "loc": 34,
+      "functions": [
+        {
+          "name": "reconcile",
+          "loc": 26
+        }
+      ]
+    },
+    {
+      "path": "src/hmt_rnd/custody_signing.py",
+      "sha256": "25cb6760bad8b257ffef5919f7d0242d812b2386740e2adb443fc235ccdaaac3",
+      "loc": 18,
+      "functions": [
+        {
+          "name": "sign",
+          "loc": 5
+        },
+        {
+          "name": "verify",
+          "loc": 3
+        }
+      ]
+    },
+    {
+      "path": "tests/test_custody_authority.py",
+      "sha256": "02c740d5f570319c8ca85b2efb75b20ef0713e59df9d590df4e2c0b7c8d5d47c",
+      "loc": 40,
+      "functions": [
+        {
+          "name": "test_revoke_before_reservation_leaves_staged",
+          "loc": 7
+        },
+        {
+          "name": "test_reconcile_requires_current_authority",
+          "loc": 6
+        },
+        {
+          "name": "test_tampered_proof_cannot_close_uncertainty",
+          "loc": 6
+        },
+        {
+          "name": "test_intent_collision_and_closed_wire",
+          "loc": 6
+        }
+      ]
+    },
+    {
+      "path": "tests/test_custody_endpoint_scope.py",
+      "sha256": "d31787e16d76d01638bb52a88942769e0a60d4143af3c16a1b2532e91f680c2f",
+      "loc": 40,
+      "functions": [
+        {
+          "name": "test_trusted_other_endpoint_cannot_complete_reservation",
+          "loc": 13
+        },
+        {
+          "name": "test_authenticated_wrong_target_proof_is_rejected_by_store",
+          "loc": 12
+        }
+      ]
+    },
+    {
+      "path": "tests/test_custody_ordering.py",
+      "sha256": "65a79aba8058c992bef34b39f2773a50268d786f93b003c168f8caa5011f5ae1",
+      "loc": 27,
+      "functions": [
+        {
+          "name": "test_revoke_serializes_after_admitted_reservation",
+          "loc": 17
+        },
+        {
+          "name": "check",
+          "loc": 7
+        }
+      ]
+    },
+    {
+      "path": "tests/test_custody_support.py",
+      "sha256": "2a3bffcd1c31034122d6a3935617ae8d93e04383869084e1c1724f3d4ce6a10e",
+      "loc": 43,
+      "functions": [
+        {
+          "name": "authority",
+          "loc": 5
+        },
+        {
+          "name": "prepare",
+          "loc": 4
+        },
+        {
+          "name": "setup",
+          "loc": 10
+        },
+        {
+          "name": "revoke",
+          "loc": 5
+        }
+      ]
+    },
+    {
+      "path": "tests/test_custody_transitions.py",
+      "sha256": "11ee1da6693cad181c54e53b63d84101d07cdd34b17c30261e709701c1a9b029",
+      "loc": 36,
+      "functions": [
+        {
+          "name": "test_uncertainty_reopen_and_completion_once",
+          "loc": 13
+        },
+        {
+          "name": "test_cancellation_fences_late_dispatch_and_stale_proof",
+          "loc": 11
+        }
+      ]
+    }
+  ],
+  "reference_parity": "evidence/custody_reference_parity.json is historical reference-only, not derivative qualification.",
+  "fixed_incident": "CUSTODY-ENDPOINT-SCOPE-001",
+  "host_seam": "authority(connection,operation,principal,effect_id) invokes host_admission.authorize_and_checkpoint on the existing BEGIN IMMEDIATE connection. Host source schema/grants/clock remain host-owned.",
+  "remaining": [
+    "Full host/custody task and clock integration tracer",
+    "Process-kill, external rollback anchor, disk-full/resource/pressure campaigns",
+    "Real vendor endpoint trust/authority/proof equivalence",
+    "Complete causal family and target-oracle coverage"
+  ],
+  "supported_scoped_requirements": [
+    "HMT-F18",
+    "HMT-B03",
+    "HMT-B04",
+    "HMT-N07"
+  ],
+  "nonclaims": [
+    "Full requirement satisfaction",
+    "HA or power-loss qualification",
+    "Instant global revocation",
+    "Distributed exactly-once or physical-actuation proof"
+  ]
+}

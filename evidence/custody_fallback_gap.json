@@ -1,0 +1,16 @@
+{
+  "id": "GAP-FRESH-GUARD-001",
+  "requirement": "HMT-B02",
+  "status": "INTEGRATION_CLAIM_REOPENED_REQUIREMENT_PRESERVED",
+  "evidence_type": "SOURCE_OBSERVATION; runtime counterexample not executed",
+  "source_sha256": "847d1fc9d0dcec27d5a567cbb1c5810a7ec557a89364e6be494dc7023143bb28",
+  "source_ref": "hmt-fallback/1.0.0/src/hmt_fallback/chain.py",
+  "observed": "Chain.run calls self.guard once before cache; Chain.execute loops providers/attempts without another guard call.",
+  "locations": {
+    "run_guard_line": 75,
+    "provider_loop_line": 89
+  },
+  "falsifier": "A changed authority state between initial guard and later provider dispatch must prevent that dispatch. Need a runtime temporal-drift witness after a reviewed per-attempt guard derivative.",
+  "required_delta": "Do not bind direct Chain as satisfying B02; invoke fresh host guard before each provider attempt and before cached delivery, keeping one deadline/budget and terminal semantics.",
+  "alternate_path": "CustodyAdapter contains no provider fallback path; uncertainty cannot route through read-only Chain."
+}

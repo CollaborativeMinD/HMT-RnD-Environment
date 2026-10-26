@@ -1,0 +1,88 @@
+{
+  "task_id": "WP-11-VOICE-TRACER",
+  "scope": "Synthetic adapter and real disposable subprocess boundaries; no speech/model inference",
+  "tests": {
+    "command": [
+      "uv",
+      "run",
+      "--with",
+      "pydantic>=2,<3",
+      "--with",
+      "pytest",
+      "python",
+      "-m",
+      "pytest",
+      "tests/test_voice_adapter.py",
+      "tests/test_voice_failures.py",
+      "-q"
+    ],
+    "exit_code": 0,
+    "stdout": ".............                                                            [100%]\n13 passed in 0.38s\n",
+    "stderr": ""
+  },
+  "ruff": "All checks passed on owned voice code/tests",
+  "pyrefly": "0 errors; basic preset, not strict target qualification",
+  "complexity": [
+    {
+      "path": "src/hmt_rnd/voice_adapter.py",
+      "module_loc": 38,
+      "maximum_function_loc": 19
+    },
+    {
+      "path": "src/hmt_rnd/voice_assets.py",
+      "module_loc": 47,
+      "maximum_function_loc": 17
+    },
+    {
+      "path": "src/hmt_rnd/voice_models.py",
+      "module_loc": 46,
+      "maximum_function_loc": 0
+    },
+    {
+      "path": "src/hmt_rnd/voice_process.py",
+      "module_loc": 54,
+      "maximum_function_loc": 21
+    },
+    {
+      "path": "tests/test_voice_adapter.py",
+      "module_loc": 53,
+      "maximum_function_loc": 11
+    },
+    {
+      "path": "tests/test_voice_failures.py",
+      "module_loc": 68,
+      "maximum_function_loc": 9
+    },
+    {
+      "path": "tests/test_voice_support.py",
+      "module_loc": 22,
+      "maximum_function_loc": 14
+    }
+  ],
+  "file_hashes": {
+    "contracts/voice_provider_selection.json": "09015f5c83ccbee0fe50c624109be7ecd96d6788747220aaa77c0d803144daf7",
+    "docs/voice.md": "a3fc43e5b4ac29138e85ef33ccc42f9f68af0cb72ef11d4f7abecbf76a2482f7",
+    "src/hmt_rnd/voice_adapter.py": "64ed964fa2d3e9a69e2ccf595f8f71e959333f69a4e2c073c40de6c6864843cd",
+    "src/hmt_rnd/voice_assets.py": "1aa6d28efe2d2ae0071792c7ac70d703abe8d509684a92ffd453664740a55cce",
+    "src/hmt_rnd/voice_models.py": "a96ffa34d3403e2dc53a2c85cfc04818bcd3c0a3d52ced3dcab7fa35f60ac251",
+    "src/hmt_rnd/voice_process.py": "9351e9ae196b8c4d74c3657628b64728777dd9d31feeaad9e72a7faef4e7076e",
+    "tests/test_voice_adapter.py": "754ce3ad7a06d758b778f1206e02cce294a28f6a88591bd10e26f2bdbfed2f1a",
+    "tests/test_voice_failures.py": "524f194786be6456e055e7b640aa9471dda0f3a0703706ee79d72f4b3e536195",
+    "tests/test_voice_support.py": "4cd53c0a332a92ebcbbf62d09df9e15f1aedf4f5c24f9efadcb2bce40e777ffd"
+  },
+  "supported_requirement_evidence": [
+    "HMT-V02 draft provenance fixture",
+    "HMT-V04 no internal cloud call, host egress proof pending",
+    "HMT-V08 terminal decision and no provider retry fixture"
+  ],
+  "unqualified": [
+    "Actual model inference",
+    "Live audio/client GUI",
+    "HMT host authentication binding",
+    "OS no-egress",
+    "Asset immutability and backend pins",
+    "Speech accuracy and full corpus",
+    "Task steering and restart custody"
+  ],
+  "source_reference": "https://github.com/ggml-org/whisper.cpp/blob/master/examples/cli/cli.cpp; mutable reference only, deployed binary/model require exact hash pins"
+}

@@ -813,12 +813,12 @@
   },
   {
     "id": "HMT-F16",
-    "revision": 1,
+    "revision": 2,
     "category": "Functional",
     "owner": "RnD",
     "reviewer": "MissionAssurance + owning upstream/downstream lane",
     "title": "Reuse and derivative provenance",
-    "acceptance": "Reuse existing kernels; preserve Station base catalog and introduce versioned extension mappings for fallback/custody. Each derivative records source identity, license, behavior, delta, parity gaps, and private/public classification.",
+    "acceptance": "Form repository-owned derivatives by retaining or extending needed reference behaviors and invariants. Keep all supplied HMT implementations read-only and absent from runtime imports/deployment requirements. Preserve source provenance, Station reference base identities, versioned derivative extensions, semantic delta/parity gaps, and private/public classification.",
     "verification_method": "Source inventory reconciliation and matched contract tests",
     "required_evidence": [
       "Source/delta manifest",
@@ -843,7 +843,8 @@
     "source_refs": [
       "USER-REQ-2026-10-26",
       "PLAN-REV2",
-      "LLD-0.1.0"
+      "LLD-0.1.0",
+      "CR-REFERENCE-DERIVATION-003"
     ],
     "falsifier": "Any execution contradicting this acceptance statement, or any required evidence missing/invalid, prevents satisfaction.",
     "supporting_owners": [
@@ -861,7 +862,7 @@
       "causal_path": "Authenticated ingress -> current admission -> exact bounded operation -> independently observed effect/result -> durable receipt -> permitted handoff; include negative cut points.",
       "authority": "Host-authenticated principal and current grant/lease/policy for this exact operation; architecture change and final closeout stay human-bound.",
       "timing_freshness": "Current policy/epoch at use; expiry exclusive; exact-candidate evidence; binding-specific evidence age and LOCAL-CTRL-1 or pinned model profile.",
-      "invariant": "Reuse existing kernels; preserve Station base catalog and introduce versioned extension mappings for fallback/custody. Each derivative records source identity, license, behavior, delta, parity gaps, and private/public classification.",
+      "invariant": "Form repository-owned derivatives by retaining or extending needed reference behaviors and invariants. Keep all supplied HMT implementations read-only and absent from runtime imports/deployment requirements. Preserve source provenance, Station reference base identities, versioned derivative extensions, semantic delta/parity gaps, and private/public classification.",
       "impossible_if": "Any observed effect or result contradicts the acceptance predicate; missing an indispensable causal edge makes the claimed explanation unproved.",
       "hold_if_missing": "Any required witness, target/source pin, authoritative proof, resource profile, owner, or applicable assertion."
     }

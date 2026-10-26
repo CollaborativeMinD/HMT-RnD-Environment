@@ -1,0 +1,181 @@
+{
+  "task_id": "WP-03-P0-CUSTODY-TRACER",
+  "scope": "Five explicit local canonical-engine qualification witnesses; synthetic SQLite endpoint and fixture credentials only. No vendor, physical, process-kill or distributed exactly-once qualification.",
+  "requirements_supported_in_this_scope": [
+    "HMT-F18",
+    "HMT-B03",
+    "HMT-B04"
+  ],
+  "partial_requirements": [
+    "HMT-B01",
+    "HMT-B02",
+    "HMT-B06"
+  ],
+  "command": "PYTHONPATH=src:tests:$HMT_CUSTODY_REFERENCE/src HMT_CUSTODY_REFERENCE=/qualified/reference uv run --group dev python -m pytest tests/custody_uncertainty.py tests/custody_guards.py -q -o junit_family=legacy --junitxml=/tmp/custody_tracer.xml",
+  "actual_reference_root": "/workspace/scratch/bc6d4e512874/inspection_added/HMT_Transactional_Outbox_Inbox_v1.0.0",
+  "python": "3.13.16",
+  "cases": [
+    {
+      "name": "test_uncertainty_survives_restart_without_repeat",
+      "file": "tests/custody_uncertainty.py",
+      "status": "PASS",
+      "properties": {
+        "reservation": "{\"authority_ref\":\"6de41baa088d31d5d9b664d75b222e75744e1c8ab77912205075a9d5591f371b\",\"evidence_id\":\"47b19bfde7ae41b1ac8f2cac215d4b9e\",\"principal_id\":\"alice\",\"effect_id\":\"effect1\",\"status\":\"OUTCOME_UNCERTAIN\",\"reason\":\"DISPATCH_RESERVED\",\"intent_digest\":\"c660ca5f3d043a24f2ca83c0c6e8362d22f2ce5321c28fb82360405fed53cee8\",\"epoch\":8,\"contract_id\":\"584b90865745e62bff5ad7e65d644e7c2bb7f830ed3cd0d5f0416069c7b5e477\",\"timestamp_utc_ms\":1000}",
+        "completion": "{\"authority_ref\":\"9cace509861b55533c34bb1d3413b59119ea7981ccdc74ef8bfe2ac5572ac102\",\"evidence_id\":\"5b24a2140018471e9c72c8d9f5e0223e\",\"principal_id\":\"alice\",\"effect_id\":\"effect1\",\"status\":\"COMMITTED\",\"reason\":\"ENDPOINT_RECONCILED\",\"intent_digest\":\"c660ca5f3d043a24f2ca83c0c6e8362d22f2ce5321c28fb82360405fed53cee8\",\"epoch\":10,\"contract_id\":\"584b90865745e62bff5ad7e65d644e7c2bb7f830ed3cd0d5f0416069c7b5e477\",\"timestamp_utc_ms\":1000}",
+        "external_effect_count": "1"
+      }
+    },
+    {
+      "name": "test_nonexecution_fences_late_original",
+      "file": "tests/custody_uncertainty.py",
+      "status": "PASS",
+      "properties": {
+        "cancellation_outcome": "NOT_EXECUTED",
+        "external_effect_count": "0"
+      }
+    },
+    {
+      "name": "test_hold_blocks_before_grant_or_reservation",
+      "file": "tests/custody_guards.py",
+      "status": "PASS",
+      "properties": {}
+    },
+    {
+      "name": "test_wire_input_cannot_inject_principal",
+      "file": "tests/custody_guards.py",
+      "status": "PASS",
+      "properties": {}
+    },
+    {
+      "name": "test_unknown_effect_has_no_effect",
+      "file": "tests/custody_guards.py",
+      "status": "PASS",
+      "properties": {}
+    }
+  ],
+  "junit_xml": "<?xml version=\"1.0\" encoding=\"utf-8\"?><testsuites name=\"pytest tests\"><testsuite name=\"pytest\" errors=\"0\" failures=\"0\" skipped=\"0\" tests=\"5\" time=\"0.577\" timestamp=\"2026-10-26T17:23:58.253307-04:00\" hostname=\"812233b2011d\"><testcase classname=\"tests.custody_uncertainty\" name=\"test_uncertainty_survives_restart_without_repeat\" file=\"tests/custody_uncertainty.py\" line=\"9\" time=\"0.174\"><properties><property name=\"reservation\" value=\"{&quot;authority_ref&quot;:&quot;6de41baa088d31d5d9b664d75b222e75744e1c8ab77912205075a9d5591f371b&quot;,&quot;evidence_id&quot;:&quot;47b19bfde7ae41b1ac8f2cac215d4b9e&quot;,&quot;principal_id&quot;:&quot;alice&quot;,&quot;effect_id&quot;:&quot;effect1&quot;,&quot;status&quot;:&quot;OUTCOME_UNCERTAIN&quot;,&quot;reason&quot;:&quot;DISPATCH_RESERVED&quot;,&quot;intent_digest&quot;:&quot;c660ca5f3d043a24f2ca83c0c6e8362d22f2ce5321c28fb82360405fed53cee8&quot;,&quot;epoch&quot;:8,&quot;contract_id&quot;:&quot;584b90865745e62bff5ad7e65d644e7c2bb7f830ed3cd0d5f0416069c7b5e477&quot;,&quot;timestamp_utc_ms&quot;:1000}\" /><property name=\"completion\" value=\"{&quot;authority_ref&quot;:&quot;9cace509861b55533c34bb1d3413b59119ea7981ccdc74ef8bfe2ac5572ac102&quot;,&quot;evidence_id&quot;:&quot;5b24a2140018471e9c72c8d9f5e0223e&quot;,&quot;principal_id&quot;:&quot;alice&quot;,&quot;effect_id&quot;:&quot;effect1&quot;,&quot;status&quot;:&quot;COMMITTED&quot;,&quot;reason&quot;:&quot;ENDPOINT_RECONCILED&quot;,&quot;intent_digest&quot;:&quot;c660ca5f3d043a24f2ca83c0c6e8362d22f2ce5321c28fb82360405fed53cee8&quot;,&quot;epoch&quot;:10,&quot;contract_id&quot;:&quot;584b90865745e62bff5ad7e65d644e7c2bb7f830ed3cd0d5f0416069c7b5e477&quot;,&quot;timestamp_utc_ms&quot;:1000}\" /><property name=\"external_effect_count\" value=\"1\" /></properties></testcase><testcase classname=\"tests.custody_uncertainty\" name=\"test_nonexecution_fences_late_original\" file=\"tests/custody_uncertainty.py\" line=\"30\" time=\"0.102\"><properties><property name=\"cancellation_outcome\" value=\"NOT_EXECUTED\" /><property name=\"external_effect_count\" value=\"0\" /></properties></testcase><testcase classname=\"tests.custody_guards\" name=\"test_hold_blocks_before_grant_or_reservation\" file=\"tests/custody_guards.py\" line=\"9\" time=\"0.057\" /><testcase classname=\"tests.custody_guards\" name=\"test_wire_input_cannot_inject_principal\" file=\"tests/custody_guards.py\" line=\"22\" time=\"0.002\" /><testcase classname=\"tests.custody_guards\" name=\"test_unknown_effect_has_no_effect\" file=\"tests/custody_guards.py\" line=\"27\" time=\"0.080\" /></testsuite></testsuites>",
+  "junit_sha256": "2b1e2f3619038a04218c37161f0c58ad0a591370325738edb97ed4e527941892",
+  "result": "5 passed in 0.58s",
+  "ruff": "All checks passed!",
+  "pyrefly": "0 errors; basic preset with explicit PYTHONPATH; environment warning retained.",
+  "metrics": [
+    {
+      "path": "src/hmt_rnd/custody_adapter.py",
+      "sha256": "2305c6e2380973e38ed4e3ff422473b5bf035eafd01c537af5eb52bc0e7a3e2e",
+      "physical_loc": 36,
+      "functions": [
+        {
+          "name": "reserve",
+          "physical_loc": 7
+        },
+        {
+          "name": "reconcile",
+          "physical_loc": 4
+        }
+      ]
+    },
+    {
+      "path": "tests/custody_guards.py",
+      "sha256": "74872a5464a9ba39a731f0512ef08f2110b8244b6da8266ae43823a76f09c32c",
+      "physical_loc": 32,
+      "functions": [
+        {
+          "name": "test_hold_blocks_before_grant_or_reservation",
+          "physical_loc": 11
+        },
+        {
+          "name": "test_wire_input_cannot_inject_principal",
+          "physical_loc": 3
+        },
+        {
+          "name": "test_unknown_effect_has_no_effect",
+          "physical_loc": 5
+        },
+        {
+          "name": "deny",
+          "physical_loc": 3
+        }
+      ]
+    },
+    {
+      "path": "tests/custody_support.py",
+      "sha256": "5d9cc713a8f380ad9c2a2b222fb8f0df15efb6b8b4995e10195dc8794f555924",
+      "physical_loc": 33,
+      "functions": [
+        {
+          "name": "rig",
+          "physical_loc": 9
+        },
+        {
+          "name": "adapter",
+          "physical_loc": 5
+        },
+        {
+          "name": "restart",
+          "physical_loc": 4
+        },
+        {
+          "name": "authorize",
+          "physical_loc": 3
+        }
+      ]
+    },
+    {
+      "path": "tests/custody_uncertainty.py",
+      "sha256": "6575c0a65047695feb9a433f2e994afc8f26a7ae11d8cd05df954e159289332d",
+      "physical_loc": 44,
+      "functions": [
+        {
+          "name": "test_uncertainty_survives_restart_without_repeat",
+          "physical_loc": 19
+        },
+        {
+          "name": "test_nonexecution_fences_late_original",
+          "physical_loc": 14
+        }
+      ]
+    }
+  ],
+  "source_pins": {
+    "src/hmt_custody/__init__.py": "19e56aa58e8ad001286cc6d1f241c21df5f63e7f7e5a90c2c4940e5ea3017dab",
+    "src/hmt_custody/acknowledgement.py": "22e6c826ef86977cff758b9f29c75bf04f3219dcbab5c9b5091ad60f4cbd3c3f",
+    "src/hmt_custody/admin.py": "53976a55a9dc0ac16ef7daae2d92affc6e98850908ba3ceeaa583a3516a47ef3",
+    "src/hmt_custody/api.py": "c6995da884d0ca68547425c45d0a451d0f654a6ca5186faba454b2909635a078",
+    "src/hmt_custody/api_models.py": "783227d8c90586b68a900fad09957048985533f3c3fdc802962b4d7642ed77ce",
+    "src/hmt_custody/auth.py": "a86579525ac8c9030bcbcf72278a9649d48ac720b384df8b8d887e8cfb22692e",
+    "src/hmt_custody/base.py": "99957f409617f5d9a8858964d828126aee45c9d7170197da28d4218f1c9a9ad9",
+    "src/hmt_custody/body_limit.py": "f54920eaa7f208031105e5da6b3b23a5a200d6a6aa85beed75a94e1d37905ec2",
+    "src/hmt_custody/clock.py": "c3db17244640c583a48882a3d402f553a10a15fcbb30aa351f8a8d7853e4df0e",
+    "src/hmt_custody/context.py": "9902ced28bddee913f3a35993b79c9a6af3b579cd3412908710fd6221c14b0a3",
+    "src/hmt_custody/contracts.py": "ea45e341be173014a3e77e1ee8689e94313e94151464dfae9c17a50cc041f8b5",
+    "src/hmt_custody/database.py": "17ef8c7c616e917b2a5d985e0312ee597b9c85bc2279ede47b44dc63e07167f1",
+    "src/hmt_custody/delivery.py": "3f47366264423eba5df7f384c021d40acddcd213cc08406dbda0cc0985d5bd9b",
+    "src/hmt_custody/demo.py": "8d2389752f0cd6b2570f05b177cfa3d7d2c5ea9da3c08d75ea2a7a9f8e3c6894",
+    "src/hmt_custody/demo_setup.py": "2119af004e414672bc187bf3cf6e2c2f92bf3c499c656d7f806087b0527147dc",
+    "src/hmt_custody/endpoint.py": "2b9677bf6e1296db0eda67533b6355fdea0c07f06e7ce54b73acf6aa82a03095",
+    "src/hmt_custody/engine.py": "de65181dbf724fddc8e087090f7ad7012fb08f8b0c2df34c60b6d14972decc5e",
+    "src/hmt_custody/envelope.py": "6479e24388ae375ed7e1af82433380c2f9976049e973c8d1481fd318b6baf8f9",
+    "src/hmt_custody/ingress.py": "610003b654302bbdcbc8b47fd97f8853d07dc1847e33ffbc7cd2ae347d80f976",
+    "src/hmt_custody/issuance.py": "b97708f39374854a7f331839cf44da84a79e9bed4443de4cfdf6edfebd09f332",
+    "src/hmt_custody/outbox.py": "0650d3437df8d81883127ae5c234badeeedfd9932d9845a2dc4a0c2c78611c90",
+    "src/hmt_custody/policy.py": "05571a0ca8ba6e67fffea272c5f013231016a0df9d9ca8786becd529ff79ba07",
+    "src/hmt_custody/readmission.py": "ef7cba2840946a6ad9bf8169dccd2c465e752513cf059dbaabf0585c93582d77",
+    "src/hmt_custody/receipts.py": "85d4305b7d7432d419981957dc758fc1c0fe75707b88cecaf4f187318e3c8385",
+    "src/hmt_custody/reconciliation.py": "5037293e13f72f1cd0f23a9e1ff0053e8cc8417506cc703c6f3674a6dc0aee46",
+    "src/hmt_custody/records.py": "4151e34250bbd141665fb42025c2dcba82cffc98533f376436692bfeaf4df7bc",
+    "src/hmt_custody/recovery.py": "c1e3ee683fb0e3084370bfff4da8c945b3ac11b791c9f0bb9733a48bd9559b84",
+    "src/hmt_custody/schema.sql": "ac1086f38bf4b21508b8d36394107d38459ce3040738b1a46768cc119818c705",
+    "src/hmt_custody/snapshot.py": "e4945b4f30229c32947d2c95956805ceaf70997068abfbf1076e52b244e6e98c",
+    "src/hmt_custody/transition.py": "8445328bc7dcec5a45d02ff64bd1fd7247b94366bfb8a11bf27b4c3bbac8ea0f",
+    "src/hmt_custody/triggers.sql": "ea3648c582261064bcb65b3fa742dd821bfcf7a95c6e71f36745a027a1e13346",
+    "src/hmt_custody/use_witness.py": "b3ca17515d11407add7bca3f4a29edbf17b7a79f728a3c562f898c2679aa62fe"
+  },
+  "source_license": "No explicit license file found at supplied package root; no source implementation redistributed. User-supplied private reference used locally.",
+  "unresolved": [
+    "Host authentication/guard/authorization callback binding",
+    "External trusted checkpoint and deployment clock custody",
+    "Vendor endpoint equivalent authority/proof/cancellation semantics",
+    "Full process-kill, temporal revoke, pressure, resource, causal families",
+    "Complete baseline target oracle and direct/MCP parity"
+  ]
+}

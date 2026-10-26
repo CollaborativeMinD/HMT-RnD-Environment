@@ -1,0 +1,102 @@
+{
+  "task_id": "WP-11-VOICE-HOST-GUARD",
+  "change": "Remove caller-controlled admission; require host callback and refresh before subprocess dispatch. HMT reference bundles are design-only dependencies; Whisper engine is explicitly selected operational dependency.",
+  "prior_evidence": {
+    "path": "evidence/voice_tracer.json",
+    "sha256": "a3a5fd772a10b59cf5e2ddaa5d04f50635d343b34416cfa1b6d1015aed73d136",
+    "preserved": true
+  },
+  "tests": {
+    "command": [
+      "uv",
+      "run",
+      "--with",
+      "pydantic>=2,<3",
+      "--with",
+      "pytest",
+      "python",
+      "-m",
+      "pytest",
+      "tests/test_voice_adapter.py",
+      "tests/test_voice_failures.py",
+      "tests/test_voice_guard.py",
+      "-q"
+    ],
+    "exit_code": 0,
+    "stdout": "..................                                                       [100%]\n18 passed in 0.52s\n",
+    "stderr": ""
+  },
+  "checks": {
+    "ruff": "All checks passed",
+    "pyrefly": "0 errors under basic preset; strict target qualification remains supervisor scope"
+  },
+  "complexity": [
+    {
+      "path": "src/hmt_rnd/voice_adapter.py",
+      "module_loc": 48,
+      "max_function_loc": 19
+    },
+    {
+      "path": "src/hmt_rnd/voice_assets.py",
+      "module_loc": 47,
+      "max_function_loc": 17
+    },
+    {
+      "path": "src/hmt_rnd/voice_models.py",
+      "module_loc": 45,
+      "max_function_loc": 0
+    },
+    {
+      "path": "src/hmt_rnd/voice_process.py",
+      "module_loc": 54,
+      "max_function_loc": 21
+    },
+    {
+      "path": "tests/test_voice_adapter.py",
+      "module_loc": 50,
+      "max_function_loc": 11
+    },
+    {
+      "path": "tests/test_voice_failures.py",
+      "module_loc": 69,
+      "max_function_loc": 9
+    },
+    {
+      "path": "tests/test_voice_guard.py",
+      "module_loc": 46,
+      "max_function_loc": 8
+    },
+    {
+      "path": "tests/test_voice_support.py",
+      "module_loc": 21,
+      "max_function_loc": 13
+    }
+  ],
+  "file_hashes": {
+    "contracts/voice_provider_selection.json": "09015f5c83ccbee0fe50c624109be7ecd96d6788747220aaa77c0d803144daf7",
+    "docs/voice.md": "5156b9cd79ceecf28681b3523d63d45a5fca22ad3e70e16c43498a213443d9c2",
+    "src/hmt_rnd/voice_adapter.py": "2f4bc628575753c882c983787ccdcf6309762eb6927e268f8d81335543ac04a0",
+    "src/hmt_rnd/voice_assets.py": "1aa6d28efe2d2ae0071792c7ac70d703abe8d509684a92ffd453664740a55cce",
+    "src/hmt_rnd/voice_models.py": "e4b2c19a06e30f794f8d1f0cc2eaddd6fb2d6c72f8a092a6d074441eafca5ec2",
+    "src/hmt_rnd/voice_process.py": "9351e9ae196b8c4d74c3657628b64728777dd9d31feeaad9e72a7faef4e7076e",
+    "tests/test_voice_adapter.py": "0831a0fad92716b9cdd5f12e8f32e798daff1aa0539424e6e3397164fde759ad",
+    "tests/test_voice_failures.py": "0541f7cd8b53bfe4f80edf2707124abd3db7f81b8888cbda129ad38016cc6393",
+    "tests/test_voice_guard.py": "90180101cd55fdbe05ebce4a3d20bd0f3cc76e7774920476bc83657b9a38d6c0",
+    "tests/test_voice_support.py": "071a03b699910e804ee68d583b56a7c563d7fd7a24a513eb9ee32b199e56ca25"
+  },
+  "new_negative_controls": [
+    "Forged wire admission rejected",
+    "Missing trusted guard rejected",
+    "Revocation before launch prevents dispatch",
+    "Malformed host decision rejected",
+    "Authority callback failure propagates with no fallback"
+  ],
+  "unchanged_settings": "Executable/model pins, audio format/root/size/duration, process deadline/output bounds, explicit provider selection, CPU flag and draft-only output retained.",
+  "limitations": [
+    "No live Whisper inference or microphone/UI",
+    "Host callback must be bound to canonical authenticated authority, never client-selected",
+    "Host must serialize revocation/dispatch under its authority contract",
+    "OS-level egress and immutable assets remain required",
+    "No steering/task mutation or live HMT reference calls"
+  ]
+}

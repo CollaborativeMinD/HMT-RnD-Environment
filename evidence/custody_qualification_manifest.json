@@ -1,0 +1,35 @@
+{
+  "classification": "STANDALONE_DERIVATIVE_QUALIFICATION",
+  "required_cases": [
+    "test_revoke_before_reservation_leaves_staged",
+    "test_reconcile_requires_current_authority",
+    "test_tampered_proof_cannot_close_uncertainty",
+    "test_intent_collision_and_closed_wire",
+    "test_same_reservation_changed_payload_rejected",
+    "test_new_reservation_cannot_change_existing_effect_payload",
+    "test_trusted_other_endpoint_cannot_complete_reservation",
+    "test_authenticated_wrong_target_proof_is_rejected_by_store",
+    "test_short_trust_keys_rejected_at_all_entrypoints",
+    "test_unknown_effect_and_completed_effect_never_reserve",
+    "test_old_schema_requires_explicit_migration",
+    "test_revoke_serializes_after_admitted_reservation",
+    "test_unknown_endpoint_and_self_inconsistent_proof_rejected",
+    "test_authenticated_wrong_intent_rejected",
+    "test_inconsistent_local_state_does_not_accept_proof",
+    "test_uncertainty_reopen_and_completion_once",
+    "test_cancellation_fences_late_dispatch_and_stale_proof"
+  ],
+  "files": [
+    "tests/test_custody_authority.py",
+    "tests/test_custody_endpoint_collisions.py",
+    "tests/test_custody_endpoint_scope.py",
+    "tests/test_custody_limits.py",
+    "tests/test_custody_ordering.py",
+    "tests/test_custody_proof_boundaries.py",
+    "tests/test_custody_transitions.py"
+  ],
+  "collection": "All seventeen ordinary cases must collect; no suppression or source installation.",
+  "historical_reference_witness": "evidence/custody_reference_parity.json",
+  "historical_reference_classification": "Read-only reference observation, not runtime surface or derivative substitute.",
+  "missing_evidence_disposition": "HOLD affected integration, no suppression."
+}

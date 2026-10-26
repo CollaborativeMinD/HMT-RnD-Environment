@@ -1,0 +1,250 @@
+{
+  "task": "WP-03-STANDALONE-CUSTODY-DERIVATIVE",
+  "classification": "STANDALONE_REFERENCE_DERIVATIVE",
+  "reference_policy": "All supplied packages are read-only reference implementations. Runtime imports and private-source environment requirements removed. Prior actual-engine witness is reference parity only.",
+  "scope": "Own SQLite custody tables composed with host_* in one configured authority file. Local simulated endpoint owns independent authority domain. No task store, network dispatcher, or retry loop.",
+  "command": "uv run --group dev python -m pytest tests/test_custody_transitions.py tests/test_custody_authority.py tests/test_custody_ordering.py -q --junitxml=/tmp/custody_derivative.xml",
+  "result": "7 passed in 0.29s",
+  "cases": [
+    {
+      "name": "test_uncertainty_reopen_and_completion_once",
+      "status": "PASS"
+    },
+    {
+      "name": "test_cancellation_fences_late_dispatch_and_stale_proof",
+      "status": "PASS"
+    },
+    {
+      "name": "test_revoke_before_reservation_leaves_staged",
+      "status": "PASS"
+    },
+    {
+      "name": "test_reconcile_requires_current_authority",
+      "status": "PASS"
+    },
+    {
+      "name": "test_tampered_proof_cannot_close_uncertainty",
+      "status": "PASS"
+    },
+    {
+      "name": "test_intent_collision_and_closed_wire",
+      "status": "PASS"
+    },
+    {
+      "name": "test_revoke_serializes_after_admitted_reservation",
+      "status": "PASS"
+    }
+  ],
+  "junit_xml": "<?xml version=\"1.0\" encoding=\"utf-8\"?><testsuites name=\"pytest tests\"><testsuite name=\"pytest\" errors=\"0\" failures=\"0\" skipped=\"0\" tests=\"7\" time=\"0.290\" timestamp=\"2026-10-26T17:30:35.245962-04:00\" hostname=\"812233b2011d\"><testcase classname=\"tests.test_custody_transitions\" name=\"test_uncertainty_reopen_and_completion_once\" time=\"0.031\" /><testcase classname=\"tests.test_custody_transitions\" name=\"test_cancellation_fences_late_dispatch_and_stale_proof\" time=\"0.024\" /><testcase classname=\"tests.test_custody_authority\" name=\"test_revoke_before_reservation_leaves_staged\" time=\"0.016\" /><testcase classname=\"tests.test_custody_authority\" name=\"test_reconcile_requires_current_authority\" time=\"0.027\" /><testcase classname=\"tests.test_custody_authority\" name=\"test_tampered_proof_cannot_close_uncertainty\" time=\"0.021\" /><testcase classname=\"tests.test_custody_authority\" name=\"test_intent_collision_and_closed_wire\" time=\"0.014\" /><testcase classname=\"tests.test_custody_ordering\" name=\"test_revoke_serializes_after_admitted_reservation\" time=\"0.020\" /></testsuite></testsuites>",
+  "ruff": "All checks passed",
+  "pyrefly": "0 errors; basic preset",
+  "code_metrics": [
+    {
+      "path": "src/hmt_rnd/custody_adapter.py",
+      "sha256": "84942c052c4c3dd0e4a36aee4b73fd13ade1d4ade691def221653711bac03dad",
+      "loc": 36,
+      "functions": [
+        {
+          "name": "__init__",
+          "loc": 6
+        },
+        {
+          "name": "stage",
+          "loc": 2
+        },
+        {
+          "name": "reserve",
+          "loc": 2
+        },
+        {
+          "name": "reconcile",
+          "loc": 2
+        },
+        {
+          "name": "status",
+          "loc": 8
+        }
+      ]
+    },
+    {
+      "path": "src/hmt_rnd/custody_database.py",
+      "sha256": "39729c0379240bdce66c18c11a4ab7d9395ba7ef1a0be3bc9def419863bac275",
+      "loc": 38,
+      "functions": [
+        {
+          "name": "__init__",
+          "loc": 9
+        },
+        {
+          "name": "transaction",
+          "loc": 14
+        }
+      ]
+    },
+    {
+      "path": "src/hmt_rnd/custody_endpoint.py",
+      "sha256": "c7691d9861dbb32ab222204eb59ea39d41265ba5fc5193170b4c4e067846e3f9",
+      "loc": 46,
+      "functions": [
+        {
+          "name": "__init__",
+          "loc": 5
+        },
+        {
+          "name": "apply",
+          "loc": 2
+        },
+        {
+          "name": "lookup_or_cancel",
+          "loc": 2
+        },
+        {
+          "name": "_transition",
+          "loc": 25
+        }
+      ]
+    },
+    {
+      "path": "src/hmt_rnd/custody_models.py",
+      "sha256": "6e693c580a3021bf7027295b26e6a4a2033c4ed442dee6edc6df8886f70c392a",
+      "loc": 32,
+      "functions": []
+    },
+    {
+      "path": "src/hmt_rnd/custody_operations.py",
+      "sha256": "aa4f3ac0fc73834b04fd6f42db64db163308f2a38ab10a7bc31b51d1cd9fe60c",
+      "loc": 35,
+      "functions": [
+        {
+          "name": "stage",
+          "loc": 10
+        },
+        {
+          "name": "reserve",
+          "loc": 16
+        }
+      ]
+    },
+    {
+      "path": "src/hmt_rnd/custody_reconcile.py",
+      "sha256": "c76b3640a2d29b165f0d01dfc32369d0e93ef06ed129ff584c145d3da4068e9c",
+      "loc": 30,
+      "functions": [
+        {
+          "name": "reconcile",
+          "loc": 22
+        }
+      ]
+    },
+    {
+      "path": "src/hmt_rnd/custody_signing.py",
+      "sha256": "25cb6760bad8b257ffef5919f7d0242d812b2386740e2adb443fc235ccdaaac3",
+      "loc": 18,
+      "functions": [
+        {
+          "name": "sign",
+          "loc": 5
+        },
+        {
+          "name": "verify",
+          "loc": 3
+        }
+      ]
+    },
+    {
+      "path": "tests/test_custody_authority.py",
+      "sha256": "02c740d5f570319c8ca85b2efb75b20ef0713e59df9d590df4e2c0b7c8d5d47c",
+      "loc": 40,
+      "functions": [
+        {
+          "name": "test_revoke_before_reservation_leaves_staged",
+          "loc": 7
+        },
+        {
+          "name": "test_reconcile_requires_current_authority",
+          "loc": 6
+        },
+        {
+          "name": "test_tampered_proof_cannot_close_uncertainty",
+          "loc": 6
+        },
+        {
+          "name": "test_intent_collision_and_closed_wire",
+          "loc": 6
+        }
+      ]
+    },
+    {
+      "path": "tests/test_custody_ordering.py",
+      "sha256": "65a79aba8058c992bef34b39f2773a50268d786f93b003c168f8caa5011f5ae1",
+      "loc": 27,
+      "functions": [
+        {
+          "name": "test_revoke_serializes_after_admitted_reservation",
+          "loc": 17
+        },
+        {
+          "name": "check",
+          "loc": 7
+        }
+      ]
+    },
+    {
+      "path": "tests/test_custody_support.py",
+      "sha256": "21661f3ebbcb4b5423d775534d107d221eca91b94131ac0631e0bb6678a44846",
+      "loc": 42,
+      "functions": [
+        {
+          "name": "authority",
+          "loc": 5
+        },
+        {
+          "name": "prepare",
+          "loc": 4
+        },
+        {
+          "name": "setup",
+          "loc": 9
+        },
+        {
+          "name": "revoke",
+          "loc": 5
+        }
+      ]
+    },
+    {
+      "path": "tests/test_custody_transitions.py",
+      "sha256": "11ee1da6693cad181c54e53b63d84101d07cdd34b17c30261e709701c1a9b029",
+      "loc": 36,
+      "functions": [
+        {
+          "name": "test_uncertainty_reopen_and_completion_once",
+          "loc": 13
+        },
+        {
+          "name": "test_cancellation_fences_late_dispatch_and_stale_proof",
+          "loc": 11
+        }
+      ]
+    }
+  ],
+  "requirements_supported_scoped": [
+    "HMT-F18",
+    "HMT-B03",
+    "HMT-B04",
+    "HMT-N07"
+  ],
+  "remaining": [
+    "Actual authenticated host/task/grant/clock composition",
+    "Commit of host clock checkpoint in same transaction",
+    "Process-kill, external anchor/rollback, disk-full, resource and pressure tests",
+    "Per-endpoint key provisioning and real endpoint proof capability",
+    "Complete causal experimental family; full target candidate oracle set"
+  ],
+  "nonclaims": [
+    "No reference installed/imported at runtime",
+    "No global instantaneous revoke across independent endpoints",
+    "No exactly-once fleet or physical actuation proof",
+    "No full requirement satisfaction or production readiness"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "decision_id": "CR-VOICE-LOCAL-001",
+  "authority": "Explicit user selection in current build instruction",
+  "preferred_online": "Wispr Flow",
+  "selected_local_fallback": {
+    "model_family": "OpenAI Whisper",
+    "runtime": "whisper.cpp",
+    "first_qualification_candidate": "small.en",
+    "constrained_candidate": "base.en",
+    "runtime_and_model_pins": "Host-supplied absolute paths and SHA-256; no assets provisioned in this build",
+    "automatic_download": false,
+    "automatic_cloud_fallback": false,
+    "adapter_scope": "POSIX CPU CLI adapter yielding editable draft only"
+  },
+  "future_candidates": [
+    {
+      "name": "NVIDIA Parakeet TDT 0.6B v3",
+      "status": "DOCUMENTATION_ONLY_FUTURE_EXPLORATION",
+      "active_routing": false,
+      "qualification": "NOT_REQUESTED_FOR_CURRENT_BUILD"
+    }
+  ],
+  "terminal_conditions": ["HOLD", "DENIED", "revoked authority", "unresolved command effect"],
+  "capture_boundary": "Same-utterance recovery requires authorized HMT-owned audio. Wispr-only capture may require user redictation; no audio extraction API is assumed.",
+  "typing": "Available through the same command composer and current authority gates",
+  "qualification": "ADAPTER_FIXTURES_ONLY; live microphone, model inference, latency, accuracy, and no-egress proof remain unqualified"
+}

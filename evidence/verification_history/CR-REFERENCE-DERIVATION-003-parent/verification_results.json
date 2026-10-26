@@ -1,0 +1,415 @@
+{
+  "task": "WP-08",
+  "scope": "Verification utility implementation and planning ledger; no target requirement oracle qualification",
+  "requirements_source_sha256": "8f7f364cec47a5ff3882b93f752b20f3f5ebd9909afa29b5406c5819582ffc92",
+  "dimensions": {
+    "invariants": 58,
+    "mechanisms": 14,
+    "gates": 13
+  },
+  "candidate_count": 10556,
+  "counts": {
+    "APPLICABLE": 189,
+    "NOT_APPLICABLE": 10367
+  },
+  "ledger_sha256": "fd907edf1868ce2c50776b7093f1d01fa789e556b1d8be2564ba4e40153bceb0",
+  "csv_sha256": "6da2cba23b208d59152a4c1008481d40126fdbea1a9bea87d1586e9ab2c668ec",
+  "all_applicable_status": "NOT_EXECUTED",
+  "target_satisfaction_claims": 0,
+  "python": "3.13.16 (main, Oct 14 2026, 01:04:01) [Clang 23.1.3 ]",
+  "complexity": [
+    {
+      "path": "src/hmt_rnd/verification_models.py",
+      "module_loc": 38,
+      "module_reason": "NOMINAL",
+      "functions": [
+        {
+          "name": "validate_domains",
+          "loc": 19,
+          "reason": "NOMINAL"
+        }
+      ]
+    },
+    {
+      "path": "src/hmt_rnd/verification_complexity.py",
+      "module_loc": 56,
+      "module_reason": "NOMINAL",
+      "functions": [
+        {
+          "name": "band",
+          "loc": 9,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "inspect_source",
+          "loc": 21,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "inspect_file",
+          "loc": 2,
+          "reason": "NOMINAL"
+        }
+      ]
+    },
+    {
+      "path": "src/hmt_rnd/verification_suppression.py",
+      "module_loc": 34,
+      "module_reason": "NOMINAL",
+      "functions": [
+        {
+          "name": "violations",
+          "loc": 15,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "reconcile_collection",
+          "loc": 11,
+          "reason": "NOMINAL"
+        }
+      ]
+    },
+    {
+      "path": "src/hmt_rnd/verification_sql.py",
+      "module_loc": 44,
+      "module_reason": "NOMINAL",
+      "functions": [
+        {
+          "name": "seal_sql",
+          "loc": 7,
+          "reason": "NOMINAL"
+        }
+      ]
+    },
+    {
+      "path": "src/hmt_rnd/verification_ledger.py",
+      "module_loc": 46,
+      "module_reason": "NOMINAL",
+      "functions": [
+        {
+          "name": "create_ledger",
+          "loc": 31,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "verify_seal",
+          "loc": 3,
+          "reason": "NOMINAL"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_verification_identity.py",
+      "module_loc": 37,
+      "module_reason": "NOMINAL",
+      "functions": [
+        {
+          "name": "test_baseline_candidate_identity",
+          "loc": 11,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "test_unknown_mechanism_does_not_create_file",
+          "loc": 10,
+          "reason": "NOMINAL"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_verification_suppression.py",
+      "module_loc": 40,
+      "module_reason": "NOMINAL",
+      "functions": [
+        {
+          "name": "test_alias_and_decorator_rejection",
+          "loc": 10,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "test_fixture_text_is_not_a_suppression",
+          "loc": 2,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "test_missing_invocation_and_duplicate_execution_mutants",
+          "loc": 4,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "test_suppressed_result_mutant",
+          "loc": 3,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "test_exact_collection_is_accepted",
+          "loc": 2,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "test_empty_declared_suite_is_rejected",
+          "loc": 3,
+          "reason": "NOMINAL"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_verification_ledger.py",
+      "module_loc": 65,
+      "module_reason": "NOMINAL",
+      "functions": [
+        {
+          "name": "dimensions",
+          "loc": 5,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "test_product_and_retained_exclusions",
+          "loc": 11,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "test_delete_update_and_fabricated_pass_mutants",
+          "loc": 9,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "test_existing_destination_is_never_replaced",
+          "loc": 7,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "test_tampered_bytes_break_integrity",
+          "loc": 7,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "test_product_budget_is_checked_before_creation",
+          "loc": 3,
+          "reason": "NOMINAL"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_verification_complexity.py",
+      "module_loc": 38,
+      "module_reason": "NOMINAL",
+      "functions": [
+        {
+          "name": "test_function_boundaries",
+          "loc": 5,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "test_module_boundaries",
+          "loc": 5,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "test_decorated_function_comments_and_blanks_count",
+          "loc": 4,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "test_nested_function_is_also_measured",
+          "loc": 4,
+          "reason": "NOMINAL"
+        },
+        {
+          "name": "test_syntax_and_negative_counts_fail",
+          "loc": 5,
+          "reason": "NOMINAL"
+        }
+      ]
+    }
+  ],
+  "current_generator_reproduction": "BYTE_IDENTICAL",
+  "executions": [
+    {
+      "command": [
+        "uv",
+        "run",
+        "--with",
+        "pytest",
+        "--with",
+        "pydantic",
+        "python",
+        "-m",
+        "pytest",
+        "tests/test_verification_complexity.py",
+        "tests/test_verification_suppression.py",
+        "tests/test_verification_ledger.py",
+        "tests/test_verification_identity.py",
+        "-q"
+      ],
+      "environment": {
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "stdout": "..................                                                       [100%]\n18 passed in 0.43s\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--with",
+        "pydantic",
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_verification*.py",
+        "-q"
+      ],
+      "environment": {
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "----------------------------------------------------------------------\nRan 18 tests in 0.291s\n\nOK\n"
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--with",
+        "ruff",
+        "ruff",
+        "check",
+        "src/hmt_rnd/verification_models.py",
+        "src/hmt_rnd/verification_complexity.py",
+        "src/hmt_rnd/verification_suppression.py",
+        "src/hmt_rnd/verification_sql.py",
+        "src/hmt_rnd/verification_ledger.py",
+        "tests/test_verification_identity.py",
+        "tests/test_verification_suppression.py",
+        "tests/test_verification_ledger.py",
+        "tests/test_verification_complexity.py"
+      ],
+      "environment": {
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--with",
+        "pytest",
+        "--with",
+        "pydantic",
+        "python",
+        "-m",
+        "pytest",
+        "tests/test_verification_identity.py",
+        "tests/test_verification_suppression.py",
+        "tests/test_verification_ledger.py",
+        "tests/test_verification_complexity.py",
+        "-q"
+      ],
+      "environment": {
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "stdout": "..................                                                       [100%]\n18 passed in 0.41s\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--with",
+        "ruff",
+        "ruff",
+        "check",
+        "src/hmt_rnd/verification_models.py",
+        "src/hmt_rnd/verification_complexity.py",
+        "src/hmt_rnd/verification_suppression.py",
+        "src/hmt_rnd/verification_sql.py",
+        "src/hmt_rnd/verification_ledger.py",
+        "tests/test_verification_identity.py",
+        "tests/test_verification_suppression.py",
+        "tests/test_verification_ledger.py",
+        "tests/test_verification_complexity.py"
+      ],
+      "environment": {
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "--with",
+        "pyrefly",
+        "pyrefly",
+        "check",
+        "src/hmt_rnd/verification_models.py",
+        "src/hmt_rnd/verification_complexity.py",
+        "src/hmt_rnd/verification_suppression.py",
+        "src/hmt_rnd/verification_sql.py",
+        "src/hmt_rnd/verification_ledger.py",
+        "tests/test_verification_identity.py",
+        "tests/test_verification_suppression.py",
+        "tests/test_verification_ledger.py",
+        "tests/test_verification_complexity.py"
+      ],
+      "environment": {
+        "PYTHONPATH": "src"
+      },
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": " WARN PYTHONPATH environment variable is set to `src`. Checks in other environments may not include these paths.\n INFO 0 errors\nNo `pyrefly.toml` found \u2014 using preset `basic`.\nRun `pyrefly init` to continue setting up Pyrefly.\nDocs: https://pyrefly.org/en/docs/installation/\n"
+    }
+  ],
+  "historical_failure": {
+    "command": [
+      "uv",
+      "run",
+      "--with",
+      "pydantic",
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_verification*.py",
+      "-v"
+    ],
+    "exit_code": 1,
+    "observed": "Three module import errors: ModuleNotFoundError hmt_rnd",
+    "cause": "src layout not installed/on unittest import path",
+    "repair": "Set explicit PYTHONPATH=src; no test changes/supersession needed"
+  },
+  "artifact_hashes": {
+    "src/hmt_rnd/verification_models.py": "3023d083a83a8d3aeac5d708d4f18c64f53422fb1ad7a5837c0bbf3dbd89d0b4",
+    "src/hmt_rnd/verification_complexity.py": "48277062bb14064ff2bc445459400555164d252eab13996b3c27e1e8f5d94409",
+    "src/hmt_rnd/verification_suppression.py": "9130b75dce89e1dad76f60967196707b4c1690f1254fac1b4b7249097f62faac",
+    "src/hmt_rnd/verification_sql.py": "4713ec994493ed4e5d59fe4f8d7e9d999e24f82a5202f9e4222f2dd436c198b8",
+    "src/hmt_rnd/verification_ledger.py": "be60488bf1015ec1906a2e776b3a906924992f651e0bcfa04a03d58f02bd44dc",
+    "tests/test_verification_identity.py": "a8c08c9023e7bc50b4919d520fd5fbe1b83d9bb3a17f7adc1bb0d62554c473aa",
+    "tests/test_verification_suppression.py": "5e1ee4858bb3437a8fc4bbd12da27d1863697858aa83d17efd40e7b2ce1b3ea0",
+    "tests/test_verification_ledger.py": "7049c167ca7a4747aee565aed878266c191e79db6d6fd3705bdba51feaefde29",
+    "tests/test_verification_complexity.py": "bd12d10650d837cdff2345aaabdfb1f2e1af94eead96e545f2922c462b23ee0d",
+    "docs/verification.md": "1c664c015b03cb3465ac0698ae6ffe354aceed11bb594131a07529a75ecf03d3"
+  },
+  "qualification_limits": [
+    "No target-specific executable oracles for broad requirement prose",
+    "No inherited structural-engine parity qualification",
+    "No proof static syntax detection finds dynamic suppression",
+    "No authenticity/adversarial-host claim from SHA-256 or SQL triggers",
+    "Supervisor reported fallback per-attempt guard and framework proof-validation gaps; target integration remains blocked pending source-specific repair evidence"
+  ],
+  "typecheck_scope": "Pyrefly basic preset, explicit owned source/test paths; no global strict profile claim."
+}

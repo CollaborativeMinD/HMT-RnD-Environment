@@ -1,0 +1,155 @@
+{
+  "review_id": "HMT-FIRST-WAVE-MA-001",
+  "baseline_version": "0.1.3",
+  "as_of": "2026-10-26T21:35:13.341031+00:00",
+  "environment_id": "shared-workspace-read-only-review",
+  "primary_disposition": "INSUFFICIENT_EVIDENCE",
+  "scope": "First-wave derivative source and submitted evidence review; not security certification or integrated acceptance.",
+  "method": "Skill-guided manual evidence review. No mission-assurance MCP/CLI evaluation was invoked because no tool was available; no formal evaluator output is claimed.",
+  "reviewer_execution": "Read source/data/metadata only. No target imports, test commands, attacks, target code, or embedded commands executed. Only report files written.",
+  "reference_policy": "All supplied HMT implementations are read-only references. Current reviewed production modules are repository-owned derivatives; selected Whisper engine remains an explicit operational asset dependency.",
+  "findings": [
+    {
+      "id": "MA-001",
+      "status": "REPAIRED_WITH_SCOPED_EXECUTION_EVIDENCE",
+      "requirements": [
+        "HMT-B03",
+        "HMT-B04",
+        "HMT-F18"
+      ],
+      "kind": "Reproduced contradiction and bounded correction",
+      "initial_observation": "Source review found no immutable target endpoint in Intent/storage; any trusted key could potentially close a different target reservation. Reviewer did not execute a counterexample.",
+      "execution_evidence": "Worker subsequently reproduced wrong-endpoint acceptance; raw failing JUnit is preserved in evidence/custody_endpoint_incident.json.",
+      "current_observation": "Intent now requires endpoint_id; stage persists target, endpoint transition rejects wrong target, reconciliation checks both intent endpoint and stored target. Worker reports same failing case now passes plus a correctly signed wrong-target proof negative; nine cumulative custody cases pass.",
+      "evidence_refs": [
+        "evidence/custody_endpoint_incident.json",
+        "evidence/custody_derivative_before_endpoint_fix.json",
+        "evidence/custody_derivative.json"
+      ],
+      "limits": "No reviewer execution, live endpoint, process-kill, full causal-family, or whole-requirement satisfaction claim. Original failing test remains; no test supersession."
+    },
+    {
+      "id": "MA-002",
+      "status": "QUALIFICATION_OBLIGATION_RETAINED",
+      "requirements": [
+        "HMT-F02",
+        "HMT-V04",
+        "HMT-V09",
+        "HMT-V10"
+      ],
+      "kind": "Known host/OS seam",
+      "observation": "Voice wire request no longer accepts admission. A required host callback runs before asset access and before subprocess creation. Current adapter still checks hashes before later path-based executable/model use; callbacks do not themselves serialize OS dispatch or prevent egress. docs/voice.md explicitly discloses these limits.",
+      "required_evidence": "Authenticated host-to-guard binding; serialized revoke/dispatch witness; immutable executable/model/backend paths; OS-denied egress observation; actual speech and resource corpus.",
+      "evidence_refs": [
+        "evidence/voice_guard.json",
+        "docs/voice.md"
+      ],
+      "failure_disposition": "No promotion to a live voice operation until dependent host/OS/model qualification exists; no current runtime defect inferred from missing evidence."
+    },
+    {
+      "id": "MA-003",
+      "status": "QUALIFICATION_OBLIGATION_RETAINED",
+      "requirements": [
+        "HMT-N10",
+        "HMT-N11",
+        "HMT-B11",
+        "HMT-B12"
+      ],
+      "kind": "Planning product is not target qualification",
+      "observation": "CSV read-only inspection confirms 10556 rows, 189 APPLICABLE, 10367 NOT_APPLICABLE; only NOT_EXECUTED/NOT_APPLICABLE statuses appear. Current verification evidence binds current requirements SHA. Shared pytest/unittest checks validate utilities, not independent target oracles. Trigger/hash protection does not establish authenticity or adversarial-host immutability. These limits are explicit.",
+      "required_evidence": "Requirement-specific executable oracles, complete declared target assertion execution, critical mutation closure, edge-specific deletion/restoration/matched/alternate-path experiments, required coverage and current cumulative regression.",
+      "evidence_refs": [
+        "evidence/verification_results.json",
+        "evidence/verification_candidate_ledger.csv",
+        "docs/verification.md"
+      ],
+      "failure_disposition": "Full target acceptance remains INSUFFICIENT_EVIDENCE; retain every exclusion predicate and historical failure."
+    },
+    {
+      "id": "MA-004",
+      "status": "QUALIFICATION_OBLIGATION_RETAINED",
+      "requirements": [
+        "HMT-F02",
+        "HMT-F18",
+        "HMT-N07",
+        "HMT-B01"
+      ],
+      "kind": "Host/custody composition",
+      "observation": "Host mutation and custody mutation use BEGIN IMMEDIATE; host offers authorize_and_checkpoint for the caller-owned connection. Decision carries effect_authority NONE. Custody authorizes inside its transaction. These source behaviors support same-file fencing only when actual composition uses the same SQLite file/connection and trusted identity/clock. Independent endpoint domains do not share instantaneous revocation.",
+      "required_evidence": "Actual host/custody coupled same-file test with authorize_and_checkpoint, revoke ordering, clock checkpoint rollback/commit, strict trusted identity construction, process interruption and external checkpoint recovery.",
+      "evidence_refs": [
+        "evidence/host_derivative_tests.xml",
+        "docs/host_derivative.md",
+        "evidence/custody_derivative.json"
+      ],
+      "failure_disposition": "Keep scope at local derivative tracers; no external dispatch/release authority inferred."
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "S-MA-VOICE-01",
+      "mode": "negative",
+      "expected": "Forged wire admission cannot invoke local engine; host HOLD/DENIED stops before process.",
+      "evidence": "evidence/voice_guard.json",
+      "assessment": "Scoped worker execution witness and source checks present."
+    },
+    {
+      "id": "S-MA-CUSTODY-01",
+      "mode": "negative",
+      "expected": "A different trusted endpoint cannot execute or reconcile the original target reservation.",
+      "evidence": "evidence/custody_endpoint_incident.json",
+      "assessment": "Original failure preserved, repair and two negatives reported; source matches repair."
+    },
+    {
+      "id": "S-MA-CUSTODY-02",
+      "mode": "regression",
+      "expected": "Uncertainty, durable cancellation, fresh authority and original proof cases remain passing after target binding change.",
+      "evidence": "evidence/custody_derivative.json",
+      "assessment": "Nine-case cumulative worker report; broader campaigns absent."
+    },
+    {
+      "id": "S-MA-LEDGER-01",
+      "mode": "positive",
+      "expected": "Full declared Cartesian product retains every tuple; exclusions have predicates; no target PASS fabricated.",
+      "evidence": "evidence/verification_candidate_ledger.csv",
+      "assessment": "Read-only CSV count/status checks match dimensions; target oracles remain absent."
+    },
+    {
+      "id": "S-MA-INTEGRATED-01",
+      "mode": "regression",
+      "expected": "Full lane/MCP/steering/revoke/interruption/reconciliation sequence preserves current authority and evidence.",
+      "evidence": null,
+      "assessment": "Not established by reviewed first-wave artifacts."
+    }
+  ],
+  "snapshots_sha256": {
+    "contracts/build_baseline.json": "de80acd0e5fb8e553d50f1696823e50f6be47944732f7608c83a12617062afe4",
+    "contracts/requirements.json": "301592b8bf3a33c52318ab3ff37c47b072b12761385d8bc71bad7c07a7a97546",
+    "src/hmt_rnd/voice_adapter.py": "2f4bc628575753c882c983787ccdcf6309762eb6927e268f8d81335543ac04a0",
+    "src/hmt_rnd/voice_assets.py": "1aa6d28efe2d2ae0071792c7ac70d703abe8d509684a92ffd453664740a55cce",
+    "src/hmt_rnd/voice_process.py": "9351e9ae196b8c4d74c3657628b64728777dd9d31feeaad9e72a7faef4e7076e",
+    "src/hmt_rnd/verification_ledger.py": "be60488bf1015ec1906a2e776b3a906924992f651e0bcfa04a03d58f02bd44dc",
+    "src/hmt_rnd/verification_models.py": "3023d083a83a8d3aeac5d708d4f18c64f53422fb1ad7a5837c0bbf3dbd89d0b4",
+    "src/hmt_rnd/verification_sql.py": "4713ec994493ed4e5d59fe4f8d7e9d999e24f82a5202f9e4222f2dd436c198b8",
+    "src/hmt_rnd/host_models.py": "a8070768ce3818d521a6221879845a73f7c933620ec2c5ab7747f70e2f313e64",
+    "src/hmt_rnd/host_checks.py": "7198c769641bebd17648040cd402001768c3df3fc7a26fce55e5c826274ee07a",
+    "src/hmt_rnd/host_store.py": "dc5bc1ba541e5647093016b1ca9c9243be6d4e44a01597f4b84d7d5625867e84",
+    "src/hmt_rnd/host_admission.py": "5b675de7eb0f0a84886c30d6092d3152b6d4224af552f8b3840e7e9e8d8ce1a5",
+    "src/hmt_rnd/custody_models.py": "b3f5cb013415f9502a8f996d9d7faf3675822f17d05fac3297578025dda0863e",
+    "src/hmt_rnd/custody_operations.py": "dd50121fefdc8639d9114dd9c03bce74dfba32ba73636d04eb6eb46d172aed8e",
+    "src/hmt_rnd/custody_reconcile.py": "9366e0d93ccc80b86091efedffc6688cb3ec4b63c5850cc484b9515e9212ed62",
+    "src/hmt_rnd/custody_endpoint.py": "bdc64495a302bb44301fc932cff60a11dd788463424f40f07abf24783c1df3df",
+    "evidence/voice_guard.json": "f23cf3119b910c251cbd8adee8e6f1439c1794bcd5cfd5981665a4e8fb053842",
+    "evidence/verification_results.json": "c163f6dc49f55c6b971ffb5b88caf34a48e600bdfd3ecc44fc9f3585ce4e27ed",
+    "evidence/custody_derivative.json": "b6e5e9e7017ebf94c7d437536bde92e72fe68d6e62469dd0a7677f42ec53453a",
+    "evidence/custody_endpoint_incident.json": "d98043de78f28da3f649a9bb71c4de02d0d3375132a3634b445ec943d09397dd",
+    "evidence/custody_derivative_before_endpoint_fix.json": "eb4d49ec968b6e8a53f68a2f535122d28253712962c0450d9332c407b4ed4a1b",
+    "evidence/host_derivative_tests.xml": "0db63b216caa0a5afcb18ea78c322af78289e370828992424245f0e13806d6ea"
+  },
+  "limitations": [
+    "Worker execution/producer records are submitted assertions until independently authenticated; SHA-256 establishes byte identity, not origin.",
+    "Host/custody composition work may continue after this snapshot; any changed reviewed digest requires reevaluation.",
+    "Full 58-requirement acceptance, actual MCP transport, live Whisper inference/microphone/UI, OS isolation/egress, hardware/storage/clock, pressure, speed, process-kill, and complete causal/mutation campaigns were not established.",
+    "Current source finding MA-001 repaired within its reported bounded tests does not erase its historical failure or authorize deployment."
+  ]
+}

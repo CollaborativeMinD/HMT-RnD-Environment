@@ -1,0 +1,17 @@
+{
+  "change_id": "CR-REFERENCE-DERIVATION-003",
+  "authority": "Current explicit user clarification",
+  "decision": "All supplied HMT implementations are read-only references; repository owns retained/extended derivatives",
+  "superseded_interpretation": "Live canonical reference host and installed source engine as implementation surfaces",
+  "requirement_revision": {
+    "HMT-F16": 2
+  },
+  "unchanged_invariants": [
+    "one authoritative task store",
+    "fresh admission",
+    "persistent uncertainty",
+    "exact effect/endpoint proof",
+    "HOLD terminal to fallback"
+  ],
+  "evidence": "source observations retained; runtime tests now target repository-owned derivatives"
+}
