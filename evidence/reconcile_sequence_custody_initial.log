@@ -1,0 +1,78 @@
+........................................................................ [ 42%]
+.....................................FFFF............................... [ 84%]
+..........................                                               [100%]
+=================================== FAILURES ===================================
+_______________ test_relative_grant_rejected_before_provision[.] _______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-77/test_relative_grant_rejected_b0')
+root = '.'
+
+    @pytest.mark.parametrize("root", [".", "project", "../sibling"])
+    def test_relative_grant_rejected_before_provision(tmp_path, root):
+        store, _, _ = fixture_store(tmp_path / "host.sqlite")
+        body = stored_grant(store)
+        body["root"] = root
+>       with pytest.raises(ValidationError, match="HOST_GRANT_ROOT_NOT_ABSOLUTE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+tests/test_reconcile_host_roots.py:23: Failed
+____________ test_relative_grant_rejected_before_provision[project] ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-77/test_relative_grant_rejected_b1')
+root = 'project'
+
+    @pytest.mark.parametrize("root", [".", "project", "../sibling"])
+    def test_relative_grant_rejected_before_provision(tmp_path, root):
+        store, _, _ = fixture_store(tmp_path / "host.sqlite")
+        body = stored_grant(store)
+        body["root"] = root
+>       with pytest.raises(ValidationError, match="HOST_GRANT_ROOT_NOT_ABSOLUTE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+tests/test_reconcile_host_roots.py:23: Failed
+__________ test_relative_grant_rejected_before_provision[../sibling] ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-77/test_relative_grant_rejected_b2')
+root = '../sibling'
+
+    @pytest.mark.parametrize("root", [".", "project", "../sibling"])
+    def test_relative_grant_rejected_before_provision(tmp_path, root):
+        store, _, _ = fixture_store(tmp_path / "host.sqlite")
+        body = stored_grant(store)
+        body["root"] = root
+>       with pytest.raises(ValidationError, match="HOST_GRANT_ROOT_NOT_ABSOLUTE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+tests/test_reconcile_host_roots.py:23: Failed
+____________ test_legacy_relative_grant_cannot_expand_after_restart ____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-77/test_legacy_relative_grant_can0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fb8770539b0>
+
+    def test_legacy_relative_grant_cannot_expand_after_restart(tmp_path, monkeypatch):
+        project = tmp_path / "project"
+        project.mkdir()
+        sibling = tmp_path / "sibling"
+        sibling.mkdir()
+        monkeypatch.chdir(project)
+        store, identity, request = fixture_store(project / "host.sqlite")
+        body = stored_grant(store)
+        body["root"] = "."
+        with store.transaction() as connection:
+            connection.execute("UPDATE host_grants SET body=?", (json.dumps(body),))
+        monkeypatch.chdir(tmp_path)
+        request = request.model_copy(update={"root": str(sibling)})
+>       with pytest.raises(ValidationError, match="HOST_GRANT_ROOT_NOT_ABSOLUTE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+/workspace/scratch/bc6d4e512874/reconciliation_replay/tests/test_reconcile_host_roots.py:41: Failed
+=========================== short test summary info ============================
+FAILED tests/test_reconcile_host_roots.py::test_relative_grant_rejected_before_provision[.]
+FAILED tests/test_reconcile_host_roots.py::test_relative_grant_rejected_before_provision[project]
+FAILED tests/test_reconcile_host_roots.py::test_relative_grant_rejected_before_provision[../sibling]
+FAILED tests/test_reconcile_host_roots.py::test_legacy_relative_grant_cannot_expand_after_restart
+4 failed, 166 passed in 19.80s

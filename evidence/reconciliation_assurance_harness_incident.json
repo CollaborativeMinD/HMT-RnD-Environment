@@ -1,0 +1,76 @@
+{
+  "review_id": "HMT-RECONCILIATION-MA-HARNESS-001",
+  "case_id": "RC-HARNESS-01",
+  "as_of": "2026-10-26T22:56:22.868895+00:00",
+  "primary_disposition": "HOLD",
+  "requirements": [
+    "HMT-N12",
+    "HMT-B10",
+    "HMT-B11",
+    "HMT-B15"
+  ],
+  "scope": "Exact candidate identity of cumulative sequential repair replay; no inference of production-source regression from a replay directory containing the baseline host file.",
+  "method": "Read-only file/metadata/source inspection and parsing supplied JUnit/manifest. No target imports/tests/repair.",
+  "initiating_observation": "Custody replay reports170tests with4host-root regression failures after earlier164test host cumulative record passed.",
+  "observations": {
+    "main_host_source": {
+      "path": "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/src/hmt_rnd/host_models.py",
+      "sha256": "d6024f59bdb8da8bd95adee1aefb1dafacd426728b1f07576673368bebdb81b3",
+      "mtime_ns": 1793054882034889140,
+      "mtime_utc": "2026-10-26T22:48:02.034889+00:00"
+    },
+    "replay_host_source": {
+      "path": "/workspace/scratch/bc6d4e512874/reconciliation_replay/src/hmt_rnd/host_models.py",
+      "sha256": "d6024f59bdb8da8bd95adee1aefb1dafacd426728b1f07576673368bebdb81b3",
+      "mtime_ns": 1793055370269985065,
+      "mtime_utc": "2026-10-26T22:56:10.269985+00:00"
+    },
+    "helper": {
+      "path": "/workspace/scratch/bc6d4e512874/replay_reconciliation.py",
+      "sha256": "7b2d6478aaf06841f83a491a0ac6fc2fb0ac74d52799ea0f55f20a631c7b0f11",
+      "mtime_ns": 1793055370090333800,
+      "mtime_utc": "2026-10-26T22:56:10.090334+00:00"
+    },
+    "host_junit": {
+      "path": "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/reconcile_host_cumulative.xml",
+      "sha256": "6f39c9061f8302c3a3a3f88c5951a0a79f694329923024695502dc2aaef77b42",
+      "mtime_ns": 1793055135421187408,
+      "mtime_utc": "2026-10-26T22:52:15.421187+00:00"
+    },
+    "custody_junit": {
+      "path": "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/reconcile_sequence_custody.xml",
+      "sha256": "96c86b547290ee3196655858de5fb4f1b8d5af0673ec586c6c7710797293f97f",
+      "mtime_ns": 1793055276229982291,
+      "mtime_utc": "2026-10-26T22:54:36.229982+00:00"
+    },
+    "custody_manifest": {
+      "path": "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/reconcile_sequence_custody.json",
+      "sha256": "e8216b379f23825b0dcf2bc2728efbf5f60cf9b3d7e89d01283fa64cd2112796",
+      "mtime_ns": 1793055276607978886,
+      "mtime_utc": "2026-10-26T22:54:36.607979+00:00"
+    }
+  },
+  "causal_traversal": [
+    "Custody replay source manifest binds host_models to baseline SHAa8070768ce3818d521a6221879845a73f7c933620ec2c5ab7747f70e2f313e64, while repaired main source is SHAd6024f59bdb8da8bd95adee1aefb1dafacd426728b1f07576673368bebdb81b3.",
+    "The actual failed test IDs are three relative-root provisioning cases and the legacy-relative-root cwd-expansion case; each requires the omitted host repair.",
+    "Inspected replay_reconciliation.py starts with custody source/test overlay and contains no host_models repair overlay. It depends on preexisting replay contents without enforcing a host-repair source precondition.",
+    "Current replay host source mtime precedes host cumulative JUnit start. No evidence here establishes which writer changed the file or that a rewrite occurred between successful host run and failed custody replay.",
+    "Last evidenced boundary is a baseline host file in the supposed cumulative repair candidate and an unguarded replay precondition. Host prior execution cwd/import/source identity is not recoverable from JUnit alone."
+  ],
+  "assessment": "Do not accept failed replay as the requested cumulative candidate and do not erase its failures. It is evidence of a replay-candidate identity breach; current production-source repair evidence remains separately bounded.",
+  "corrective_requirements": [
+    "Construct replay state deterministically from pinned baseline plus explicit ordered repair overlays including host.",
+    "Assert complete expected source/test/config inventory before each stage and record both pre-run and post-run hashes to detect drift during execution.",
+    "Use exact execution cwd/environment/import provenance; record whether source and tests are from replay root.",
+    "Retain original4failure witness and rerun the same required regressions at corrected cumulative candidate; no skip, suppression or contract relaxation.",
+    "Stop on any candidate mismatch before target execution."
+  ],
+  "reviewer_attestation": "/root/assurance_reconciliation did not create, use for execution, or write reconciliation_replay. Reviewer wrote only authorized assurance reports/inventory in main repo. This personal assertion is not an attribution claim about other writers.",
+  "disposition": "INVESTIGATION_INCOMPLETE; REQUIRES_OPERATOR_ESCALATION_TO_SUPERVISOR_HARNESS_OWNER",
+  "unknown_frontier": [
+    "Original host cumulative execution command/cwd/import path and complete source inventory",
+    "Who constructed baseline replay host file; no writer identity is inferred from filesystem mtime",
+    "Corrected full cumulative source-bound test results pending"
+  ],
+  "retention": "Previous host and custody JUnit and sequence manifest remain unchanged; this report is an additive finding."
+}

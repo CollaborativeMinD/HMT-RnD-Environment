@@ -1,0 +1,109 @@
+{
+  "case_id": "RC-HARNESS-01",
+  "baseline_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+  "baseline_file_count": 175,
+  "baseline_git_tree": "17cea57e6f521b540562dee3faa8f1725f4c644a",
+  "baseline_verification": "All175baseline Git blob hashes matched before isolated host staging.",
+  "stages": [
+    {
+      "stage": "host",
+      "record": "evidence/reconcile_host_exact.json",
+      "exact_candidate_matches": true,
+      "unchanged_during_execution": true,
+      "record_sha256": "e834c6e7796fcfc558865dabfd3d8ee868894e9e6dd77196e863d41a7ca7ba49",
+      "differences": []
+    },
+    {
+      "stage": "custody",
+      "record": "evidence/reconcile_sequence_custody.json",
+      "exact_candidate_matches": true,
+      "unchanged_during_execution": true,
+      "record_sha256": "cd0d996a95c2cbcb9b9d2bcdbc42a4834aa8ae6d35b1cdb4628f57a5e96e9f9e",
+      "differences": []
+    },
+    {
+      "stage": "voice1",
+      "record": "evidence/reconcile_sequence_voice1.json",
+      "exact_candidate_matches": true,
+      "unchanged_during_execution": true,
+      "record_sha256": "df0c2e5e6ee08453b4fb8b88f9c660fa2a2f080443badcc9039bc50935e5267b",
+      "differences": []
+    },
+    {
+      "stage": "voice2",
+      "record": "evidence/reconcile_sequence_voice2.json",
+      "exact_candidate_matches": true,
+      "unchanged_during_execution": true,
+      "record_sha256": "5e9ac111f5879fb93886b3a2bb4f75010448a79828ef163c82400b2aa2394320",
+      "differences": []
+    },
+    {
+      "stage": "voice3",
+      "record": "evidence/reconcile_sequence_voice3.json",
+      "exact_candidate_matches": true,
+      "unchanged_during_execution": true,
+      "record_sha256": "478be23b64f736f36d5c42b39a20d30feb819170330e74e564423416d4a81da0",
+      "differences": []
+    },
+    {
+      "stage": "identity",
+      "record": "evidence/reconcile_sequence_identity.json",
+      "exact_candidate_matches": true,
+      "unchanged_during_execution": true,
+      "record_sha256": "9cef5b2780264ea0af68b04c0973c6814eef2147a01bd5c34f80a43b81773dd5",
+      "differences": []
+    },
+    {
+      "stage": "lane1",
+      "record": "evidence/reconcile_sequence_lane1.json",
+      "exact_candidate_matches": true,
+      "unchanged_during_execution": true,
+      "record_sha256": "e26ad3a5baa52c4677d403e381a3bfd05dd32e1876a2fde6c28caca98b5a1c9f",
+      "differences": []
+    },
+    {
+      "stage": "lane2",
+      "record": "evidence/reconcile_sequence_lane2.json",
+      "exact_candidate_matches": true,
+      "unchanged_during_execution": true,
+      "record_sha256": "717be442148e30b6ddd5e02c22e4c67a9da3596f8322db02bc7eaed196c268f3",
+      "differences": []
+    },
+    {
+      "stage": "lane3",
+      "record": "evidence/reconcile_sequence_lane3.json",
+      "exact_candidate_matches": true,
+      "unchanged_during_execution": true,
+      "record_sha256": "adc07f58de7ea33a370df2ef27a36d1f230c289d98458600b467cbc3edbed89d",
+      "differences": []
+    },
+    {
+      "stage": "lane4",
+      "record": "evidence/reconcile_sequence_lane4.json",
+      "exact_candidate_matches": true,
+      "unchanged_during_execution": true,
+      "record_sha256": "e15b85fd21fa3996aa9dde3c4cf302cced9223210fe8ad754f2e768f1c67278f",
+      "differences": []
+    },
+    {
+      "stage": "lane5",
+      "record": "evidence/reconcile_sequence_lane5.json",
+      "exact_candidate_matches": true,
+      "unchanged_during_execution": true,
+      "record_sha256": "1e4a5c9bd6639041570a714734a263bfb43641d12be8acff785d6f191673e476",
+      "differences": []
+    },
+    {
+      "stage": "coverage",
+      "record": "evidence/reconcile_sequence_coverage.json",
+      "exact_candidate_matches": true,
+      "unchanged_during_execution": true,
+      "record_sha256": "b14a9b37510b93daf0232835e5ba06963323fb8397f830e78bfdc431408d7b7a",
+      "differences": []
+    }
+  ],
+  "final_coverage_candidate_matches": true,
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; all12candidate overlays verified; independent review pending",
+  "preserved_failure": "evidence/reconcile_sequence_custody_initial.json",
+  "supersession": "Original custody170run used baseline host and failed4. Corrected custody170run retains same tests and exactexpected host+custody source. Original host164XML lacked source inventory; reconcile_host_exact164run retains all same tests with explicit cwd/import and before/after hashes. Redundant sequence_host170run is retained but does not serve as host-only evidence."
+}

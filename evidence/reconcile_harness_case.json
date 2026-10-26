@@ -1,0 +1,11 @@
+{
+  "case_id": "RC-HARNESS-01",
+  "as_of": "2026-10-26T22:56:09.743789+00:00",
+  "scope": "supervisor sequential replay precondition",
+  "observed": "Custody replay inventory contained baseline host_models; four previously repaired host tests failed. Main production source remained repaired.",
+  "cause_supported": "Replay driver applied custody first and relied on preexisting host staging without validating that precondition.",
+  "unknown_frontier": "No evidence establishes who wrote prior replay contents; no worker attribution. Earlier164pass XML lacks exact source inventory.",
+  "correction": "Replay starts by explicitly applying host source and test; every stage records all src/tests/scripts hashes before execution and verifies they are unchanged afterward.",
+  "supersession": "New same-oracle host and cumulative runs supply candidate binding; original failures and original164pass evidence retained. No failing test discarded.",
+  "disposition": "INVESTIGATION_COMPLETE_AT_HARNESS_PRECONDITION; SOLUTION_CANDIDATE_APPLIED; replay pending"
+}
