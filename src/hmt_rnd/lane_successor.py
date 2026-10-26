@@ -3,9 +3,11 @@ import sqlite3
 
 from .lane_models import Candidate
 from .lane_queries import read_receipt
+from .lane_reservation import check_reservation
 
 
 def check_pending(db: sqlite3.Connection, candidate: Candidate) -> None:
+    check_reservation(db, candidate)
     rows = db.execute("SELECT id,successor FROM lane_reopens WHERE lineage=? AND stage=? "
                        "AND id NOT IN(SELECT event FROM lane_closures)",
                        (candidate.lineage_id, candidate.stage)).fetchall()

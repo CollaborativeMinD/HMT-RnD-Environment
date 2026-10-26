@@ -1,0 +1,86 @@
+{
+  "review_id": "HMT-OOB-MA-INITIAL-001",
+  "as_of": "2026-10-26T23:23:03.853035+00:00",
+  "primary_disposition": "HOLD",
+  "scope": "Two new out-of-band findings; prior12scoped closures remain historical observations, not blanket correctness.",
+  "method": "Read-only owner/reviewer comments, source and requirement records; no target imports, tests or repairs.",
+  "referenced_candidate": "Review handoff targetsce754d6; reports relevant source unchanged at inspected6619aee. Exact repaired candidate not yet available.",
+  "owner_release_condition": "Out-of-band supervisor must review exact resulting commit and prior closure conditions before reconciliation HOLD release. This independent worker does not release HOLD.",
+  "integration_boundary": "Remaining integration instructions remain withheld; eventual reconciliation release grants no deployment, new authority or full acceptance.",
+  "cases": [
+    {
+      "case_id": "RC-LANE-05",
+      "requirements": [
+        "HMT-B07",
+        "HMT-B14",
+        "HMT-F02",
+        "HMT-N12"
+      ],
+      "claim": "A designated successor identity remains reserved to its exact reopening event, lineage and stage across all submissions.",
+      "expected_negative": [
+        "After missionA reserves fixed, initial missionB submission using fixed with no reopen_id receives typed denial before candidate/effect/closure mutation.",
+        "Wrong event, lineage or stage cannot consume the reserved successor identity.",
+        "Denial preserves original pending event/reservation; missionA can still submit the correct successor."
+      ],
+      "expected_positive": [
+        "Unreserved candidate ID for missionB remains admitted under its own current authority.",
+        "Exact reserved successor with matching event,lineage,stage and current authority can complete normally."
+      ],
+      "failure_disposition": "HOLD affected reopening/submission progression; preserve failing witness and event state.",
+      "review_finding": "4383477923"
+    },
+    {
+      "case_id": "RC-LANE-06",
+      "requirements": [
+        "HMT-B07",
+        "HMT-F02",
+        "HMT-N07",
+        "HMT-N12",
+        "HMT-B10"
+      ],
+      "claim": "Reopening approval is bound to issuance policy/epoch; current builder admission cannot revive stale reopening authority.",
+      "expected_negative": [
+        "PolicyA/epoch1 reopen followed by policyB/epoch2 and renewed current builder lane.seal grant rejects successor with typed stale-approval reason and no successor/closure mutation.",
+        "Epoch-only change has the same rejection; restart between issuance and use preserves it.",
+        "A stale/revoked/incorrect-scope architect grant, role spoof, mismatched event or absent legacy binding cannot supply current approval."
+      ],
+      "expected_positive": [
+        "Unchanged-policy/epoch successor remains usable under current actor admission.",
+        "Explicit current-policy architect reauthorization binds exact original event and current policy/epoch, preserves immutable event/history and allows the designated successor under separately current builder lane.seal authority."
+      ],
+      "failure_disposition": "HOLD pending until explicit admitted architect reauthorization; do not silently infer historical approval or substitute provider/actor.",
+      "review_finding": "4383510924"
+    }
+  ],
+  "global_requirements": [
+    "HMT-F14",
+    "HMT-F15",
+    "HMT-B10",
+    "HMT-B11",
+    "HMT-B15"
+  ],
+  "evidence_required_per_case": [
+    "Retained before failure or evidence-backed refutation bound to exact source/test identity",
+    "Causal traversal to last supported edge",
+    "Scoped corrective task preserving immutable records and current admission",
+    "Negative and positive/control/restart/recovery witnesses as applicable",
+    "Exact repair commit and source/evidence digests",
+    "Cumulative previous-good-state regression and updated RRCA/alias/closure records",
+    "Out-of-band review acknowledgment of exact candidate; no self-release"
+  ],
+  "snapshot_sha256": {
+    "src/hmt_rnd/lane_models.py": "fd1f45e5416c2c31d2d6d6562724196e31913dfa32cafe73c265c4a9ed5080e6",
+    "src/hmt_rnd/lane_submission.py": "b0d0c0385439d58378ebd1a366e4e142667056234346f7602d89779c14535081",
+    "src/hmt_rnd/lane_successor.py": "03cf2489722d3313d7f345af1ff1a2dacfb337ae16bd6e0d154ac8939c6a9d94",
+    "src/hmt_rnd/lane_reopen.py": "7d98e22ec790a5ce7cb3ee1732fd725b87931637ac262a8540055e2c02e36bf1",
+    "src/hmt_rnd/lane_store.py": "1fef69c0d5c817af941a3b3a72051105229c227338860132b2840b457bfdb6bc",
+    "src/hmt_rnd/lane_schema.py": "86e3868aed1ad9d2e651657d811d5cd64023e24c71de2ba1a5f215bfabe1ab57",
+    "evidence/oob_assurance_sources.json": "8efecfb3f5f1cf79e6c58bb3f666d07258bf1339b04ed78fb9ee9b97a6d8615d",
+    "contracts/requirements.json": "301592b8bf3a33c52318ab3ff37c47b072b12761385d8bc71bad7c07a7a97546"
+  },
+  "limitations": [
+    "Source patterns/reviewer narratives are not executed reproductions.",
+    "No production identity,domain evaluator,external endpoint or complete requirement qualification follows from local fixtures.",
+    "Architect reauthorization requires a separately admitted host operation; role labels or a renewed builder grant alone are not evidence of it."
+  ]
+}

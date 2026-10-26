@@ -8,6 +8,7 @@ from .lane_discovery import discover_changes
 from .lane_drift import artifact_changed
 from .lane_models import Receipt, Reopen, ReopenEvent
 from .lane_queries import read_receipt
+from .lane_reservation import require_available
 from .lane_stages import STAGES, lane
 from .lane_submission import ClockProvider, check_stage
 
@@ -51,10 +52,7 @@ def reopen_candidate(db: sqlite3.Connection, identity: Identity, request: Reques
                        for row in rows)
     if policy_drift and identity.role != "human_architect":
         raise PermissionError("LANE_POLICY_REOPEN_REQUIRES_ARCHITECT")
-    existing = db.execute("SELECT 1 FROM lane_candidates WHERE id=?",
-                          (event.successor_candidate_id,)).fetchone()
-    if existing:
-        raise PermissionError("LANE_SUCCESSOR_ALREADY_EXISTS")
+    require_available(db, event.successor_candidate_id)
     scope = db.execute("SELECT id,stage FROM lane_candidates WHERE lineage=?",
                        (event.lineage_id,)).fetchall()
     invalidated = tuple(row[0] for row in scope if STAGES.index(row[1]) >= STAGES.index(stage))

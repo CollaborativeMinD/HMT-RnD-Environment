@@ -1,0 +1,33 @@
+{
+  "case_id": "RC-LANE-05",
+  "requirements": [
+    "HMT-B07",
+    "HMT-F02",
+    "HMT-F14"
+  ],
+  "baseline": "6619aee11c341317fb1c913222b6063a8a938d08",
+  "investigation": "Global candidate identity could be consumed by another lineage because reservation checks were optional on a supplied reopen_id. Duplicate reservation issuance already failed atomically via UNIQUE; correction makes this an explicit typed denial.",
+  "before": "evidence/oob_lane_before.xml",
+  "before_sources": "evidence/oob_lane_before_sources.json",
+  "correction": "All candidate submissions check global reserved ID against event/lineage/stage; duplicate reservations get typed rejection before effects.",
+  "candidate": "evidence/oob_lane_step1.json",
+  "supervisor_regression": "evidence/oob_supervisor_stage1.json",
+  "counts": {
+    "tests": 201,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
+  "archive": {
+    "original": "evidence/oob_supervisor_stage1.xml",
+    "stored": "evidence/oob_supervisor_stage1.xml.gz",
+    "sha256": "0eceede43069fd8537b2d280572f132c0b55ddafbea96ef1dd8fa723dbedbb26"
+  },
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; HOLD_PENDING_OUT_OF_BAND_REVIEW",
+  "sub_agent_task_attestation": {
+    "repair_owner": "/root/lane_reconciliation",
+    "supervisor": "/root",
+    "reviewer": "/root/assurance_reconciliation",
+    "unsigned": true
+  }
+}
