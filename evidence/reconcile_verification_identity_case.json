@@ -1,0 +1,40 @@
+{
+  "case_id": "R-VERIFY-ID-001",
+  "requirements": [
+    "HMT-N10",
+    "HMT-B11"
+  ],
+  "trigger": "PR2 discussion_r4383065912; owner HOLD",
+  "as_of": "2026-10-26T22:51:45.730854+00:00",
+  "expected": "Normalized invariant collisions reject before ledger destination creation; valid baseline full product and IDs unchanged",
+  "before": "Exact regression failed with sqlite3.IntegrityError UNIQUE constraint failed:candidates.candidate_id; valid control passed. Witness retained unchanged.",
+  "causal_chain": [
+    "Distinct raw HMT-F01/I-F01 accepted by Dimensions raw uniqueness check",
+    "create_ledger exclusively creates destination and materializes dimension tables",
+    "SQL maps HMT-F01 to I-F01",
+    "Both dimension tuples produce same candidate_id; unique index rejects after destination mutation"
+  ],
+  "correction": "Validate canonical invariant uniqueness in Dimensions before any create_ledger invocation. SQL canonical identities and existing valid inputs retained.",
+  "targeted_result": "29 verification tests pass including unchanged original failure oracle and full-product control; before1failed1passed; after0failed0skipped",
+  "baseline_parity": "10556 rows exactly match historical candidate CSV row set:189 APPLICABLE/10367 NOT_APPLICABLE; all exclusion predicates retained; no PASS statuses generated",
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; scoped closure proposed pending supervisor cumulative gates and independent evidence review",
+  "test_supersession": "None: the exact previously failing test remains and now passes; no deletion, skip, replacement or changed expected contract",
+  "source_and_evidence_sha256": {
+    "src/hmt_rnd/verification_models.py": "0735ead7becc5e2760455e48c28f9a4a4e55987b95ba939c80819fee520cde9c",
+    "tests/test_reconcile_verification_identity.py": "551a30046096174f50ff2255ed9e6864c45d13fe11a74b447d4049842129048f",
+    "evidence/reconcile_verification_identity_before_sources.json": "cd096951c36c3934c914b870d275ccab9d66accbed778270cd5ab746a9008267",
+    "evidence/reconcile_verification_identity_before.log": "2306116aa901b212259d0143ee97eed988e7a69500450d2fa5c9f388f5803478",
+    "evidence/reconcile_verification_identity_before.xml": "24319df4e4d9d3c4d367ba7f31356715a9e7899ef413c51c0227202d021327ed",
+    "evidence/reconcile_verification_identity_after.log": "6d8b08c37f61ca47b02166fe634db19368a7f79c3e4e6f017119ec1dd95b5717",
+    "evidence/reconcile_verification_identity_after.xml": "cf3c1c680317d056bcbca59b9a097b684f503d1121a8b98e05c845028b468dce",
+    "evidence/reconcile_verification_identity_parity.json": "cca8f28a3e4c747d9dc0f55b665abc6f2813271225553b826e9dfb092c9e81ae"
+  },
+  "sub_agent_task_attestation": {
+    "task_id": "/root/verification_reconciliation",
+    "supervisor": "/root",
+    "baseline_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+    "method": "implementation worker execution; no independent assurance or promotion authority",
+    "reference_policy": "Read-only references unchanged; no reference runtime imports",
+    "coupling_check": "Dimension identity is checked before exclusive destination creation; SQL normalization and public IDs retained. Full baseline candidate row set matches historical10556 rows. Changed-code denominator includes the structural runner, preventing unchanged code from masking a failing new-code metric."
+  }
+}

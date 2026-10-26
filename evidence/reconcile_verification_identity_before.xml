@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="2" time="0.230" timestamp="2026-10-26T18:47:51.545265-04:00" hostname="812233b2011d"><testcase classname="tests.test_reconcile_verification_identity.CanonicalIdentityTests" name="test_collision_rejected_before_destination_creation" time="0.018"><failure message="sqlite3.IntegrityError: UNIQUE constraint failed: candidates.candidate_id">self = &lt;test_reconcile_verification_identity.CanonicalIdentityTests testMethod=test_collision_rejected_before_destination_creation&gt;
+
+    def test_collision_rejected_before_destination_creation(self) -&gt; None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "ledger.sqlite"
+            with self.assertRaisesRegex(ValidationError, "NORMALIZED_INVARIANT_COLLISION"):
+                dimensions = Dimensions(invariants=(invariant("HMT-F01"), invariant("I-F01")),
+                                        mechanisms=("control",), gates=("G-ARCH",))
+&gt;               create_ledger(path, dimensions)
+
+tests/test_reconcile_verification_identity.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def create_ledger(path: Path, dimensions: Dimensions) -&gt; str:
+        if not set(dimensions.mechanisms).issubset(MECHANISM_IDS):
+            raise ValueError("MECHANISM_IDENTITY_UNBOUND")
+        descriptor = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+        os.close(descriptor)
+        with sqlite3.connect(path) as database:
+            database.executescript(SCHEMA)
+            database.executemany("INSERT INTO invariants VALUES (?,?,?)", (
+                (i.requirement_id, i.gate_id, i.acceptance) for i in dimensions.invariants
+            ))
+            database.executemany("INSERT INTO mechanisms VALUES (?,?)", (
+                (value, MECHANISM_IDS[value]) for value in dimensions.mechanisms
+            ))
+            database.executemany("INSERT INTO gates VALUES (?)", (
+                (value,) for value in dimensions.gates
+            ))
+            database.executemany("INSERT INTO applicable VALUES (?,?)", (
+                (i.requirement_id, m) for i in dimensions.invariants for m in i.mechanisms
+            ))
+            digest = hashlib.sha256(dimensions.model_dump_json().encode()).hexdigest()
+            database.execute("INSERT INTO metadata VALUES ('dimension_sha256',?)", (digest,))
+            database.commit()
+&gt;           database.executescript(PRODUCT)
+E           sqlite3.IntegrityError: UNIQUE constraint failed: candidates.candidate_id
+
+src/hmt_rnd/verification_ledger.py:33: IntegrityError</failure></testcase><testcase classname="tests.test_reconcile_verification_identity.CanonicalIdentityTests" name="test_controls_preserve_complete_product_and_existing_ids" time="0.058" /></testsuite></testsuites>

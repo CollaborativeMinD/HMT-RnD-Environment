@@ -22,6 +22,9 @@ class Dimensions(BaseModel):
         ids = [item.requirement_id for item in self.invariants]
         if len(set(ids)) != len(ids):
             raise ValueError("DUPLICATE_INVARIANT")
+        canonical = ["I-" + item[4:] if item.startswith("HMT-") else item for item in ids]
+        if len(set(canonical)) != len(canonical):
+            raise ValueError("NORMALIZED_INVARIANT_COLLISION")
         if len(set(self.mechanisms)) != len(self.mechanisms):
             raise ValueError("DUPLICATE_MECHANISM")
         if len(set(self.gates)) != len(self.gates):

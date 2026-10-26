@@ -1,0 +1,56 @@
+{
+  "case_id": "R-VERIFY-ID-001",
+  "commit_message": "Reconcile R-VERIFY-ID-001: reject canonical invariant collisions before ledger creation",
+  "depends_on": [],
+  "paths": [
+    {
+      "path": "src/hmt_rnd/verification_models.py",
+      "sha256": "0735ead7becc5e2760455e48c28f9a4a4e55987b95ba939c80819fee520cde9c"
+    },
+    {
+      "path": "tests/test_reconcile_verification_identity.py",
+      "sha256": "551a30046096174f50ff2255ed9e6864c45d13fe11a74b447d4049842129048f"
+    },
+    {
+      "path": "docs/reconcile_verification_identity.md",
+      "sha256": "b5193d0dfb43815c0611e3125c786af2a6c070f9a3a93a949c162b1eb8912e50"
+    },
+    {
+      "path": "evidence/reconcile_verification_identity_after.log",
+      "sha256": "6d8b08c37f61ca47b02166fe634db19368a7f79c3e4e6f017119ec1dd95b5717"
+    },
+    {
+      "path": "evidence/reconcile_verification_identity_after.xml",
+      "sha256": "cf3c1c680317d056bcbca59b9a097b684f503d1121a8b98e05c845028b468dce"
+    },
+    {
+      "path": "evidence/reconcile_verification_identity_before.log",
+      "sha256": "2306116aa901b212259d0143ee97eed988e7a69500450d2fa5c9f388f5803478"
+    },
+    {
+      "path": "evidence/reconcile_verification_identity_before.xml",
+      "sha256": "24319df4e4d9d3c4d367ba7f31356715a9e7899ef413c51c0227202d021327ed"
+    },
+    {
+      "path": "evidence/reconcile_verification_identity_before_sources.json",
+      "sha256": "cd096951c36c3934c914b870d275ccab9d66accbed778270cd5ab746a9008267"
+    },
+    {
+      "path": "evidence/reconcile_verification_identity_case.json",
+      "sha256": "97f2d5f0508e75da84f771cd7b96a18adc67d54b4f02f306ecc6a08ace67e656"
+    },
+    {
+      "path": "evidence/reconcile_verification_identity_parity.json",
+      "sha256": "cca8f28a3e4c747d9dc0f55b665abc6f2813271225553b826e9dfb092c9e81ae"
+    },
+    {
+      "path": "evidence/reconcile_verification_identity_rrca.csv",
+      "sha256": "f506e3c388734445ef5bd41b432a73f3047a922b9fcec1681ec0f4cc7a0986c1"
+    },
+    {
+      "path": "evidence/reconcile_verification_identity_rrca.sqlite.gz",
+      "sha256": "e036f95c687fbbdd4aed9a3758b1b0bbdee304af944104005ebf057363f36147"
+    }
+  ],
+  "sub_agent_task_attestation": "/root/verification_reconciliation; bounded derivative repair and executed witnesses; no release authority"
+}
