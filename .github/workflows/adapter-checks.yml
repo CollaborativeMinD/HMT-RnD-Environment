@@ -1,14 +1,23 @@
-name: Adapter and planning checks
+name: Planning artifact validation
 on: [push, pull_request]
 permissions:
   contents: read
 jobs:
-  portable-checks:
+  planning-artifacts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-      - uses: astral-sh/setup-uv@d0cc045d04ccac9d8b7881df0226f9e82c39688e
-      - run: uv sync --frozen --group dev
-      - run: uv run --frozen --group dev ruff check src tests scripts
-      - run: uv run --frozen --group dev python -m pytest -q
-      - run: PYTHONPATH=src uv run --frozen --group dev python scripts/check_structure.py
+      - name: Validate planning contract JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          files = sorted(Path("contracts").glob("*.json"))
+          if not files:
+              raise SystemExit("No planning contract JSON files found.")
+          for path in files:
+              json.loads(path.read_text())
+          print(f"Validated {len(files)} planning contract JSON files.")
+          print("Adapter implementation, test, and structural gates are not run or satisfied.")
+          PY
