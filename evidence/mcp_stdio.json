@@ -1,0 +1,93 @@
+{
+  "task_id": "P1-MCP-STDIO",
+  "sdk": {
+    "distribution": "mcp",
+    "version": "2.3.0",
+    "official_reference": "https://github.com/modelcontextprotocol/python-sdk",
+    "reviewed_installed_sources": {
+      "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/mcp/client/client.py": "36c91f9dcfff52dcf2a4736db6d570f874d7958806f68331ff2bae3b29639031",
+      "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/mcp/server/mcpserver/server.py": "fa61ae394dc4809c683f2878c3fc172da43c1387a3408835f89137ea34d57d4d",
+      "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/contextlib.py": "c1e0d67b2007de11ae93cd36cf6faf38d9ab32656a832d592a49325eec579f96"
+    }
+  },
+  "tests": {
+    "command": [
+      "uv",
+      "run",
+      "--with",
+      "mcp==2.3.0",
+      "--with",
+      "pytest",
+      "python",
+      "-m",
+      "pytest",
+      "tests/test_mcp_protocol.py",
+      "tests/test_mcp_scope.py",
+      "tests/test_mcp_launch.py",
+      "tests/test_mcp_validation.py",
+      "-q"
+    ],
+    "exit_code": 0,
+    "stdout": "..................                                                       [100%]\n18 passed in 16.44s\n",
+    "stderr": "",
+    "transport": "Real official Client sessions over spawned stdio server process"
+  },
+  "initial_campaign": {
+    "tests_passed": 9,
+    "scope": "Protocol discovery/parity, revocation, hidden/malformed calls, immutable identity/task/policy scope before framing/launch-file hardening"
+  },
+  "findings": [
+    {
+      "id": "MCP-LAUNCH-001",
+      "basis": "Source-level observation: initial loader used stat(path) followed by open(path), allowing pathname replacement between checks and read. No production exploit claimed.",
+      "correction": "O_NOFOLLOW|O_CLOEXEC|O_NONBLOCK; fstat and bounded read on same opened regular-file descriptor; owner/no-group/world-write check.",
+      "regressions": [
+        "test_symlink_binding_is_rejected",
+        "test_path_replacement_cannot_swap_opened_binding",
+        "test_group_writable_binding_is_rejected"
+      ]
+    },
+    {
+      "id": "MCP-FRAME-001",
+      "basis": "Installed SDK stdio reader iterates unbounded text lines before JSON parsing.",
+      "correction": "BoundedInput limits each frame to 65536 bytes before JSON parse; preserves official SDK stdio framing/output transport.",
+      "regressions": [
+        "test_frame_is_bounded_before_json_parse",
+        "test_oversized_wire_frame_closes_real_server"
+      ]
+    }
+  ],
+  "controls": [
+    "No principal/admission/task/credential from wire",
+    "Current canonical host authority at discovery and invocation",
+    "Handoff scope matches trusted role/task",
+    "No stage seal or completion authority",
+    "No custody reconciliation or arbitrary path/shell tools",
+    "No blanket readOnlyHint because host clock admission checkpoint persists"
+  ],
+  "ruff": "All checks passed",
+  "pyrefly": "0 errors, basic preset",
+  "file_hashes": {
+    "docs/mcp_interface.md": "e361f9cb584f844554ff71cf43d306bd96bfb32e1f02ba01a1b40aa52c266f9b",
+    "src/hmt_rnd/mcp_contracts.py": "728521617e0c48c3bafa3bdf9ee719de3a357055f05485cb62ee5dc97cc667e6",
+    "src/hmt_rnd/mcp_framing.py": "b371dc0a3c01316f4b8659926e8bd1d024662b4c9608758b3f9f6b691b1e2692",
+    "src/hmt_rnd/mcp_handoff.py": "8766cce44f243ada83f6da97b6c4bbd6e086365d61ccd3cda1acb7225cd1f022",
+    "src/hmt_rnd/mcp_server.py": "61d33eccd521a20717b3010fcf3baf21fb4853643bf178074c6282eca4d80e09",
+    "src/hmt_rnd/mcp_stdio.py": "215f82e2a68a842443c6b2fd5dee93359a92a84c42b62d47418fe35d1f74aa39",
+    "src/hmt_rnd/mcp_surface.py": "2dc15d903d69a3f376fb8b729ea926970d200e906ec591dc4683968355481c72",
+    "tests/test_mcp_launch.py": "9b55d6847b9c06747d5c34bea7841ae4a6879a567f5541a0d76cb3fc4a0109bc",
+    "tests/test_mcp_protocol.py": "c723ddc76e2021de877d1b48d82304482a74be929915eb5a0e668b1867227d70",
+    "tests/test_mcp_scope.py": "9b710bb596b741477c292f4de6bda89439a64af4df6c310405660fdca59288a6",
+    "tests/test_mcp_support.py": "320fd348ddb4c41a8dccfa7853c0023e0343137964b034eda67276a783867585",
+    "tests/test_mcp_validation.py": "4b58c96d5d34a34f04463c0dfddad020e857b37d56aa165bcdef39d764f3f5c5"
+  },
+  "limitations": [
+    "Trusted launcher and protected config parent/DB/root remain host OS obligations",
+    "Not remote HTTP/OAuth authentication",
+    "SDK lowlevel handle used only in pinned stream runner; SDK updates require compatibility regression",
+    "Lifecycle mutations unexposed pending qualified host gate evaluator",
+    "No live vendor/client/deployment isolation claim"
+  ],
+  "descriptor_coherence": "Discovery projects exact closed/bounded argument models; real SDK client asserts closed inspect/handoff schemas and nested handoff closure.",
+  "prior_18_case_witness": "evidence/mcp_initial18.json retained before descriptor metadata correction; same18 cases rerun with schema assertions."
+}

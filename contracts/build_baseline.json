@@ -1,5 +1,5 @@
 {
-  "version": "0.1.3",
+  "version": "0.2.0",
   "change_id": "CR-REFERENCE-DERIVATION-003",
   "parent_manifest_sha256": "699be75b3e0821fabf3b74c9bb2768226e4a0323ec3add2a750bff5c98419a74",
   "repository": "CollaborativeMinD/HMT-RnD-Environment",
@@ -12,5 +12,7 @@
   "future_candidate": "NVIDIA Parakeet: documentation-only exploration; absent from active provider chains",
   "runtime": "Repository-owned Python derivative tested on 3.13; actual dependencies pinned in uv.lock",
   "authority": "User authorized build, repository writes, and delegation; deployment, publication, merge and human closeout remain separately governed",
-  "reference_treatment": "ALL supplied HMT packages and frameworks are read-only reference implementations. Retain/extend needed behavior and invariants into repository-owned derivatives. No runtime reference package import, reference host installation, or modifications to references."
+  "reference_treatment": "ALL supplied HMT packages and frameworks are read-only reference implementations. Retain/extend needed behavior and invariants into repository-owned derivatives. No runtime reference package import, reference host installation, or modifications to references.",
+  "parent_implementation_commit": "9a5eb22bb0f430449c5465a229b5c0205eabfd93",
+  "checkpoint": "P1 generic lane/MCP/process-recovery integration; domain qualification open"
 }

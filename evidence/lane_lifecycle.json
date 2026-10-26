@@ -1,0 +1,449 @@
+{
+  "task_id": "WP-01-P1-LANE-LIFECYCLE",
+  "scope": "Public generic derivative lifecycle and handoff primitives, same host database",
+  "tests": {
+    "tests": 29,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "ruff": "PASS",
+  "pyrefly": "0 source errors; basic preset",
+  "tracer_first": "Collection failed ModuleNotFoundError hmt_rnd.lane_store before implementation; preserved as recorded observation",
+  "source_references": [
+    {
+      "path": "../inspection/HMT-Arch-and-RnD-Env/Agents.md",
+      "sha256": "7d04bf17e8a1948c545db55b0356c679b12c1faf9e9cd6ec0ac4acc48bf58916",
+      "treatment": "READ_ONLY_REFERENCE; only generic stage order and closed handoff shape derived"
+    },
+    {
+      "path": "../project_sources/04-Ontology_MachineHandoff_Schema.json",
+      "sha256": "916f5a82442a85b18c941c760ee058bdc8b64a797667f088de4f92ac4beb3142",
+      "treatment": "READ_ONLY_REFERENCE; only generic stage order and closed handoff shape derived"
+    }
+  ],
+  "metrics": [
+    {
+      "path": "src/hmt_rnd/lane_artifacts.py",
+      "physical_loc": 38,
+      "functions": [
+        {
+          "name": "preserved_bytes",
+          "physical_loc": 9
+        },
+        {
+          "name": "preserve",
+          "physical_loc": 17
+        }
+      ],
+      "sha256": "6d45fbe94b98a7b61e5e8697141dca8a3e41ead641609a8cd00561237f91e735"
+    },
+    {
+      "path": "src/hmt_rnd/lane_discovery.py",
+      "physical_loc": 29,
+      "functions": [
+        {
+          "name": "discover_changes",
+          "physical_loc": 20
+        }
+      ],
+      "sha256": "e4b832011793d68e60fd1cca507cde6ba096ae15e5c5cdf7919bf9d41f96b95b"
+    },
+    {
+      "path": "src/hmt_rnd/lane_evidence.py",
+      "physical_loc": 45,
+      "functions": [
+        {
+          "name": "digest_file",
+          "physical_loc": 9
+        },
+        {
+          "name": "verify_artifact",
+          "physical_loc": 3
+        },
+        {
+          "name": "verify_result",
+          "physical_loc": 12
+        },
+        {
+          "name": "verify_receipt_artifacts",
+          "physical_loc": 8
+        }
+      ],
+      "sha256": "bbe9b135f3d275483252206a6b481ba26d8f619e302818d64bebb607ac00b083"
+    },
+    {
+      "path": "src/hmt_rnd/lane_handoff.py",
+      "physical_loc": 20,
+      "functions": [],
+      "sha256": "14afaffb90d4f3e33c0247ef3c54e21216703e312f4cd6738bf1a00bff5b96fa"
+    },
+    {
+      "path": "src/hmt_rnd/lane_models.py",
+      "physical_loc": 75,
+      "functions": [],
+      "sha256": "fd1f45e5416c2c31d2d6d6562724196e31913dfa32cafe73c265c4a9ed5080e6"
+    },
+    {
+      "path": "src/hmt_rnd/lane_queries.py",
+      "physical_loc": 61,
+      "functions": [
+        {
+          "name": "receipt_digest",
+          "physical_loc": 3
+        },
+        {
+          "name": "read_receipt",
+          "physical_loc": 12
+        },
+        {
+          "name": "check_parent",
+          "physical_loc": 31
+        }
+      ],
+      "sha256": "41e3966acf63f27a229d9cd22339c0f58944d73376815b429155e7a378f7333a"
+    },
+    {
+      "path": "src/hmt_rnd/lane_records.py",
+      "physical_loc": 23,
+      "functions": [
+        {
+          "name": "record",
+          "physical_loc": 14
+        }
+      ],
+      "sha256": "386597142f6a6dffa7c59f19de92e29c97cfa653828b9d70ee9878503d5577b7"
+    },
+    {
+      "path": "src/hmt_rnd/lane_reopen.py",
+      "physical_loc": 64,
+      "functions": [
+        {
+          "name": "changed",
+          "physical_loc": 17
+        },
+        {
+          "name": "reopen_candidate",
+          "physical_loc": 31
+        }
+      ],
+      "sha256": "2d528e401e362df7b4ac7cf9d091fd4e11ae27b4f1ffa5cc161530ec4880d676"
+    },
+    {
+      "path": "src/hmt_rnd/lane_schema.py",
+      "physical_loc": 21,
+      "functions": [
+        {
+          "name": "immutable_triggers",
+          "physical_loc": 5
+        }
+      ],
+      "sha256": "86e3868aed1ad9d2e651657d811d5cd64023e24c71de2ba1a5f215bfabe1ab57"
+    },
+    {
+      "path": "src/hmt_rnd/lane_stages.py",
+      "physical_loc": 26,
+      "functions": [
+        {
+          "name": "lane",
+          "physical_loc": 2
+        },
+        {
+          "name": "predecessor",
+          "physical_loc": 3
+        }
+      ],
+      "sha256": "0746aaa8a8ad6cbf0359f43f0e371712c1835bd5de42efa6554b1a2e36110d97"
+    },
+    {
+      "path": "src/hmt_rnd/lane_store.py",
+      "physical_loc": 40,
+      "functions": [
+        {
+          "name": "__init__",
+          "physical_loc": 7
+        },
+        {
+          "name": "submit",
+          "physical_loc": 4
+        },
+        {
+          "name": "reopen",
+          "physical_loc": 5
+        },
+        {
+          "name": "receipt",
+          "physical_loc": 3
+        },
+        {
+          "name": "snapshot",
+          "physical_loc": 4
+        }
+      ],
+      "sha256": "1fef69c0d5c817af941a3b3a72051105229c227338860132b2840b457bfdb6bc"
+    },
+    {
+      "path": "src/hmt_rnd/lane_submission.py",
+      "physical_loc": 70,
+      "functions": [
+        {
+          "name": "check_stage",
+          "physical_loc": 8
+        },
+        {
+          "name": "check_successor",
+          "physical_loc": 17
+        },
+        {
+          "name": "submit",
+          "physical_loc": 23
+        }
+      ],
+      "sha256": "8c7346540ca610a4e3eff9580853c2a388c6692c9161e92e985d56fede0b8b79"
+    },
+    {
+      "path": "src/hmt_rnd/lane_successor.py",
+      "physical_loc": 16,
+      "functions": [
+        {
+          "name": "has_reopen_ancestor",
+          "physical_loc": 10
+        }
+      ],
+      "sha256": "31a66871020668dab6c4c1334aa863333377b88cbc079049000b760b7191d815"
+    },
+    {
+      "path": "tests/test_lane_artifacts.py",
+      "physical_loc": 51,
+      "functions": [
+        {
+          "name": "test_preserved_artifact_and_gate_bytes_survive_mutation",
+          "physical_loc": 18
+        },
+        {
+          "name": "test_snapshot_total_bound_rolls_back_all_stage_mutations",
+          "physical_loc": 20
+        },
+        {
+          "name": "gate",
+          "physical_loc": 3
+        },
+        {
+          "name": "oversized",
+          "physical_loc": 6
+        }
+      ],
+      "sha256": "e6ebf86bce8718f214f89107afa275fc7c1dd954c113fc1c95ab4f1bfe3f3486"
+    },
+    {
+      "path": "tests/test_lane_boundaries.py",
+      "physical_loc": 63,
+      "functions": [
+        {
+          "name": "test_missing_evaluator_and_revoked_principal_cannot_seal",
+          "physical_loc": 9
+        },
+        {
+          "name": "test_gate_output_must_bind_current_context",
+          "physical_loc": 9
+        },
+        {
+          "name": "test_denied_receipt_is_immutable_and_never_promotes",
+          "physical_loc": 19
+        },
+        {
+          "name": "test_expiry_during_evaluator_rolls_back_progression",
+          "physical_loc": 8
+        },
+        {
+          "name": "wrong_gate",
+          "physical_loc": 2
+        },
+        {
+          "name": "deny",
+          "physical_loc": 3
+        }
+      ],
+      "sha256": "4e4f8fa40bb3fbe9412dc46af5c9d3841bf686d827576b844d09edd4904abd6e"
+    },
+    {
+      "path": "tests/test_lane_contracts.py",
+      "physical_loc": 53,
+      "functions": [
+        {
+          "name": "test_eight_lanes_twenty_six_stages_and_closed_handoff",
+          "physical_loc": 14
+        },
+        {
+          "name": "test_evidence_roles_cannot_progress",
+          "physical_loc": 6
+        },
+        {
+          "name": "test_stage_skip_and_unsubstantiated_reopen_fail",
+          "physical_loc": 14
+        }
+      ],
+      "sha256": "806808f3d97aaa6a8b8e3b1106b00c62e5a6a44d9f1353cd5021a64313d9dcfb"
+    },
+    {
+      "path": "tests/test_lane_discovery.py",
+      "physical_loc": 28,
+      "functions": [
+        {
+          "name": "test_omitted_earlier_drift_still_routes_upstream",
+          "physical_loc": 16
+        }
+      ],
+      "sha256": "d3cddd259404bcf6acc6c0d6591d55fd0d4aae230d11b98a7bd88412fb1acb51"
+    },
+    {
+      "path": "tests/test_lane_invalid_reopen.py",
+      "physical_loc": 42,
+      "functions": [
+        {
+          "name": "test_invalid_reopen_cannot_change_history",
+          "physical_loc": 22
+        },
+        {
+          "name": "test_unbound_successor_cannot_close_someone_elses_event",
+          "physical_loc": 6
+        }
+      ],
+      "sha256": "442c0ed9e3af502a795f46cf59155e083f5cfbb6a94d1441ad20570bfa11a9d1"
+    },
+    {
+      "path": "tests/test_lane_policy_reopen.py",
+      "physical_loc": 55,
+      "functions": [
+        {
+          "name": "test_policy_reopen_requires_architect_and_current_policy",
+          "physical_loc": 21
+        },
+        {
+          "name": "test_denied_repair_has_a_terminal_successor",
+          "physical_loc": 21
+        },
+        {
+          "name": "denied",
+          "physical_loc": 3
+        }
+      ],
+      "sha256": "56ed384ff56002e2fdd4c16beaaf7e896170492f95b9fbec19b3caf3584a44d8"
+    },
+    {
+      "path": "tests/test_lane_reopen.py",
+      "physical_loc": 66,
+      "functions": [
+        {
+          "name": "reopen_request",
+          "physical_loc": 6
+        },
+        {
+          "name": "test_tamper_reopen_earliest_owner_and_reseal_descendants",
+          "physical_loc": 33
+        },
+        {
+          "name": "test_reopen_routes_to_earliest_changed_owner",
+          "physical_loc": 12
+        }
+      ],
+      "sha256": "4261d54a2efa2bf2d57ccab4a33b6eef122a69829605917474427fee9b18d049"
+    },
+    {
+      "path": "tests/test_lane_snapshot_failures.py",
+      "physical_loc": 40,
+      "functions": [
+        {
+          "name": "test_missing_or_corrupt_snapshot_is_not_evidence",
+          "physical_loc": 9
+        },
+        {
+          "name": "test_snapshot_source_race_cannot_commit",
+          "physical_loc": 18
+        }
+      ],
+      "sha256": "58fd1373ee407592cd8b7f7cc9bdad1f0cc32c0730cb942d80c23159945722c9"
+    },
+    {
+      "path": "tests/test_lane_tracer.py",
+      "physical_loc": 54,
+      "functions": [
+        {
+          "name": "execute_gate",
+          "physical_loc": 10
+        },
+        {
+          "name": "setup_host",
+          "physical_loc": 11
+        },
+        {
+          "name": "make_candidate",
+          "physical_loc": 6
+        },
+        {
+          "name": "test_upstream_seal_then_next_stage",
+          "physical_loc": 11
+        }
+      ],
+      "sha256": "57539a2ae05b8ac26c5c47142fb9ccdfc02a41e9a4dd83c155c813098a1a8370"
+    }
+  ],
+  "max_module_physical_loc": 75,
+  "max_function_physical_loc": 33,
+  "observed": [
+    "26 ordered stages and 8 lane declarations",
+    "Strict closed generic handoff shape",
+    "Actual SQLite upstream seal and next-stage progression with controlled executed gate",
+    "Tampered ancestor and invalidated receipt blocked",
+    "Immutable SEALED/DENIED receipt rows and append-only typed successor lineage",
+    "Revoked/expired current host authority blocks progression",
+    "Omitted earlier artifact drift routes to earliest current owner",
+    "Missing evaluator and mismatched gate context block progression",
+    "Exact prior artifact and gate-evidence bytes persist across path mutation/restart; snapshot total bound rolls back atomically."
+  ],
+  "limitations": [
+    "Controlled evaluator executes exact-byte fixture checks only; no stage-domain gate qualification.",
+    "Actual production evaluator must bind stage-to-mission/task relations and fresh signed evidence provenance.",
+    "Trusted diagnostic receipt lookup is not a wire authorization surface.",
+    "No protection against privileged direct database mutation or arbitrary concurrent file modification is claimed.",
+    "No effect dispatch, self-DONE, production deployment, or full26stage domain execution.",
+    "Standalone MR branching and broader authority-change taxonomy remain unimplemented, explicitly bounded."
+  ],
+  "artifact_preservation_repair": {
+    "id": "GAP-LANE-ARTIFACT-PRESERVATION-001",
+    "classification": "IMPLEMENTATION_REPAIR_REQUIREMENTS_UNCHANGED",
+    "before": "Immutable metadata did not itself preserve external file bytes.",
+    "after": "Bounded content-addressed BLOB snapshots persisted atomically with receipt in same host SQLite file; snapshots immutable and rehashed on diagnostic retrieval.",
+    "witness": "Actual tests preserve/retrieve prior SEALED and DENIED artifact/evidence bytes after path mutation and database reopen; aggregate16MiB overflow rolls back all records.",
+    "prior_evidence_refs": [
+      "evidence/lane_lifecycle_pre_artifact_fix.json",
+      "evidence/lane_tests_pre_artifact_fix.xml"
+    ],
+    "external_artifact_store_dependency": false
+  },
+  "junit_sha256": "3aeb2d84e21859453cdac66f0efc4f2f61ebd78a73a1c92adc0f9d658b2add13",
+  "boundary_campaign": {
+    "prior17_case_evidence": [
+      "evidence/lane_lifecycle_17case.json",
+      "evidence/lane_tests_17case.xml"
+    ],
+    "added_cases": 12,
+    "source_changes": false,
+    "test_cases": [
+      "Unauthorized and admitted human-architect policy reopening",
+      "Terminal denied repair and corrected successor",
+      "Duplicate/cross-lineage/false policy/false denial/reused successor change rejection",
+      "Unknown reopen event successor rejection",
+      "Missing or corrupt preserved snapshot rejection",
+      "Changed/deleted source race in snapshot persistence"
+    ],
+    "cumulative_command": "COVERAGE_FILE=evidence/lane_boundary.coverage uv run --group dev coverage run --branch --source=src/hmt_rnd -m pytest -q",
+    "cumulative_tests_passed": 159,
+    "covered_branches": 290,
+    "total_branches": 308,
+    "branch_percent": 94.15584415584415,
+    "coverage_json": "evidence/lane_boundary_coverage.json",
+    "coverage_sha256": "bb9de1b84aa2d3927c08aa96669f56e3ffddbc4c19e1ee7868daa4008467cf06",
+    "not_claimed": "Unvisited branches remain visible; no exclusions, suppression, production weakening, or complete domain qualification."
+  }
+}

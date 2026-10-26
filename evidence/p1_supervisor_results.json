@@ -1,0 +1,116 @@
+{
+  "erase": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "--group",
+      "dev",
+      "coverage",
+      "erase"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "pytest_coverage": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "--group",
+      "dev",
+      "coverage",
+      "run",
+      "-m",
+      "pytest",
+      "-q",
+      "--junitxml=evidence/p1_supervisor_tests.xml"
+    ],
+    "exit_code": 0,
+    "stdout": "........................................................................ [ 45%]\n........................................................................ [ 90%]\n...............                                                          [100%]\n159 passed in 27.01s\n",
+    "stderr": ""
+  },
+  "combine": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "--group",
+      "dev",
+      "coverage",
+      "combine"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "Combined 3 files\n"
+  },
+  "coverage_json": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "--group",
+      "dev",
+      "coverage",
+      "json",
+      "-o",
+      "evidence/p1_coverage.json"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "Wrote JSON report to evidence/p1_coverage.json\n"
+  },
+  "ruff": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "--group",
+      "dev",
+      "ruff",
+      "check",
+      "src",
+      "tests",
+      "scripts"
+    ],
+    "exit_code": 0,
+    "stdout": "All checks passed!\n",
+    "stderr": ""
+  },
+  "pyrefly": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "--group",
+      "dev",
+      "pyrefly",
+      "check",
+      "src"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": " WARN PYTHONPATH environment variable is set to `src`. Checks in other environments may not include these paths.\n INFO 0 errors\nNo `pyrefly.toml` found \u2014 using preset `basic`.\nRun `pyrefly init` to continue setting up Pyrefly.\nDocs: https://pyrefly.org/en/docs/installation/\n"
+  },
+  "structure": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "--group",
+      "dev",
+      "python",
+      "scripts/check_structure.py"
+    ],
+    "exit_code": 0,
+    "stdout": "Known suppression syntax: zero findings\n",
+    "stderr": ""
+  },
+  "branch_coverage": {
+    "covered": 290,
+    "total": 308,
+    "percent": 94.15584415584415,
+    "exclusions": 0
+  }
+}

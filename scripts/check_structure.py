@@ -13,6 +13,8 @@ def main() -> None:
             reasons = [report["module_reason"]] + [f["reason"] for f in report["functions"]]
             if any(str(x).endswith(("REFACTOR_REQUIRED", "LIMIT_EXCEEDED")) for x in reasons):
                 raise SystemExit(f"STRUCTURAL_LIMIT:{path}:{reasons}")
+            if any(str(x).endswith("WATCH") for x in reasons):
+                print(f"STRUCTURAL_WATCH:{path}:{reasons}")
             if violations(source):
                 raise SystemExit(f"TEST_SUPPRESSION:{path}")
     print("Known suppression syntax: zero findings")

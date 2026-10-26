@@ -1,0 +1,57 @@
+[
+  {
+    "path": "src/hmt_rnd/mcp_contracts.py",
+    "module_loc": 26,
+    "maximum_function_loc": 0
+  },
+  {
+    "path": "src/hmt_rnd/mcp_framing.py",
+    "module_loc": 18,
+    "maximum_function_loc": 6
+  },
+  {
+    "path": "src/hmt_rnd/mcp_handoff.py",
+    "module_loc": 33,
+    "maximum_function_loc": 6
+  },
+  {
+    "path": "src/hmt_rnd/mcp_server.py",
+    "module_loc": 48,
+    "maximum_function_loc": 8
+  },
+  {
+    "path": "src/hmt_rnd/mcp_stdio.py",
+    "module_loc": 34,
+    "maximum_function_loc": 11
+  },
+  {
+    "path": "src/hmt_rnd/mcp_surface.py",
+    "module_loc": 51,
+    "maximum_function_loc": 10
+  },
+  {
+    "path": "tests/test_mcp_launch.py",
+    "module_loc": 64,
+    "maximum_function_loc": 13
+  },
+  {
+    "path": "tests/test_mcp_protocol.py",
+    "module_loc": 49,
+    "maximum_function_loc": 16
+  },
+  {
+    "path": "tests/test_mcp_scope.py",
+    "module_loc": 36,
+    "maximum_function_loc": 14
+  },
+  {
+    "path": "tests/test_mcp_support.py",
+    "module_loc": 43,
+    "maximum_function_loc": 13
+  },
+  {
+    "path": "tests/test_mcp_validation.py",
+    "module_loc": 38,
+    "maximum_function_loc": 13
+  }
+]
