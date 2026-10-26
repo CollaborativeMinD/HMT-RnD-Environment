@@ -1,0 +1,582 @@
+{
+  "task_id": "WP-01-P0-HOST-RECONCILIATION",
+  "method": "source_inspection",
+  "target_code_executed": false,
+  "remote_commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+  "remote_blob_hashes_verified": 21,
+  "source_pins": [
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_framework/agent_tools.py",
+      "git_blob_sha": "2517a1e5c461dac98cfb2e9196ab39bbc942bdbe",
+      "sha256": "c16e7db8d88391594e5f14a09ebba765bdb77e578df927d073532f75d33104d2",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_framework/capability_admission.py",
+      "git_blob_sha": "f8450fccf9f845c4de72ff88cf5535df08500f10",
+      "sha256": "a557e4dc09b57f098293a14eb5fa81cd8989d8f52f5cdfbd0307cbaaba4d4305",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_framework/capability_runtime.py",
+      "git_blob_sha": "87817c28f1d18b89e22fd5e2b0febf5a7b1a57ac",
+      "sha256": "7d965fb68a79ffeb175415c02731e59df8e8afa3cb47c6b728bd891037e70481",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_framework/capability_store.py",
+      "git_blob_sha": "a5b8b96a3925e9efd207428f6a0122f0180c0528",
+      "sha256": "7efec0877dd040b044253d6e16044085abc396ae33c5b9e8dab9bfd9c0325fb4",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_framework/store.py",
+      "git_blob_sha": "29cb1e66efd9dba341d503081f500dc560442c82",
+      "sha256": "dd2608bbd8d3eb81c81af475139ab24f5e26f29cfd2c02885bf726e624d210d8",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_framework/runtime.py",
+      "git_blob_sha": "0ff576a8d009ee92494d48e40742d74ff5c509e7",
+      "sha256": "a5eb0638d2cd2aa333a83cb34680a925789f1b9b71ad8e14b25f310f108b75b3",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_framework/skill_registry.py",
+      "git_blob_sha": "9664e0a9e080a9626f719f4a8a87791a801fa66e",
+      "sha256": "1465864e192a74893c152cdf949ffcd6b15c3fb929ce6c2eac25215933063156",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_notebook_mcp/tool_runner.py",
+      "git_blob_sha": "964a3f548e9ea75d1563cf6437db696c2e51cf8b",
+      "sha256": "abb84e937e2a0d10fa56827c143192ca250337d7ae40cb329aede43a1f7691ce",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_notebook_mcp/tool_effects.py",
+      "git_blob_sha": "e643c80772626ca387b0bd8a961f806e87f1f2fa",
+      "sha256": "9fb7bc6547b541632e34d019cb8d2b31663b60785fc5579708d3faf0c3dca968",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_framework/tool_schema.py",
+      "git_blob_sha": "0b366186a010b7b6a49adbaec3c688e44a2bc939",
+      "sha256": "d84872e4c7864be386a2a0d1427ef30088eed255037c6d54afd561781b69cbc4",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_notebook_mcp/contracts.py",
+      "git_blob_sha": "e1770e41cb692c8dce335a0c18c7b0908ac1b5a4",
+      "sha256": "ee1ddc89434e11a9f03c232343cd23da5f07af79e5e7e5888d60461d58a186fd",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_notebook_mcp/endpoint.py",
+      "git_blob_sha": "18401ed8bead18f8cf7ae029ae2e6854fd396130",
+      "sha256": "b64b1e0897c4d5b534ec08d480984ce3d4c9f6a5868d76c2548a1bd6f7b5365c",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_notebook_mcp/endpoint_calls.py",
+      "git_blob_sha": "b27fe09bd8974c6f59237236c76d4c5c0c7eb3bc",
+      "sha256": "d27050b7047d63f7fe56722a6bd9c6bb0d47d3bf538d1cd902eca8a1942511fa",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_notebook_mcp/service.py",
+      "git_blob_sha": "6a4a0d21431cde509c95ae013eeb44f9278dba30",
+      "sha256": "84845274319bc29de6b26fa698842306402c4cd6b43fdcbdd352159ffee81a7d",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_notebook_mcp/storage.py",
+      "git_blob_sha": "3c406915b55abe4a709ef1444e7bddf99bfcd8e4",
+      "sha256": "2715c00493ec08925fafa2b55391d5b09875819ee97ba3d6b67253a5f1517b41",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_framework/capability_claims.py",
+      "git_blob_sha": "52875ec4a8fa63fbde61e8e4bbdc0af5947fea8d",
+      "sha256": "7e8283d0bcae89918d57d6785dbf277badfc5e3512aa268b9c67a58ddd256799",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_framework/capability_contracts.py",
+      "git_blob_sha": "468c70dd9b538efc46b11e3758c0530db9a35f42",
+      "sha256": "591b83c37df55a23e9e7e04f46840fd58183c3f0c2f580b6568e769949fbb3c4",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_notebook_mcp/projection.py",
+      "git_blob_sha": "0ad2de0527166437216a8866df58e6b65811db79",
+      "sha256": "7d1532b431fc532a8e0e9d2aa682da3292b8bdc6af7bff935870601db27bd80e",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_notebook_mcp/scanner.py",
+      "git_blob_sha": "d20051c4977304ae5f3fddc493451a8ffc00271a",
+      "sha256": "14563f4a11a9817fa850394e4288c54cb80eb0b453fbab0cfde4ae8d1e0e0fe5",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_notebook_mcp/board_submission.py",
+      "git_blob_sha": "fd913e4e70e19bb5e4db09a82b0eb755b1535441",
+      "sha256": "25238437b54847d0745d7d76b83e35489f5f9b0ae76d2031e5535b66f83b3cdf",
+      "method": "source_inspection"
+    },
+    {
+      "source": "CollaborativeMinD/Multi-agent-Framework",
+      "commit": "d9d5ae26f1351d87ffd19d2281bc14c103b39ee3",
+      "path": "src/hmt_notebook_mcp/completion.py",
+      "git_blob_sha": "8a7c01f35e60e58948b2c0f47b1a689bf53be389",
+      "sha256": "189a91ff7028d882ed78bc5192c714af62f50af92968e78ec49be70cf3342baa",
+      "method": "source_inspection"
+    },
+    {
+      "source": "hmt_baseline_tools/1.1.0",
+      "archive_sha256": "4f7f8561821009a0288b67441e808ebb53d46b81cf2313a95f9d4c5f8e87f17f",
+      "path": "hmt_baseline_tools-1.1.0/src/hmt_baseline_tools/contracts.py",
+      "sha256": "43375710877efa3fdb025047bd9a74597ca1e651a1a4232cac8a41ba3cf8308f",
+      "method": "source_inspection"
+    },
+    {
+      "source": "hmt_baseline_tools/1.1.0",
+      "archive_sha256": "4f7f8561821009a0288b67441e808ebb53d46b81cf2313a95f9d4c5f8e87f17f",
+      "path": "hmt_baseline_tools-1.1.0/src/hmt_baseline_tools/admission.py",
+      "sha256": "87b7aca4001710f2b57f16d3509ff29abd3f20a94803a0da432ff6f33674b5cd",
+      "method": "source_inspection"
+    },
+    {
+      "source": "hmt_baseline_tools/1.1.0",
+      "archive_sha256": "4f7f8561821009a0288b67441e808ebb53d46b81cf2313a95f9d4c5f8e87f17f",
+      "path": "hmt_baseline_tools-1.1.0/src/hmt_baseline_tools/models.py",
+      "sha256": "52deabf04d09ee913ddf15e20ab365ccb577092c16e02902509e7e1001eb67db",
+      "method": "source_inspection"
+    },
+    {
+      "source": "hmt_baseline_tools/1.1.0",
+      "archive_sha256": "4f7f8561821009a0288b67441e808ebb53d46b81cf2313a95f9d4c5f8e87f17f",
+      "path": "hmt_baseline_tools-1.1.0/src/hmt_baseline_tools/context.py",
+      "sha256": "bcdfcfb721346732bcce44d0dc3be85cbd156a6a7f87c8343dbda3ae4b4090e2",
+      "method": "source_inspection"
+    },
+    {
+      "source": "hmt_baseline_tools/1.1.0",
+      "archive_sha256": "4f7f8561821009a0288b67441e808ebb53d46b81cf2313a95f9d4c5f8e87f17f",
+      "path": "hmt_baseline_tools-1.1.0/src/hmt_baseline_tools/invoke.py",
+      "sha256": "b5b497a62984ee0d4913d0b4b2757469ee4fa33417cfe3f4da55fdbfd20299e3",
+      "method": "source_inspection"
+    },
+    {
+      "source": "hmt_baseline_tools/1.1.0",
+      "archive_sha256": "4f7f8561821009a0288b67441e808ebb53d46b81cf2313a95f9d4c5f8e87f17f",
+      "path": "hmt_baseline_tools-1.1.0/src/hmt_baseline_tools/dispatcher.py",
+      "sha256": "e5472057ef40f1a7ad989825be43a5698ceafcbf6a76f7659b3c60353eaf23e2",
+      "method": "source_inspection"
+    },
+    {
+      "source": "hmt_baseline_tools/1.1.0",
+      "archive_sha256": "4f7f8561821009a0288b67441e808ebb53d46b81cf2313a95f9d4c5f8e87f17f",
+      "path": "hmt_baseline_tools-1.1.0/src/hmt_baseline_tools/task_mutation.py",
+      "sha256": "bf1fabb61c9dae9db87d44ea70de633b16570bcf0cd057000102e71668a97452",
+      "method": "source_inspection"
+    },
+    {
+      "source": "hmt_baseline_tools/1.1.0",
+      "archive_sha256": "4f7f8561821009a0288b67441e808ebb53d46b81cf2313a95f9d4c5f8e87f17f",
+      "path": "hmt_baseline_tools-1.1.0/src/hmt_baseline_tools/completion.py",
+      "sha256": "e70a8e15ff2e6b7530857ffb3785c0f0d3ab46ddcf356cba1541ba93b10de642",
+      "method": "source_inspection"
+    },
+    {
+      "source": "hmt_baseline_tools/1.1.0",
+      "archive_sha256": "4f7f8561821009a0288b67441e808ebb53d46b81cf2313a95f9d4c5f8e87f17f",
+      "path": "hmt_baseline_tools-1.1.0/src/hmt_baseline_tools/store.py",
+      "sha256": "394a76a9cd47e602bf23590bf306fcd5a18e4d715750a69e1af6792f22f4a2a2",
+      "method": "source_inspection"
+    },
+    {
+      "source": "governing_contract",
+      "path": "inspection/HMT-Arch-and-RnD-Env/Agents.md",
+      "sha256": "7d04bf17e8a1948c545db55b0356c679b12c1faf9e9cd6ec0ac4acc48bf58916",
+      "method": "source_inspection"
+    },
+    {
+      "source": "governing_contract",
+      "path": "project_sources/04-Ontology_MachineHandoff_Schema.json",
+      "sha256": "916f5a82442a85b18c941c760ee058bdc8b64a797667f088de4f92ac4beb3142",
+      "method": "source_inspection"
+    }
+  ],
+  "observations": [
+    {
+      "id": "OBS-HOST-01",
+      "type": "observed_source",
+      "finding": "Canonical host BoardStore owns <host-root>/state/hmt_state.sqlite3; MCP transport does not provision principals or tasks.",
+      "refs": [
+        "src/hmt_notebook_mcp/storage.py"
+      ]
+    },
+    {
+      "id": "OBS-HOST-02",
+      "type": "observed_source",
+      "finding": "Native six tools, standalone twelve tools, and imported local:// or mcp:// contracts are distinct namespaces.",
+      "refs": [
+        "src/hmt_notebook_mcp/contracts.py",
+        "src/hmt_framework/capability_contracts.py",
+        "contracts.py"
+      ]
+    },
+    {
+      "id": "OBS-HOST-03",
+      "type": "observed_source",
+      "finding": "ToolEndpoint.call retains strict schemas, source/reference checks, projected scanner, Watchdog, process admission, and current service projection. Native task_update binds expected_revision and operation_id.",
+      "refs": [
+        "src/hmt_notebook_mcp/endpoint.py",
+        "src/hmt_notebook_mcp/endpoint_calls.py",
+        "src/hmt_notebook_mcp/tool_runner.py",
+        "src/hmt_notebook_mcp/service.py"
+      ]
+    },
+    {
+      "id": "OBS-HOST-04",
+      "type": "observed_source",
+      "finding": "CapabilityRuntime checks current actor, contract hash, descriptor hash and schema; persists UNKNOWN claim before invocation; same fingerprint UNKNOWN blocks another claim.",
+      "refs": [
+        "src/hmt_framework/capability_runtime.py",
+        "src/hmt_framework/capability_claims.py"
+      ]
+    },
+    {
+      "id": "OBS-HOST-05",
+      "type": "observed_source",
+      "finding": "Standalone task_get mutates task status. Completion never grants DONE.",
+      "refs": [
+        "task_mutation.py",
+        "completion.py"
+      ]
+    },
+    {
+      "id": "OBS-HOST-06",
+      "type": "observed_source",
+      "finding": "Standalone admit returns mission-free requests before scope checks; caller-presented mission IDs are not transport authentication.",
+      "refs": [
+        "admission.py"
+      ]
+    },
+    {
+      "id": "OBS-HOST-07",
+      "type": "observed_source",
+      "finding": "Standalone dispatcher audits after invoke; an audit failure can yield HOLD after effect. Both completion paths deliver corrective files after task/receipt transaction.",
+      "refs": [
+        "dispatcher.py",
+        "completion.py",
+        "src/hmt_notebook_mcp/completion.py"
+      ]
+    },
+    {
+      "id": "OBS-HOST-08",
+      "type": "observed_source",
+      "finding": "Generic capability_claims.reconcile validates only outcome enum plus truthy evidence, then finishes. No endpoint-proof authentication or current authority check in that function.",
+      "refs": [
+        "src/hmt_framework/capability_claims.py"
+      ]
+    },
+    {
+      "id": "OBS-HOST-09",
+      "type": "observed_source",
+      "finding": "Standalone event verifier reads at most 4096 rows; passing result establishes only that returned range.",
+      "refs": [
+        "store.py"
+      ]
+    }
+  ],
+  "blockers": [
+    {
+      "id": "GAP-RECONCILE-PROOF-001",
+      "requirements": [
+        "HMT-B03",
+        "HMT-B04",
+        "HMT-F02"
+      ],
+      "gap": "Generic reconcile evidence lacks authenticated endpoint proof and fresh authority.",
+      "closure": "Do not expose hmt_framework.capability_claims.reconcile. Bind existing transactional custody reserve/reconcile and endpoint.lookup_or_cancel with exact-effect/reservation proof, fresh grant, and durable cancellation checks. Reopen integration satisfaction claims; requirement contracts remain unchanged."
+    },
+    {
+      "id": "GAP-LANE-INTERSECTION-001",
+      "requirements": [
+        "HMT-F01",
+        "HMT-F02",
+        "HMT-F20"
+      ],
+      "gap": "Existing actor role/scope/epoch contracts do not themselves bind this build\u2019s exact lane/stage/credential/egress projection.",
+      "closure": "Map current host authority and prove direct/MCP cross-lane negatives; never create another authorizer/task database."
+    },
+    {
+      "id": "GAP-POST-EFFECT-HOLD-001",
+      "requirements": [
+        "HMT-F18",
+        "HMT-B03",
+        "HMT-B06"
+      ],
+      "gap": "Post-effect audit or corrective filesystem delivery can fail after committed state.",
+      "closure": "Preserve effect identity/uncertainty; transactionally persist required delivery intent in owning domain. Never retry mutation solely because wrapper returns HOLD."
+    },
+    {
+      "id": "GAP-STANDALONE-AUTH-001",
+      "requirements": [
+        "HMT-F02",
+        "HMT-F04"
+      ],
+      "gap": "Baseline standalone dispatch does not authenticate transport principal; mission-free reads bypass native scope admission.",
+      "closure": "Use host authenticated principal and per-call roots/evidence scope, not caller-reported agent IDs."
+    },
+    {
+      "id": "GAP-REPLAY-RANGE-001",
+      "requirements": [
+        "HMT-N12"
+      ],
+      "gap": "LIMIT 4096 verification cannot attest completeness of longer chain.",
+      "closure": "Report exact verified range and continuation/total bounds; test events after 4096."
+    },
+    {
+      "id": "GAP-RESOURCE-PROFILE-001",
+      "requirements": [
+        "HMT-F03",
+        "HMT-N02",
+        "HMT-N03",
+        "HMT-N08"
+      ],
+      "gap": "Capability payload bound is 16384 bytes; subprocess RLIMIT_AS is 1-2 GiB; native policy timeouts differ from proposed gateway profile.",
+      "closure": "Preserve stricter valid input bounds; qualify operation profiles, distinguish address space from RSS, and never claim inherited modules meet new structural bands without measurement."
+    }
+  ],
+  "disposition": "INSUFFICIENT_EVIDENCE_FOR_RUNTIME_QUALIFICATION",
+  "commands": [
+    "Read AGENTS.md and scoped requirements",
+    "Read archive members as inert source bytes",
+    "GitHub repository search, exact commit fetch, exact-commit file reads",
+    "Compute Git blob SHA-1 and SHA-256; match every remote blob identity"
+  ],
+  "nonclaims": [
+    "No runtime pass",
+    "No deployment",
+    "No replacement authorizer/store",
+    "No source certification"
+  ],
+  "superseding_derivative_scope": {
+    "reference_classification": "READ_ONLY_REFERENCE_IMPLEMENTATION_ONLY",
+    "derivative_target": "hmt_rnd.host_*",
+    "source_runtime_imported": false,
+    "tracer_first_failure": "ModuleNotFoundError hmt_rnd.host_admission before implementation",
+    "tests_passed": 18,
+    "ruff": "PASS",
+    "pyrefly_source": "0 errors; basic preset",
+    "metrics": [
+      {
+        "path": "src/hmt_rnd/host_models.py",
+        "physical_loc": 61,
+        "functions": [],
+        "sha256": "a8070768ce3818d521a6221879845a73f7c933620ec2c5ab7747f70e2f313e64"
+      },
+      {
+        "path": "src/hmt_rnd/host_admission.py",
+        "physical_loc": 28,
+        "functions": [
+          {
+            "name": "admit",
+            "physical_loc": 6
+          },
+          {
+            "name": "authorize_and_checkpoint",
+            "physical_loc": 6
+          },
+          {
+            "name": "admit_wire",
+            "physical_loc": 4
+          }
+        ],
+        "sha256": "5b675de7eb0f0a84886c30d6092d3152b6d4224af552f8b3840e7e9e8d8ce1a5"
+      },
+      {
+        "path": "src/hmt_rnd/host_checks.py",
+        "physical_loc": 39,
+        "functions": [
+          {
+            "name": "authorize",
+            "physical_loc": 32
+          }
+        ],
+        "sha256": "7198c769641bebd17648040cd402001768c3df3fc7a26fce55e5c826274ee07a"
+      },
+      {
+        "path": "src/hmt_rnd/host_admin.py",
+        "physical_loc": 24,
+        "functions": [
+          {
+            "name": "assign",
+            "physical_loc": 9
+          },
+          {
+            "name": "grant",
+            "physical_loc": 7
+          }
+        ],
+        "sha256": "3ef443d33cd5735deefb1f9435c334ac744fe5b89858009493af14172a0e7910"
+      },
+      {
+        "path": "src/hmt_rnd/host_store.py",
+        "physical_loc": 55,
+        "functions": [
+          {
+            "name": "__init__",
+            "physical_loc": 4
+          },
+          {
+            "name": "create",
+            "physical_loc": 10
+          },
+          {
+            "name": "transaction",
+            "physical_loc": 9
+          },
+          {
+            "name": "assign",
+            "physical_loc": 3
+          },
+          {
+            "name": "grant",
+            "physical_loc": 3
+          },
+          {
+            "name": "revoke",
+            "physical_loc": 3
+          },
+          {
+            "name": "set_policy",
+            "physical_loc": 5
+          }
+        ],
+        "sha256": "dc5bc1ba541e5647093016b1ca9c9243be6d4e44a01597f4b84d7d5625867e84"
+      },
+      {
+        "path": "src/hmt_rnd/host_schema.py",
+        "physical_loc": 12,
+        "functions": [],
+        "sha256": "94fc1948231e40f1b7c00c3970931bc36b4f1dc5df23d862a72db2bc867924a1"
+      },
+      {
+        "path": "tests/test_host_boundaries.py",
+        "physical_loc": 57,
+        "functions": [
+          {
+            "name": "test_trusted_identity_must_match_entire_grant",
+            "physical_loc": 6
+          },
+          {
+            "name": "test_request_scope_cannot_expand",
+            "physical_loc": 6
+          },
+          {
+            "name": "test_direct_and_wire_share_admission_and_unknown_fields_fail",
+            "physical_loc": 9
+          },
+          {
+            "name": "test_exclusive_expiry_and_clock_uncertainty",
+            "physical_loc": 6
+          },
+          {
+            "name": "test_revision_policy_and_clock_changes_invalidate",
+            "physical_loc": 11
+          }
+        ],
+        "sha256": "68b84a12ef80018ed0b03f82cfc0f96d2ddc93e4bbbb5d9705cc0dfa893c7411"
+      },
+      {
+        "path": "tests/test_host_transaction.py",
+        "physical_loc": 50,
+        "functions": [
+          {
+            "name": "test_authorize_inside_existing_transaction_is_read_only",
+            "physical_loc": 9
+          },
+          {
+            "name": "test_revoke_deletion_restoration_and_matched_control",
+            "physical_loc": 13
+          },
+          {
+            "name": "authorize_in_transaction",
+            "physical_loc": 3
+          },
+          {
+            "name": "test_clock_checkpoint_uses_callers_transaction",
+            "physical_loc": 8
+          }
+        ],
+        "sha256": "ffb6446810d88b0fb54886c026d198aa51c524a2d6cd7a3550e9cf10c2373473"
+      },
+      {
+        "path": "tests/test_host_tracer.py",
+        "physical_loc": 33,
+        "functions": [
+          {
+            "name": "fixture_store",
+            "physical_loc": 12
+          },
+          {
+            "name": "test_assign_admit_revoke_restart",
+            "physical_loc": 9
+          }
+        ],
+        "sha256": "29d7862b35333ab374844aac8132729234588ee47975b4dc689e66467d95b71d"
+      }
+    ],
+    "nonclaims": [
+      "No full26stage lifecycle",
+      "No effect dispatcher",
+      "No actual deployment authentication or egress sandbox",
+      "No full requirement satisfaction"
+    ]
+  }
+}

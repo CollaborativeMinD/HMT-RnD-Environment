@@ -1,0 +1,42 @@
+[
+  {
+    "original": "evidence/build_ledgers.sqlite",
+    "stored": "evidence/build_ledgers.sqlite.gz",
+    "sha256": "1f95c3a0b939b72cffe3b0487326393e0e7a94f183fa90e71a462c2b5d12f6de",
+    "compressed_sha256": "0061479b21f3d4a9f5c6dd049659f88ed924614845807229663a46ca5d87fd36",
+    "bytes": 12288,
+    "all_rows_preserved": true
+  },
+  {
+    "original": "evidence/verification_candidate_ledger.csv",
+    "stored": "evidence/verification_candidate_ledger.csv.gz",
+    "sha256": "6da2cba23b208d59152a4c1008481d40126fdbea1a9bea87d1586e9ab2c668ec",
+    "compressed_sha256": "f332ddc9dee1acb7ac21857077e8f4ae18079fb97a7c0cc5b0d73ade33f257dd",
+    "bytes": 1270467,
+    "all_rows_preserved": true
+  },
+  {
+    "original": "evidence/verification_candidate_ledger.sqlite",
+    "stored": "evidence/verification_candidate_ledger.sqlite.gz",
+    "sha256": "f57a6e5160b5006a10663198ac5f078e1819c630f56f0df9d7f434cd52fb030e",
+    "compressed_sha256": "0640c8f1381b455f1c9a4e72202ac5a308843d0fea3df2f456a9ec1ee6fd1e47",
+    "bytes": 1740800,
+    "all_rows_preserved": true
+  },
+  {
+    "original": "evidence/verification_history/CR-REFERENCE-DERIVATION-003-parent/verification_candidate_ledger.csv",
+    "stored": "evidence/verification_history/CR-REFERENCE-DERIVATION-003-parent/verification_candidate_ledger.csv.gz",
+    "sha256": "6da2cba23b208d59152a4c1008481d40126fdbea1a9bea87d1586e9ab2c668ec",
+    "compressed_sha256": "f332ddc9dee1acb7ac21857077e8f4ae18079fb97a7c0cc5b0d73ade33f257dd",
+    "bytes": 1270467,
+    "all_rows_preserved": true
+  },
+  {
+    "original": "evidence/verification_history/CR-REFERENCE-DERIVATION-003-parent/verification_candidate_ledger.sqlite",
+    "stored": "evidence/verification_history/CR-REFERENCE-DERIVATION-003-parent/verification_candidate_ledger.sqlite.gz",
+    "sha256": "fd907edf1868ce2c50776b7093f1d01fa789e556b1d8be2564ba4e40153bceb0",
+    "compressed_sha256": "7862afa7346eb9d7dba3a22add9d0fee6a12f21a76aa3b8ed644ca85ca47d204",
+    "bytes": 1740800,
+    "all_rows_preserved": true
+  }
+]

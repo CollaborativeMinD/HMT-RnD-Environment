@@ -16,12 +16,10 @@ HOLD, revoked authority, and semantic denial stop fallback. External effect unce
 
 Troubleshoot by preserving the failing command, candidate/source/policy identities, actual observations, and cumulative ledger. Contradictory assumptions reopen requirements through the controlled change path.
 
-## External-source qualification
+## Derivative qualification
 
-The portable test suite does not claim execution of the five canonical custody cases. Their complete required collection is listed in evidence/custody_qualification_manifest.json. Missing private source is HOLD for that qualification, never a skip or PASS. Bind HMT_CUSTODY_REFERENCE to the exact source reviewed in evidence/custody_tracer.json, then run:
+All supplied HMT implementations are read-only references. Runtime imports from reference packages are forbidden; repository-owned derivatives retain and extend the admitted behaviors. No reference installation is required for the portable suite. See docs/host_derivative.md and docs/custody_adapter.md for the transaction and proof domains.
 
-```bash
-PYTHONPATH="src:tests:$HMT_CUSTODY_REFERENCE/src" uv run --frozen --group dev python -m pytest tests/custody_uncertainty.py tests/custody_guards.py -q
-```
+The five earlier engine tests in evidence/custody_reference_tracer.json (when present) are historical reference observations only; current derivative tests live under tests/test_custody*.py. They do not establish vendor, process-kill, power-loss or hardware fidelity.
 
-Full source type checking likewise requires the canonical custody import root via Pyrefly --search-path. Initial missing-import failure is preserved in evidence/supervisor_results.json. No suppression resolves the missing dependency.
+Run full source type checks with `uv run --group dev pyrefly check src`. The prior missing-reference-import failure is retained as historical evidence of the corrected dependency interpretation.

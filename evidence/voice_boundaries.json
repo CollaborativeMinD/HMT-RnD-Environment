@@ -1,0 +1,147 @@
+{
+  "task_id": "WP-11-VOICE-INPUT-BOUNDARIES",
+  "tests_passed": 27,
+  "added_negative_cases": 9,
+  "command": "uv run --with pydantic>=2,<3 --with pytest --with coverage python -m coverage run --branch --source=hmt_rnd --data-file=/tmp/voice_coverage -m pytest tests/test_voice_adapter.py tests/test_voice_failures.py tests/test_voice_guard.py tests/test_voice_asset_boundaries.py tests/test_voice_process_boundaries.py -q",
+  "exit_code": 0,
+  "stdout": "27 passed in 0.47s",
+  "voice_scope_coverage": {
+    "src/hmt_rnd/voice_adapter.py": {
+      "covered_lines": 33,
+      "num_statements": 33,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "missing_lines": 0,
+      "excluded_lines": 0,
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100",
+      "num_branches": 8,
+      "num_partial_branches": 0,
+      "covered_branches": 8,
+      "missing_branches": 0,
+      "percent_branches_covered": 100.0,
+      "percent_branches_covered_display": "100"
+    },
+    "src/hmt_rnd/voice_assets.py": {
+      "covered_lines": 38,
+      "num_statements": 38,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "missing_lines": 0,
+      "excluded_lines": 0,
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100",
+      "num_branches": 20,
+      "num_partial_branches": 0,
+      "covered_branches": 20,
+      "missing_branches": 0,
+      "percent_branches_covered": 100.0,
+      "percent_branches_covered_display": "100"
+    },
+    "src/hmt_rnd/voice_models.py": {
+      "covered_lines": 32,
+      "num_statements": 32,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "missing_lines": 0,
+      "excluded_lines": 0,
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100",
+      "num_branches": 0,
+      "num_partial_branches": 0,
+      "covered_branches": 0,
+      "missing_branches": 0,
+      "percent_branches_covered": 100.0,
+      "percent_branches_covered_display": "100"
+    },
+    "src/hmt_rnd/voice_process.py": {
+      "covered_lines": 44,
+      "num_statements": 44,
+      "percent_covered": 100.0,
+      "percent_covered_display": "100",
+      "missing_lines": 0,
+      "excluded_lines": 0,
+      "percent_statements_covered": 100.0,
+      "percent_statements_covered_display": "100",
+      "num_branches": 14,
+      "num_partial_branches": 0,
+      "covered_branches": 14,
+      "missing_branches": 0,
+      "percent_branches_covered": 100.0,
+      "percent_branches_covered_display": "100"
+    }
+  },
+  "raw_coverage_ref": "evidence/voice_coverage.json",
+  "raw_coverage_sha256": "8a05eae1ee5679defcdaedd2e44001f25e82e2778f75f6eaefc27b57580ca0e0",
+  "historical_evidence": {
+    "evidence/voice_tracer.json": "a3a5fd772a10b59cf5e2ddaa5d04f50635d343b34416cfa1b6d1015aed73d136",
+    "evidence/voice_guard.json": "f23cf3119b910c251cbd8adee8e6f1439c1794bcd5cfd5981665a4e8fb053842"
+  },
+  "ruff": "All checks passed",
+  "file_hashes": {
+    "docs/voice.md": "55a89f1aed62ebf9bb2e8ee0a1dfa331c38ce7af5b4e0dd8c678286327f44af3",
+    "src/hmt_rnd/voice_adapter.py": "2f4bc628575753c882c983787ccdcf6309762eb6927e268f8d81335543ac04a0",
+    "src/hmt_rnd/voice_assets.py": "1aa6d28efe2d2ae0071792c7ac70d703abe8d509684a92ffd453664740a55cce",
+    "src/hmt_rnd/voice_models.py": "e4b2c19a06e30f794f8d1f0cc2eaddd6fb2d6c72f8a092a6d074441eafca5ec2",
+    "src/hmt_rnd/voice_process.py": "9351e9ae196b8c4d74c3657628b64728777dd9d31feeaad9e72a7faef4e7076e",
+    "tests/test_voice_adapter.py": "0831a0fad92716b9cdd5f12e8f32e798daff1aa0539424e6e3397164fde759ad",
+    "tests/test_voice_asset_boundaries.py": "c1163afe2fb96ded6c06751cc6e07c60915e2b628523c9f7bf7da45563d58508",
+    "tests/test_voice_failures.py": "0541f7cd8b53bfe4f80edf2707124abd3db7f81b8888cbda129ad38016cc6393",
+    "tests/test_voice_guard.py": "90180101cd55fdbe05ebce4a3d20bd0f3cc76e7774920476bc83657b9a38d6c0",
+    "tests/test_voice_process_boundaries.py": "cd7ac0cfae3a468dad747f12f6698e7a346f9286aee15d929612f8e1e93d1ef3",
+    "tests/test_voice_support.py": "071a03b699910e804ee68d583b56a7c563d7fd7a24a513eb9ee32b199e56ca25"
+  },
+  "complexity": [
+    {
+      "path": "src/hmt_rnd/voice_adapter.py",
+      "module_loc": 48,
+      "maximum_function_loc": 19
+    },
+    {
+      "path": "src/hmt_rnd/voice_assets.py",
+      "module_loc": 47,
+      "maximum_function_loc": 17
+    },
+    {
+      "path": "src/hmt_rnd/voice_models.py",
+      "module_loc": 45,
+      "maximum_function_loc": 0
+    },
+    {
+      "path": "src/hmt_rnd/voice_process.py",
+      "module_loc": 54,
+      "maximum_function_loc": 21
+    },
+    {
+      "path": "tests/test_voice_adapter.py",
+      "module_loc": 50,
+      "maximum_function_loc": 11
+    },
+    {
+      "path": "tests/test_voice_asset_boundaries.py",
+      "module_loc": 53,
+      "maximum_function_loc": 9
+    },
+    {
+      "path": "tests/test_voice_failures.py",
+      "module_loc": 69,
+      "maximum_function_loc": 9
+    },
+    {
+      "path": "tests/test_voice_guard.py",
+      "module_loc": 46,
+      "maximum_function_loc": 8
+    },
+    {
+      "path": "tests/test_voice_process_boundaries.py",
+      "module_loc": 21,
+      "maximum_function_loc": 5
+    },
+    {
+      "path": "tests/test_voice_support.py",
+      "module_loc": 21,
+      "maximum_function_loc": 13
+    }
+  ],
+  "scope_limit": "No live model, microphone, UI, egress, hardware latency, or host-authority qualification; branch coverage is only these owned adapter modules."
+}

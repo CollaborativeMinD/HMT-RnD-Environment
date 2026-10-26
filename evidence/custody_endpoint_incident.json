@@ -1,0 +1,12 @@
+{
+  "incident_id": "CUSTODY-ENDPOINT-SCOPE-001",
+  "reported_by": "Independent source assurance reviewer",
+  "prefix_observation": "Trusted endpoint B accepted and completed the intended endpoint A reservation; expected ENDPOINT_SCOPE_MISMATCH did not raise.",
+  "prefix_junit": "<?xml version=\"1.0\" encoding=\"utf-8\"?><testsuites name=\"pytest tests\"><testsuite name=\"pytest\" errors=\"0\" failures=\"1\" skipped=\"0\" tests=\"1\" time=\"0.161\" timestamp=\"2026-10-26T17:31:55.760457-04:00\" hostname=\"812233b2011d\"><testcase classname=\"tests.test_custody_endpoint_scope\" name=\"test_trusted_other_endpoint_cannot_complete_reservation\" time=\"0.032\"><failure message=\"Failed: DID NOT RAISE CustodyFault\">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-16/test_trusted_other_endpoint_ca0')\n\n    def test_trusted_other_endpoint_cannot_complete_reservation(tmp_path):\n        original, _, _ = setup(tmp_path)\n        store = CustodyStore(original.domain.path, authority,\n                             {\"endpoint\": KEY, \"other-endpoint\": b\"b\" * 32})\n        other_path = tmp_path / \"other.sqlite\"\n        prepare(other_path)\n        other = Endpoint(other_path, \"other-endpoint\", b\"b\" * 32, authority)\n        reservation = store.reserve(\"alice\", \"effect1\")\n&gt;       with pytest.raises(CustodyFault, match=\"ENDPOINT_SCOPE_MISMATCH\"):\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE       Failed: DID NOT RAISE CustodyFault\n\ntests/test_custody_endpoint_scope.py:20: Failed</failure></testcase></testsuite></testsuites>",
+  "initiating_condition": "Intent and custody_intents schema lacked immutable target endpoint identity. Trust-root membership alone was accepted as target scope.",
+  "repair": "Add required endpoint_id to Intent, store target with immutable input identity, reject target mismatch before endpoint effects and inside store reconciliation. Old incompatible schema raises SCHEMA_REVISION_REQUIRED rather than inventing target.",
+  "regression": "Same endpoint-scope test now passes; added direct correctly signed wrong-target proof rejection; cumulative nine cases pass.",
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; scoped regression complete, broader qualification pending.",
+  "superseded_tests": [],
+  "causal_limits": "No full deletion/restoration/alternate-path family performed; no broader causal completeness claim."
+}
