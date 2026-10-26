@@ -1,0 +1,60 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.7.0
+rootdir: /workspace/scratch/bc6d4e512874/HMT-RnD-Environment
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collected 22 items
+
+tests/test_oob_lane_epoch.py .....                                       [ 22%]
+tests/test_oob_lane_reauth_denials.py .F......                           [ 59%]
+tests/test_oob_lane_reauthorization.py ...                               [ 72%]
+tests/test_oob_lane_reservation.py ..                                    [ 81%]
+tests/test_oob_lane_reservation_controls.py ....                         [100%]
+
+=================================== FAILURES ===================================
+_ test_reauthorization_requires_exact_current_host_authority[ungranted-role-HOST_GRANT_DENIED] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-98/test_reauthorization_requires_1')
+change = 'ungranted-role', reason = 'HOST_GRANT_DENIED'
+
+    @pytest.mark.parametrize("change,reason", [
+        ("builder", "LANE_REAUTHORIZATION_REQUIRES_ARCHITECT"),
+        ("ungranted-role", "HOST_GRANT_DENIED"),
+        ("wrong-stage", "LANE_STAGE_OR_OPERATION_DENIED"),
+        ("wrong-operation", "LANE_STAGE_OR_OPERATION_DENIED"),
+        ("wrong-task", "LANE_REOPEN_TASK_BINDING"),
+        ("wrong-revision", "LANE_REOPEN_TASK_BINDING"),
+        ("revoked", "HOST_GRANT_DENIED"),
+        ("unknown-event", "LANE_REOPEN_UNKNOWN"),
+    ])
+    def test_reauthorization_requires_exact_current_host_authority(tmp_path, change, reason):
+        host, actor, request, store, opened = reopened(tmp_path)
+        host.set_policy("policy-2")
+        architect = actor.model_copy(update={"role": "human_architect"})
+        if change == "builder":
+            architect = actor
+        if change == "wrong-stage":
+            architect = architect.model_copy(update={"stage": "CMAD2"})
+        if change == "wrong-task":
+            request = request.model_copy(update={"task_id": "other"})
+            host.assign(Assignment(task_id="other", principal=actor.principal, revision=1))
+        if change == "wrong-revision":
+            request = request.model_copy(update={"revision": 2})
+            host.assign(Assignment(task_id=request.task_id, principal=actor.principal, revision=2))
+        operation = "lane.seal" if change == "wrong-operation" else "lane.reauthorize"
+        grant_actor = actor if change == "ungranted-role" else architect
+        scoped = current_grant(host, grant_actor, request, "policy-2", 2, operation)
+        if change == "revoked":
+            host.revoke(actor.principal)
+        before = counts(host)
+>       with pytest.raises(PermissionError, match=reason):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'HOST_GRANT_DENIED'
+E         Actual message: 'HOST_IDENTITY_SCOPE_DENIED'
+
+tests/test_oob_lane_reauth_denials.py:38: AssertionError
+- generated xml file: /workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/oob_lane_epoch_recovery.xml -
+=========================== short test summary info ============================
+FAILED tests/test_oob_lane_reauth_denials.py::test_reauthorization_requires_exact_current_host_authority[ungranted-role-HOST_GRANT_DENIED]
+========================= 1 failed, 21 passed in 1.95s =========================

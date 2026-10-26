@@ -1,0 +1,20 @@
+{
+  "id": "CR-OOB-RECONCILIATION-005",
+  "affected_requirements": [
+    "HMT-B07",
+    "HMT-F02",
+    "HMT-F14",
+    "HMT-N11",
+    "HMT-N12",
+    "HMT-B11"
+  ],
+  "trigger": "Out-of-band cross-lineage reservation and stale reopening authority witnesses",
+  "cases": [
+    "RC-LANE-05",
+    "RC-LANE-06"
+  ],
+  "criteria": "Existing acceptance retained; these new boundary observations explicitly reopen affected requirement evidence.",
+  "binding": "Exact event digest, issuance/current policy+epoch, origin receipt, task/revision, lineage and stage; recovery only through current host-admitted human_architect lane.reauthorize.",
+  "reference_treatment": "Read-only references; derivatives only.",
+  "release": "HOLD_PENDING_OUT_OF_BAND_REVIEW"
+}

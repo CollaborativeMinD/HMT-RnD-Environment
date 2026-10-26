@@ -1,0 +1,22 @@
+{
+  "source_baseline": "6619aee11c341317fb1c913222b6063a8a938d08",
+  "repair_commits": [
+    {
+      "case_id": "RC-LANE-05",
+      "commit": "8a3f93a43777be949aab9c9bdffc593d68ec02fe",
+      "case_record": "evidence/oob_lane_case05.json",
+      "case_sha256": "e4032b7a1e4d80f10a15dc9bd87bc1a40f519b8dbf09d9d507bb63c2e37f98ee",
+      "regression": "evidence/oob_supervisor_stage1.json",
+      "regression_sha256": "368d48550273eae79e719c567ee22b0b70fb803e649cd419141bcf1aa88e7100"
+    },
+    {
+      "case_id": "RC-LANE-06",
+      "commit": "0892ba269597be15e49eb3310a76918f8ce77ff0",
+      "case_record": "evidence/oob_lane_case06.json",
+      "case_sha256": "b2796f883789d875ab40e650f9a62b8d64d3e4941e0c8f566c1baba51d03e03d",
+      "regression": "evidence/oob_supervisor_stage2.json",
+      "regression_sha256": "b0c2496d62429e03348bbaaf8e4f246438782e80572bbbc0f967f8195d3b8eb7"
+    }
+  ],
+  "release": "HOLD_PENDING_OUT_OF_BAND_SUPERVISOR_REVIEW"
+}

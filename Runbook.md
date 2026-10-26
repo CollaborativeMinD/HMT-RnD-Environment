@@ -26,6 +26,10 @@ Run full source type checks with `uv run --group dev pyrefly check src`. The pri
 
 ## Reconciliation and HOLD procedure
 
+The active continuation register is `evidence/oob_case_register.json`. RC-LANE-05 and RC-LANE-06 require the out-of-band supervisor's exact-candidate review before reconciliation HOLD release. Internal passing tests or assurance records do not perform that release. Integration instructions remain separately withheld.
+
+For a pending reopening rejected with `LANE_REOPEN_AUTHORITY_STALE`, preserve the event and successor reservation. A currently authorized human architect may use the trusted-host `LaneStore.reauthorize` operation with a current `lane.reauthorize` grant for the exact original task/revision and stage. The append-only approval binds the immutable event digest, origin receipt, lineage, stage, policy, and epoch. A builder then needs its own current `lane.seal` grant to submit the designated successor. This recovery function has no MCP exposure. Missing legacy bindings, changed task revisions, or unproved authority remain HOLD; no migration or rebinding authority is inferred.
+
 1. Read `evidence/reconciliation_closure_register.json` and the named case record before admitting further work. A closed scoped repair is not whole-requirement satisfaction or integration permission.
 2. Preserve the original source identity, failing command/observation, and causal frontier when a tracer contradicts a claim. Reopen its case and affected requirement under `contracts/CR-RECONCILIATION-004.json`; never replace a failure with an unrelated passing test.
 3. Inspect the eight-column `Cumulative_Gate_Ledger.csv` and `Reverse_RCA_Ledger.csv`. The identical tables are exported in `evidence/build_ledgers.sqlite.gz`. Keep worker attestations and previous rows intact.

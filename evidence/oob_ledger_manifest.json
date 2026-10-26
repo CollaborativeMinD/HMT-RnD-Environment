@@ -1,0 +1,20 @@
+{
+  "columns": 8,
+  "cumulative_rows": 44,
+  "rrca_rows": 98,
+  "retained_prefix": {
+    "cumulative": 40,
+    "rrca": 90
+  },
+  "sha256": {
+    "evidence/Cumulative_Gate_Ledger.csv": "0ac73bbc72588ada43d6b79aebc6f6dbf4ccade27ee918dbcee901a36b1015de",
+    "evidence/Reverse_RCA_Ledger.csv": "e399f2d03c870b99f03f035f17a722f6c3cab618b78d6398fd74def722b6078f",
+    "evidence/build_ledgers.sqlite.gz": "46f25f3623ed7dfa44433a361575c32030baef01ab681c69e57a5e236813c1c0"
+  },
+  "history": {
+    "evidence/oob_history/Cumulative_Gate_Ledger.csv": "766382d24405bf701b2b97008238647f845690fa2a809d3c6b14fe8a0d410fac",
+    "evidence/oob_history/Reverse_RCA_Ledger.csv": "f9560b1b100f4b54408919d13194a389409b839162dfbd7581f75af5755673eb",
+    "evidence/oob_history/archive_index.json": "ed7ff02318f033e3f478484a74ee768c1263230f7201cfeb9ccc736e73c45736",
+    "evidence/oob_history/build_ledgers.sqlite.gz": "71e159c566da81ab939e99ccf2fdc6e633fc641da6a547a511d06c74b9189066"
+  }
+}
