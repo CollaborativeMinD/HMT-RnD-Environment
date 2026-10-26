@@ -20,6 +20,10 @@ def changed(db: sqlite3.Connection, event: Reopen, root: Path,
     for receipt in rows:
         if receipt.candidate.lineage_id != event.lineage_id:
             raise PermissionError("LANE_REOPEN_LINEAGE_MISMATCH")
+        invalidated = db.execute("SELECT 1 FROM lane_invalidations WHERE candidate=?",
+                                 (receipt.candidate.candidate_id,)).fetchone()
+        if invalidated:
+            raise PermissionError("LANE_REOPEN_NOT_CURRENT")
         if event.reason == "ARTIFACT_DRIFT":
             if not artifact_changed(receipt, root):
                 raise PermissionError("LANE_REOPEN_WITHOUT_ARTIFACT_CHANGE")
