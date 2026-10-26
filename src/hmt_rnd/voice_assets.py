@@ -1,6 +1,8 @@
 """Read bounded audio and verify trusted host-owned asset pins."""
 import hashlib
 import io
+import os
+import stat
 import wave
 from pathlib import Path
 
@@ -32,7 +34,10 @@ def read_audio(path: Path, config: LocalVoiceConfig) -> bytes:
     resolved = path.resolve(strict=True)
     if not resolved.is_relative_to(config.audio_root.resolve(strict=True)):
         raise ValueError("VOICE_AUDIO_ROOT_DENIED")
-    with resolved.open("rb") as source:
+    descriptor = os.open(resolved, os.O_RDONLY | os.O_NONBLOCK | os.O_NOFOLLOW)
+    with os.fdopen(descriptor, "rb") as source:
+        if not stat.S_ISREG(os.fstat(source.fileno()).st_mode):
+            raise ValueError("VOICE_AUDIO_NOT_REGULAR")
         data = source.read(config.max_audio_bytes + 1)
     if len(data) > config.max_audio_bytes:
         raise ValueError("VOICE_AUDIO_LIMIT")
