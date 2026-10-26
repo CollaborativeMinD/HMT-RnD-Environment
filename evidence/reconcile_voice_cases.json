@@ -1,0 +1,232 @@
+{
+  "task": "WP-RECONCILE-VOICE-001",
+  "as_of": "2026-10-26T22:51:40.681292+00:00",
+  "baseline_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+  "scope": "Three local voice boundary defects only; no integration progression.",
+  "cases": [
+    {
+      "id": "RC-VOICE-01",
+      "alias": "VOICE-FIFO-001",
+      "requirements": [
+        "HMT-V09",
+        "HMT-N02",
+        "HMT-N03"
+      ],
+      "test": "tests/test_reconcile_voice_input.py::test_fifo_audio_rejected_without_writer",
+      "observation": "Outer tracer subprocess timeout at 2s; FIFO open without writer blocked before voice subprocess deadline.",
+      "cause": [
+        "Caller admitted scoped path to read_audio",
+        "Path resolution checked location but not file type",
+        "Blocking rb open on FIFO waited for writer",
+        "Process timeout was not yet active"
+      ],
+      "repair": "Open audio with O_NONBLOCK and O_NOFOLLOW, fstat same descriptor and reject nonregular before read.",
+      "before": "assets_before.txt",
+      "after": "assets_fifo_after.txt",
+      "source": "src/hmt_rnd/voice_assets.py",
+      "gate": "G-VOICE-FIFO-001",
+      "after_record": "fifo_after",
+      "before_sha256": "1aa6d28efe2d2ae0071792c7ac70d703abe8d509684a92ffd453664740a55cce",
+      "after_sha256": "a0fd2d18e69dffc79de76b954f80e3cc86af196f9809e5e62067c47e54e70b1d",
+      "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; supervisor and independent review required",
+      "worker_attestation": "/root/voice_reconciliation; actual disposable subprocess execution; no target-provider/model invocation; unsigned"
+    },
+    {
+      "id": "RC-VOICE-02",
+      "alias": "VOICE-DESCENDANT-001",
+      "requirements": [
+        "HMT-V09",
+        "HMT-N02"
+      ],
+      "test": "tests/test_reconcile_voice_lifetime.py::test_successful_parent_does_not_leave_running_descendant",
+      "observation": "Forked descendant closed pipes, parent exited successfully, descendant wrote delayed marker after run_local returned.",
+      "cause": [
+        "CLI started new POSIX session/group",
+        "Descendant inherited group but closed stdout/stderr",
+        "Drain observed EOF and parent success",
+        "Group termination only ran on exception"
+      ],
+      "repair": "Always terminate process group in finally after drain, preserving original parent return status.",
+      "before": "process_before.txt",
+      "after": "process_descendant_after.txt",
+      "source": "src/hmt_rnd/voice_process.py",
+      "gate": "G-VOICE-DESCENDANT-001",
+      "after_record": "descendant_after",
+      "before_sha256": "9351e9ae196b8c4d74c3657628b64728777dd9d31feeaad9e72a7faef4e7076e",
+      "after_sha256": "e6b9dd68c9c5df549aec81ad03e3d9512d9a00ea76064bad4ea7b459291264e9",
+      "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; supervisor and independent review required",
+      "worker_attestation": "/root/voice_reconciliation; actual disposable subprocess execution; no target-provider/model invocation; unsigned"
+    },
+    {
+      "id": "RC-VOICE-03",
+      "alias": "VOICE-CLOSED-PIPE-001",
+      "requirements": [
+        "HMT-V09",
+        "HMT-N03"
+      ],
+      "test": "tests/test_reconcile_voice_deadline.py::test_closed_pipes_preserve_typed_deadline_failure",
+      "observation": "Closed stdout/stderr followed by sleeping parent raised subprocess.TimeoutExpired rather than TimeoutError VOICE_PROCESS_TIMEOUT.",
+      "cause": [
+        "Selector drains both EOF streams",
+        "Final process.wait owns remaining original deadline",
+        "subprocess.TimeoutExpired escaped unnormalized",
+        "Caller could not rely on same typed deadline contract"
+      ],
+      "repair": "Translate final process.wait TimeoutExpired into TimeoutError VOICE_PROCESS_TIMEOUT, retaining cause and unconditional group cleanup.",
+      "before": "process_descendant_after.txt",
+      "after": "process_timeout_after.txt",
+      "source": "src/hmt_rnd/voice_process.py",
+      "gate": "G-VOICE-DEADLINE-001",
+      "after_record": "final",
+      "before_sha256": "e6b9dd68c9c5df549aec81ad03e3d9512d9a00ea76064bad4ea7b459291264e9",
+      "after_sha256": "3227a9af6440f80929988d08f2772bec70154390806bc9f0d44000d5ea2d698f",
+      "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; supervisor and independent review required",
+      "worker_attestation": "/root/voice_reconciliation; actual disposable subprocess execution; no target-provider/model invocation; unsigned"
+    }
+  ],
+  "executed_counts": {
+    "before": {
+      "tests": "3",
+      "failures": "2",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.386"
+    },
+    "before_valid": {
+      "tests": "3",
+      "failures": "3",
+      "errors": "0",
+      "skipped": "0",
+      "time": "3.082"
+    },
+    "fifo_after": {
+      "tests": "26",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.591"
+    },
+    "descendant_after": {
+      "tests": "11",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "0.958"
+    },
+    "after": {
+      "tests": "30",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.313"
+    },
+    "final": {
+      "tests": "30",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "1.414"
+    }
+  },
+  "harness_correction": {
+    "initial_run": "Retained before.log/xml: FIFO failed import without PYTHONPATH and therefore never exercised FIFO. Initial descendant observer used /proc of PID emitted by nested subprocess and did not establish matching host process identity; its pass is unusable. Final closed-pipe failure was valid.",
+    "corrected_run": "Retained before_valid.log/xml: PYTHONPATH explicit and filesystem marker observes actual descendant action. All three assertions fail against unchanged before sources.",
+    "test_move": "Closed-pipe assertion moved unchanged from lifetime module to deadline module for coherent case commits. Same body, requirement, failure mechanism and boundary; no failing test supersession."
+  },
+  "limits": [
+    "Linux/POSIX worker only; Windows remains unqualified.",
+    "Descendant witness bounds same process-group descendants; detached sessions/cgroups/subreaper or hostile executable isolation not qualified.",
+    "O_NONBLOCK prevents FIFO writer wait; regular-file device/storage latency is not a full I/O deadline guarantee.",
+    "No microphone, corpus, cold offline install, user hardware or production-identity qualification.",
+    "All original reference implementations remain read-only; no new provider or fallback introduced.",
+    "Regular-to-FIFO swap at opened-descriptor seam is exercised; arbitrary directory races remain unqualified."
+  ],
+  "gates": {
+    "ruff": "passed for two source and three new test files",
+    "pyrefly": "0 errors, basic profile",
+    "structure": "passed with PYTHONPATH=src; initial invocation lacking PYTHONPATH failed import, not a code result"
+  },
+  "snapshots": {
+    "evidence/reconcile_voice_snapshots/assets_before.txt": "1aa6d28efe2d2ae0071792c7ac70d703abe8d509684a92ffd453664740a55cce",
+    "evidence/reconcile_voice_snapshots/assets_fifo_after.txt": "a0fd2d18e69dffc79de76b954f80e3cc86af196f9809e5e62067c47e54e70b1d",
+    "evidence/reconcile_voice_snapshots/deadline_test_final.txt": "beed1a9a2b5c5f8a26404f01f5bb98cbe15c911a8a9c09e35a69dbac7be8816a",
+    "evidence/reconcile_voice_snapshots/input_initial_harness.txt": "6f30830248faf473f1950aa6bc3f34fb64d8a51d89118c6fd4dd9f16bc88de1c",
+    "evidence/reconcile_voice_snapshots/input_race_test_final.txt": "184247f18abcb1f14302cee38438d8ff7af6bc67a5790cce3e165411b74167bf",
+    "evidence/reconcile_voice_snapshots/input_test_before_valid.txt": "9a5ed87a9797a8977cac73af9e9115bb07f2e325354cd00dd296a129fd833927",
+    "evidence/reconcile_voice_snapshots/input_test_final.txt": "9a5ed87a9797a8977cac73af9e9115bb07f2e325354cd00dd296a129fd833927",
+    "evidence/reconcile_voice_snapshots/lifetime_initial_harness.txt": "9313271a27bdd4988d64b49b597a5bbb0585d750908b292927e965af2ee3037f",
+    "evidence/reconcile_voice_snapshots/lifetime_test_before_valid.txt": "e16e9a687691d5e7116f394125f1c7efd60ff4e0d316c9d758e254f2c063770c",
+    "evidence/reconcile_voice_snapshots/lifetime_test_final.txt": "aad46fbb3931eee7e8716d913d0c4a2142268064419135cfb92b8a15325829e1",
+    "evidence/reconcile_voice_snapshots/process_before.txt": "9351e9ae196b8c4d74c3657628b64728777dd9d31feeaad9e72a7faef4e7076e",
+    "evidence/reconcile_voice_snapshots/process_descendant_after.txt": "e6b9dd68c9c5df549aec81ad03e3d9512d9a00ea76064bad4ea7b459291264e9",
+    "evidence/reconcile_voice_snapshots/process_timeout_after.txt": "3227a9af6440f80929988d08f2772bec70154390806bc9f0d44000d5ea2d698f"
+  },
+  "evidence": {
+    "evidence/reconcile_voice_after.log": "4f998bbc54e26008659cdfb66af91ce9850980f2bbb9db3d10e47d41484a33af",
+    "evidence/reconcile_voice_after.xml": "d1d5a5ceb3aedf7427e78a7f131e31ddff13b44231a23e7112c7e78355e0c2b4",
+    "evidence/reconcile_voice_before.log": "99f61d52da55d54aa6c2d06c1a64e1a749c2c417b8a2d6482b74462c66c0b83c",
+    "evidence/reconcile_voice_before.xml": "d330d7c497a5add7992e55de4c4bb1226bd782569e2d7fad3b01bf66fb441a8c",
+    "evidence/reconcile_voice_before_valid.log": "86459f15b0636a925f9c2b9d3b5d86cb13eb817b7c9f359b40bca5c15c87293e",
+    "evidence/reconcile_voice_before_valid.xml": "486055943ebcd10b512d6d546bcb0333e079998efd1416d219275082ed4072f3",
+    "evidence/reconcile_voice_descendant_after.log": "681b203fdd4d659ddf9dd79f771397aa41f262d4a9607c8d522eff0e04d100aa",
+    "evidence/reconcile_voice_descendant_after.xml": "2417e6efca267288f5dc1233330b28be49b4e37e2d05476477ebca64a5a58638",
+    "evidence/reconcile_voice_fifo_after.log": "ab1ceb7dbebaa7c4f5bb21ff08fc96cc0693fcfe86a06d960d641f03fb342a3c",
+    "evidence/reconcile_voice_fifo_after.xml": "8d3025708b2313d77e851f4fe1e7d57b6c1151042a676019aa4724f263214515",
+    "evidence/reconcile_voice_final.log": "efab4caf4041755c00962239bcb23137d22aaa5ae6f8865b1d8939358728da05",
+    "evidence/reconcile_voice_final.xml": "019cf5d92b485339462500f8adfbadbc8f753c198ed54b7c0c890e8fcc1b6d1b",
+    "evidence/reconcile_voice_structure.log": "7c6430f6d8bb04dc13d4361e92282d50c22fa0cb126d84d618b73cfd8c8bd696"
+  },
+  "environment": {
+    "python": "3.13.16 (main, Oct 14 2026, 01:04:01) [Clang 23.1.3 ]",
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39"
+  },
+  "extended_verification": {
+    "as_of": "2026-10-26T22:52:35.211258+00:00",
+    "tests": 31,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "race_witness": "tests/test_reconcile_voice_input_race.py::test_audio_replaced_by_fifo_at_open_is_rejected",
+    "race_scope": "Deterministic regular-path-to-FIFO swap immediately before real os.open; no arbitrary directory replacement or complete filesystem race assurance."
+  },
+  "extended_evidence": {
+    "evidence/reconcile_voice_extended.xml": "86b2ad09fa5499750ab062f2bd8489a28041291d26175fb76ae89c438aa3b282",
+    "evidence/reconcile_voice_extended.log": "4b86569fbf002977f9d434d399149c43e97b4075c09f267e762049767527c273",
+    "evidence/reconcile_voice_ruff.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "evidence/reconcile_voice_pyrefly.log": "05d3adb250ea5d9900fd29288c6bfc6d7b9b2734aca99f5e4a115c28729dee3d",
+    "evidence/reconcile_voice_structure_final.log": "7c6430f6d8bb04dc13d4361e92282d50c22fa0cb126d84d618b73cfd8c8bd696"
+  },
+  "commit_plan": [
+    {
+      "case": "RC-VOICE-01",
+      "source": {
+        "src/hmt_rnd/voice_assets.py": "evidence/reconcile_voice_snapshots/assets_fifo_after.txt"
+      },
+      "tests": [
+        "tests/test_reconcile_voice_input.py",
+        "tests/test_reconcile_voice_input_race.py"
+      ],
+      "evidence": "Shared immutable before_valid failures plus per-case report; fifo_after26pass and extended31pass."
+    },
+    {
+      "case": "RC-VOICE-02",
+      "source": {
+        "src/hmt_rnd/voice_process.py": "evidence/reconcile_voice_snapshots/process_descendant_after.txt"
+      },
+      "tests": [
+        "tests/test_reconcile_voice_lifetime.py"
+      ],
+      "evidence": "descendant_after11pass; retain before_valid descendant failure."
+    },
+    {
+      "case": "RC-VOICE-03",
+      "source": {
+        "src/hmt_rnd/voice_process.py": "evidence/reconcile_voice_snapshots/process_timeout_after.txt"
+      },
+      "tests": [
+        "tests/test_reconcile_voice_deadline.py"
+      ],
+      "evidence": "after/final30pass and extended31pass; retains before_valid closed-pipe failure."
+    }
+  ]
+}

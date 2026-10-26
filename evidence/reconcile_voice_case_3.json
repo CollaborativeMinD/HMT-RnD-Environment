@@ -1,0 +1,26 @@
+{
+  "id": "RC-VOICE-03",
+  "alias": "VOICE-CLOSED-PIPE-001",
+  "requirements": [
+    "HMT-V09",
+    "HMT-N03"
+  ],
+  "test": "tests/test_reconcile_voice_deadline.py::test_closed_pipes_preserve_typed_deadline_failure",
+  "observation": "Closed stdout/stderr followed by sleeping parent raised subprocess.TimeoutExpired rather than TimeoutError VOICE_PROCESS_TIMEOUT.",
+  "cause": [
+    "Selector drains both EOF streams",
+    "Final process.wait owns remaining original deadline",
+    "subprocess.TimeoutExpired escaped unnormalized",
+    "Caller could not rely on same typed deadline contract"
+  ],
+  "repair": "Translate final process.wait TimeoutExpired into TimeoutError VOICE_PROCESS_TIMEOUT, retaining cause and unconditional group cleanup.",
+  "before": "process_descendant_after.txt",
+  "after": "process_timeout_after.txt",
+  "source": "src/hmt_rnd/voice_process.py",
+  "gate": "G-VOICE-DEADLINE-001",
+  "after_record": "final",
+  "before_sha256": "e6b9dd68c9c5df549aec81ad03e3d9512d9a00ea76064bad4ea7b459291264e9",
+  "after_sha256": "3227a9af6440f80929988d08f2772bec70154390806bc9f0d44000d5ea2d698f",
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; supervisor and independent review required",
+  "worker_attestation": "/root/voice_reconciliation; actual disposable subprocess execution; no target-provider/model invocation; unsigned"
+}

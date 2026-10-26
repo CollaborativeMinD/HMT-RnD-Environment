@@ -35,7 +35,10 @@ def drain(process: subprocess.Popen[bytes], timeout: float, limit: int) -> bytes
                     raise ValueError("VOICE_OUTPUT_LIMIT")
                 if key.data:
                     output.extend(chunk)
-        process.wait(timeout=max(0.001, deadline - time.monotonic()))
+        try:
+            process.wait(timeout=max(0.001, deadline - time.monotonic()))
+        except subprocess.TimeoutExpired as error:
+            raise TimeoutError("VOICE_PROCESS_TIMEOUT") from error
     return bytes(output)
 
 
