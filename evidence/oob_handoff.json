@@ -1,0 +1,54 @@
+{
+  "baseline": "6619aee11c341317fb1c913222b6063a8a938d08",
+  "source": "GitHub read-only reviewer handoff",
+  "owner_comments": [
+    {
+      "id": 6429588804,
+      "body": "Owner-directed final reconciliation and conditional build resumption:\n\n“Have them reconcile that final RRCA finding, review the commit, then if all clear, release the HOLD on the build so it can continue.”\n\nPlease reconcile the cross-lineage reserved-successor finding in https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383477923 as a linked RRCA case. Reproduce or explicitly refute it, retain the witness, make a scoped derivative repair if required, and provide cross-lineage reservation/regression evidence bound to the exact candidate. Update the canonical case/alias register and cumulative evidence without erasing earlier failures.\n\nThe out-of-band supervisor will review the resulting commit and the prior closure conditions. The reconciliation HOLD is not released by this comment. It may be released only after that review finds the scoped reconciliation clear. Existing integration instructions remain withheld; no deployment, new authority or broader acceptance is granted by eventual release of this reconciliation HOLD. Please identify the repair commit and case/evidence paths when ready.",
+      "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#issuecomment-6429588804"
+    },
+    {
+      "id": 6429623544,
+      "body": "Owner-approved conditional-release review update: reconcile the policy/epoch admission finding before the owner's “if all clear” condition is met. The owner explicitly approved public posting of this finding and regression scenario.\n\nPublic finding: https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383510924 . It targets ce754d6; the relevant implementation is unchanged at inspected head 6619aee. ReopenEvent lacks issuance policy/epoch binding; explicit successor validation checks stage/successor identity; initial CMAD1 has no predecessor continuity check. This supports a pending reopen crossing a policy/epoch change and closing under renewed builder authority without required architect reauthorization. This supervisory source review has not executed a reproduction.\n\nOwning implementation/Quality should create a linked RRCA case and bounded witness using existing fixtures:\n1. Seal initial CMAD1 under policy A/epoch 1.\n2. Alter its artifact and issue an ARTIFACT_DRIFT reopen with a designated successor.\n3. Change policy/epoch and renew only the builder's current lane.seal grant.\n4. Submit that designated successor with the old reopen identity.\n5. Verify the required typed rejection, no successor mutation/closure, and preserved pending state until current-policy architect reauthorization; compare with an unchanged-policy positive control.\n\nAlso cover epoch-only change and restart between issuance/use. Do not mistake stale-grant rejection for closing this seam: the builder grant is intentionally current while the reopen authority is old. Retain the pre-fix or refuting witness, causal analysis, corrective task, exact source identity and regression evidence. Reconcile this alongside the cross-lineage reserved-successor finding.\n\nThe reconciliation HOLD remains pending independent review of the resulting exact candidate. Prior scoped closures remain historical evidence; integration/deployment authorization is not expanded.",
+      "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#issuecomment-6429623544"
+    }
+  ],
+  "findings": [
+    {
+      "id": 4383477923,
+      "body": "A pending successor ID is only protected when the new candidate supplies a `reopen_id`. After mission A reopens with successor `fixed`, an initial CMAD1 submission for mission B can use `candidate_id=\"fixed\"` without a reopen ID and pass these checks. Because candidate IDs are globally unique, mission A's designated successor then fails with `UNIQUE constraint failed: lane_candidates.id`, leaving its immutable repair event permanently pending. Check every submission against `lane_reopens.successor` and require the matching event, lineage, and stage before allowing a reserved ID to be used; add a cross-lineage regression for this sequence.",
+      "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383477923",
+      "path": "src/hmt_rnd/lane_submission.py"
+    },
+    {
+      "id": 4383510924,
+      "body": "A pending repair can cross a policy change without the architect check in `reopen_candidate`. For example, reopen a CMAD1 artifact under policy-1, then advance the host policy and renew the builder's `lane.seal` grant before submitting the designated successor. This check accepts the old event using only its stage and successor ID; CMAD1 has no parent to reject the stale policy, so the successor seals under policy-2 and closes the event without architect reauthorization. Bind reopening approval to its issuance policy/epoch and require explicit architect reauthorization if that binding changes before successor submission.",
+      "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383510924",
+      "path": "src/hmt_rnd/lane_submission.py"
+    }
+  ],
+  "cases": [
+    {
+      "id": "RC-LANE-05",
+      "status": "REOPENED_HOLD",
+      "requirements": [
+        "HMT-B07",
+        "HMT-F02",
+        "HMT-F14"
+      ],
+      "owner": "/root/lane_reconciliation"
+    },
+    {
+      "id": "RC-LANE-06",
+      "status": "REOPENED_HOLD",
+      "requirements": [
+        "HMT-B07",
+        "HMT-F02",
+        "HMT-B10",
+        "HMT-F14"
+      ],
+      "owner": "/root/lane_reconciliation"
+    }
+  ],
+  "release_condition": "Out-of-band supervisor review of resulting exact candidate and prior closure conditions. No integration/deployment release."
+}
