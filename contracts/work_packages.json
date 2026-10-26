@@ -1,0 +1,191 @@
+[
+  {
+    "id": "WP-01",
+    "owner": "Host/IIEA",
+    "operation": "Resolve canonical host, authority, and source identities",
+    "requirements": [
+      "HMT-F01",
+      "HMT-F02",
+      "HMT-F03",
+      "HMT-F17",
+      "HMT-F20"
+    ],
+    "predecessors": []
+  },
+  {
+    "id": "WP-02",
+    "owner": "CSSI",
+    "operation": "Prove credential, egress, isolation, and temporal admission",
+    "requirements": [
+      "HMT-F04",
+      "HMT-N04",
+      "HMT-N07",
+      "HMT-B08"
+    ],
+    "predecessors": [
+      "WP-01"
+    ]
+  },
+  {
+    "id": "WP-03",
+    "owner": "Custody/Continuity",
+    "operation": "Prove bounded dispatch, fallback, restart, and reconciliation",
+    "requirements": [
+      "HMT-F18",
+      "HMT-B01",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B04",
+      "HMT-B05",
+      "HMT-B06",
+      "HMT-B09",
+      "HMT-B13",
+      "HMT-B14",
+      "HMT-N05",
+      "HMT-N06"
+    ],
+    "predecessors": [
+      "WP-01",
+      "WP-02"
+    ]
+  },
+  {
+    "id": "WP-04",
+    "owner": "CMAD/PMCT/DOKE/MR",
+    "operation": "Bind lane artifacts to existing research and data kernels",
+    "requirements": [
+      "HMT-F05",
+      "HMT-F06",
+      "HMT-F07",
+      "HMT-F08",
+      "HMT-F16",
+      "HMT-N13"
+    ],
+    "predecessors": [
+      "WP-01",
+      "WP-02"
+    ]
+  },
+  {
+    "id": "WP-05",
+    "owner": "IIEA/UIUX/Build",
+    "operation": "Prove specification, design, and browser-test bounded operations",
+    "requirements": [
+      "HMT-F10",
+      "HMT-F11"
+    ],
+    "predecessors": [
+      "WP-01",
+      "WP-02",
+      "WP-03"
+    ]
+  },
+  {
+    "id": "WP-06",
+    "owner": "CSSI/Build/OPS",
+    "operation": "Prove scan, completion, observability, and authorized delivery",
+    "requirements": [
+      "HMT-F09",
+      "HMT-F12",
+      "HMT-F13",
+      "HMT-F19"
+    ],
+    "predecessors": [
+      "WP-01",
+      "WP-02",
+      "WP-03"
+    ]
+  },
+  {
+    "id": "WP-07",
+    "owner": "RRCA/MissionAssurance",
+    "operation": "Prove independent cases, causal experiments, and scoped evaluation",
+    "requirements": [
+      "HMT-F14",
+      "HMT-F15",
+      "HMT-B12"
+    ],
+    "predecessors": [
+      "WP-01"
+    ]
+  },
+  {
+    "id": "WP-08",
+    "owner": "Quality",
+    "operation": "Bind falsifiers and prove gate/collection/complexity integrity",
+    "requirements": [
+      "HMT-N08",
+      "HMT-N09",
+      "HMT-N10",
+      "HMT-N11",
+      "HMT-N12",
+      "HMT-B11"
+    ],
+    "predecessors": [
+      "WP-01"
+    ]
+  },
+  {
+    "id": "WP-09",
+    "owner": "Host/OPS",
+    "operation": "Qualify control-plane budgets on declared hardware",
+    "requirements": [
+      "HMT-N01",
+      "HMT-N02",
+      "HMT-N03"
+    ],
+    "predecessors": [
+      "WP-01",
+      "WP-03"
+    ]
+  },
+  {
+    "id": "WP-10",
+    "owner": "Supervisor",
+    "operation": "Reconcile dependency changes and human acceptance packet",
+    "requirements": [
+      "HMT-B07",
+      "HMT-B10",
+      "HMT-B15"
+    ],
+    "predecessors": [
+      "WP-02",
+      "WP-03",
+      "WP-04",
+      "WP-05",
+      "WP-06",
+      "WP-07",
+      "WP-08",
+      "WP-09",
+      "WP-11"
+    ]
+  },
+  {
+    "id": "WP-11",
+    "owner": "UIUX",
+    "supporting_owners": [
+      "Host",
+      "IIEA",
+      "CSSI",
+      "Quality"
+    ],
+    "operation": "Implement and prove Wispr-compatible voice ingress and task-specific steering, with typed-input parity",
+    "requirements": [
+      "HMT-V01",
+      "HMT-V02",
+      "HMT-V03",
+      "HMT-V04",
+      "HMT-V05",
+      "HMT-V06",
+      "HMT-V07",
+      "HMT-V08",
+      "HMT-V09",
+      "HMT-V10"
+    ],
+    "predecessors": [
+      "WP-01",
+      "WP-02",
+      "WP-03"
+    ]
+  }
+]

@@ -1,0 +1,2085 @@
+[
+  {
+    "operation_id": "discovery.retrieve",
+    "owner": "CMAD",
+    "allowed_stages": [
+      "CMAD1",
+      "CMAD2",
+      "CMAD3"
+    ],
+    "effect_class": "READ",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Official document/API adapter",
+    "reference_surfaces": [
+      "https://developers.google.com/knowledge/mcp"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-cmad-discovery-retrieve",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "discovery.retrieve"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Continuity",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": true,
+      "maximum_attempts": 3,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F05",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "feasibility.catalog",
+    "owner": "PMCT",
+    "allowed_stages": [
+      "PMCT1",
+      "PMCT2"
+    ],
+    "effect_class": "READ",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Hub/API candidate catalog",
+    "reference_surfaces": [
+      "https://huggingface.co/docs/hub/agents-mcp"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-pmct-feasibility-catalog",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "feasibility.catalog"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Continuity",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": true,
+      "maximum_attempts": 3,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F06",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "trade.project",
+    "owner": "PMCT",
+    "allowed_stages": [
+      "PMCT2",
+      "PMCT3"
+    ],
+    "effect_class": "EVALUATION",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Existing hmt-trade-study project",
+    "reference_surfaces": [
+      "local:hmt-trade-study/1.0.0"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-pmct-trade-project",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "trade.project"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Custody",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": false,
+      "maximum_attempts": 1,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F06",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "trade.execute",
+    "owner": "PMCT",
+    "allowed_stages": [
+      "PMCT2",
+      "PMCT3"
+    ],
+    "effect_class": "LOCAL_MUTATION",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Existing study-owned execution/failover; no generic wrapper retry",
+    "reference_surfaces": [
+      "local:hmt-trade-study/1.0.0"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-pmct-trade-execute",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "trade.execute"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Study owner",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": false,
+      "maximum_attempts": 1,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F06",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "data.inspect",
+    "owner": "DOKE",
+    "allowed_stages": [
+      "DOKE1",
+      "DOKE2"
+    ],
+    "effect_class": "READ",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Bound database metadata adapter",
+    "reference_surfaces": [
+      "https://github.com/googleapis/mcp-toolbox"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-doke-data-inspect",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "data.inspect"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Continuity",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": true,
+      "maximum_attempts": 3,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F07",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "data.query",
+    "owner": "DOKE",
+    "allowed_stages": [
+      "DOKE2",
+      "DOKE3"
+    ],
+    "effect_class": "READ",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Selected query templates and read-only database principal",
+    "reference_surfaces": [
+      "https://docs.cloud.google.com/bigquery/docs/use-bigquery-mcp"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-doke-data-query",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "data.query"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Continuity",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": true,
+      "maximum_attempts": 3,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F07",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "model.run",
+    "owner": "MR",
+    "allowed_stages": [
+      "MR2",
+      "MR3"
+    ],
+    "effect_class": "LOCAL_MUTATION",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Existing Station/field-card engine; optional MATLAB/HF adapter",
+    "reference_surfaces": [
+      "local:RDP-Station/1.3.0"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-mr-model-run",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "model.run"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Custody",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": false,
+      "maximum_attempts": 1,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F08",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "MODEL-PROFILE-REQUIRED",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "security.scan",
+    "owner": "CSSI",
+    "allowed_stages": [
+      "CSSI2",
+      "CSSI3"
+    ],
+    "effect_class": "LOCAL_MUTATION",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Bound scanner job producing immutable evidence",
+    "reference_surfaces": [
+      "https://docs.semgrep.dev/semgrep-guardian/overview"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-cssi-security-scan",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "security.scan"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Custody",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": false,
+      "maximum_attempts": 1,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F09",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "interface.inspect",
+    "owner": "IIEA",
+    "allowed_stages": [
+      "IIEA1",
+      "IIEA2",
+      "IIEA3"
+    ],
+    "effect_class": "READ",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: OpenAPI/collection adapter",
+    "reference_surfaces": [
+      "https://learning.postman.com/docs/reference/postman-api/postman-mcp-server/overview"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-iiea-interface-inspect",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "interface.inspect"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Continuity",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": true,
+      "maximum_attempts": 3,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F10",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "interface.test",
+    "owner": "Build",
+    "allowed_stages": [
+      "B3",
+      "B4"
+    ],
+    "effect_class": "LOCAL_MUTATION",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Bound sandbox contract-test job; remote endpoints require separate effect binding",
+    "reference_surfaces": [
+      "https://learning.postman.com/docs/reference/postman-api/postman-mcp-server/overview"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-build-interface-test",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "interface.test"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Custody",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": false,
+      "maximum_attempts": 1,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F10",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "design.inspect",
+    "owner": "UIUX",
+    "allowed_stages": [
+      "IIEA1",
+      "IIEA2",
+      "B3",
+      "B4"
+    ],
+    "effect_class": "READ",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Figma context adapter",
+    "reference_surfaces": [
+      "https://developers.figma.com/docs/figma-mcp-server/"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-uiux-design-inspect",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "design.inspect"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Continuity",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": true,
+      "maximum_attempts": 3,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F11",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "design.propose_change",
+    "owner": "UIUX",
+    "allowed_stages": [
+      "IIEA2",
+      "IIEA3",
+      "B3"
+    ],
+    "effect_class": "LOCAL_MUTATION",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Local reviewable proposal artifact",
+    "reference_surfaces": [
+      "https://developers.figma.com/docs/figma-mcp-server/"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-uiux-design-propose_change",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "design.propose_change"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Custody",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": false,
+      "maximum_attempts": 1,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F11",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "design.apply_change",
+    "owner": "UIUX",
+    "allowed_stages": [
+      "B3"
+    ],
+    "effect_class": "EXTERNAL_MUTATION",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Figma explicit canvas write adapter",
+    "reference_surfaces": [
+      "https://developers.figma.com/docs/figma-mcp-server/"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-uiux-design-apply_change",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "design.apply_change"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Custody",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": false,
+      "maximum_attempts": 1,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F11",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "ui.verify",
+    "owner": "Build",
+    "allowed_stages": [
+      "B4"
+    ],
+    "effect_class": "LOCAL_MUTATION",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Bound browser test job; no arbitrary live browsing",
+    "reference_surfaces": [
+      "https://github.com/microsoft/playwright-mcp"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-build-ui-verify",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "ui.verify"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Custody",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": false,
+      "maximum_attempts": 1,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F11",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "repository.inspect",
+    "owner": "Build",
+    "allowed_stages": [
+      "B1",
+      "B2",
+      "B3",
+      "B4"
+    ],
+    "effect_class": "READ",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Repository read adapter",
+    "reference_surfaces": [
+      "https://github.com/github/github-mcp-server"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-build-repository-inspect",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "repository.inspect"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Continuity",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": true,
+      "maximum_attempts": 3,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F12",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "repository.propose_pr",
+    "owner": "Build",
+    "allowed_stages": [
+      "B4",
+      "B5"
+    ],
+    "effect_class": "EXTERNAL_MUTATION",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Separate provider write contract; no inherited merge/push authorization",
+    "reference_surfaces": [
+      "https://github.com/github/github-mcp-server"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-build-repository-propose_pr",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "repository.propose_pr"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Custody",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": false,
+      "maximum_attempts": 1,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F12",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "ops.observe",
+    "owner": "OPS",
+    "allowed_stages": [
+      "OPS1",
+      "OPS2",
+      "OPS3"
+    ],
+    "effect_class": "READ",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Grafana bounded telemetry query adapter",
+    "reference_surfaces": [
+      "https://github.com/grafana/mcp-grafana"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-ops-ops-observe",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "ops.observe"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Continuity",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": true,
+      "maximum_attempts": 3,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F13",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "ops.deploy",
+    "owner": "OPS",
+    "allowed_stages": [
+      "OPS2"
+    ],
+    "effect_class": "EXTERNAL_MUTATION",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Optional selected deployment target; fresh target authority",
+    "reference_surfaces": [
+      "https://github.com/GoogleCloudPlatform/cloud-run-mcp"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-ops-ops-deploy",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "ops.deploy"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Custody",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": false,
+      "maximum_attempts": 1,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F13",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "task.claim",
+    "owner": "Host",
+    "allowed_stages": [
+      "ADMITTED_TASK_STAGE"
+    ],
+    "effect_class": "LOCAL_MUTATION",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Canonical task_get claim semantics",
+    "reference_surfaces": [
+      "local:baseline-tools/1.1.0"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-host-task-claim",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "task.claim"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Custody",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": false,
+      "maximum_attempts": 1,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F12",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "task.submit",
+    "owner": "Build",
+    "allowed_stages": [
+      "B5"
+    ],
+    "effect_class": "LOCAL_MUTATION",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Canonical task_update completion firewall",
+    "reference_surfaces": [
+      "local:baseline-tools/1.1.0"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-build-task-submit",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "task.submit"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Custody",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": false,
+      "maximum_attempts": 1,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F12",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "rrca.compile",
+    "owner": "RRCA",
+    "allowed_stages": [
+      "ASSIGNED_INCIDENT_SCOPE"
+    ],
+    "effect_class": "EVALUATION",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Existing standalone rrca-build API; no repair",
+    "reference_surfaces": [
+      "local:rrca-build/1.0.0"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-rrca-rrca-compile",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "rrca.compile"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Custody",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": false,
+      "maximum_attempts": 1,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F14",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "assurance.evaluate",
+    "owner": "MissionAssurance",
+    "allowed_stages": [
+      "ASSIGNED_EVIDENCE_SCOPE"
+    ],
+    "effect_class": "EVALUATION",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Four native evidence-only tools",
+    "reference_surfaces": [
+      "https://github.com/CollaborativeMinD/HMT-Mission-Assurance"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-missionassurance-assurance-evaluate",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "assurance.evaluate"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Custody",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": false,
+      "maximum_attempts": 1,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F15",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "rnd.discover",
+    "owner": "RnD",
+    "allowed_stages": [
+      "ADMITTED_TASK_STAGE"
+    ],
+    "effect_class": "READ",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Existing Station plus versioned extension catalog",
+    "reference_surfaces": [
+      "local:RDP-Station/1.3.0"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-rnd-rnd-discover",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "rnd.discover"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Continuity",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": true,
+      "maximum_attempts": 3,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-F16",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "custody.reconcile",
+    "owner": "Custody",
+    "allowed_stages": [
+      "ASSIGNED_EFFECT_SCOPE"
+    ],
+    "effect_class": "LOCAL_MUTATION",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: Existing engine plus authenticated endpoint lookup/cancel binding",
+    "reference_surfaces": [
+      "local:HMT_Transactional_Outbox_Inbox/1.0.0"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-custody-custody-reconcile",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "custody.reconcile"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Custody",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": false,
+      "maximum_attempts": 1,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-B04",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-F20",
+      "HMT-B02",
+      "HMT-B03",
+      "HMT-B05"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification"
+    ]
+  },
+  {
+    "operation_id": "voice.draft.accept",
+    "owner": "UIUX",
+    "allowed_stages": [
+      "AUTHENTICATED_USER_SESSION_AND_ADMITTED_TASK_STAGE"
+    ],
+    "effect_class": "LOCAL_MUTATION",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: HMT-owned text ingress/steering interface; Wispr client inserts text into the composer, not a verified vendor API/MCP call.",
+    "reference_surfaces": [
+      "https://wisprflow.ai/developers",
+      "https://wisprflow.ai/privacy"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-user-session-ingress",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "voice.draft.accept"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Host ingress/Custody",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": false,
+      "maximum_attempts": 1,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-V01",
+      "HMT-V02",
+      "HMT-V05",
+      "HMT-V08",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-V04",
+      "HMT-B03"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification",
+      "Supported client/device proof; vendor account and pre-capture egress controls; voice-specific observation/oracle qualification"
+    ]
+  },
+  {
+    "operation_id": "voice.steering.submit",
+    "owner": "Host",
+    "allowed_stages": [
+      "AUTHENTICATED_USER_SESSION_AND_ADMITTED_TASK_STAGE"
+    ],
+    "effect_class": "LOCAL_MUTATION",
+    "implementation_route": "Repository-owned derivative retaining/extending reference behavior: HMT-owned text ingress/steering interface; Wispr client inserts text into the composer, not a verified vendor API/MCP call.",
+    "reference_surfaces": [
+      "https://wisprflow.ai/developers",
+      "https://wisprflow.ai/privacy"
+    ],
+    "source_pin": null,
+    "input_schema_pin": null,
+    "output_schema_pin": null,
+    "credential_scope_and_data_egress": {
+      "proposed_principal": "hmt-user-session-ingress",
+      "resolved_identity_ref": null,
+      "credential_handle_ref": null,
+      "permitted_actions": [
+        "voice.steering.submit"
+      ],
+      "resource_allowlist": [],
+      "data_classification": "Private by default; clear exact exported fields before outbound use",
+      "permitted_payload_fields": [],
+      "destination_allowlist": [],
+      "forbidden_data": [
+        "credentials",
+        "private method implementation",
+        "unapproved mission data"
+      ],
+      "redaction_ref": null,
+      "redirect_policy": "DENY_UNLESS_REVALIDATED",
+      "revocation_owner": "Host/CSSI",
+      "default": "DENY_EGRESS_UNTIL_BOUND"
+    },
+    "retry_reconciliation_owner": {
+      "owner": "Host ingress/Custody",
+      "effect_identity": "Immutable host-minted intent/effect ID bound to canonical input, target resource, and contract; preserved across delivery/restart",
+      "attempt_identity": "Distinct child attempt ID under original effect/deadline/budget",
+      "reservation_identity": "New reservation only under the admitted protocol; previous reservation disposition preserved",
+      "automatic_retry": false,
+      "maximum_attempts": 1,
+      "deadline_policy": "Original total deadline; no provider/SDK/worker reset",
+      "terminal_conditions": [
+        "HOLD",
+        "DENIED",
+        "revoked authority",
+        "semantic/source drift",
+        "OUTCOME_UNCERTAIN"
+      ],
+      "uncertain_completion": "Persist uncertainty, stop all repeat/alternate writes, route exact reservation to owner",
+      "proof_requirement": "Authenticated exact-effect completion or durable cancellation/nonexecution proof; fresh grant before any new action",
+      "alternate_provider_rule": "Only reviewed pure/read-only semantic equivalent after fresh guard; never bypass terminal condition"
+    },
+    "requirement_refs": [
+      "HMT-V03",
+      "HMT-V06",
+      "HMT-V07",
+      "HMT-F02",
+      "HMT-F04",
+      "HMT-V04",
+      "HMT-B03"
+    ],
+    "resource_profile": "LOCAL-CTRL-1",
+    "evidence_contract": [
+      "input/output digests",
+      "source/policy/schema/authority identities",
+      "effect/attempt/reservation IDs where relevant",
+      "observed effects and timing",
+      "native disposition and replay reference"
+    ],
+    "readiness": "DESIGN_PINNED_EXECUTION_BLOCKED",
+    "unresolved_bindings": [
+      "Derivative commit/schema pins and read-only reference provenance",
+      "Actual principal, credential handle, resource and destination allowlists",
+      "Target harness and endpoint authority/reconciliation capability",
+      "Measured profile qualification",
+      "Supported client/device proof; vendor account and pre-capture egress controls; voice-specific observation/oracle qualification",
+      "Supported client/device proof; vendor account and pre-capture egress controls; voice-specific observation/oracle qualification"
+    ]
+  }
+]

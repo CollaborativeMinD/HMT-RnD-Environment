@@ -1,0 +1,295 @@
+{
+  "edges": [
+    {
+      "upstream": "HMT-F01",
+      "downstream": "HMT-F02",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F01",
+      "downstream": "HMT-F20",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F01",
+      "downstream": "HMT-B15",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F02",
+      "downstream": "HMT-F04",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F02",
+      "downstream": "HMT-F12",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F02",
+      "downstream": "HMT-F18",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F02",
+      "downstream": "HMT-B01",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F02",
+      "downstream": "HMT-B02",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F02",
+      "downstream": "HMT-B03",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F02",
+      "downstream": "HMT-B08",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F02",
+      "downstream": "HMT-B09",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F03",
+      "downstream": "HMT-F05",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F03",
+      "downstream": "HMT-F06",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F03",
+      "downstream": "HMT-F07",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F03",
+      "downstream": "HMT-F08",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F03",
+      "downstream": "HMT-F09",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F03",
+      "downstream": "HMT-F10",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F03",
+      "downstream": "HMT-F11",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F03",
+      "downstream": "HMT-F17",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F18",
+      "downstream": "HMT-B01",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F18",
+      "downstream": "HMT-B03",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F18",
+      "downstream": "HMT-B04",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F18",
+      "downstream": "HMT-B05",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F18",
+      "downstream": "HMT-B06",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F18",
+      "downstream": "HMT-B14",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F18",
+      "downstream": "HMT-N05",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F18",
+      "downstream": "HMT-N06",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-N07",
+      "downstream": "HMT-B01",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-N07",
+      "downstream": "HMT-B02",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-N07",
+      "downstream": "HMT-B04",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-N07",
+      "downstream": "HMT-B08",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-N07",
+      "downstream": "HMT-B09",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-N09",
+      "downstream": "HMT-N11",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-N09",
+      "downstream": "HMT-B11",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-N09",
+      "downstream": "HMT-B15",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-B07",
+      "downstream": "HMT-B10",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-B07",
+      "downstream": "HMT-B15",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-N12",
+      "downstream": "HMT-F14",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-N12",
+      "downstream": "HMT-F15",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-N12",
+      "downstream": "HMT-B10",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-N12",
+      "downstream": "HMT-B11",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-N12",
+      "downstream": "HMT-B12",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-N12",
+      "downstream": "HMT-B15",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F02",
+      "downstream": "HMT-V03",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F02",
+      "downstream": "HMT-V07",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F04",
+      "downstream": "HMT-V04",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F11",
+      "downstream": "HMT-V01",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-F11",
+      "downstream": "HMT-V05",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-B03",
+      "downstream": "HMT-V06",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-B03",
+      "downstream": "HMT-V07",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-B10",
+      "downstream": "HMT-V01",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-B10",
+      "downstream": "HMT-V02",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-B10",
+      "downstream": "HMT-V03",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-B10",
+      "downstream": "HMT-V04",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-B10",
+      "downstream": "HMT-V05",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-B10",
+      "downstream": "HMT-V06",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-B10",
+      "downstream": "HMT-V07",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    },
+    {
+      "upstream": "HMT-B10",
+      "downstream": "HMT-V08",
+      "relation": "invalidates_dependent_evidence_when_changed"
+    }
+  ],
+  "status": "Initial design dependency graph; P0 must bind concrete code/artifact edges. Unknown impact widens HOLD, not permission."
+}

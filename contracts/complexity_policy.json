@@ -1,0 +1,56 @@
+{
+  "version": "1",
+  "metric": "Conservative physical line overlay: function span from first decorator through end_lineno, including blank/comment/docstring lines; module counts all physical splitlines. Nested functions also measured separately.",
+  "inherited_metric": "Also enforce inherited nonblank source-line policy and its structural rules; conservative overlay does not relax them.",
+  "function_bands": [
+    [
+      0,
+      44,
+      "NOMINAL"
+    ],
+    [
+      45,
+      49,
+      "FUNCTION_LOC_WATCH"
+    ],
+    [
+      50,
+      59,
+      "FUNCTION_LOC_REFACTOR_REQUIRED"
+    ],
+    [
+      60,
+      null,
+      "FUNCTION_LOC_LIMIT_EXCEEDED"
+    ]
+  ],
+  "module_bands": [
+    [
+      0,
+      79,
+      "NOMINAL"
+    ],
+    [
+      80,
+      100,
+      "MODULE_LOC_WATCH"
+    ],
+    [
+      101,
+      120,
+      "MODULE_LOC_REFACTOR_REQUIRED"
+    ],
+    [
+      121,
+      null,
+      "MODULE_LOC_LIMIT_EXCEEDED"
+    ]
+  ],
+  "interpretation": "User explicitly blocks 121 through 180; >180 remains blocked under prior ceiling. No permissive gap.",
+  "resolution": {
+    "WATCH": "Warn immediately.",
+    "REFACTOR_REQUIRED": "Stop adding responsibility; identify/extract/configure/map separable work; require LOSSLESS_DECOMPOSITION_REQUIRED and SEMANTIC_PARITY_REQUIRED evidence before continuation.",
+    "BLOCK": "Reject artifact; refactor; rerun required gates."
+  },
+  "exclusions": "Data/JSON/SQL/HTML are not executable Python modules; generated executable code is included; notebook function code is measured. No line-padding suppression."
+}
