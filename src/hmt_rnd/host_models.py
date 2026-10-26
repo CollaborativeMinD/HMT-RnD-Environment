@@ -1,7 +1,8 @@
 """Derivative host contracts; identity and clock originate at trusted host boundary."""
+from pathlib import Path
 from typing import Annotated, Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 Text = Annotated[str, Field(min_length=1, max_length=256)]
 
@@ -49,6 +50,13 @@ class Grant(Identity):
     not_before: Annotated[float, Field(ge=0)]
     expires: Annotated[float, Field(gt=0)]
     evidence_expires: Annotated[float, Field(gt=0)]
+
+    @field_validator("root")
+    @classmethod
+    def absolute_root(cls, value: str) -> str:
+        if not Path(value).is_absolute():
+            raise ValueError("HOST_GRANT_ROOT_NOT_ABSOLUTE")
+        return value
 
 
 class Decision(Strict):
