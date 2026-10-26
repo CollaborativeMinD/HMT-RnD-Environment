@@ -1,0 +1,65 @@
+{
+  "task_id": "WP-RECONCILE-CUSTODY-001",
+  "case_id": "RC-CUSTODY-001",
+  "suggested_commit": "fix(custody): retain cancelled effect input binding [RC-CUSTODY-001]",
+  "files": [
+    {
+      "path": "src/hmt_rnd/custody_endpoint.py",
+      "sha256": "a3fd05954c01cb82290e7b7d26a147a258dd6fcac65404b9fed775a3b9b0c56f"
+    },
+    {
+      "path": "tests/test_reconcile_custody_identity.py",
+      "sha256": "3f26250bb3507085c97e597e23491ca1e7f62f92f72b953ba2b733da61cbbc28"
+    },
+    {
+      "path": "docs/reconcile_custody.md",
+      "sha256": "4150d0e15a674cf08ef45cdbb0a99187734e8447656d3f1cc837c4201654e365"
+    },
+    {
+      "path": "evidence/reconcile_custody_after.log",
+      "sha256": "08ce942816e9e6eff75f865a652c7eedbc21fd436ebc775b892e8bfe41d6a04b"
+    },
+    {
+      "path": "evidence/reconcile_custody_after.xml",
+      "sha256": "4ddd5f3780f36092bae4ad97c9a75bd78f5cccef6d02b2d1e5c13d11c1cd514e"
+    },
+    {
+      "path": "evidence/reconcile_custody_baseline.json",
+      "sha256": "287b79457233cf8fb3a2b3b28a646e394101710e5a84a6dcb69d2c96ce834cda"
+    },
+    {
+      "path": "evidence/reconcile_custody_before.log",
+      "sha256": "e8514a0264fb4bfa7eea7a8cd9b9bd393ea09b2a1a76302115231f83f8f0865f"
+    },
+    {
+      "path": "evidence/reconcile_custody_before.xml",
+      "sha256": "dc5b8a88bc56986c981c227cef49b572ba209a051a9db2aa71d7a65897b3c3ab"
+    },
+    {
+      "path": "evidence/reconcile_custody_case.json",
+      "sha256": "d746d5d814640755819bb8eec58c523a8bb639fc79a8f64005b6ae4b51da61a7"
+    },
+    {
+      "path": "evidence/reconcile_custody_rrca.csv",
+      "sha256": "1d801c76c8acf29b36be2d98784d2841a04af8d15f9e75edf2629edcff643d7d"
+    },
+    {
+      "path": "evidence/reconcile_custody_rrca.sqlite",
+      "sha256": "b67289eef35ad3ee4a4d33fdbc5e7ae37fbb365d68f16020f73dff8d87c80569"
+    },
+    {
+      "path": "evidence/reconcile_custody_rrca.sqlite.gz",
+      "sha256": "f319ba306dff22c32c28b22f49b46b78995e7a6ba6fda7d477d636b66a43802e"
+    },
+    {
+      "path": "evidence/reconcile_custody_test_baseline.json",
+      "sha256": "ebe1cef9cb796abdaf93ddd3d542c0135f586b999cbb4cd4ebbe16724be187a0"
+    }
+  ],
+  "archive": {
+    "original": "evidence/reconcile_custody_rrca.sqlite",
+    "sha256": "b67289eef35ad3ee4a4d33fdbc5e7ae37fbb365d68f16020f73dff8d87c80569",
+    "stored": "evidence/reconcile_custody_rrca.sqlite.gz"
+  },
+  "gate": "Pending supervisor cross-package checks and independent review; no full requirement/HOLD release"
+}

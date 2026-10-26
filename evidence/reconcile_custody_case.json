@@ -1,0 +1,118 @@
+{
+  "case_id": "RC-CUSTODY-001",
+  "as_of": "2026-10-26T22:48:56.399439+00:00",
+  "task_id": "WP-RECONCILE-CUSTODY-001",
+  "worker": "/root/custody_reconciliation",
+  "baseline_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+  "requirement_ids": [
+    "HMT-B04",
+    "HMT-B03",
+    "HMT-F10"
+  ],
+  "boundary": "Local simulated endpoint SQLite realm; immutable principal/effect/input binding after cancellation.",
+  "expected": "A new reservation with changed input under an already cancelled principal/effect rejects INTENT_COLLISION before endpoint mutation; same-input retry retains old reservation fence, exact proof matching and fresh authority.",
+  "finding": "REPRODUCED",
+  "pre_repair": {
+    "tests": 5,
+    "failed": 4,
+    "passed": 1,
+    "command": "uv run pytest -q tests/test_reconcile_custody_identity.py --junitxml=evidence/reconcile_custody_before.xml",
+    "evidence": [
+      "evidence/reconcile_custody_before.xml",
+      "evidence/reconcile_custody_before.log",
+      "evidence/reconcile_custody_baseline.json",
+      "evidence/reconcile_custody_test_baseline.json"
+    ]
+  },
+  "causal_trace": [
+    "Changed input committed under same effect after a cancellation; both fresh and reopened endpoint reproduce.",
+    "New reservation ID has no reservation row, so per-reservation collision branch cannot reject it.",
+    "Cancellation stores NOT_EXECUTED reservation, but no committed effect row; committed-effects collision branch has no input binding to inspect.",
+    "Initiating condition: valid admitted cancellation for input A followed by a different reservation for same principal/effect carrying input B. Source and actual SQLite rows bind this path; no further origin is claimed."
+  ],
+  "corrective_task": "Check all existing endpoint reservations for conflicting digest within the existing authority-fenced BEGIN IMMEDIATE transaction before committing an effect or writing another cancellation.",
+  "change": "Five-line query and fail-closed collision check in Endpoint._transition; no schema or source-reference change.",
+  "retained_invariants": [
+    "Fresh authority remains before endpoint identity checks and writes",
+    "Endpoint target and same-reservation identity checks retained",
+    "Cancellation still fences late original dispatch",
+    "New reservations preserve input; completed effects remain deduplicated",
+    "Exact reservation authenticated proof remains required by the local store",
+    "Uncertain retries remain blocked by the store"
+  ],
+  "post_repair": {
+    "tests": 34,
+    "failed": 0,
+    "passed": 34,
+    "command": "uv run pytest -q tests/test_reconcile_custody_identity.py tests/test_custody*.py tests/test_host_custody_seam.py tests/test_causal_authority_family.py tests/test_temporal_process.py --junitxml=evidence/reconcile_custody_after.xml",
+    "evidence": [
+      "evidence/reconcile_custody_after.xml",
+      "evidence/reconcile_custody_after.log"
+    ]
+  },
+  "gates": [
+    {
+      "id": "G-CUSTODY-INPUT-001",
+      "observation": "Four previously failing changed-input cases now reject with zero effect/new-reservation rows."
+    },
+    {
+      "id": "G-CUSTODY-RETRY-002",
+      "observation": "Same-input retry survives restart, old request remains fenced, stale proof rejected, effect count is one."
+    },
+    {
+      "id": "G-CUSTODY-AUTH-003",
+      "observation": "Independent effect accepts different input, revoked endpoint retry rejects HOLD and local state stays uncertain."
+    },
+    {
+      "id": "G-CUSTODY-REGRESSION-004",
+      "observation": "Existing custody, host seam, causal authority and killed-process cases retained and pass."
+    }
+  ],
+  "static_checks": [
+    {
+      "command": "uv run ruff check src/hmt_rnd/custody_*.py tests/test_reconcile_custody_identity.py",
+      "exit_code": 0,
+      "output": "All checks passed!"
+    },
+    {
+      "command": "uv run pyrefly check src/hmt_rnd/custody_*.py",
+      "exit_code": 0,
+      "output": "INFO 0 errors; preset basic"
+    },
+    {
+      "command": "PYTHONPATH=src uv run python scripts/check_structure.py",
+      "exit_code": 0,
+      "output": "Known suppression syntax: zero findings"
+    }
+  ],
+  "candidate_source_sha256": {
+    "src/hmt_rnd/custody_endpoint.py": "a3fd05954c01cb82290e7b7d26a147a258dd6fcac65404b9fed775a3b9b0c56f",
+    "tests/test_reconcile_custody_identity.py": "3f26250bb3507085c97e597e23491ca1e7f62f92f72b953ba2b733da61cbbc28"
+  },
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; PENDING_SUPERVISOR_RECONCILIATION",
+  "limitations": [
+    "No global HOLD release or complete HMT-B04 qualification: deadline/budget enforcement and production endpoint integration remain outside this bounded repair.",
+    "Endpoint realm and synthetic authority fixtures are local, not vendor/distributed guarantees.",
+    "Historical-reservation lookup latency under large history is unqualified.",
+    "No evidence supersession or old failure deletion; same oracle retained."
+  ],
+  "sub_agent_task_attestation": {
+    "task_id": "WP-RECONCILE-CUSTODY-001",
+    "worker": "/root/custody_reconciliation",
+    "owned_paths": [
+      "src/hmt_rnd/custody_endpoint.py",
+      "tests/test_reconcile_custody_identity.py"
+    ],
+    "authority": "User-supervised bounded derivative repair only",
+    "reference_treatment": "Read-only; no reference imports or modifications",
+    "signature": "Unsigned task attestation; hashes bind integrity, not authenticity"
+  },
+  "evidence_sha256": {
+    "evidence/reconcile_custody_before.xml": "dc5b8a88bc56986c981c227cef49b572ba209a051a9db2aa71d7a65897b3c3ab",
+    "evidence/reconcile_custody_before.log": "e8514a0264fb4bfa7eea7a8cd9b9bd393ea09b2a1a76302115231f83f8f0865f",
+    "evidence/reconcile_custody_baseline.json": "287b79457233cf8fb3a2b3b28a646e394101710e5a84a6dcb69d2c96ce834cda",
+    "evidence/reconcile_custody_test_baseline.json": "ebe1cef9cb796abdaf93ddd3d542c0135f586b999cbb4cd4ebbe16724be187a0",
+    "evidence/reconcile_custody_after.xml": "4ddd5f3780f36092bae4ad97c9a75bd78f5cccef6d02b2d1e5c13d11c1cd514e",
+    "evidence/reconcile_custody_after.log": "08ce942816e9e6eff75f865a652c7eedbc21fd436ebc775b892e8bfe41d6a04b"
+  }
+}

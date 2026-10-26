@@ -1,0 +1,101 @@
+{
+  "case_id": "RC-CUSTODY-001",
+  "baseline_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+  "source_path": "src/hmt_rnd/custody_endpoint.py",
+  "source_sha256": "bdc64495a302bb44301fc932cff60a11dd788463424f40f07abf24783c1df3df",
+  "source_text": "\"\"\"Local simulated resource endpoint; cancellation and effects serialize here.\"\"\"\nfrom pathlib import Path\n\nfrom .custody_database import Authority, CustodyFault, Domain\nfrom .custody_models import Proof, Reservation\nfrom .custody_signing import sign\n\n\nclass Endpoint:\n    def __init__(self, path: Path, endpoint_id: str, key: bytes,\n                 authority: Authority) -> None:\n        if len(key) < 32:\n            raise CustodyFault(\"ENDPOINT_KEY_INVALID\")\n        self.domain, self.endpoint_id, self.key = Domain(path, authority), endpoint_id, key\n\n    def apply(self, reservation: Reservation) -> Proof:\n        return self._transition(reservation, cancel=False)\n\n    def lookup_or_cancel(self, reservation: Reservation) -> Proof:\n        return self._transition(reservation, cancel=True)\n\n    def _transition(self, reservation: Reservation, cancel: bool) -> Proof:\n        reservation = Reservation.model_validate(reservation)\n        intent, rid = reservation.intent, reservation.reservation_id\n        if intent.endpoint_id != self.endpoint_id:\n            raise CustodyFault(\"ENDPOINT_SCOPE_MISMATCH\")\n        with self.domain.transaction() as db:\n            self.domain.authority(db, \"endpoint.cancel\" if cancel else \"endpoint.apply\",\n                                  intent.principal, intent.effect_id)\n            row = db.execute(\"SELECT * FROM custody_endpoint_reservations WHERE id=?\",\n                             (rid,)).fetchone()\n            identity = (intent.principal, intent.effect_id, intent.payload_digest)\n            if row and tuple(row)[1:4] != identity:\n                raise CustodyFault(\"RESERVATION_COLLISION\")\n            if row and row[\"status\"] == \"NOT_EXECUTED\" and not cancel:\n                raise CustodyFault(\"RESERVATION_CANCELLED\")\n            done = db.execute(\"SELECT digest FROM custody_endpoint_effects \"\n                              \"WHERE principal=? AND effect=?\", identity[:2]).fetchone()\n            if done and done[\"digest\"] != intent.payload_digest:\n                raise CustodyFault(\"INTENT_COLLISION\")\n            outcome = \"COMMITTED\" if done or not cancel else \"NOT_EXECUTED\"\n            if not cancel:\n                db.execute(\"INSERT OR IGNORE INTO custody_endpoint_effects VALUES(?,?,?)\", identity)\n            db.execute(\"INSERT OR IGNORE INTO custody_endpoint_reservations VALUES(?,?,?,?,?)\",\n                       (rid, *identity, outcome))\n            proof = Proof(intent=intent, reservation_id=rid, endpoint_id=self.endpoint_id,\n                          outcome=outcome, signature=\"0\" * 64)\n            return proof.model_copy(update={\"signature\": sign(proof, self.key)})\n",
+  "observations": [
+    {
+      "case_directory": "test_cancelled_effect_rejects_0",
+      "reservations": [
+        [
+          "f9be7b58892148fd9fd06000a5f6fe79",
+          "alice",
+          "effect1",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "NOT_EXECUTED"
+        ],
+        [
+          "new-reservation",
+          "alice",
+          "effect1",
+          "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "COMMITTED"
+        ]
+      ],
+      "effects": [
+        [
+          "alice",
+          "effect1",
+          "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        ]
+      ]
+    },
+    {
+      "case_directory": "test_cancelled_effect_rejects_1",
+      "reservations": [
+        [
+          "f4c7b6e6137f48e0887e3be19e2b9ef3",
+          "alice",
+          "effect1",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "NOT_EXECUTED"
+        ],
+        [
+          "new-reservation",
+          "alice",
+          "effect1",
+          "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "NOT_EXECUTED"
+        ]
+      ],
+      "effects": []
+    },
+    {
+      "case_directory": "test_cancelled_effect_rejects_2",
+      "reservations": [
+        [
+          "3d8ef882d8dc4472904d41fa911a34e9",
+          "alice",
+          "effect1",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "NOT_EXECUTED"
+        ],
+        [
+          "new-reservation",
+          "alice",
+          "effect1",
+          "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "COMMITTED"
+        ]
+      ],
+      "effects": [
+        [
+          "alice",
+          "effect1",
+          "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+        ]
+      ]
+    },
+    {
+      "case_directory": "test_cancelled_effect_rejects_3",
+      "reservations": [
+        [
+          "28597c2e7e8f4a82831b22f127f9745a",
+          "alice",
+          "effect1",
+          "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "NOT_EXECUTED"
+        ],
+        [
+          "new-reservation",
+          "alice",
+          "effect1",
+          "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "NOT_EXECUTED"
+        ]
+      ],
+      "effects": []
+    }
+  ]
+}
