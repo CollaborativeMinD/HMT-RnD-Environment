@@ -15,7 +15,8 @@ def reopened(root):
 
 
 def current_grant(host, actor, request, policy, epoch, operation):
-    host.grant(Grant(**actor.model_dump(), task_id=request.task_id, operation=operation,
+    host.grant(Grant(**actor.model_dump(), task_id=request.task_id, revision=request.revision,
+                     operation=operation,
                      root=request.root, destination="local", policy=policy, epoch=epoch,
                      not_before=1.0, expires=100.0, evidence_expires=90.0))
     return request.model_copy(update={"operation": operation})

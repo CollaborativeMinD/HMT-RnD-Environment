@@ -73,3 +73,7 @@ class ReopenEvent(Strict):
     invalidated_candidates: tuple[Text, ...]
     issued_by: Text
     issued_at: float
+    policy: Text
+    epoch: Annotated[int, Field(ge=1)]
+    task_id: Text
+    task_revision: Annotated[int, Field(ge=1)]

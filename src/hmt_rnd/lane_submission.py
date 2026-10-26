@@ -6,6 +6,7 @@ from pathlib import Path
 from .host_admission import authorize_and_checkpoint
 from .host_models import Clock, Identity, Request
 from .lane_artifacts import preserve
+from .lane_event_authority import check_event_authority
 from .lane_evidence import verify_artifact, verify_result
 from .lane_models import Candidate, GateContext, GateResult, Receipt
 from .lane_queries import check_parent
@@ -55,6 +56,7 @@ def submit(db: sqlite3.Connection, identity: Identity, request: Request, candida
     check_stage(identity, request, candidate.stage, "lane.seal")
     authority = authorize_and_checkpoint(db, identity, request, clock())
     check_successor(db, candidate)
+    check_event_authority(db, candidate, request, authority)
     root = Path(request.root)
     verify_artifact(candidate, root)
     parent = check_parent(db, candidate, root, authority.policy, authority.epoch)

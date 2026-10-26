@@ -59,7 +59,8 @@ def reopen_candidate(db: sqlite3.Connection, identity: Identity, request: Reques
     result = ReopenEvent(request=event, required_stage=stage, required_lane=lane(stage),
                          origin_receipt_sha256=earliest.receipt_sha256,
                          invalidated_candidates=invalidated, issued_by=identity.principal,
-                         issued_at=now.now)
+                         issued_at=now.now, policy=authority.policy, epoch=authority.epoch,
+                         task_id=request.task_id, task_revision=request.revision)
     authorize_and_checkpoint(db, identity, request, clock())
     db.execute("INSERT INTO lane_reopens VALUES(?,?,?,?,?)", (event.event_id,
                event.lineage_id, stage, event.successor_candidate_id, result.model_dump_json()))

@@ -11,6 +11,9 @@ CREATE TABLE IF NOT EXISTS lane_invalidations(
 CREATE TABLE IF NOT EXISTS lane_closures(
  event TEXT PRIMARY KEY,candidate TEXT NOT NULL,digest TEXT NOT NULL);
 CREATE TABLE IF NOT EXISTS lane_artifacts(digest TEXT PRIMARY KEY,body BLOB NOT NULL);
+CREATE TABLE IF NOT EXISTS lane_reauthorizations(
+ event TEXT NOT NULL,policy TEXT NOT NULL,epoch INTEGER NOT NULL,body TEXT NOT NULL,
+ PRIMARY KEY(event,policy,epoch));
 """
 
 

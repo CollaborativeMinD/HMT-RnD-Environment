@@ -4,6 +4,7 @@ import sqlite3
 from .host_models import Identity, Request
 from .host_store import HostStore
 from .lane_artifacts import preserved_bytes
+from .lane_authorization_models import Reauthorization
 from .lane_models import Candidate, Receipt, Reopen, ReopenEvent
 from .lane_queries import read_receipt
 from .lane_schema import SCHEMA, immutable_triggers
@@ -16,7 +17,7 @@ class LaneStore:
         with sqlite3.connect(host.path) as db:
             db.executescript(SCHEMA)
             for table in ("lane_candidates", "lane_reopens", "lane_invalidations",
-                          "lane_closures", "lane_artifacts"):
+                          "lane_closures", "lane_artifacts", "lane_reauthorizations"):
                 db.executescript(immutable_triggers(table))
 
     def submit(self, identity: Identity, request: Request, candidate: Candidate,
@@ -33,6 +34,12 @@ class LaneStore:
     def receipt(self, candidate_id: str) -> Receipt:
         with self.host.transaction() as db:
             return read_receipt(db, candidate_id)
+
+    def reauthorize(self, identity: Identity, request: Request, event_id: str,
+                    clock: ClockProvider) -> Reauthorization:
+        from .lane_reauthorization import reauthorize
+        with self.host.transaction() as db:
+            return reauthorize(db, identity, request, event_id, clock)
 
     def snapshot(self, digest: str) -> bytes:
         """Trusted diagnostic only; no wire read permission is implied."""
