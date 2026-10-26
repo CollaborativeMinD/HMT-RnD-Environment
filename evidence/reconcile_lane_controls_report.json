@@ -1,0 +1,39 @@
+{
+  "report_id": "HMT-RECONCILE-LANE-CONTROLS-001",
+  "parent_report_sha256": "28146fa625914f3c33da32e30e79b0fffe80f3427a37dfdba9ffeadb621d1ed8",
+  "as_of": "2026-10-26T22:51:39.961980+00:00",
+  "scope": "Additional negative controls only; no production source changes after four exact repair snapshots",
+  "cases": [
+    "duplicate current stage",
+    "wrong lane ownership",
+    "current grant for wrong task",
+    "unreopened ancestry"
+  ],
+  "tests": 43,
+  "failures": 0,
+  "skips": 0,
+  "coverage_changed_five_modules": {
+    "covered_branches": 57,
+    "total_branches": 60,
+    "files": [
+      "lane_drift.py",
+      "lane_discovery.py",
+      "lane_reopen.py",
+      "lane_submission.py",
+      "lane_successor.py"
+    ]
+  },
+  "nonclaim": "Neither whole HMT-N11 nor full HMT-B07 acceptance is established by this scoped metric.",
+  "evidence": {
+    "evidence/reconcile_lane_controls.xml": "37314c1af01c9c4ef24ad49c2abdc675c6cb2fea881136255246fd7e9128add2",
+    "evidence/reconcile_lane_controls.log": "5fc6bd1d97be49ed108d44139e026ee7aa36df08419f79c05c1606ee3e37675a",
+    "evidence/reconcile_lane_controls_coverage.json": "1591a611dac801d6f688ec8bb6218f3b428bff3697848e3c9bde56680924e782",
+    "evidence/reconcile_lane_step5.json": "490afd74051bd470f562a8ed2e848255b27e015599c0463c55abb089bb28377c"
+  },
+  "aliases": {
+    "RC-LANE-01": "LANE-DRIFT-001",
+    "RC-LANE-02": "LANE-HISTORY-001",
+    "RC-LANE-03": "LANE-AUTHORITY-001",
+    "RC-LANE-04": "LANE-SUCCESSOR-001"
+  }
+}
