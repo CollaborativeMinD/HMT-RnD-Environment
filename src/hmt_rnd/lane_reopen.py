@@ -5,7 +5,7 @@ from pathlib import Path
 from .host_admission import authorize_and_checkpoint
 from .host_models import Identity, Request
 from .lane_discovery import discover_changes
-from .lane_evidence import digest_file
+from .lane_drift import artifact_changed
 from .lane_models import Receipt, Reopen, ReopenEvent
 from .lane_queries import read_receipt
 from .lane_stages import STAGES, lane
@@ -21,7 +21,7 @@ def changed(db: sqlite3.Connection, event: Reopen, root: Path,
         if receipt.candidate.lineage_id != event.lineage_id:
             raise PermissionError("LANE_REOPEN_LINEAGE_MISMATCH")
         if event.reason == "ARTIFACT_DRIFT":
-            if digest_file(receipt.candidate.artifact, root) == receipt.candidate.artifact_sha256:
+            if not artifact_changed(receipt, root):
                 raise PermissionError("LANE_REOPEN_WITHOUT_ARTIFACT_CHANGE")
         elif event.reason == "POLICY_DRIFT":
             if (receipt.gate.policy, receipt.gate.epoch) == (policy, epoch):
