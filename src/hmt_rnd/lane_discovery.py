@@ -17,12 +17,9 @@ def discover_changes(db: sqlite3.Connection, event: Reopen, root: Path,
     changed = []
     for row in current:
         receipt = read_receipt(db, row[0])
-        if event.reason == "ARTIFACT_DRIFT":
-            mismatch = artifact_changed(receipt, root)
-        elif event.reason == "POLICY_DRIFT":
-            mismatch = (receipt.gate.policy, receipt.gate.epoch) != (policy, epoch)
-        else:
-            mismatch = receipt.gate.outcome == "DENIED"
+        artifact_drift = artifact_changed(receipt, root)
+        policy_drift = (receipt.gate.policy, receipt.gate.epoch) != (policy, epoch)
+        mismatch = artifact_drift or policy_drift or receipt.gate.outcome == "DENIED"
         if mismatch:
             changed.append(receipt)
     return changed

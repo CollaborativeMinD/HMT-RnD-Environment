@@ -47,7 +47,9 @@ def reopen_candidate(db: sqlite3.Connection, identity: Identity, request: Reques
     check_stage(identity, request, stage, "lane.reopen")
     if request.task_id != earliest.task_id:
         raise PermissionError("LANE_REOPEN_TASK_MISMATCH")
-    if event.reason == "POLICY_DRIFT" and identity.role != "human_architect":
+    policy_drift = any((row.gate.policy, row.gate.epoch) != (authority.policy, authority.epoch)
+                       for row in rows)
+    if policy_drift and identity.role != "human_architect":
         raise PermissionError("LANE_POLICY_REOPEN_REQUIRES_ARCHITECT")
     existing = db.execute("SELECT 1 FROM lane_candidates WHERE id=?",
                           (event.successor_candidate_id,)).fetchone()
