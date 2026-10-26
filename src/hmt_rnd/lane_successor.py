@@ -1,7 +1,17 @@
 """Only a typed reopening lineage can regenerate invalidated descendants."""
 import sqlite3
 
+from .lane_models import Candidate
 from .lane_queries import read_receipt
+
+
+def check_pending(db: sqlite3.Connection, candidate: Candidate) -> None:
+    rows = db.execute("SELECT id,successor FROM lane_reopens WHERE lineage=? AND stage=? "
+                       "AND id NOT IN(SELECT event FROM lane_closures)",
+                       (candidate.lineage_id, candidate.stage)).fetchall()
+    if rows and (len(rows) != 1 or tuple(rows[0]) != (candidate.reopen_id,
+                                                    candidate.candidate_id)):
+        raise PermissionError("LANE_TYPED_SUCCESSOR_REQUIRED")
 
 
 def has_reopen_ancestor(db: sqlite3.Connection, candidate_id: str | None) -> bool:

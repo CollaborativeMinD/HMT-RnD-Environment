@@ -11,6 +11,7 @@ from .lane_models import Candidate, GateContext, GateResult, Receipt
 from .lane_queries import check_parent
 from .lane_records import record
 from .lane_stages import ROLE_CEILINGS
+from .lane_successor import check_pending
 
 Evaluator = Callable[[GateContext], GateResult]
 ClockProvider = Callable[[], Clock]
@@ -27,6 +28,7 @@ def check_stage(identity: Identity, request: Request, stage: str, operation: str
 
 
 def check_successor(db: sqlite3.Connection, candidate: Candidate) -> None:
+    check_pending(db, candidate)
     current = db.execute("SELECT id FROM lane_candidates WHERE lineage=? AND stage=? "
                          "AND id NOT IN(SELECT candidate FROM lane_invalidations)",
                          (candidate.lineage_id, candidate.stage)).fetchall()

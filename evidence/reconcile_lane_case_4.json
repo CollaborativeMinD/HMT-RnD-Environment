@@ -1,0 +1,49 @@
+{
+  "case_id": "LANE-SUCCESSOR-001",
+  "requirements": [
+    "HMT-B07@1",
+    "HMT-B10@1"
+  ],
+  "boundary": "Generic lane lifecycle within derivative trusted host SQLite transaction; no domain evaluator qualification.",
+  "gate_id": "G-ARCH-LANE-SUCCESSOR-001",
+  "baseline_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+  "initiating_observation": "An older closed ancestor permits unbound candidate to bypass a pending stage-specific repair.",
+  "test_ids": [
+    "test_old_closed_ancestor_cannot_bypass_new_pending_reopen"
+  ],
+  "retained_failure_witness": {
+    "path": "evidence/reconcile_lane_before.xml",
+    "sha256": "1450a7789e19af999765c92679c39255f3a892dae4ee14f0a08735ef53777678"
+  },
+  "causal_traversal": [
+    "Earlier CMAD1 reopen closed; its successor parents regenerated CMAD2.",
+    "CMAD2 is reopened and designated successor remains pending.",
+    "No-reopen_id candidate inherits old closed ancestor permission, occupies stage, and strands designated successor."
+  ],
+  "corrective_task": "Before ancestor-based descendant permission, require any pending event rooted at this stage to match exact candidate ID and reopen ID.",
+  "candidate_snapshot": {
+    "path": "evidence/reconcile_lane_step4.json",
+    "sha256": "db11623fbd1f10bb43a8a861b6df46d0e115f696493bd506489e9f437e40ffbe"
+  },
+  "candidate_identity": "SHA-256 content snapshot; commit assigned by supervisor publication",
+  "focused_and_prior_lane_regression": {
+    "path": "evidence/reconcile_lane_pending_after.xml",
+    "sha256": "beaeb1e5553bb8190ee9d6a3abf0906b9b59799cb70d572af678352652047216",
+    "tests": 39,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "files": [
+    "src/hmt_rnd/lane_successor.py",
+    "src/hmt_rnd/lane_submission.py",
+    "tests/test_reconcile_lane_pending.py"
+  ],
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; AWAITING_SUPERVISOR_RECONCILIATION",
+  "sub_agent_task_attestation": {
+    "agent": "/root/lane_reconciliation",
+    "task": "LANE-SUCCESSOR-001",
+    "scope": "Owned derivative lane source and new tests/evidence only; no reference changes, no commit/push, no feature/integration progression",
+    "unsigned": true
+  }
+}
