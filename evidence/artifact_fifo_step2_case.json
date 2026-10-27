@@ -1,0 +1,20 @@
+{
+  "case_id": "RC-ARTIFACT-02",
+  "baseline": "c922345",
+  "requirements": [
+    "HMT-N02",
+    "HMT-N04",
+    "HMT-B14"
+  ],
+  "status": "SOLUTION_CANDIDATE_APPLIED; PENDING_SUPERVISOR_RECONCILIATION",
+  "cause": "Snapshot preserve independently checked path.is_file then used blocking open, so later FIFO replacement could retain the shared host transaction indefinitely. Digest repair alone did not change this second open surface.",
+  "repair": "Route snapshot preserve through the already introduced descriptor-bound regular reader, using remaining aggregate16MiB budget and original snapshot scope/total-bound reason codes. Existing digest validation and immutable content-addressed storage stay in place.",
+  "semantic_delta": "Snapshot now rejects any symlink path component, matching repaired digest behavior. Old resolve permitted in-scope symlinks. Regular-file bytes and digest custody preserved; remaining aggregate bytes bound is enforced before reading, not after.",
+  "before": "Independent snapshot watchdog failure retained in artifact_fifo_before.xml/log with shared_host_locked:true.",
+  "after": "27 focused cases pass across both paths, exact observed snapshot race denial and rollback/revoke/restart in artifact_fifo_snapshot_observed.json. Full suite record follows; supervisor replays frozen candidate.",
+  "limitations": [
+    "POSIX local regular filesystem only; no arbitrary-filesystem stall guarantee.",
+    "No full HMT requirement acceptance or owner HOLD release."
+  ],
+  "worker": "/root/custody_reconciliation"
+}

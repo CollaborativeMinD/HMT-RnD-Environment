@@ -10,5 +10,23 @@
     "stored": "evidence/latest_supervisor_artifact_fifo_step1.xml.gz",
     "sha256": "a52e1268fc6f65330371f41fb17258bb819f66498c944db2a69918693cd86388",
     "stored_sha256": "f3a299d2cabbc7c11d0d01945d849f524ab4e615f9c493922ee9fba934592684"
+  },
+  {
+    "original": "evidence/latest_supervisor_artifact_fifo_step2.xml",
+    "stored": "evidence/latest_supervisor_artifact_fifo_step2.xml.gz",
+    "sha256": "2e045c1a8f2a10ed4b43b5314473ba9189c4ee16404b49100abcf7c1972497a0",
+    "stored_sha256": "fb8eb6b1d14d34c6ed57d59ef74a84e1ae28d076baef2dbb1780bc70d6c136e3"
+  },
+  {
+    "original": "evidence/latest_review_coverage.json",
+    "stored": "evidence/latest_review_coverage.json.gz",
+    "sha256": "2b5924c923ff019177d5d9c07a5287171f948ff4adc8cbb70d9a3bdb4e1d17e3",
+    "stored_sha256": "e59ba7889d098289a9161cc2613323814e6cbb141bd1b7d29097439517820946"
+  },
+  {
+    "original": "evidence/latest_review_coverage_tests.xml",
+    "stored": "evidence/latest_review_coverage_tests.xml.gz",
+    "sha256": "74c0744da78c6d87794ddd34d552558d8355bd8e3e5f54d6f9e855d22e223c49",
+    "stored_sha256": "c2b8394f4aee3e208e1f20f8b556182bf6401604b68ddb9c64a4de4922aae44b"
   }
 ]

@@ -7,7 +7,7 @@ import sys
 import pytest
 
 
-@pytest.mark.parametrize("mode", ["digest"])
+@pytest.mark.parametrize("mode", ["digest", "snapshot"])
 def test_fifo_replacement_denies_and_releases_host_fence(tmp_path, mode):
     environment = {**os.environ, "PYTHONPATH": "src:tests"}
     command = [sys.executable, "-m", "test_artifact_fifo_worker", str(tmp_path), mode]

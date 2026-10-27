@@ -5,7 +5,7 @@ import os
 import pytest
 from test_artifact_fifo_support import observe
 
-MODES = ["digest"]
+MODES = ["digest", "snapshot"]
 
 
 @pytest.mark.parametrize("mode", MODES)
