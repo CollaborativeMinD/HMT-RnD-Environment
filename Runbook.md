@@ -1,5 +1,14 @@
 # Operator runbook
 
+Current bounded milestone: `docs/local_inspection_binding.md` and
+`evidence/inspection_case.json`, under the committed out-of-band continuation
+order. Replay its declared cases with `uv run --group dev python -m pytest
+tests/test_inspection*.py -q`. Inspect exact receipt exports before accepting a
+claim. CAP_BINDING_MISSING/CONFLICT, stale source/schema/scope, expiry and canonical
+host denials block invocation; do not choose another provider or bypass the gate.
+The configured adapter is not activated by the default launcher. Receipt diagnostics
+are trusted-host reads, not a new MCP tool. Integration remains blocked.
+
 Use uv only. From this repository:
 
 ```bash

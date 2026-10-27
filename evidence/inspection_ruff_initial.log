@@ -1,0 +1,120 @@
+E501 Line too long (101 > 100)
+  --> src/hmt_rnd/inspection_execution.py:19:101
+   |
+18 | def current(db: sqlite3.Connection, launch: LaneBinding, cap: InspectionCapability,
+19 |             clock: Callable[[], float], monotonic: Callable[[], float], deadline: float) -> Decision:
+   |                                                                                                     ^
+20 |     now = clock()
+21 |     if monotonic() >= deadline:
+   |
+
+E501 Line too long (101 > 100)
+  --> src/hmt_rnd/inspection_execution.py:60:101
+   |
+58 |         persist(db, InspectionReceipt(call_id=call_id, capability_sha256=digest,
+59 |                 source_manifest_sha256=receipt_digest(cap.source_pins), result=parsed,
+60 |                 input_schema_sha256=cap.input_schema_pin, output_schema_sha256=cap.output_schema_pin,
+   |                                                                                                     ^
+61 |                 result_sha256=receipt_digest(output), clock_checkpoint=checkpoint))
+62 |         return output
+   |
+
+E501 Line too long (102 > 100)
+  --> tests/test_inspection_support.py:28:101
+   |
+26 |                implementation="hmt_rnd.mcp_surface.inspect_context",
+27 |                binding_sha256=receipt_digest(binding.model_dump(mode="json")), epoch=1,
+28 |                source_pins={p: hashlib.sha256((package / p).read_bytes()).hexdigest() for p in SPINE},
+   |                                                                                                     ^^
+29 |                input_schema_pin=receipt_digest(EmptyArguments.model_json_schema()),
+30 |                output_schema_pin=receipt_digest(Decision.model_json_schema()),
+   |
+
+E701 Multiple statements on one line (colon)
+  --> tests/test_inspection_support.py:53:24
+   |
+51 | def changed(cap, fault):
+52 |     cap = json.loads(json.dumps(cap))
+53 |     if fault == "scope": cap["binding_sha256"] = "0" * 64
+   |                        ^
+54 |     elif fault == "schema": cap["input_schema_pin"] = "0" * 64
+55 |     elif fault == "source": cap["source_pins"]["mcp_surface.py"] = "0" * 64
+   |
+
+E701 Multiple statements on one line (colon)
+  --> tests/test_inspection_support.py:54:27
+   |
+52 |     cap = json.loads(json.dumps(cap))
+53 |     if fault == "scope": cap["binding_sha256"] = "0" * 64
+54 |     elif fault == "schema": cap["input_schema_pin"] = "0" * 64
+   |                           ^
+55 |     elif fault == "source": cap["source_pins"]["mcp_surface.py"] = "0" * 64
+56 |     elif fault == "epoch": cap["epoch"] = 2
+   |
+
+E701 Multiple statements on one line (colon)
+  --> tests/test_inspection_support.py:55:27
+   |
+53 |     if fault == "scope": cap["binding_sha256"] = "0" * 64
+54 |     elif fault == "schema": cap["input_schema_pin"] = "0" * 64
+55 |     elif fault == "source": cap["source_pins"]["mcp_surface.py"] = "0" * 64
+   |                           ^
+56 |     elif fault == "epoch": cap["epoch"] = 2
+57 |     elif fault == "expiry": cap["valid_until"] = 20.0
+   |
+
+E701 Multiple statements on one line (colon)
+  --> tests/test_inspection_support.py:56:26
+   |
+54 |     elif fault == "schema": cap["input_schema_pin"] = "0" * 64
+55 |     elif fault == "source": cap["source_pins"]["mcp_surface.py"] = "0" * 64
+56 |     elif fault == "epoch": cap["epoch"] = 2
+   |                          ^
+57 |     elif fault == "expiry": cap["valid_until"] = 20.0
+58 |     elif fault == "credential": cap["credential_scope_and_data_egress"]["credential_ref"] = "wrong"
+   |
+
+E701 Multiple statements on one line (colon)
+  --> tests/test_inspection_support.py:57:27
+   |
+55 |     elif fault == "source": cap["source_pins"]["mcp_surface.py"] = "0" * 64
+56 |     elif fault == "epoch": cap["epoch"] = 2
+57 |     elif fault == "expiry": cap["valid_until"] = 20.0
+   |                           ^
+58 |     elif fault == "credential": cap["credential_scope_and_data_egress"]["credential_ref"] = "wrong"
+59 |     elif fault == "missing": return ()
+   |
+
+E701 Multiple statements on one line (colon)
+  --> tests/test_inspection_support.py:58:31
+   |
+56 |     elif fault == "epoch": cap["epoch"] = 2
+57 |     elif fault == "expiry": cap["valid_until"] = 20.0
+58 |     elif fault == "credential": cap["credential_scope_and_data_egress"]["credential_ref"] = "wrong"
+   |                               ^
+59 |     elif fault == "missing": return ()
+60 |     elif fault == "conflict": return (cap, cap)
+   |
+
+E701 Multiple statements on one line (colon)
+  --> tests/test_inspection_support.py:59:28
+   |
+57 |     elif fault == "expiry": cap["valid_until"] = 20.0
+58 |     elif fault == "credential": cap["credential_scope_and_data_egress"]["credential_ref"] = "wrong"
+59 |     elif fault == "missing": return ()
+   |                            ^
+60 |     elif fault == "conflict": return (cap, cap)
+61 |     return (cap,)
+   |
+
+E701 Multiple statements on one line (colon)
+  --> tests/test_inspection_support.py:60:29
+   |
+58 |     elif fault == "credential": cap["credential_scope_and_data_egress"]["credential_ref"] = "wrong"
+59 |     elif fault == "missing": return ()
+60 |     elif fault == "conflict": return (cap, cap)
+   |                             ^
+61 |     return (cap,)
+   |
+
+Found 11 errors.

@@ -12,6 +12,12 @@ from .mcp_handoff import validate_handoff
 OPERATIONS = ("inspect_context", "validate_handoff")
 
 
+def inspect_context(decision: Decision, arguments: dict[str, object]) -> dict[str, object]:
+    """Canonical native inspection; shared by legacy and explicitly bound surfaces."""
+    EmptyArguments.model_validate(arguments)
+    return decision.model_dump()
+
+
 class LaneSurface:
     def __init__(self, binding: LaneBinding, clock: Callable[[], float] = time.time):
         self.binding = LaneBinding.model_validate_json(binding.model_dump_json())
@@ -44,8 +50,7 @@ class LaneSurface:
         if len(json.dumps(arguments, ensure_ascii=False).encode()) > 65536:
             raise ValueError("MCP_ARGUMENT_BOUND")
         if operation == "inspect_context":
-            EmptyArguments.model_validate(arguments)
-            return decision.model_dump()
+            return inspect_context(decision, arguments)
         payload = HandoffArguments.model_validate(arguments)
         return validate_handoff(payload.handoff.model_dump(), self.binding.identity.role,
                                 self.binding.task_id)

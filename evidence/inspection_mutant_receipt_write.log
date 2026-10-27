@@ -1,0 +1,47 @@
+FF                                                                       [100%]
+=================================== FAILURES ===================================
+_________ test_native_result_and_checkpoint_have_one_immutable_receipt _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-163/test_native_result_and_checkpo0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f8b8a641cd0>
+
+    def test_native_result_and_checkpoint_have_one_immutable_receipt(tmp_path, monkeypatch):
+        store, binding, cap = fixture(tmp_path)
+        target = surface(binding, (cap,))
+        watch(monkeypatch, tmp_path / "native.jsonl")
+        before = snapshot(store)
+        result = target.invoke("inspect_context", {})
+        after = snapshot(store)
+>       assert len(dispatches(tmp_path / "native.jsonl")) == 1 and len(receipts(store)) == 1
+E       AssertionError: assert (1 == 1 and 0 == 1)
+E        +  where 1 = len([{'result_sha256': 'b87c60a42709887bb2f30dc6c9f1029d5835e737d68315d04f551b7361a99a4c'}])
+E        +    where [{'result_sha256': 'b87c60a42709887bb2f30dc6c9f1029d5835e737d68315d04f551b7361a99a4c'}] = dispatches((PosixPath('/tmp/pytest-of-root/pytest-163/test_native_result_and_checkpo0') / 'native.jsonl'))
+E        +  and   0 = len([])
+E        +    where [] = receipts(<hmt_rnd.host_store.HostStore object at 0x7f8b8a6757f0>)
+
+../supervisor_inspection_replay/tests/test_inspection_receipts.py:22: AssertionError
+_ test_receipt_persistence_failure_rolls_back_clock_but_retains_dispatch_observation _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-163/test_receipt_persistence_failu0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f8b8a642190>
+
+    def test_receipt_persistence_failure_rolls_back_clock_but_retains_dispatch_observation(
+            tmp_path, monkeypatch):
+        store, binding, cap = fixture(tmp_path)
+        target = surface(binding, (cap,))
+        watch(monkeypatch, tmp_path / "native.jsonl")
+        before = snapshot(store)
+    
+        def fail(db, receipt):
+            raise sqlite3.OperationalError("controlled receipt failure")
+    
+        monkeypatch.setattr(inspection_execution, "persist", fail)
+>       with pytest.raises(sqlite3.OperationalError, match="controlled receipt failure"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE OperationalError
+
+../supervisor_inspection_replay/tests/test_inspection_receipts.py:53: Failed
+=========================== short test summary info ============================
+FAILED tests/test_inspection_receipts.py::test_native_result_and_checkpoint_have_one_immutable_receipt
+FAILED tests/test_inspection_receipts.py::test_receipt_persistence_failure_rolls_back_clock_but_retains_dispatch_observation
+2 failed in 0.90s

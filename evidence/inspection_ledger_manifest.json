@@ -1,0 +1,22 @@
+{
+  "parent": "fbf14378e6c82a3deebea0d415a6a85151e0a382",
+  "tables": {
+    "cumulative_gate_ledger": {
+      "prior_rows": 75,
+      "rows": 77,
+      "prior_sha256": "0a18f870a55b4b1d3214a6ad216b1c5429de704c850a83868e213ab8ea36be5f",
+      "sha256": "97b4f9ef43b5a46f1a004266bc697676cda9cb25b97312c9a236919db5c49751"
+    },
+    "reverse_rca_ledger": {
+      "prior_rows": 153,
+      "rows": 159,
+      "prior_sha256": "2d14c490564dffcc3da6c1387f5cc3609242a4d03f20209c730b780434901457",
+      "sha256": "53f7b202058fd50d3dcf43c1483c19c7618ac4cccf5b68b12d6b34f171e8133f"
+    }
+  },
+  "columns": 8,
+  "prior_rows_retained": true,
+  "CSV_SQLite_parity": true,
+  "SQLite_integrity": "ok",
+  "archive_sha256": "d260155c003d45244fa965fe7fcaff8235e2aafd1d7ea379f96d0721cc175f8e"
+}

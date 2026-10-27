@@ -1,0 +1,137 @@
+{
+  "scope": "Binding scope edge and independent native host-authority compensation; deliberately faulty source overlays only.",
+  "arms": [
+    {
+      "arm": "intact",
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+        "--no-sync",
+        "python",
+        "/workspace/scratch/bc6d4e512874/inspection_arm_intact/tests/inspection_family_driver.py",
+        "/workspace/scratch/bc6d4e512874/inspection_arm_intact/fixture",
+        "intact"
+      ],
+      "cwd": "/workspace/scratch/bc6d4e512874/inspection_arm_intact",
+      "source_overlay_sha256": {
+        "inspection_binding.py": "3ae92f3f0ce60089e3860a90200cd9803f471b4c2cf581533ebed6ab5f189d1f",
+        "inspection_execution.py": "314c7a699e12e87677785a82a5d0799b9e0cac2e71f2f9b5e13c03db164e80f3"
+      },
+      "returncode": 0,
+      "seconds": 1.997440598999674,
+      "output": "{\"arm\": \"intact\", \"error\": \"CAP_SCOPE_STALE\", \"result\": null, \"native_dispatches\": 0, \"receipt_count\": 0, \"tables_unchanged\": true, \"limits\": \"Controlled faulty source overlays; not permission for real execution.\"}\n"
+    },
+    {
+      "arm": "delete",
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+        "--no-sync",
+        "python",
+        "/workspace/scratch/bc6d4e512874/inspection_arm_delete/tests/inspection_family_driver.py",
+        "/workspace/scratch/bc6d4e512874/inspection_arm_delete/fixture",
+        "delete"
+      ],
+      "cwd": "/workspace/scratch/bc6d4e512874/inspection_arm_delete",
+      "source_overlay_sha256": {
+        "inspection_binding.py": "1a34efb4b14593568a6096f74a2be0e5aa0a2b50a9b232764518dfd329031151",
+        "inspection_execution.py": "314c7a699e12e87677785a82a5d0799b9e0cac2e71f2f9b5e13c03db164e80f3"
+      },
+      "returncode": 0,
+      "seconds": 2.111950771002739,
+      "output": "{\"arm\": \"delete\", \"error\": \"HOST_GRANT_DENIED\", \"result\": null, \"native_dispatches\": 0, \"receipt_count\": 0, \"tables_unchanged\": true, \"limits\": \"Controlled faulty source overlays; not permission for real execution.\"}\n"
+    },
+    {
+      "arm": "restore",
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+        "--no-sync",
+        "python",
+        "/workspace/scratch/bc6d4e512874/inspection_arm_restore/tests/inspection_family_driver.py",
+        "/workspace/scratch/bc6d4e512874/inspection_arm_restore/fixture",
+        "restore"
+      ],
+      "cwd": "/workspace/scratch/bc6d4e512874/inspection_arm_restore",
+      "source_overlay_sha256": {
+        "inspection_binding.py": "3ae92f3f0ce60089e3860a90200cd9803f471b4c2cf581533ebed6ab5f189d1f",
+        "inspection_execution.py": "314c7a699e12e87677785a82a5d0799b9e0cac2e71f2f9b5e13c03db164e80f3"
+      },
+      "returncode": 0,
+      "seconds": 1.872951956000179,
+      "output": "{\"arm\": \"restore\", \"error\": \"CAP_SCOPE_STALE\", \"result\": null, \"native_dispatches\": 0, \"receipt_count\": 0, \"tables_unchanged\": true, \"limits\": \"Controlled faulty source overlays; not permission for real execution.\"}\n"
+    },
+    {
+      "arm": "sham",
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+        "--no-sync",
+        "python",
+        "/workspace/scratch/bc6d4e512874/inspection_arm_sham/tests/inspection_family_driver.py",
+        "/workspace/scratch/bc6d4e512874/inspection_arm_sham/fixture",
+        "sham"
+      ],
+      "cwd": "/workspace/scratch/bc6d4e512874/inspection_arm_sham",
+      "source_overlay_sha256": {
+        "inspection_binding.py": "3ae92f3f0ce60089e3860a90200cd9803f471b4c2cf581533ebed6ab5f189d1f",
+        "inspection_execution.py": "0e2f0bc80d707b599f5965ed6876bc6c734c6b94c2a021cc4d6dc387484edf2b"
+      },
+      "returncode": 0,
+      "seconds": 1.648857066000346,
+      "output": "{\"arm\": \"sham\", \"error\": \"CAP_SCOPE_STALE\", \"result\": null, \"native_dispatches\": 0, \"receipt_count\": 0, \"tables_unchanged\": true, \"limits\": \"Controlled faulty source overlays; not permission for real execution.\"}\n"
+    },
+    {
+      "arm": "alternate_on",
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+        "--no-sync",
+        "python",
+        "/workspace/scratch/bc6d4e512874/inspection_arm_alternate_on/tests/inspection_family_driver.py",
+        "/workspace/scratch/bc6d4e512874/inspection_arm_alternate_on/fixture",
+        "alternate_on"
+      ],
+      "cwd": "/workspace/scratch/bc6d4e512874/inspection_arm_alternate_on",
+      "source_overlay_sha256": {
+        "inspection_binding.py": "1a34efb4b14593568a6096f74a2be0e5aa0a2b50a9b232764518dfd329031151",
+        "inspection_execution.py": "314c7a699e12e87677785a82a5d0799b9e0cac2e71f2f9b5e13c03db164e80f3"
+      },
+      "returncode": 0,
+      "seconds": 1.7101970189978601,
+      "output": "{\"arm\": \"alternate_on\", \"error\": \"HOST_GRANT_DENIED\", \"result\": null, \"native_dispatches\": 0, \"receipt_count\": 0, \"tables_unchanged\": true, \"limits\": \"Controlled faulty source overlays; not permission for real execution.\"}\n"
+    },
+    {
+      "arm": "alternate_off",
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+        "--no-sync",
+        "python",
+        "/workspace/scratch/bc6d4e512874/inspection_arm_alternate_off/tests/inspection_family_driver.py",
+        "/workspace/scratch/bc6d4e512874/inspection_arm_alternate_off/fixture",
+        "alternate_off"
+      ],
+      "cwd": "/workspace/scratch/bc6d4e512874/inspection_arm_alternate_off",
+      "source_overlay_sha256": {
+        "inspection_binding.py": "1a34efb4b14593568a6096f74a2be0e5aa0a2b50a9b232764518dfd329031151",
+        "inspection_execution.py": "ab009c8e7a646f07200ebe3c9e0a598225508fba608bbe15dcffae2b687ffbf9"
+      },
+      "returncode": 0,
+      "seconds": 1.4445445080054924,
+      "output": "{\"arm\": \"alternate_off\", \"error\": null, \"result\": {\"principal\": \"not-assigned\", \"task_id\": \"task-1\", \"task_revision\": 1, \"operation\": \"inspect_context\", \"policy\": \"policy-1\", \"epoch\": 1, \"effect_authority\": \"NONE\"}, \"native_dispatches\": 1, \"receipt_count\": 1, \"tables_unchanged\": false, \"limits\": \"Controlled faulty source overlays; not permission for real execution.\"}\n"
+    }
+  ]
+}

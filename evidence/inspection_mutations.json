@@ -1,0 +1,98 @@
+[
+  {
+    "id": "scope_gate",
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+      "--no-sync",
+      "python",
+      "-m",
+      "pytest",
+      "tests/test_inspection_admission.py",
+      "-q",
+      "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/inspection_mutant_scope_gate.xml"
+    ],
+    "cwd": "/workspace/scratch/bc6d4e512874/inspection_mutant_scope_gate",
+    "returncode": 1,
+    "seconds": 2.1559347770016757,
+    "summary": "1 failed, 8 passed in 1.22s",
+    "overlay_sha256": {
+      "src/hmt_rnd/inspection_binding.py": "1a34efb4b14593568a6096f74a2be0e5aa0a2b50a9b232764518dfd329031151",
+      "src/hmt_rnd/inspection_execution.py": "314c7a699e12e87677785a82a5d0799b9e0cac2e71f2f9b5e13c03db164e80f3"
+    }
+  },
+  {
+    "id": "source_gate",
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+      "--no-sync",
+      "python",
+      "-m",
+      "pytest",
+      "tests/test_inspection_admission.py",
+      "-q",
+      "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/inspection_mutant_source_gate.xml"
+    ],
+    "cwd": "/workspace/scratch/bc6d4e512874/inspection_mutant_source_gate",
+    "returncode": 1,
+    "seconds": 2.7142716890011798,
+    "summary": "1 failed, 8 passed in 1.52s",
+    "overlay_sha256": {
+      "src/hmt_rnd/inspection_binding.py": "057c2f564c04467bc65d29fd780fd77dea74a41b1d481ff1fd40115277945a38",
+      "src/hmt_rnd/inspection_execution.py": "314c7a699e12e87677785a82a5d0799b9e0cac2e71f2f9b5e13c03db164e80f3"
+    }
+  },
+  {
+    "id": "host_authority",
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+      "--no-sync",
+      "python",
+      "-m",
+      "pytest",
+      "tests/test_inspection_sequences.py",
+      "-q",
+      "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/inspection_mutant_host_authority.xml"
+    ],
+    "cwd": "/workspace/scratch/bc6d4e512874/inspection_mutant_host_authority",
+    "returncode": 1,
+    "seconds": 7.24051494699961,
+    "summary": "4 failed in 6.66s",
+    "overlay_sha256": {
+      "src/hmt_rnd/inspection_binding.py": "3ae92f3f0ce60089e3860a90200cd9803f471b4c2cf581533ebed6ab5f189d1f",
+      "src/hmt_rnd/inspection_execution.py": "ab009c8e7a646f07200ebe3c9e0a598225508fba608bbe15dcffae2b687ffbf9"
+    }
+  },
+  {
+    "id": "receipt_write",
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+      "--no-sync",
+      "python",
+      "-m",
+      "pytest",
+      "tests/test_inspection_receipts.py",
+      "-q",
+      "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/inspection_mutant_receipt_write.xml"
+    ],
+    "cwd": "/workspace/scratch/bc6d4e512874/inspection_mutant_receipt_write",
+    "returncode": 1,
+    "seconds": 1.470702786995389,
+    "summary": "2 failed in 0.90s",
+    "overlay_sha256": {
+      "src/hmt_rnd/inspection_binding.py": "3ae92f3f0ce60089e3860a90200cd9803f471b4c2cf581533ebed6ab5f189d1f",
+      "src/hmt_rnd/inspection_execution.py": "7dc9a434f02f6f6ae100b772ca8fd31ac1192b71efc3e422e9bc19228fcf4eed"
+    }
+  }
+]

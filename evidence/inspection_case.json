@@ -1,0 +1,812 @@
+{
+  "task": "WP-01-LOCAL-INSPECT-001",
+  "parent": "fbf14378e6c82a3deebea0d415a6a85151e0a382",
+  "acceptance_source": "docs/OUT_OF_BAND_CONTINUATION_2026-10-27.md",
+  "as_of": "2026-10-27T04:54:34.957577+00:00",
+  "owner": "/root",
+  "status": "BOUNDED_MILESTONE_PERSONALLY_VERIFIED_READY_FOR_REVIEW",
+  "operation": "inspect_context",
+  "requirements": [
+    {
+      "id": "HMT-F01",
+      "revision": 1,
+      "category": "Functional",
+      "owner": "Host",
+      "reviewer": "MissionAssurance + owning upstream/downstream lane",
+      "title": "Single authority and admitted bindings",
+      "acceptance": "Resolve every operation to one canonical implementation, authenticated principal, lane/stage, task, policy, roots, effects, and predecessor identities. Missing or conflicting bindings cause zero dispatches.",
+      "verification_method": "Source-to-binding reconciliation; direct/MCP negative parity",
+      "required_evidence": [
+        "Resolved binding",
+        "current authority projection",
+        "denied-call dispatch count"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "gate_id": "G-ARCH",
+      "mechanisms": [
+        "control",
+        "drift",
+        "tamper"
+      ],
+      "assertion_id": "A-F01",
+      "qualification_status": "NOT_EXECUTED",
+      "threshold_status": "PINNED_CONTRACT",
+      "source_refs": [
+        "USER-REQ-2026-10-26",
+        "PLAN-REV2",
+        "LLD-0.1.0"
+      ],
+      "falsifier": "Any execution contradicting this acceptance statement, or any required evidence missing/invalid, prevents satisfaction.",
+      "supporting_owners": [
+        "IIEA"
+      ],
+      "verification_executor": "Quality with the owning implementation lane; mission assurance consumes resulting evidence only.",
+      "claim_conditions": {
+        "state": "Pinned input/predecessor, assigned task and phase, exact implementation, and declared starting state of the selected use sequence.",
+        "evidence": [
+          "Resolved binding",
+          "current authority projection",
+          "denied-call dispatch count"
+        ],
+        "causal_path": "Authenticated ingress -> current admission -> exact bounded operation -> independently observed effect/result -> durable receipt -> permitted handoff; include negative cut points.",
+        "authority": "Host-authenticated principal and current grant/lease/policy for this exact operation; architecture change and final closeout stay human-bound.",
+        "timing_freshness": "Current policy/epoch at use; expiry exclusive; exact-candidate evidence; binding-specific evidence age and LOCAL-CTRL-1 or pinned model profile.",
+        "invariant": "Resolve every operation to one canonical implementation, authenticated principal, lane/stage, task, policy, roots, effects, and predecessor identities. Missing or conflicting bindings cause zero dispatches.",
+        "impossible_if": "Any observed effect or result contradicts the acceptance predicate; missing an indispensable causal edge makes the claimed explanation unproved.",
+        "hold_if_missing": "Any required witness, target/source pin, authoritative proof, resource profile, owner, or applicable assertion."
+      }
+    },
+    {
+      "id": "HMT-F02",
+      "revision": 1,
+      "category": "Functional",
+      "owner": "Host",
+      "reviewer": "MissionAssurance + owning upstream/downstream lane",
+      "title": "Call-time admission",
+      "acceptance": "Intersect principal, role, lane, stage, task ownership, lease, epoch, policy, resource scope, and current evidence at the effect boundary. Hidden-tool direct invocation receives the same decision.",
+      "verification_method": "API boundary tests and concurrent authority-change experiments",
+      "required_evidence": [
+        "Authenticated identity",
+        "policy/epoch",
+        "admission event",
+        "endpoint effect journal"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "gate_id": "G-AUTH",
+      "mechanisms": [
+        "control",
+        "auth",
+        "cross",
+        "tamper"
+      ],
+      "assertion_id": "A-F02",
+      "qualification_status": "NOT_EXECUTED",
+      "threshold_status": "PINNED_CONTRACT",
+      "source_refs": [
+        "USER-REQ-2026-10-26",
+        "PLAN-REV2",
+        "LLD-0.1.0"
+      ],
+      "falsifier": "Any execution contradicting this acceptance statement, or any required evidence missing/invalid, prevents satisfaction.",
+      "supporting_owners": [
+        "CSSI"
+      ],
+      "verification_executor": "Quality with the owning implementation lane; mission assurance consumes resulting evidence only.",
+      "claim_conditions": {
+        "state": "Pinned input/predecessor, assigned task and phase, exact implementation, and declared starting state of the selected use sequence.",
+        "evidence": [
+          "Authenticated identity",
+          "policy/epoch",
+          "admission event",
+          "endpoint effect journal"
+        ],
+        "causal_path": "Authenticated ingress -> current admission -> exact bounded operation -> independently observed effect/result -> durable receipt -> permitted handoff; include negative cut points.",
+        "authority": "Host-authenticated principal and current grant/lease/policy for this exact operation; architecture change and final closeout stay human-bound.",
+        "timing_freshness": "Current policy/epoch at use; expiry exclusive; exact-candidate evidence; binding-specific evidence age and LOCAL-CTRL-1 or pinned model profile.",
+        "invariant": "Intersect principal, role, lane, stage, task ownership, lease, epoch, policy, resource scope, and current evidence at the effect boundary. Hidden-tool direct invocation receives the same decision.",
+        "impossible_if": "Any observed effect or result contradicts the acceptance predicate; missing an indispensable causal edge makes the claimed explanation unproved.",
+        "hold_if_missing": "Any required witness, target/source pin, authoritative proof, resource profile, owner, or applicable assertion."
+      }
+    },
+    {
+      "id": "HMT-F03",
+      "revision": 1,
+      "category": "Functional",
+      "owner": "IIEA",
+      "reviewer": "MissionAssurance + owning upstream/downstream lane",
+      "title": "Strict operation contracts",
+      "acceptance": "Reject unknown fields, coercions, excess depth/size, unsupported versions, and invalid outputs before downstream promotion; validate before invoking target where applicable. Versioned closed contracts preserve native semantics.",
+      "verification_method": "Schema boundary tests through both transports",
+      "required_evidence": [
+        "Input/output bytes or redacted digests",
+        "validation errors",
+        "zero-effect witness"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "gate_id": "G-SCHEMA",
+      "mechanisms": [
+        "control",
+        "malformed",
+        "drift"
+      ],
+      "assertion_id": "A-F03",
+      "qualification_status": "NOT_EXECUTED",
+      "threshold_status": "PINNED_CONTRACT",
+      "source_refs": [
+        "USER-REQ-2026-10-26",
+        "PLAN-REV2",
+        "LLD-0.1.0"
+      ],
+      "falsifier": "Any execution contradicting this acceptance statement, or any required evidence missing/invalid, prevents satisfaction.",
+      "supporting_owners": [],
+      "verification_executor": "Quality with the owning implementation lane; mission assurance consumes resulting evidence only.",
+      "claim_conditions": {
+        "state": "Pinned input/predecessor, assigned task and phase, exact implementation, and declared starting state of the selected use sequence.",
+        "evidence": [
+          "Input/output bytes or redacted digests",
+          "validation errors",
+          "zero-effect witness"
+        ],
+        "causal_path": "Authenticated ingress -> current admission -> exact bounded operation -> independently observed effect/result -> durable receipt -> permitted handoff; include negative cut points.",
+        "authority": "Host-authenticated principal and current grant/lease/policy for this exact operation; architecture change and final closeout stay human-bound.",
+        "timing_freshness": "Current policy/epoch at use; expiry exclusive; exact-candidate evidence; binding-specific evidence age and LOCAL-CTRL-1 or pinned model profile.",
+        "invariant": "Reject unknown fields, coercions, excess depth/size, unsupported versions, and invalid outputs before downstream promotion; validate before invoking target where applicable. Versioned closed contracts preserve native semantics.",
+        "impossible_if": "Any observed effect or result contradicts the acceptance predicate; missing an indispensable causal edge makes the claimed explanation unproved.",
+        "hold_if_missing": "Any required witness, target/source pin, authoritative proof, resource profile, owner, or applicable assertion."
+      }
+    },
+    {
+      "id": "HMT-F18",
+      "revision": 1,
+      "category": "Functional",
+      "owner": "Custody",
+      "reviewer": "MissionAssurance + owning upstream/downstream lane",
+      "title": "Local atomic intent and deduplication",
+      "acceptance": "Within one owning SQLite transaction, commit state change, durable intent, and required receipt/outbox record together. Duplicate delivery preserves original effect/input identity; collisions reject; two task stores are forbidden.",
+      "verification_method": "Crash injection at transaction boundaries; duplicate/collision tests",
+      "required_evidence": [
+        "Before/after database snapshots",
+        "commit journal",
+        "effect/message mapping",
+        "outbox/inbox rows"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "gate_id": "G-RUNTIME",
+      "mechanisms": [
+        "control",
+        "crash",
+        "duplicate"
+      ],
+      "assertion_id": "A-F18",
+      "qualification_status": "NOT_EXECUTED",
+      "threshold_status": "PINNED_CONTRACT",
+      "source_refs": [
+        "USER-REQ-2026-10-26",
+        "PLAN-REV2",
+        "LLD-0.1.0"
+      ],
+      "falsifier": "Any execution contradicting this acceptance statement, or any required evidence missing/invalid, prevents satisfaction.",
+      "supporting_owners": [
+        "Host"
+      ],
+      "verification_executor": "Quality with the owning implementation lane; mission assurance consumes resulting evidence only.",
+      "claim_conditions": {
+        "state": "Pinned input/predecessor, assigned task and phase, exact implementation, and declared starting state of the selected use sequence.",
+        "evidence": [
+          "Before/after database snapshots",
+          "commit journal",
+          "effect/message mapping",
+          "outbox/inbox rows"
+        ],
+        "causal_path": "Authenticated ingress -> current admission -> exact bounded operation -> independently observed effect/result -> durable receipt -> permitted handoff; include negative cut points.",
+        "authority": "Host-authenticated principal and current grant/lease/policy for this exact operation; architecture change and final closeout stay human-bound.",
+        "timing_freshness": "Current policy/epoch at use; expiry exclusive; exact-candidate evidence; binding-specific evidence age and LOCAL-CTRL-1 or pinned model profile.",
+        "invariant": "Within one owning SQLite transaction, commit state change, durable intent, and required receipt/outbox record together. Duplicate delivery preserves original effect/input identity; collisions reject; two task stores are forbidden.",
+        "impossible_if": "Any observed effect or result contradicts the acceptance predicate; missing an indispensable causal edge makes the claimed explanation unproved.",
+        "hold_if_missing": "Any required witness, target/source pin, authoritative proof, resource profile, owner, or applicable assertion."
+      }
+    },
+    {
+      "id": "HMT-F20",
+      "revision": 1,
+      "category": "Functional",
+      "owner": "Host",
+      "reviewer": "MissionAssurance + owning upstream/downstream lane",
+      "title": "Capability binding admission",
+      "acceptance": "Every registered operation has credential/egress and retry/reconciliation fields, effect class, schemas, source pins, resource limits, evidence, and owner. Unresolved fields block that operation; optional-provider absence does not block unrelated lanes.",
+      "verification_method": "Closed-schema and incomplete-binding tests",
+      "required_evidence": [
+        "Per-operation validated binding",
+        "readiness projection",
+        "denied incomplete registration"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "gate_id": "G-ARCH",
+      "mechanisms": [
+        "control",
+        "drift",
+        "auth"
+      ],
+      "assertion_id": "A-F20",
+      "qualification_status": "NOT_EXECUTED",
+      "threshold_status": "PINNED_CONTRACT",
+      "source_refs": [
+        "USER-REQ-2026-10-26",
+        "PLAN-REV2",
+        "LLD-0.1.0"
+      ],
+      "falsifier": "Any execution contradicting this acceptance statement, or any required evidence missing/invalid, prevents satisfaction.",
+      "supporting_owners": [
+        "IIEA"
+      ],
+      "verification_executor": "Quality with the owning implementation lane; mission assurance consumes resulting evidence only.",
+      "claim_conditions": {
+        "state": "Pinned input/predecessor, assigned task and phase, exact implementation, and declared starting state of the selected use sequence.",
+        "evidence": [
+          "Per-operation validated binding",
+          "readiness projection",
+          "denied incomplete registration"
+        ],
+        "causal_path": "Authenticated ingress -> current admission -> exact bounded operation -> independently observed effect/result -> durable receipt -> permitted handoff; include negative cut points.",
+        "authority": "Host-authenticated principal and current grant/lease/policy for this exact operation; architecture change and final closeout stay human-bound.",
+        "timing_freshness": "Current policy/epoch at use; expiry exclusive; exact-candidate evidence; binding-specific evidence age and LOCAL-CTRL-1 or pinned model profile.",
+        "invariant": "Every registered operation has credential/egress and retry/reconciliation fields, effect class, schemas, source pins, resource limits, evidence, and owner. Unresolved fields block that operation; optional-provider absence does not block unrelated lanes.",
+        "impossible_if": "Any observed effect or result contradicts the acceptance predicate; missing an indispensable causal edge makes the claimed explanation unproved.",
+        "hold_if_missing": "Any required witness, target/source pin, authoritative proof, resource profile, owner, or applicable assertion."
+      }
+    },
+    {
+      "id": "HMT-N07",
+      "revision": 1,
+      "category": "Nonfunctional",
+      "owner": "Host",
+      "reviewer": "MissionAssurance + owning upstream/downstream lane",
+      "title": "Temporal authority",
+      "acceptance": "Expiry is exclusive; full clock uncertainty interval must fit grant interval. Revoke and dispatch admission serialize within their authority domain. No admission after committed revoke; stale worker leases cannot commit. Unknown clock trust or rollback yields HOLD.",
+      "verification_method": "Exact-expiry, skew, rollback and revoke-race boundary tests",
+      "required_evidence": [
+        "Clock interval",
+        "ordered revoke/admission records",
+        "lease fence",
+        "endpoint grant check"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "gate_id": "G-AUTH",
+      "mechanisms": [
+        "control",
+        "auth",
+        "timeout"
+      ],
+      "assertion_id": "A-N07",
+      "qualification_status": "NOT_EXECUTED",
+      "threshold_status": "PINNED_ENGINEERING_TARGET_UNMEASURED",
+      "source_refs": [
+        "USER-REQ-2026-10-26",
+        "PLAN-REV2",
+        "LLD-0.1.0"
+      ],
+      "falsifier": "Any execution contradicting this acceptance statement, or any required evidence missing/invalid, prevents satisfaction.",
+      "supporting_owners": [
+        "CSSI"
+      ],
+      "verification_executor": "Quality with the owning implementation lane; mission assurance consumes resulting evidence only.",
+      "claim_conditions": {
+        "state": "Pinned input/predecessor, assigned task and phase, exact implementation, and declared starting state of the selected use sequence.",
+        "evidence": [
+          "Clock interval",
+          "ordered revoke/admission records",
+          "lease fence",
+          "endpoint grant check"
+        ],
+        "causal_path": "Authenticated ingress -> current admission -> exact bounded operation -> independently observed effect/result -> durable receipt -> permitted handoff; include negative cut points.",
+        "authority": "Host-authenticated principal and current grant/lease/policy for this exact operation; architecture change and final closeout stay human-bound.",
+        "timing_freshness": "Current policy/epoch at use; expiry exclusive; exact-candidate evidence; binding-specific evidence age and LOCAL-CTRL-1 or pinned model profile.",
+        "invariant": "Expiry is exclusive; full clock uncertainty interval must fit grant interval. Revoke and dispatch admission serialize within their authority domain. No admission after committed revoke; stale worker leases cannot commit. Unknown clock trust or rollback yields HOLD.",
+        "impossible_if": "Any observed effect or result contradicts the acceptance predicate; missing an indispensable causal edge makes the claimed explanation unproved.",
+        "hold_if_missing": "Any required witness, target/source pin, authoritative proof, resource profile, owner, or applicable assertion."
+      }
+    },
+    {
+      "id": "HMT-N11",
+      "revision": 1,
+      "category": "Nonfunctional",
+      "owner": "Quality",
+      "reviewer": "MissionAssurance + owning upstream/downstream lane",
+      "title": "Coverage and mutation adequacy",
+      "acceptance": "100% required applicable assertions have current witnesses; all critical gate mutants are killed; changed first-party executable code branch coverage >=90% with fixed denominator and no exclusions/suppressions. Every surviving noncritical mutant receives disposition; no aggregate score hides a critical survivor.",
+      "verification_method": "Coverage and mutation campaigns with immutable denominator",
+      "required_evidence": [
+        "Covered/total branches",
+        "mutant catalog",
+        "killed/survived results",
+        "critical gate effects"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "gate_id": "G-QUALITY",
+      "mechanisms": [
+        "control",
+        "tamper",
+        "suppression"
+      ],
+      "assertion_id": "A-N11",
+      "qualification_status": "NOT_EXECUTED",
+      "threshold_status": "PINNED_ENGINEERING_TARGET_UNMEASURED",
+      "source_refs": [
+        "USER-REQ-2026-10-26",
+        "PLAN-REV2",
+        "LLD-0.1.0"
+      ],
+      "falsifier": "Any execution contradicting this acceptance statement, or any required evidence missing/invalid, prevents satisfaction.",
+      "supporting_owners": [
+        "Build"
+      ],
+      "verification_executor": "Quality with the owning implementation lane; mission assurance consumes resulting evidence only.",
+      "claim_conditions": {
+        "state": "Pinned input/predecessor, assigned task and phase, exact implementation, and declared starting state of the selected use sequence.",
+        "evidence": [
+          "Covered/total branches",
+          "mutant catalog",
+          "killed/survived results",
+          "critical gate effects"
+        ],
+        "causal_path": "Authenticated ingress -> current admission -> exact bounded operation -> independently observed effect/result -> durable receipt -> permitted handoff; include negative cut points.",
+        "authority": "Host-authenticated principal and current grant/lease/policy for this exact operation; architecture change and final closeout stay human-bound.",
+        "timing_freshness": "Current policy/epoch at use; expiry exclusive; exact-candidate evidence; binding-specific evidence age and LOCAL-CTRL-1 or pinned model profile.",
+        "invariant": "100% required applicable assertions have current witnesses; all critical gate mutants are killed; changed first-party executable code branch coverage >=90% with fixed denominator and no exclusions/suppressions. Every surviving noncritical mutant receives disposition; no aggregate score hides a critical survivor.",
+        "impossible_if": "Any observed effect or result contradicts the acceptance predicate; missing an indispensable causal edge makes the claimed explanation unproved.",
+        "hold_if_missing": "Any required witness, target/source pin, authoritative proof, resource profile, owner, or applicable assertion."
+      }
+    },
+    {
+      "id": "HMT-N12",
+      "revision": 1,
+      "category": "Nonfunctional",
+      "owner": "DOKE",
+      "reviewer": "MissionAssurance + owning upstream/downstream lane",
+      "title": "Evidence identity and retention",
+      "acceptance": "Every claim witness binds source/build/policy/schema/environment, UTC event time, monotonic duration where applicable, raw artifact digests, producer identity, and replay scope. No automatic evidence/tombstone deletion in baseline. Freshness evaluated at use under pinned profile.",
+      "verification_method": "Tampered/stale/mixed-build evidence and retention-capacity tests",
+      "required_evidence": [
+        "Hash manifest",
+        "authenticated producer records",
+        "freshness decision",
+        "retained failures",
+        "replay ranges"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "gate_id": "G-REPLAY",
+      "mechanisms": [
+        "control",
+        "tamper",
+        "drift"
+      ],
+      "assertion_id": "A-N12",
+      "qualification_status": "NOT_EXECUTED",
+      "threshold_status": "PINNED_ENGINEERING_TARGET_UNMEASURED",
+      "source_refs": [
+        "USER-REQ-2026-10-26",
+        "PLAN-REV2",
+        "LLD-0.1.0"
+      ],
+      "falsifier": "Any execution contradicting this acceptance statement, or any required evidence missing/invalid, prevents satisfaction.",
+      "supporting_owners": [
+        "OPS"
+      ],
+      "verification_executor": "Quality with the owning implementation lane; mission assurance consumes resulting evidence only.",
+      "claim_conditions": {
+        "state": "Pinned input/predecessor, assigned task and phase, exact implementation, and declared starting state of the selected use sequence.",
+        "evidence": [
+          "Hash manifest",
+          "authenticated producer records",
+          "freshness decision",
+          "retained failures",
+          "replay ranges"
+        ],
+        "causal_path": "Authenticated ingress -> current admission -> exact bounded operation -> independently observed effect/result -> durable receipt -> permitted handoff; include negative cut points.",
+        "authority": "Host-authenticated principal and current grant/lease/policy for this exact operation; architecture change and final closeout stay human-bound.",
+        "timing_freshness": "Current policy/epoch at use; expiry exclusive; exact-candidate evidence; binding-specific evidence age and LOCAL-CTRL-1 or pinned model profile.",
+        "invariant": "Every claim witness binds source/build/policy/schema/environment, UTC event time, monotonic duration where applicable, raw artifact digests, producer identity, and replay scope. No automatic evidence/tombstone deletion in baseline. Freshness evaluated at use under pinned profile.",
+        "impossible_if": "Any observed effect or result contradicts the acceptance predicate; missing an indispensable causal edge makes the claimed explanation unproved.",
+        "hold_if_missing": "Any required witness, target/source pin, authoritative proof, resource profile, owner, or applicable assertion."
+      }
+    },
+    {
+      "id": "HMT-B10",
+      "revision": 1,
+      "category": "Behavioral",
+      "owner": "Supervisor",
+      "reviewer": "MissionAssurance + owning upstream/downstream lane",
+      "title": "Contradictory tracer and controlled change",
+      "acceptance": "A reproducible contradiction reopens exact requirements/assumptions and affected packages; retain original expectation and witness. Worker stops affected progression, files change request, and cannot relax success criteria. New baseline requires architecture-authority decision and regression closure.",
+      "verification_method": "Sequence S10 with intentionally false pinned assumption",
+      "required_evidence": [
+        "Contradiction",
+        "impact graph",
+        "change request",
+        "decision",
+        "old/new requirement revisions",
+        "rerun evidence"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "gate_id": "G-QUALITY",
+      "mechanisms": [
+        "control",
+        "drift",
+        "tamper"
+      ],
+      "assertion_id": "A-B10",
+      "qualification_status": "NOT_EXECUTED",
+      "threshold_status": "PINNED_CONTRACT",
+      "source_refs": [
+        "USER-REQ-2026-10-26",
+        "PLAN-REV2",
+        "LLD-0.1.0"
+      ],
+      "falsifier": "Any execution contradicting this acceptance statement, or any required evidence missing/invalid, prevents satisfaction.",
+      "supporting_owners": [
+        "Quality"
+      ],
+      "verification_executor": "Quality with the owning implementation lane; mission assurance consumes resulting evidence only.",
+      "claim_conditions": {
+        "state": "Pinned input/predecessor, assigned task and phase, exact implementation, and declared starting state of the selected use sequence.",
+        "evidence": [
+          "Contradiction",
+          "impact graph",
+          "change request",
+          "decision",
+          "old/new requirement revisions",
+          "rerun evidence"
+        ],
+        "causal_path": "Authenticated ingress -> current admission -> exact bounded operation -> independently observed effect/result -> durable receipt -> permitted handoff; include negative cut points.",
+        "authority": "Host-authenticated principal and current grant/lease/policy for this exact operation; architecture change and final closeout stay human-bound.",
+        "timing_freshness": "Current policy/epoch at use; expiry exclusive; exact-candidate evidence; binding-specific evidence age and LOCAL-CTRL-1 or pinned model profile.",
+        "invariant": "A reproducible contradiction reopens exact requirements/assumptions and affected packages; retain original expectation and witness. Worker stops affected progression, files change request, and cannot relax success criteria. New baseline requires architecture-authority decision and regression closure.",
+        "impossible_if": "Any observed effect or result contradicts the acceptance predicate; missing an indispensable causal edge makes the claimed explanation unproved.",
+        "hold_if_missing": "Any required witness, target/source pin, authoritative proof, resource profile, owner, or applicable assertion."
+      }
+    },
+    {
+      "id": "HMT-B11",
+      "revision": 1,
+      "category": "Behavioral",
+      "owner": "Quality",
+      "reviewer": "MissionAssurance + owning upstream/downstream lane",
+      "title": "Evidence-based test supersession",
+      "acceptance": "Retain old failure/test identity. Superseding test must cover same requirement, failure mechanism, and boundaries, with matched reproduction and repair evidence; otherwise record changed contract and approved revision. New pass alone cannot close old failure.",
+      "verification_method": "Sequence S11; weaker replacement and changed-boundary controls",
+      "required_evidence": [
+        "Old/new test hashes",
+        "coverage equivalence",
+        "original fail",
+        "repaired rerun",
+        "approved contract delta"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "gate_id": "G-QUALITY",
+      "mechanisms": [
+        "control",
+        "suppression",
+        "drift"
+      ],
+      "assertion_id": "A-B11",
+      "qualification_status": "NOT_EXECUTED",
+      "threshold_status": "PINNED_CONTRACT",
+      "source_refs": [
+        "USER-REQ-2026-10-26",
+        "PLAN-REV2",
+        "LLD-0.1.0"
+      ],
+      "falsifier": "Any execution contradicting this acceptance statement, or any required evidence missing/invalid, prevents satisfaction.",
+      "supporting_owners": [
+        "RRCA"
+      ],
+      "verification_executor": "Quality with the owning implementation lane; mission assurance consumes resulting evidence only.",
+      "claim_conditions": {
+        "state": "Pinned input/predecessor, assigned task and phase, exact implementation, and declared starting state of the selected use sequence.",
+        "evidence": [
+          "Old/new test hashes",
+          "coverage equivalence",
+          "original fail",
+          "repaired rerun",
+          "approved contract delta"
+        ],
+        "causal_path": "Authenticated ingress -> current admission -> exact bounded operation -> independently observed effect/result -> durable receipt -> permitted handoff; include negative cut points.",
+        "authority": "Host-authenticated principal and current grant/lease/policy for this exact operation; architecture change and final closeout stay human-bound.",
+        "timing_freshness": "Current policy/epoch at use; expiry exclusive; exact-candidate evidence; binding-specific evidence age and LOCAL-CTRL-1 or pinned model profile.",
+        "invariant": "Retain old failure/test identity. Superseding test must cover same requirement, failure mechanism, and boundaries, with matched reproduction and repair evidence; otherwise record changed contract and approved revision. New pass alone cannot close old failure.",
+        "impossible_if": "Any observed effect or result contradicts the acceptance predicate; missing an indispensable causal edge makes the claimed explanation unproved.",
+        "hold_if_missing": "Any required witness, target/source pin, authoritative proof, resource profile, owner, or applicable assertion."
+      }
+    },
+    {
+      "id": "HMT-B12",
+      "revision": 1,
+      "category": "Behavioral",
+      "owner": "RRCA",
+      "reviewer": "MissionAssurance + owning upstream/downstream lane",
+      "title": "Causal edge deletion family",
+      "acceptance": "For every claimed dependency run intact baseline, edge deletion, restoration, matched/sham control, and alternate-path compensation enabled/disabled. Failure to affect output under redundancy cannot establish irrelevance; bound conclusion to observed paths.",
+      "verification_method": "Sequence S12 per named causal edge",
+      "required_evidence": [
+        "Edge-specific experiment plan",
+        "controlled states/seeds",
+        "all arm observations",
+        "alternative-path analysis"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "gate_id": "G-SEMANTIC",
+      "mechanisms": [
+        "control",
+        "tamper",
+        "drift"
+      ],
+      "assertion_id": "A-B12",
+      "qualification_status": "NOT_EXECUTED",
+      "threshold_status": "PINNED_CONTRACT",
+      "source_refs": [
+        "USER-REQ-2026-10-26",
+        "PLAN-REV2",
+        "LLD-0.1.0"
+      ],
+      "falsifier": "Any execution contradicting this acceptance statement, or any required evidence missing/invalid, prevents satisfaction.",
+      "supporting_owners": [
+        "Quality"
+      ],
+      "verification_executor": "Quality with the owning implementation lane; mission assurance consumes resulting evidence only.",
+      "claim_conditions": {
+        "state": "Pinned input/predecessor, assigned task and phase, exact implementation, and declared starting state of the selected use sequence.",
+        "evidence": [
+          "Edge-specific experiment plan",
+          "controlled states/seeds",
+          "all arm observations",
+          "alternative-path analysis"
+        ],
+        "causal_path": "Authenticated ingress -> current admission -> exact bounded operation -> independently observed effect/result -> durable receipt -> permitted handoff; include negative cut points.",
+        "authority": "Host-authenticated principal and current grant/lease/policy for this exact operation; architecture change and final closeout stay human-bound.",
+        "timing_freshness": "Current policy/epoch at use; expiry exclusive; exact-candidate evidence; binding-specific evidence age and LOCAL-CTRL-1 or pinned model profile.",
+        "invariant": "For every claimed dependency run intact baseline, edge deletion, restoration, matched/sham control, and alternate-path compensation enabled/disabled. Failure to affect output under redundancy cannot establish irrelevance; bound conclusion to observed paths.",
+        "impossible_if": "Any observed effect or result contradicts the acceptance predicate; missing an indispensable causal edge makes the claimed explanation unproved.",
+        "hold_if_missing": "Any required witness, target/source pin, authoritative proof, resource profile, owner, or applicable assertion."
+      }
+    },
+    {
+      "id": "HMT-B15",
+      "revision": 1,
+      "category": "Behavioral",
+      "owner": "Supervisor",
+      "reviewer": "MissionAssurance + owning upstream/downstream lane",
+      "title": "Delegation and final acceptance",
+      "acceptance": "Work packages pin requirement revisions, inputs, interfaces, owned files, expected observations, budgets, forbidden effects, and reopen route. Supervisor reconciles upstream/downstream attestations. Human retains architecture change and final closeout authority.",
+      "verification_method": "Cross-package contradiction and release rehearsal",
+      "required_evidence": [
+        "Package manifests",
+        "coupling checks",
+        "eight-column attestation ledger when delegated",
+        "exact-build acceptance packet"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "gate_id": "G-RELEASE",
+      "mechanisms": [
+        "control",
+        "tamper",
+        "drift"
+      ],
+      "assertion_id": "A-B15",
+      "qualification_status": "NOT_EXECUTED",
+      "threshold_status": "PINNED_CONTRACT",
+      "source_refs": [
+        "USER-REQ-2026-10-26",
+        "PLAN-REV2",
+        "LLD-0.1.0"
+      ],
+      "falsifier": "Any execution contradicting this acceptance statement, or any required evidence missing/invalid, prevents satisfaction.",
+      "supporting_owners": [
+        "Host"
+      ],
+      "verification_executor": "Quality with the owning implementation lane; mission assurance consumes resulting evidence only.",
+      "claim_conditions": {
+        "state": "Pinned input/predecessor, assigned task and phase, exact implementation, and declared starting state of the selected use sequence.",
+        "evidence": [
+          "Package manifests",
+          "coupling checks",
+          "eight-column attestation ledger when delegated",
+          "exact-build acceptance packet"
+        ],
+        "causal_path": "Authenticated ingress -> current admission -> exact bounded operation -> independently observed effect/result -> durable receipt -> permitted handoff; include negative cut points.",
+        "authority": "Host-authenticated principal and current grant/lease/policy for this exact operation; architecture change and final closeout stay human-bound.",
+        "timing_freshness": "Current policy/epoch at use; expiry exclusive; exact-candidate evidence; binding-specific evidence age and LOCAL-CTRL-1 or pinned model profile.",
+        "invariant": "Work packages pin requirement revisions, inputs, interfaces, owned files, expected observations, budgets, forbidden effects, and reopen route. Supervisor reconciles upstream/downstream attestations. Human retains architecture change and final closeout authority.",
+        "impossible_if": "Any observed effect or result contradicts the acceptance predicate; missing an indispensable causal edge makes the claimed explanation unproved.",
+        "hold_if_missing": "Any required witness, target/source pin, authoritative proof, resource profile, owner, or applicable assertion."
+      }
+    }
+  ],
+  "whole_requirements_qualified": false,
+  "integration": "BLOCKED",
+  "merge_deployment": "NOT_AUTHORIZED",
+  "source_manifest": "evidence/inspection_candidate.json",
+  "source_manifest_sha256": "42b15d77624fdfd18d7b2c2f5b7d39754477c52611fd85751a12f3773daeaf15",
+  "definition_of_done": "contracts/WP-01-LOCAL-INSPECT-001.json",
+  "native_contract": "Unchanged EmptyArguments -> Decision; shared native function extracted from prior LaneSurface branch. Canonical host authority retained.",
+  "effect": "LOCAL_MUTATION: clock checkpoint and immutable receipt share one host transaction. No task/mission/external effect.",
+  "baseline": {
+    "record": "evidence/inspection_baseline.json",
+    "tests": 9,
+    "failures": 8,
+    "native_positive_controls": 1,
+    "interpretation": "Earlier raw surface did not consume the new descriptor. Explicit legacy test backend only; not production fallback or a reopened accepted bot alias."
+  },
+  "actual_receipt_witness": "evidence/inspection_positive_receipt_export.json",
+  "requirement_assertion_receipt_trace": [
+    {
+      "requirements": [
+        "HMT-F01@1",
+        "HMT-F20@1"
+      ],
+      "tests": [
+        "tests/test_inspection_admission.py",
+        "tests/test_inspection_protocol.py",
+        "tests/test_inspection_registration.py"
+      ],
+      "expected": "Missing/conflicting/stale/incomplete binding: no native dispatch and no committed invocation state. Actual direct/MCP parity and native positive result.",
+      "receipts": [
+        "evidence/inspection_baseline.json",
+        "evidence/inspection_protocol.xml",
+        "evidence/inspection_full.xml",
+        "evidence/inspection_positive_receipt_export.json"
+      ]
+    },
+    {
+      "requirements": [
+        "HMT-F02@1",
+        "HMT-N07@1",
+        "HMT-F18@1"
+      ],
+      "tests": [
+        "tests/test_inspection_sequences.py",
+        "tests/test_inspection_temporal.py",
+        "tests/test_inspection_receipts.py"
+      ],
+      "expected": "Current native authority, exclusive expiry and deadlines; receipt/clock atomicity. Post-dispatch failure retains observed dispatch, rolls back database and does not return success.",
+      "receipts": [
+        "evidence/inspection_full.xml",
+        "evidence/inspection_positive_receipt_export.json"
+      ]
+    },
+    {
+      "requirements": [
+        "HMT-F03@1",
+        "HMT-N11@1",
+        "HMT-B12@1",
+        "HMT-B15@1"
+      ],
+      "tests": [
+        "tests/test_inspection_boundaries.py",
+        "tests/test_inspection_diagnostics.py",
+        "tests/inspection_family_driver.py"
+      ],
+      "expected": "Closed schemas/bounds, receipt integrity, four killed critical mutants and six causal arms; all465previous cases retained.",
+      "receipts": [
+        "evidence/inspection_mutations.json",
+        "evidence/inspection_causal_family.json",
+        "evidence/inspection_collection.json"
+      ]
+    }
+  ],
+  "results": {
+    "cumulative": 545,
+    "new_cases": 80,
+    "prior_ids_retained": 465,
+    "failures_errors_skips": 0,
+    "verification_unittest": 27,
+    "ruff": 0,
+    "pyrefly_basic": 0,
+    "structure": 0,
+    "changed_branches": [
+      296,
+      314
+    ],
+    "changed_files": 38,
+    "exclusions": 0,
+    "causal_arms": 6,
+    "critical_mutants_killed": 4
+  },
+  "personal_verification": {
+    "source_inspected": [
+      "inspection_binding/execution/surface/receipts and policy/models",
+      "native function extraction and shared protected launch reader",
+      "unchanged host admission/store/native schemas",
+      "upstream descriptor/current authority and downstream native-result/receipt coupling"
+    ],
+    "assertions_and_raw_evidence_inspected": [
+      "baseline8failures and positive control",
+      "actual SDK stdio/direct observers and receipt rows",
+      "registration, boundaries, revocation, post-dispatch rollback",
+      "source overlays and expected causal/mutation results",
+      "source inventories, collection inclusion and fixed coverage"
+    ],
+    "executed": [
+      "545 cumulative pytest cases on isolated170-file snapshot",
+      "80 scoped cases during development",
+      "27 verification unittest cases",
+      "real direct/MCP positive receipt export after suite",
+      "four critical mutants and six causal arms",
+      "Ruff, Pyrefly basic, structure/suppression gates"
+    ],
+    "not_claimed": [
+      "independent runtime-producer authentication",
+      "independent out-of-band acceptance of this candidate",
+      "production/default launcher activation",
+      "complete F01/F20 or all11work-package acceptance"
+    ],
+    "new_delegation": false
+  },
+  "source_and_evidence_limits": [
+    "Nine-file descriptor pins cover the native inspection/admission spine; the complete adapter/test/config inventory is pinned separately in inspection_candidate.json. Trusted Python loader and package/runtime protection remain deployment assumptions.",
+    "Synthetic protected launch config, credential references, grants, task and clocks only. No actual external provider or production credential provisioned.",
+    "Discovery may checkpoint admission time but dispatches no native inspection and creates no operation receipt.",
+    "Native receipt diagnostics are trusted host reads, not an exposed tool or grant.",
+    "Single owning SQLite transaction supports tested atomic rollback; no new power-loss, HA, disk-full or retry-exactly-once qualification.",
+    "Resource and logical deadline guards are tested; LOCAL-CTRL-1 target latency, memory, concurrency and OS/network isolation remain unqualified.",
+    "Default launcher routing preserved; the configured adapter was exercised with a test-only launcher. Generic26vendor bindings remain unresolved.",
+    "Legacy baseline helper formatting was corrected without changing predicates; original bytes and failures remain preserved. Initial Ruff failures, rejected duplicate-file patch request and missing-PYTHONPATH schema invocation are retained as development/invocation errors, not waived gates."
+  ],
+  "commands": {
+    "baseline": "HMT_INSPECTION_TRACER=legacy uv run --no-sync python -m pytest tests/test_inspection_admission.py -q --junitxml=evidence/inspection_before.xml",
+    "cumulative": "HMT_INSPECTION_TRACER=qualified PYTHONPATH=src COVERAGE_FILE=/tmp/hmt-inspection-final.coverage uv run --project /workspace/scratch/bc6d4e512874/HMT-RnD-Environment --no-sync coverage run --source=hmt_rnd,scripts -m pytest -q --junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/inspection_full.xml",
+    "cwd": "/workspace/scratch/bc6d4e512874/supervisor_inspection_replay",
+    "unittest": "PYTHONPATH=src uv run --no-sync python -m unittest discover -s tests -p 'test_verification*.py' -v",
+    "other_commands": "Per-arm argv/cwd/source overlays/results in causal_family and mutations JSON; static raw logs retained."
+  },
+  "archives": "evidence/inspection_archives.json",
+  "coverage": "evidence/inspection_changed_coverage.json",
+  "remaining_blockers": "All recorded production/governance/operational HOLDs and11fullpackages remain open; no integration/merge/deployment authority."
+}

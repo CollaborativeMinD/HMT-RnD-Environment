@@ -10,7 +10,7 @@ from .mcp_server import LaneMCP
 from .mcp_surface import LaneSurface
 
 
-def load_binding(path: Path) -> LaneBinding:
+def read_launch(path: Path) -> bytes:
     flags = os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK
     with os.fdopen(os.open(path, flags), "rb") as source:
         info = os.fstat(source.fileno())
@@ -20,7 +20,11 @@ def load_binding(path: Path) -> LaneBinding:
         content = source.read(65537)
     if len(content) > 65536:
         raise ValueError("MCP_BINDING_BOUND")
-    return LaneBinding.model_validate_json(content)
+    return content
+
+
+def load_binding(path: Path) -> LaneBinding:
+    return LaneBinding.model_validate_json(read_launch(path))
 
 
 def main() -> None:

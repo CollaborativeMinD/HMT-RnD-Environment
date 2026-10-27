@@ -1,0 +1,63 @@
+E501 Line too long (101 > 100)
+  --> src/hmt_rnd/inspection_execution.py:19:101
+   |
+18 | def current(db: sqlite3.Connection, launch: LaneBinding, cap: InspectionCapability,
+19 |             clock: Callable[[], float], monotonic: Callable[[], float], deadline: float) -> Decision:
+   |                                                                                                     ^
+20 |     now = clock()
+21 |     if monotonic() >= deadline:
+   |
+
+E501 Line too long (101 > 100)
+  --> src/hmt_rnd/inspection_execution.py:60:101
+   |
+58 |         persist(db, InspectionReceipt(call_id=call_id, capability_sha256=digest,
+59 |                 source_manifest_sha256=receipt_digest(cap.source_pins), result=parsed,
+60 |                 input_schema_sha256=cap.input_schema_pin, output_schema_sha256=cap.output_schema_pin,
+   |                                                                                                     ^
+61 |                 arguments_sha256=receipt_digest(arguments),
+62 |                 result_sha256=receipt_digest(output), clock_checkpoint=checkpoint))
+   |
+
+E501 Line too long (106 > 100)
+  --> tests/test_inspection_observer.py:30:101
+   |
+28 | def receipts(store):
+29 |     with store.transaction() as db:
+30 |         return db.execute("SELECT id,body,digest FROM host_inspection_receipts ORDER BY rowid").fetchall()
+   |                                                                                                     ^^^^^^
+
+E501 Line too long (104 > 100)
+  --> tests/test_inspection_protocol.py:38:101
+   |
+36 |                 assert result.structured_content == direct
+37 |     asyncio.run(scenario())
+38 |     direct_calls, wire_calls = dispatches(tmp_path / "direct.jsonl"), dispatches(tmp_path / "mcp.jsonl")
+   |                                                                                                     ^^^^
+39 |     observed = {"fault": fault, "error": error, "direct": direct,
+40 |                 "direct_dispatches": direct_calls, "MCP_dispatches": wire_calls,
+   |
+
+E501 Line too long (101 > 100)
+  --> tests/test_inspection_protocol.py:41:101
+   |
+39 |     observed = {"fault": fault, "error": error, "direct": direct,
+40 |                 "direct_dispatches": direct_calls, "MCP_dispatches": wire_calls,
+41 |                 "receipt_count": len(receipts(store)), "tables_unchanged": snapshot(store) == before}
+   |                                                                                                     ^
+42 |     (tmp_path / "inspection_protocol_observation.json").write_text(json.dumps(observed, indent=2))
+43 |     if fault is not None:
+   |
+
+E501 Line too long (102 > 100)
+  --> tests/test_inspection_support.py:28:101
+   |
+26 |                implementation="hmt_rnd.mcp_surface.inspect_context",
+27 |                binding_sha256=receipt_digest(binding.model_dump(mode="json")), epoch=1,
+28 |                source_pins={p: hashlib.sha256((package / p).read_bytes()).hexdigest() for p in SPINE},
+   |                                                                                                     ^^
+29 |                input_schema_pin=receipt_digest(EmptyArguments.model_json_schema()),
+30 |                output_schema_pin=receipt_digest(Decision.model_json_schema()),
+   |
+
+Found 6 errors.

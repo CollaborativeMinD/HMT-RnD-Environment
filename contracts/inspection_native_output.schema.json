@@ -1,0 +1,53 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "principal": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Principal",
+      "type": "string"
+    },
+    "task_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Task Id",
+      "type": "string"
+    },
+    "task_revision": {
+      "title": "Task Revision",
+      "type": "integer"
+    },
+    "operation": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Operation",
+      "type": "string"
+    },
+    "policy": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Policy",
+      "type": "string"
+    },
+    "epoch": {
+      "title": "Epoch",
+      "type": "integer"
+    },
+    "effect_authority": {
+      "const": "NONE",
+      "default": "NONE",
+      "title": "Effect Authority",
+      "type": "string"
+    }
+  },
+  "required": [
+    "principal",
+    "task_id",
+    "task_revision",
+    "operation",
+    "policy",
+    "epoch"
+  ],
+  "title": "Decision",
+  "type": "object"
+}
