@@ -3,16 +3,11 @@ import hashlib
 from pathlib import Path
 
 from .lane_models import Candidate, GateContext, GateResult, Receipt
+from .lane_reader import read_regular
 
 
 def digest_file(path: Path, root: Path) -> str:
-    path, root = path.resolve(), root.resolve()
-    if not path.is_relative_to(root) or not path.is_file():
-        raise PermissionError("LANE_ARTIFACT_SCOPE")
-    with path.open("rb") as stream:
-        data = stream.read(16777217)
-    if len(data) > 16777216:
-        raise PermissionError("LANE_ARTIFACT_BOUND")
+    data = read_regular(path, root, 16777216, "LANE_ARTIFACT_SCOPE", "LANE_ARTIFACT_BOUND")
     return hashlib.sha256(data).hexdigest()
 
 
