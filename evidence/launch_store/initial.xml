@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="8" time="11.142" timestamp="2026-10-27T01:14:04.016222-04:00" hostname="812233b2011d"><testcase classname="evidence.launch_store.cases" name="test_revoked_launch_cannot_select_other_authority[authority-absolute-direct]" time="0.028" /><testcase classname="evidence.launch_store.cases" name="test_revoked_launch_cannot_select_other_authority[authority-absolute-mcp]" time="2.703" /><testcase classname="evidence.launch_store.cases" name="test_revoked_launch_cannot_select_other_authority[authority-relative-direct]" time="0.051" /><testcase classname="evidence.launch_store.cases" name="test_revoked_launch_cannot_select_other_authority[authority-relative-mcp]" time="2.841" /><testcase classname="evidence.launch_store.cases" name="test_revoked_launch_cannot_select_other_authority[alternate-absolute-direct]" time="0.028" /><testcase classname="evidence.launch_store.cases" name="test_revoked_launch_cannot_select_other_authority[alternate-absolute-mcp]" time="2.494" /><testcase classname="evidence.launch_store.cases" name="test_revoked_launch_cannot_select_other_authority[alternate-relative-direct]" time="0.041"><failure message="AssertionError: same launch selected alternate authority after cwd change&#10;assert False">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-165/test_revoked_launch_cannot_sel6')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x7f60a7d79450&gt;
+transport = 'direct', relative = True, cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("relative", [False, True], ids=["absolute", "relative"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_revoked_launch_cannot_select_other_authority(tmp_path, monkeypatch,
+                                                         transport, relative, cwd_name):
+        binding, cap, config, authority, alternate = setup(tmp_path, relative)
+        stores = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before = [snapshot(path) for path in stores]
+        config_bytes = config.read_bytes()
+        marker = tmp_path / "native.jsonl"
+        cwd = authority if cwd_name == "authority" else alternate
+        if transport == "mcp":
+            origin = asyncio.run(protocol(config, marker, authority))
+            observed = asyncio.run(protocol(config, marker, cwd))
+        else:
+            watch(monkeypatch, marker)
+            monkeypatch.chdir(cwd)
+            monkeypatch.chdir(authority)
+            origin_surface = InspectionSurface(binding, (cap,), lambda: 20.0)
+            with pytest.raises(PermissionError):
+                origin_surface.invoke("inspect_context", {})
+            origin = {"denied": True, "store": str(origin_surface.store.path)}
+            monkeypatch.chdir(cwd)
+            surface = InspectionSurface(binding, (cap,), lambda: 20.0)
+            try:
+                observed = {"denied": False, "result": surface.invoke("inspect_context", {})}
+            except PermissionError as error:
+                observed = {"denied": True, "error": str(error)}
+        evidence = dict(transport=transport, relative=relative, cwd=str(cwd),
+            config_sha256=hashlib.sha256(config_bytes).hexdigest(),
+            config=json.loads(config_bytes), origin=origin, observed=observed,
+            native_dispatches=markers(marker), receipts=[rows(path) for path in stores],
+            before=before, after=[snapshot(path) for path in stores])
+        output = PROJECT / "evidence/launch_store" / f"{transport}-{relative}-{cwd_name}.json"
+        output.write_text(json.dumps(evidence, indent=2) + "\n")
+        assert origin["denied"]
+        assert config.read_bytes() == config_bytes
+&gt;       assert observed["denied"], "same launch selected alternate authority after cwd change"
+E       AssertionError: same launch selected alternate authority after cwd change
+E       assert False
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/launch_store/cases.py:65: AssertionError</failure></testcase><testcase classname="evidence.launch_store.cases" name="test_revoked_launch_cannot_select_other_authority[alternate-relative-mcp]" time="2.221"><failure message="AssertionError: same launch selected alternate authority after cwd change&#10;assert False">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-165/test_revoked_launch_cannot_sel7')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x7f60a7ec2300&gt;
+transport = 'mcp', relative = True, cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("relative", [False, True], ids=["absolute", "relative"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_revoked_launch_cannot_select_other_authority(tmp_path, monkeypatch,
+                                                         transport, relative, cwd_name):
+        binding, cap, config, authority, alternate = setup(tmp_path, relative)
+        stores = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before = [snapshot(path) for path in stores]
+        config_bytes = config.read_bytes()
+        marker = tmp_path / "native.jsonl"
+        cwd = authority if cwd_name == "authority" else alternate
+        if transport == "mcp":
+            origin = asyncio.run(protocol(config, marker, authority))
+            observed = asyncio.run(protocol(config, marker, cwd))
+        else:
+            watch(monkeypatch, marker)
+            monkeypatch.chdir(cwd)
+            monkeypatch.chdir(authority)
+            origin_surface = InspectionSurface(binding, (cap,), lambda: 20.0)
+            with pytest.raises(PermissionError):
+                origin_surface.invoke("inspect_context", {})
+            origin = {"denied": True, "store": str(origin_surface.store.path)}
+            monkeypatch.chdir(cwd)
+            surface = InspectionSurface(binding, (cap,), lambda: 20.0)
+            try:
+                observed = {"denied": False, "result": surface.invoke("inspect_context", {})}
+            except PermissionError as error:
+                observed = {"denied": True, "error": str(error)}
+        evidence = dict(transport=transport, relative=relative, cwd=str(cwd),
+            config_sha256=hashlib.sha256(config_bytes).hexdigest(),
+            config=json.loads(config_bytes), origin=origin, observed=observed,
+            native_dispatches=markers(marker), receipts=[rows(path) for path in stores],
+            before=before, after=[snapshot(path) for path in stores])
+        output = PROJECT / "evidence/launch_store" / f"{transport}-{relative}-{cwd_name}.json"
+        output.write_text(json.dumps(evidence, indent=2) + "\n")
+        assert origin["denied"]
+        assert config.read_bytes() == config_bytes
+&gt;       assert observed["denied"], "same launch selected alternate authority after cwd change"
+E       AssertionError: same launch selected alternate authority after cwd change
+E       assert False
+
+evidence/launch_store/cases.py:65: AssertionError</failure></testcase></testsuite></testsuites>

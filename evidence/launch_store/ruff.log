@@ -1,0 +1,19 @@
+F401 [*] `pathlib.Path` imported but unused
+ --> evidence/launch_store/support.py:4:21
+  |
+2 | import json
+3 | import sqlite3
+4 | from pathlib import Path
+  |                     ^^^^
+5 |
+6 | from test_inspection_support import fixture
+  |
+help: Remove unused import: `pathlib.Path`
+  |
+3 | import sqlite3
+  - from pathlib import Path
+4 |
+  |
+
+Found 1 error.
+[*] 1 fixable with `--fix`.
