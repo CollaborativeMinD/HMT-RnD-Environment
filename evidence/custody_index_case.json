@@ -1,0 +1,543 @@
+{
+  "case_id": "RC-CUSTODY-INDEX-01",
+  "as_of": "2026-10-27T03:33:18.741826+00:00",
+  "owner": "/root",
+  "parent": "4f30bf36e4e4cdaee1806d5f55ba01d9f466c833",
+  "authorization": "Previously authorized bounded engineering, continued by user and disposition 6432712455. No integration.",
+  "review_source": {
+    "id": 4384097209,
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4384097209"
+  },
+  "packages": [
+    "WP-03",
+    "WP-09",
+    "WP-08",
+    "WP-10"
+  ],
+  "status": "IMPLEMENTED_AND_PERSONALLY_VERIFIED_READY_FOR_REVIEW",
+  "integration": "BLOCKED",
+  "merge_deployment": "NOT_AUTHORIZED",
+  "whole_build_acceptance": "INSUFFICIENT_EVIDENCE",
+  "requirements": [
+    {
+      "id": "HMT-F14",
+      "revision": 1,
+      "owner": "RRCA",
+      "acceptance": "Compile one incident history and repair budget; traverse evidence backward to the last supported edge, preserve unknown frontier, and route repair to its owning lane. RRCA cannot execute repair or promote.",
+      "verification_method": "Injected known faults; false-cause and duplicate-incident tests",
+      "required_evidence": [
+        "Incident identity",
+        "admitted causal edges",
+        "frontier",
+        "corrective task and regression links"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-F18",
+      "revision": 1,
+      "owner": "Custody",
+      "acceptance": "Within one owning SQLite transaction, commit state change, durable intent, and required receipt/outbox record together. Duplicate delivery preserves original effect/input identity; collisions reject; two task stores are forbidden.",
+      "verification_method": "Crash injection at transaction boundaries; duplicate/collision tests",
+      "required_evidence": [
+        "Before/after database snapshots",
+        "commit journal",
+        "effect/message mapping",
+        "outbox/inbox rows"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-N02",
+      "revision": 1,
+      "owner": "Host",
+      "acceptance": "LOCAL-CTRL-1: each lane gateway <=512 MiB peak RSS, one CPU quota, <=4 in-flight calls, <=64 queued calls, request body <=65536 bytes before parsing, nesting <=16, inline result <=1 MiB. Larger artifacts use bounded references. Overflow produces explicit busy/limit disposition and no dispatch.",
+      "verification_method": "Load, oversized-input, queue saturation, and memory tests",
+      "required_evidence": [
+        "RSS/CPU/queue time series",
+        "admission counters",
+        "bounded artifact manifest",
+        "rejection receipts"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-N03",
+      "revision": 1,
+      "owner": "IIEA",
+      "acceptance": "Initial local profile: admission deadline 250 ms, read call deadline 30 s, control-write response deadline 30 s, one total operation deadline across providers; pure/read-only attempts <=3 inclusive of initial, backoff within deadline. Long modeling jobs use separately pinned job profile and cancellation protocol. Timeout never means nonexecution.",
+      "verification_method": "Delayed/hung peer, nested-retry and elapsed-budget experiments",
+      "required_evidence": [
+        "Per-attempt timing",
+        "original deadline",
+        "attempt counter",
+        "cancellation/uncertainty state"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-N06",
+      "revision": 1,
+      "owner": "OPS",
+      "acceptance": "LOCAL-CTRL-1: <=10 s from process start to safe recovery classification for <=10000 custody entries and <=100 unresolved effects. Classification may remain HOLD/OUTCOME_UNCERTAIN; no provider completion deadline is implied. Reconciliation lookup deadline <=30 s with explicit exhaustion.",
+      "verification_method": "Restart benchmark at declared corpus limits",
+      "required_evidence": [
+        "Startup/classification timestamps",
+        "classified effects",
+        "no-dispatch witness",
+        "lookup deadline results"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-N07",
+      "revision": 1,
+      "owner": "Host",
+      "acceptance": "Expiry is exclusive; full clock uncertainty interval must fit grant interval. Revoke and dispatch admission serialize within their authority domain. No admission after committed revoke; stale worker leases cannot commit. Unknown clock trust or rollback yields HOLD.",
+      "verification_method": "Exact-expiry, skew, rollback and revoke-race boundary tests",
+      "required_evidence": [
+        "Clock interval",
+        "ordered revoke/admission records",
+        "lease fence",
+        "endpoint grant check"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-N11",
+      "revision": 1,
+      "owner": "Quality",
+      "acceptance": "100% required applicable assertions have current witnesses; all critical gate mutants are killed; changed first-party executable code branch coverage >=90% with fixed denominator and no exclusions/suppressions. Every surviving noncritical mutant receives disposition; no aggregate score hides a critical survivor.",
+      "verification_method": "Coverage and mutation campaigns with immutable denominator",
+      "required_evidence": [
+        "Covered/total branches",
+        "mutant catalog",
+        "killed/survived results",
+        "critical gate effects"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-N12",
+      "revision": 1,
+      "owner": "DOKE",
+      "acceptance": "Every claim witness binds source/build/policy/schema/environment, UTC event time, monotonic duration where applicable, raw artifact digests, producer identity, and replay scope. No automatic evidence/tombstone deletion in baseline. Freshness evaluated at use under pinned profile.",
+      "verification_method": "Tampered/stale/mixed-build evidence and retention-capacity tests",
+      "required_evidence": [
+        "Hash manifest",
+        "authenticated producer records",
+        "freshness decision",
+        "retained failures",
+        "replay ranges"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-B04",
+      "revision": 1,
+      "owner": "Custody",
+      "acceptance": "Completed proof closes original effect once. Nonexecution proof must durably fence/cancel the old reservation; any permitted later attempt preserves effect/input identity, needs fresh grant and new reservation, and consumes the same budget. Invalid/absent proof remains unresolved.",
+      "verification_method": "Sequence S05; delayed original request racing cancellation/retry",
+      "required_evidence": [
+        "Reservation chain",
+        "authenticated proof",
+        "endpoint dedup/cancellation journal",
+        "cumulative budget"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-B10",
+      "revision": 1,
+      "owner": "Supervisor",
+      "acceptance": "A reproducible contradiction reopens exact requirements/assumptions and affected packages; retain original expectation and witness. Worker stops affected progression, files change request, and cannot relax success criteria. New baseline requires architecture-authority decision and regression closure.",
+      "verification_method": "Sequence S10 with intentionally false pinned assumption",
+      "required_evidence": [
+        "Contradiction",
+        "impact graph",
+        "change request",
+        "decision",
+        "old/new requirement revisions",
+        "rerun evidence"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-B11",
+      "revision": 1,
+      "owner": "Quality",
+      "acceptance": "Retain old failure/test identity. Superseding test must cover same requirement, failure mechanism, and boundaries, with matched reproduction and repair evidence; otherwise record changed contract and approved revision. New pass alone cannot close old failure.",
+      "verification_method": "Sequence S11; weaker replacement and changed-boundary controls",
+      "required_evidence": [
+        "Old/new test hashes",
+        "coverage equivalence",
+        "original fail",
+        "repaired rerun",
+        "approved contract delta"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-B12",
+      "revision": 1,
+      "owner": "RRCA",
+      "acceptance": "For every claimed dependency run intact baseline, edge deletion, restoration, matched/sham control, and alternate-path compensation enabled/disabled. Failure to affect output under redundancy cannot establish irrelevance; bound conclusion to observed paths.",
+      "verification_method": "Sequence S12 per named causal edge",
+      "required_evidence": [
+        "Edge-specific experiment plan",
+        "controlled states/seeds",
+        "all arm observations",
+        "alternative-path analysis"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-B15",
+      "revision": 1,
+      "owner": "Supervisor",
+      "acceptance": "Work packages pin requirement revisions, inputs, interfaces, owned files, expected observations, budgets, forbidden effects, and reopen route. Supervisor reconciles upstream/downstream attestations. Human retains architecture change and final closeout authority.",
+      "verification_method": "Cross-package contradiction and release rehearsal",
+      "required_evidence": [
+        "Package manifests",
+        "coupling checks",
+        "eight-column attestation ledger when delegated",
+        "exact-build acceptance packet"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    }
+  ],
+  "requirement_assertion_receipt_trace": [
+    {
+      "requirements": [
+        "HMT-N02@1",
+        "HMT-N03@1",
+        "HMT-N06@1"
+      ],
+      "assertions": [
+        "12 actual endpoint queries use covering principal/effect SEARCH",
+        "new/existing provisioning preserves rows",
+        "0,512,10000 unrelated-history observations"
+      ],
+      "test": "tests/test_custody_index.py",
+      "receipt": {
+        "tests": 28,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "raw": "evidence/custody_index_after.xml",
+        "sha256": "cf01421e548271ecfda16a6f0a1b13cb51780cbc65ebc16920848a0c0de8b94b"
+      },
+      "claim_limit": "Narrow lookup scaling support; no complete resource/deadline/startup qualification."
+    },
+    {
+      "requirements": [
+        "HMT-F18@1",
+        "HMT-B04@1",
+        "HMT-N07@1"
+      ],
+      "assertions": [
+        "current authority and effect/cancel/proof behavior retained in all previous tests",
+        "four schema transaction failure/restart cases preserve full prior schema/table state"
+      ],
+      "test": "tests/test_custody_index_atomicity.py plus retained custody/host/expiry suite IDs",
+      "receipt": {
+        "tests": 415,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "raw": "evidence/custody_index_full.xml",
+        "sha256": "d33b9b5ce16a026372d4c65af35cf970281a78c6ce548a68d72cf2e0ac03f9d4"
+      },
+      "claim_limit": "No query/authority/retry semantics changed; target storage and clock deployment remain unqualified."
+    },
+    {
+      "requirements": [
+        "HMT-B12@1"
+      ],
+      "assertions": [
+        "intact",
+        "deletion",
+        "restoration",
+        "matched sham",
+        "alternate path on",
+        "alternate path off"
+      ],
+      "test": "tests/test_custody_index_family.py",
+      "receipt": {
+        "tests": 28,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "raw": "evidence/custody_index_after.xml",
+        "sha256": "cf01421e548271ecfda16a6f0a1b13cb51780cbc65ebc16920848a0c0de8b94b"
+      },
+      "claim_limit": "Index performance dependency in matched finite corpus only; all effect outcomes remain unchanged."
+    },
+    {
+      "requirements": [
+        "HMT-B10@1",
+        "HMT-B11@1",
+        "HMT-F14@1"
+      ],
+      "assertions": [
+        "original scan failures preserved",
+        "both eight-failure constancy experiments preserved and claim withdrawn",
+        "observer/corpus revisions and original test hashes retained"
+      ],
+      "test": "evidence/custody_index_baseline.json; custody_index_experiment_initial.json; custody_index_experiment_statement_scope.json",
+      "receipt": {
+        "tests": 28,
+        "failures": 8,
+        "errors": 0,
+        "skips": 0,
+        "raw": "evidence/custody_index_experiment_statement_scope.xml",
+        "sha256": "03d70575a14604c28d515d81e04c8022593bd24f29352af055bde0b0da3d6293"
+      },
+      "claim_limit": "Failed constancy claim remains refuted. Matched experiment is a separately declared narrower claim, not semantic satisfaction of the original failing assertion."
+    },
+    {
+      "requirements": [
+        "HMT-N11@1",
+        "HMT-N12@1",
+        "HMT-B15@1"
+      ],
+      "assertions": [
+        "all 387 previous test IDs retained among 415",
+        "145 runtime/config pins unchanged during isolated replay",
+        "critical deletion mutant kills 12 cases",
+        "fixed changed-file branch denominator and no exclusions",
+        "personal source/evidence review"
+      ],
+      "test": "evidence/custody_index_collection.json",
+      "receipt": {
+        "tests": 415,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "raw": "evidence/custody_index_full.xml",
+        "sha256": "d33b9b5ce16a026372d4c65af35cf970281a78c6ce548a68d72cf2e0ac03f9d4"
+      },
+      "claim_limit": "Full N11 and whole work-package acceptance remain unqualified."
+    }
+  ],
+  "definition_of_done": [
+    "Actual apply/cancel conflict query uses principal/effect index; retain all reservations.",
+    "Provision new and prior compatible schemas atomically and idempotently.",
+    "Prove original scan and critical deletion mutant; preserve effect/identity/cancellation/proof invariants.",
+    "Complete edge-specific six-arm experiment with matched controls and explicit nonclaims.",
+    "Personally inspect source diff, assertions, original failures, runtime/source identity and cumulative results."
+  ],
+  "observed_causal_chain": [
+    "Actual endpoint apply/cancel holds owning Domain BEGIN IMMEDIATE transaction.",
+    "Conflict check scans all reservation rows to preserve cancelled effect/input identity.",
+    "Schema provisions reservation-id primary key only; principal/effect predicate has no matching index.",
+    "12 original cases show SCAN; 10000 unrelated rows add 40000 total VM steps.",
+    "Existing schema transaction now creates covering principal/effect/digest index.",
+    "Actual queries SEARCH the index; deletion/restoration/alternate-path experiments isolate its finite-corpus work effect."
+  ],
+  "causal_frontier": "Observed local SQLite query-plan/VM behavior. Real revocation latency, hardware budgets and arbitrary workloads are not inferred.",
+  "source_diff": "--- parent/custody_database.py\n+++ candidate/custody_database.py\n@@ -23,6 +23,8 @@\n                 raise CustodyFault(\"SCHEMA_REVISION_REQUIRED\")\n             db.execute(\"CREATE TABLE IF NOT EXISTS custody_endpoint_reservations(\"\n                        \"id TEXT PRIMARY KEY,principal TEXT,effect TEXT,digest TEXT,status TEXT)\")\n+            db.execute(\"CREATE INDEX IF NOT EXISTS custody_reservation_identity \"\n+                       \"ON custody_endpoint_reservations(principal,effect,digest)\")\n             db.execute(\"CREATE TABLE IF NOT EXISTS custody_endpoint_effects(\"\n                        \"principal TEXT,effect TEXT,digest TEXT,PRIMARY KEY(principal,effect))\")\n \n",
+  "source_candidate": {
+    "manifest": "evidence/custody_index_candidate.json",
+    "sha256": "bf591f5d3f6366f41ae10673442efaa4d5da4e47e4f5d963608ea0e53634aa03",
+    "runtime_config_files": 145,
+    "pre_post_mismatches": 0
+  },
+  "results": {
+    "before": {
+      "tests": 12,
+      "failures": 12,
+      "errors": 0,
+      "skips": 0,
+      "raw": "evidence/custody_index_before.xml",
+      "sha256": "3cb2faaa7469c1db4a508b0209a74a1c3b7139a0af9a02d87f077aff801b0c17"
+    },
+    "experimental_initial": {
+      "tests": 28,
+      "failures": 8,
+      "errors": 0,
+      "skips": 0,
+      "raw": "evidence/custody_index_experiment_initial.xml",
+      "sha256": "2d342c0801b571b8d28ac4e35e1a517f64641058a831aab73534cf2ce6930905"
+    },
+    "experimental_statement_scope": {
+      "tests": 28,
+      "failures": 8,
+      "errors": 0,
+      "skips": 0,
+      "raw": "evidence/custody_index_experiment_statement_scope.xml",
+      "sha256": "03d70575a14604c28d515d81e04c8022593bd24f29352af055bde0b0da3d6293"
+    },
+    "focused": {
+      "tests": 28,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "raw": "evidence/custody_index_after.xml",
+      "sha256": "cf01421e548271ecfda16a6f0a1b13cb51780cbc65ebc16920848a0c0de8b94b"
+    },
+    "cumulative": {
+      "tests": 415,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "raw": "evidence/custody_index_full.xml",
+      "sha256": "d33b9b5ce16a026372d4c65af35cf970281a78c6ce548a68d72cf2e0ac03f9d4"
+    },
+    "mutant": {
+      "tests": 12,
+      "failures": 12,
+      "errors": 0,
+      "skips": 0,
+      "raw": "evidence/custody_index_mutant.xml",
+      "sha256": "5c11d0618cd2a9005c0659ba4fc2fdd24a07674a74ad8c218267d937b971927b"
+    }
+  },
+  "verification_unittest": {
+    "tests": 27,
+    "failures": 0,
+    "scope": "Existing verification entrypoint; not an independent new-test runner."
+  },
+  "static": {
+    "ruff": 0,
+    "pyrefly_basic": 0,
+    "structure_suppression": 0
+  },
+  "coverage": {
+    "path": "evidence/custody_index_changed_coverage.json",
+    "sha256": "f5b93da46e770dbb0c54034e218b7a500a54cad1826331cf50c152cd311a34c2",
+    "branches": [
+      245,
+      260
+    ],
+    "files": 32,
+    "exclusions": 0,
+    "not_full_N11": true
+  },
+  "original_failure_records": [
+    "evidence/custody_index_baseline.json",
+    "evidence/custody_index_experiment_initial.json",
+    "evidence/custody_index_experiment_statement_scope.json"
+  ],
+  "test_revision_account": [
+    "Original baseline test file is retained in custody_index_baseline.json; its final redundant same-path comparison was replaced by an actual before/reopen snapshot equality. Original index assertions and boundaries are unchanged.",
+    "Initial total-transition constancy and subsequent isolated-lookup constancy are both refuted and retained. The24/25 result is consistent with unmatched index termination conditions; the matched sentinel experiment tests that explanation. This is not a per-instruction VDBE trace.",
+    "Final six-arm family adds one declared later-key sentinel to BOTH sizes. Original 0/512/10000 main corpus remains unchanged; no generic constancy claim is retained."
+  ],
+  "experiment_observations": "evidence/custody_index_observations.json",
+  "mutation": "evidence/custody_index_mutant.json",
+  "archives": "evidence/custody_index_archives.json",
+  "personal_verification": {
+    "inspected": [
+      "Domain existing schema transaction and rollback",
+      "actual unchanged endpoint query and collision/authority ordering",
+      "sole two-line production DDL diff",
+      "baseline and failed experimental assertions",
+      "real query/VM instrumentation and matched corpus",
+      "new/existing and rollback assertions",
+      "raw focused/cumulative/mutant/causal results",
+      "source snapshots and prior test ID inclusion"
+    ],
+    "executed": [
+      "baseline 12-case query reproduction",
+      "initial 28-case family and corrected statement-scoped experiment, both retained with8failures",
+      "final 28 focused cases",
+      "isolated 415 cumulative cases",
+      "27 verification unittest cases",
+      "deletion mutant",
+      "Ruff, Pyrefly basic and structural gates"
+    ],
+    "independent_review": "Not claimed. Prior disposition accepted parent351d508 only; this source change is a new candidate.",
+    "new_workers": 0,
+    "identity_limit": "Unsigned producer assertion; source/archive hashes establish integrity only."
+  },
+  "commands": {
+    "before": "uv run --no-sync python -m pytest tests/test_custody_index.py -q --basetemp=/tmp/hmt-custody-index-before --junitxml=evidence/custody_index_before.xml",
+    "focused": "uv run --no-sync python -m pytest tests/test_custody_index.py tests/test_custody_index_family.py tests/test_custody_index_atomicity.py -q --basetemp=/tmp/hmt-custody-index-matched --junitxml=evidence/custody_index_after.xml",
+    "cumulative": "PYTHONPATH=src COVERAGE_FILE=/tmp/hmt-custody-index-final.coverage uv run --project /workspace/scratch/bc6d4e512874/HMT-RnD-Environment --no-sync coverage run --source=hmt_rnd,scripts -m pytest -q --junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/custody_index_full.xml",
+    "cumulative_cwd": "/workspace/scratch/bc6d4e512874/supervisor_custody_index_replay",
+    "unittest": "PYTHONPATH=src uv run --project /workspace/scratch/bc6d4e512874/HMT-RnD-Environment --no-sync python -m unittest discover -s tests -p 'test_verification*.py' -v",
+    "ruff": "uv run --no-sync ruff check src tests scripts",
+    "typing": "uv run --no-sync pyrefly check src",
+    "structure": "PYTHONPATH=src uv run --no-sync python scripts/check_structure.py",
+    "mutant": "Exact command/cwd/exit in evidence/custody_index_mutant.json"
+  },
+  "limits": [
+    "Covering index lookup still visits matching same-principal/effect reservations; unlimited per-effect history is not qualified.",
+    "Index construction reads retained history under a write fence; no target startup/migration deadline qualification.",
+    "VM work is not elapsed latency, memory, CPU quota, IO or recovery classification.",
+    "New/existing fixtures are local SQLite and compatible old schema; no power-loss, corruption or adversarial index-name collision qualification.",
+    "No real host revocation-delay measurement or production credential/clock qualification.",
+    "No task-tool, domain evaluator, provider, voice/UI, complete assertion/mutation or full mission acceptance inferred."
+  ],
+  "environment": {
+    "python": "3.13.16 (main, Oct 14 2026, 01:04:01) [Clang 23.1.3 ]",
+    "sqlite": "3.53.1",
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39"
+  }
+}

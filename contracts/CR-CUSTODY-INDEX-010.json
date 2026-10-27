@@ -1,0 +1,32 @@
+{
+  "id": "CR-CUSTODY-INDEX-010",
+  "case": "RC-CUSTODY-INDEX-01",
+  "parent": "4f30bf36e4e4cdaee1806d5f55ba01d9f466c833",
+  "requirement_revisions_changed": false,
+  "requirements": [
+    "HMT-F14@1",
+    "HMT-F18@1",
+    "HMT-N02@1",
+    "HMT-N03@1",
+    "HMT-N06@1",
+    "HMT-N07@1",
+    "HMT-N11@1",
+    "HMT-N12@1",
+    "HMT-B04@1",
+    "HMT-B10@1",
+    "HMT-B11@1",
+    "HMT-B12@1",
+    "HMT-B15@1"
+  ],
+  "change": "Covering index in canonical Domain provisioning; no new query/authority/store/retry/retention semantics.",
+  "experimental_claim_correction": "Two strict constancy hypotheses refuted and retained. Matched finite-corpus claim replaces neither their historical results nor complete requirement obligations.",
+  "status": "IMPLEMENTED_AND_PERSONALLY_VERIFIED_READY_FOR_REVIEW",
+  "evidence": "evidence/custody_index_case.json",
+  "forbidden": [
+    "integration",
+    "merge",
+    "deployment",
+    "tombstone deletion",
+    "full-package promotion"
+  ]
+}

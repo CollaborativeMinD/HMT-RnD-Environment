@@ -1,0 +1,22 @@
+{
+  "id": "delete_covering_index_provisioning",
+  "command": [
+    "uv",
+    "run",
+    "--project",
+    "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+    "--no-sync",
+    "python",
+    "-m",
+    "pytest",
+    "tests/test_custody_index.py",
+    "-q",
+    "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/custody_index_mutant.xml"
+  ],
+  "cwd": "/workspace/scratch/bc6d4e512874/supervisor_custody_index_mutant",
+  "returncode": 1,
+  "seconds": 1.767947001993889,
+  "source_sha256": "2469edce2875cb6f37e6e8fe2fc5cc3f65413a8f8aff89587ef9a5dd94d3909b",
+  "result": "12 failed in 1.27s",
+  "expected": "All 12 actual endpoint plan/index assertions reject missing index."
+}

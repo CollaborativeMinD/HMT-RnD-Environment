@@ -1,0 +1,570 @@
+{
+  "lookup": [
+    {
+      "count": 0,
+      "operation": "apply",
+      "existing": false,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+      ],
+      "vm_steps": 196,
+      "lookup_vm_steps": 24,
+      "index_columns": [
+        "principal",
+        "effect",
+        "digest"
+      ],
+      "before": "41fb21d9a37c6297ba5439924fb3934aeedb28a2ef2670bd232cc7aeb3983c5c",
+      "after_provision": "41fb21d9a37c6297ba5439924fb3934aeedb28a2ef2670bd232cc7aeb3983c5c",
+      "rows_retained": 4
+    },
+    {
+      "count": 0,
+      "operation": "lookup_or_cancel",
+      "existing": false,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+      ],
+      "vm_steps": 177,
+      "lookup_vm_steps": 24,
+      "index_columns": [
+        "principal",
+        "effect",
+        "digest"
+      ],
+      "before": "41fb21d9a37c6297ba5439924fb3934aeedb28a2ef2670bd232cc7aeb3983c5c",
+      "after_provision": "41fb21d9a37c6297ba5439924fb3934aeedb28a2ef2670bd232cc7aeb3983c5c",
+      "rows_retained": 4
+    },
+    {
+      "count": 10000,
+      "operation": "apply",
+      "existing": true,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+      ],
+      "vm_steps": 197,
+      "lookup_vm_steps": 25,
+      "index_columns": [
+        "principal",
+        "effect",
+        "digest"
+      ],
+      "before": "f4ae8f14b578897dd703dd721918089f7a277dbda8d73b5800a66a59f0e1550b",
+      "after_provision": "f4ae8f14b578897dd703dd721918089f7a277dbda8d73b5800a66a59f0e1550b",
+      "rows_retained": 10004
+    },
+    {
+      "count": 10000,
+      "operation": "lookup_or_cancel",
+      "existing": true,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+      ],
+      "vm_steps": 178,
+      "lookup_vm_steps": 25,
+      "index_columns": [
+        "principal",
+        "effect",
+        "digest"
+      ],
+      "before": "f4ae8f14b578897dd703dd721918089f7a277dbda8d73b5800a66a59f0e1550b",
+      "after_provision": "f4ae8f14b578897dd703dd721918089f7a277dbda8d73b5800a66a59f0e1550b",
+      "rows_retained": 10004
+    },
+    {
+      "count": 512,
+      "operation": "apply",
+      "existing": false,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+      ],
+      "vm_steps": 197,
+      "lookup_vm_steps": 25,
+      "index_columns": [
+        "principal",
+        "effect",
+        "digest"
+      ],
+      "before": "e94cbc9557ed450cf3cd0dae57f13588fbf9311235f49753b1e3463009c15e30",
+      "after_provision": "e94cbc9557ed450cf3cd0dae57f13588fbf9311235f49753b1e3463009c15e30",
+      "rows_retained": 516
+    },
+    {
+      "count": 512,
+      "operation": "lookup_or_cancel",
+      "existing": false,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+      ],
+      "vm_steps": 178,
+      "lookup_vm_steps": 25,
+      "index_columns": [
+        "principal",
+        "effect",
+        "digest"
+      ],
+      "before": "e94cbc9557ed450cf3cd0dae57f13588fbf9311235f49753b1e3463009c15e30",
+      "after_provision": "e94cbc9557ed450cf3cd0dae57f13588fbf9311235f49753b1e3463009c15e30",
+      "rows_retained": 516
+    },
+    {
+      "count": 10000,
+      "operation": "apply",
+      "existing": false,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+      ],
+      "vm_steps": 197,
+      "lookup_vm_steps": 25,
+      "index_columns": [
+        "principal",
+        "effect",
+        "digest"
+      ],
+      "before": "f4ae8f14b578897dd703dd721918089f7a277dbda8d73b5800a66a59f0e1550b",
+      "after_provision": "f4ae8f14b578897dd703dd721918089f7a277dbda8d73b5800a66a59f0e1550b",
+      "rows_retained": 10004
+    },
+    {
+      "count": 10000,
+      "operation": "lookup_or_cancel",
+      "existing": false,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+      ],
+      "vm_steps": 178,
+      "lookup_vm_steps": 25,
+      "index_columns": [
+        "principal",
+        "effect",
+        "digest"
+      ],
+      "before": "f4ae8f14b578897dd703dd721918089f7a277dbda8d73b5800a66a59f0e1550b",
+      "after_provision": "f4ae8f14b578897dd703dd721918089f7a277dbda8d73b5800a66a59f0e1550b",
+      "rows_retained": 10004
+    },
+    {
+      "count": 0,
+      "operation": "apply",
+      "existing": true,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+      ],
+      "vm_steps": 196,
+      "lookup_vm_steps": 24,
+      "index_columns": [
+        "principal",
+        "effect",
+        "digest"
+      ],
+      "before": "41fb21d9a37c6297ba5439924fb3934aeedb28a2ef2670bd232cc7aeb3983c5c",
+      "after_provision": "41fb21d9a37c6297ba5439924fb3934aeedb28a2ef2670bd232cc7aeb3983c5c",
+      "rows_retained": 4
+    },
+    {
+      "count": 0,
+      "operation": "lookup_or_cancel",
+      "existing": true,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+      ],
+      "vm_steps": 177,
+      "lookup_vm_steps": 24,
+      "index_columns": [
+        "principal",
+        "effect",
+        "digest"
+      ],
+      "before": "41fb21d9a37c6297ba5439924fb3934aeedb28a2ef2670bd232cc7aeb3983c5c",
+      "after_provision": "41fb21d9a37c6297ba5439924fb3934aeedb28a2ef2670bd232cc7aeb3983c5c",
+      "rows_retained": 4
+    },
+    {
+      "count": 512,
+      "operation": "apply",
+      "existing": true,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+      ],
+      "vm_steps": 197,
+      "lookup_vm_steps": 25,
+      "index_columns": [
+        "principal",
+        "effect",
+        "digest"
+      ],
+      "before": "e94cbc9557ed450cf3cd0dae57f13588fbf9311235f49753b1e3463009c15e30",
+      "after_provision": "e94cbc9557ed450cf3cd0dae57f13588fbf9311235f49753b1e3463009c15e30",
+      "rows_retained": 516
+    },
+    {
+      "count": 512,
+      "operation": "lookup_or_cancel",
+      "existing": true,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+      ],
+      "vm_steps": 178,
+      "lookup_vm_steps": 25,
+      "index_columns": [
+        "principal",
+        "effect",
+        "digest"
+      ],
+      "before": "e94cbc9557ed450cf3cd0dae57f13588fbf9311235f49753b1e3463009c15e30",
+      "after_provision": "e94cbc9557ed450cf3cd0dae57f13588fbf9311235f49753b1e3463009c15e30",
+      "rows_retained": 516
+    }
+  ],
+  "family": [
+    {
+      "arm": "intact",
+      "operation": "apply",
+      "observations": [
+        {
+          "count": 0,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "COMMITTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+          ],
+          "vm_steps": 197,
+          "lookup_vm_steps": 25
+        },
+        {
+          "count": 10000,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "COMMITTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+          ],
+          "vm_steps": 197,
+          "lookup_vm_steps": 25
+        }
+      ]
+    },
+    {
+      "arm": "delete",
+      "operation": "apply",
+      "observations": [
+        {
+          "count": 0,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "COMMITTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SCAN custody_endpoint_reservations"
+          ],
+          "vm_steps": 186,
+          "lookup_vm_steps": 34
+        },
+        {
+          "count": 10000,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "COMMITTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SCAN custody_endpoint_reservations"
+          ],
+          "vm_steps": 40186,
+          "lookup_vm_steps": 40034
+        }
+      ]
+    },
+    {
+      "arm": "alternate_on",
+      "operation": "lookup_or_cancel",
+      "observations": [
+        {
+          "count": 0,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "NOT_EXECUTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SEARCH custody_endpoint_reservations USING COVERING INDEX alternate_identity (principal=? AND effect=?)"
+          ],
+          "vm_steps": 178,
+          "lookup_vm_steps": 25
+        },
+        {
+          "count": 10000,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "NOT_EXECUTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SEARCH custody_endpoint_reservations USING COVERING INDEX alternate_identity (principal=? AND effect=?)"
+          ],
+          "vm_steps": 178,
+          "lookup_vm_steps": 25
+        }
+      ]
+    },
+    {
+      "arm": "alternate_off",
+      "operation": "lookup_or_cancel",
+      "observations": [
+        {
+          "count": 0,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "NOT_EXECUTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SCAN custody_endpoint_reservations"
+          ],
+          "vm_steps": 167,
+          "lookup_vm_steps": 34
+        },
+        {
+          "count": 10000,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "NOT_EXECUTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SCAN custody_endpoint_reservations"
+          ],
+          "vm_steps": 40167,
+          "lookup_vm_steps": 40034
+        }
+      ]
+    },
+    {
+      "arm": "restore",
+      "operation": "apply",
+      "observations": [
+        {
+          "count": 0,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "COMMITTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+          ],
+          "vm_steps": 197,
+          "lookup_vm_steps": 25
+        },
+        {
+          "count": 10000,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "COMMITTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+          ],
+          "vm_steps": 197,
+          "lookup_vm_steps": 25
+        }
+      ]
+    },
+    {
+      "arm": "sham",
+      "operation": "apply",
+      "observations": [
+        {
+          "count": 0,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "COMMITTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+          ],
+          "vm_steps": 209,
+          "lookup_vm_steps": 25
+        },
+        {
+          "count": 10000,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "COMMITTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+          ],
+          "vm_steps": 209,
+          "lookup_vm_steps": 25
+        }
+      ]
+    },
+    {
+      "arm": "alternate_on",
+      "operation": "apply",
+      "observations": [
+        {
+          "count": 0,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "COMMITTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SEARCH custody_endpoint_reservations USING COVERING INDEX alternate_identity (principal=? AND effect=?)"
+          ],
+          "vm_steps": 197,
+          "lookup_vm_steps": 25
+        },
+        {
+          "count": 10000,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "COMMITTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SEARCH custody_endpoint_reservations USING COVERING INDEX alternate_identity (principal=? AND effect=?)"
+          ],
+          "vm_steps": 197,
+          "lookup_vm_steps": 25
+        }
+      ]
+    },
+    {
+      "arm": "alternate_off",
+      "operation": "apply",
+      "observations": [
+        {
+          "count": 0,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "COMMITTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SCAN custody_endpoint_reservations"
+          ],
+          "vm_steps": 186,
+          "lookup_vm_steps": 34
+        },
+        {
+          "count": 10000,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "COMMITTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SCAN custody_endpoint_reservations"
+          ],
+          "vm_steps": 40186,
+          "lookup_vm_steps": 40034
+        }
+      ]
+    },
+    {
+      "arm": "intact",
+      "operation": "lookup_or_cancel",
+      "observations": [
+        {
+          "count": 0,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "NOT_EXECUTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+          ],
+          "vm_steps": 178,
+          "lookup_vm_steps": 25
+        },
+        {
+          "count": 10000,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "NOT_EXECUTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+          ],
+          "vm_steps": 178,
+          "lookup_vm_steps": 25
+        }
+      ]
+    },
+    {
+      "arm": "delete",
+      "operation": "lookup_or_cancel",
+      "observations": [
+        {
+          "count": 0,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "NOT_EXECUTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SCAN custody_endpoint_reservations"
+          ],
+          "vm_steps": 167,
+          "lookup_vm_steps": 34
+        },
+        {
+          "count": 10000,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "NOT_EXECUTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SCAN custody_endpoint_reservations"
+          ],
+          "vm_steps": 40167,
+          "lookup_vm_steps": 40034
+        }
+      ]
+    },
+    {
+      "arm": "restore",
+      "operation": "lookup_or_cancel",
+      "observations": [
+        {
+          "count": 0,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "NOT_EXECUTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+          ],
+          "vm_steps": 178,
+          "lookup_vm_steps": 25
+        },
+        {
+          "count": 10000,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "NOT_EXECUTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+          ],
+          "vm_steps": 178,
+          "lookup_vm_steps": 25
+        }
+      ]
+    },
+    {
+      "arm": "sham",
+      "operation": "lookup_or_cancel",
+      "observations": [
+        {
+          "count": 0,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "NOT_EXECUTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+          ],
+          "vm_steps": 190,
+          "lookup_vm_steps": 25
+        },
+        {
+          "count": 10000,
+          "fixed_later_key_sentinels": 1,
+          "outcome": "NOT_EXECUTED",
+          "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+          "plan": [
+            "SEARCH custody_endpoint_reservations USING COVERING INDEX custody_reservation_identity (principal=? AND effect=?)"
+          ],
+          "vm_steps": 190,
+          "lookup_vm_steps": 25
+        }
+      ]
+    }
+  ]
+}

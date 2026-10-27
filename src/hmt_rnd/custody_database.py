@@ -23,6 +23,8 @@ class Domain:
                 raise CustodyFault("SCHEMA_REVISION_REQUIRED")
             db.execute("CREATE TABLE IF NOT EXISTS custody_endpoint_reservations("
                        "id TEXT PRIMARY KEY,principal TEXT,effect TEXT,digest TEXT,status TEXT)")
+            db.execute("CREATE INDEX IF NOT EXISTS custody_reservation_identity "
+                       "ON custody_endpoint_reservations(principal,effect,digest)")
             db.execute("CREATE TABLE IF NOT EXISTS custody_endpoint_effects("
                        "principal TEXT,effect TEXT,digest TEXT,PRIMARY KEY(principal,effect))")
 
