@@ -1,0 +1,20 @@
+[
+  {
+    "original": "evidence/revision_issuance_full_regression.xml",
+    "stored": "evidence/revision_issuance_full_regression.xml.gz",
+    "sha256": "43a05aa85ae2a21fc7202d5d59879d63defdbd4885124acf01f128f6cdd1e857",
+    "stored_sha256": "9a126548f1a5adb43219ac8e4fbf13fe02b0de9a7bb3fa9791fb0cc23f625635"
+  },
+  {
+    "original": "evidence/artifact_fifo_step1_full.xml",
+    "stored": "evidence/artifact_fifo_step1_full.xml.gz",
+    "sha256": "10625ea61c85739e4b59958637362a79f596920d3ab7d18440ba03164d6b3329",
+    "stored_sha256": "a83935c223ee46086217d5a45d81ca00e10a543c1fb777b375aed5bcd9b66623"
+  },
+  {
+    "original": "evidence/artifact_fifo_step2_full.xml",
+    "stored": "evidence/artifact_fifo_step2_full.xml.gz",
+    "sha256": "a4ca9fb663dec23939ebeca7e81bbba23abe3dd07db83a57c34fa442a7773242",
+    "stored_sha256": "34182910c06d682c57dab0f1057746fcc7647e8382f418dec89d109e7bace602"
+  }
+]

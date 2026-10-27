@@ -1,0 +1,36 @@
+{
+  "baseline": "c922345c520db598f4b1f6afff2598c0770f0bba",
+  "status": "HOLD_PENDING_OUT_OF_BAND_REVIEW",
+  "findings": [
+    {
+      "id": 4383644741,
+      "body": "A task revision advance can now leave an accepted reopening permanently unusable. `reopen_candidate()` checks only the originating task ID and records the current request revision, so reopening a revision-1 receipt with a valid revision-2 assignment persists the event and invalidations. This comparison then rejects both its designated successor and architect reauthorization with `LANE_REOPEN_TASK_BINDING` because the immutable origin still has revision 1. The pending event also blocks an alternative successor. Validate this origin-revision constraint before persisting the reopening, or explicitly model an authorized revision transition; retain the fail-closed check here.",
+      "path": "src/hmt_rnd/lane_event_authority.py",
+      "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383644741"
+    },
+    {
+      "id": 4383677827,
+      "body": "The snapshot read independently repeats the stat/open race: replacing the file with a FIFO after `is_file()` succeeds makes `open()` wait indefinitely. A deterministic swap reproduces this even if earlier artifact checks passed. `preserve()` still holds the shared host write transaction, so the snapshot byte cap and final authority check cannot bound the operation or allow revocation to proceed. Use the same guarded nonblocking descriptor reader for snapshot preservation as for digest verification; fixing only the earlier digest read leaves this hang reachable.",
+      "path": "src/hmt_rnd/lane_artifacts.py",
+      "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383677827"
+    },
+    {
+      "id": 4383677867,
+      "body": "A regular artifact or evidence file can be replaced by a FIFO between `is_file()` and `open()`. With no writer, this blocks indefinitely; the byte limit is never reached. A deterministic post-stat FIFO swap reproduces the hang. Because submission/reopening calls this while holding the host's `BEGIN IMMEDIATE` transaction, it also blocks revocation and other host writes. Use a shared nonblocking, no-follow descriptor reader that verifies regular-file type with `fstat()` before reading, as the voice repair does.",
+      "path": "src/hmt_rnd/lane_evidence.py",
+      "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383677867"
+    }
+  ],
+  "owner_update": [
+    {
+      "id": 6429843245,
+      "body": "Owner-approved final-review finding: task-revision mismatch at reopen issuance. The owner approved public posting of this finding and regression scenario. Reconciliation HOLD remains pending.\n\nAt inspected repair commit 0892ba2, two independent source reviewers found:\n- lane_reopen.py checks the origin task ID but not its revision against the current request before creating the reopen event.\n- The new event records the current request revision and commits origin invalidation.\n- lane_event_authority.py later requires origin.task_revision == event.task_revision; this check is used by successor submission and architect reauthorization.\n\nThus a current revision-2 assignment/grant can request reopening a revision-1 origin and create an event that neither downstream path accepts. This is an inspected writer/reader invariant mismatch, not an executed runtime reproduction by the out-of-band review.\n\nPlease initialize a linked RRCA case and use existing trusted fixtures to reproduce/refute: seal an origin at task revision 1; advance the same task/principal assignment to revision 2 with fresh grants; request reopen of the revision-1 origin. If cross-revision recovery is unsupported, require typed denial BEFORE any event insertion or invalidation, proving state unchanged. If supported, define and prove a coherent current-revision recovery/reauthorization path. Include an unchanged-revision positive control and persistence/restart checks. The existing test against an already-issued revision-1 event is not the same issuance sequence.\n\nRetain the pre-fix or refuting witness, cause, scoped repair, requirement linkage, exact candidate hashes and regressions. Update canonical aliases/closure records and cumulative evidence. Prior 224-test and changed-code coverage receipts remain historical evidence, not proof of this newly identified boundary. No release of integration or deployment authority.",
+      "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#issuecomment-6429843245"
+    }
+  ],
+  "cases": [
+    "RC-LANE-07",
+    "RC-ARTIFACT-01",
+    "RC-ARTIFACT-02"
+  ]
+}

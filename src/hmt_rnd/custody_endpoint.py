@@ -34,6 +34,11 @@ class Endpoint:
                 raise CustodyFault("RESERVATION_COLLISION")
             if row and row["status"] == "NOT_EXECUTED" and not cancel:
                 raise CustodyFault("RESERVATION_CANCELLED")
+            conflict = db.execute("SELECT 1 FROM custody_endpoint_reservations "
+                                  "WHERE principal=? AND effect=? AND digest<>? LIMIT 1",
+                                  identity).fetchone()
+            if conflict:
+                raise CustodyFault("INTENT_COLLISION")
             done = db.execute("SELECT digest FROM custody_endpoint_effects "
                               "WHERE principal=? AND effect=?", identity[:2]).fetchone()
             if done and done["digest"] != intent.payload_digest:

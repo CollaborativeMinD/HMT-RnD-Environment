@@ -1,0 +1,66 @@
+{
+  "case_id": "R-COVERAGE-001",
+  "commit_message": "Reconcile R-COVERAGE-001: correct changed-code coverage denominator and exercise structural CLI",
+  "depends_on": [
+    "R-VERIFY-ID-001"
+  ],
+  "paths": [
+    {
+      "path": "tests/test_reconcile_verification_structure.py",
+      "sha256": "39372e401e182344b474932586ae355975e458731e930a66f84822673d992669"
+    },
+    {
+      "path": "docs/reconcile_verification_coverage.md",
+      "sha256": "52aacaac937c0abb30abf2ed0306b0dd3eba2ce424a90d4ba25cf1d2e7b7a19a"
+    },
+    {
+      "path": "evidence/reconcile_verification_all.log",
+      "sha256": "5fea761316d132fec92564dc14d2de3ea7fd69f0691eb99a613059a810a4a930"
+    },
+    {
+      "path": "evidence/reconcile_verification_all.xml",
+      "sha256": "b720225b8f6feea0fc18863d7342b173ba3091ff50b51582b1444be9d4617355"
+    },
+    {
+      "path": "evidence/reconcile_verification_coverage_correction.json",
+      "sha256": "583f2efcdcb239fdcb7f3891e0b60205204559f3310c6fa463bb9a7c462c23c1"
+    },
+    {
+      "path": "evidence/reconcile_verification_coverage_denominator.json",
+      "sha256": "a20878ffe9f932a4a3b7e1a8d47514f04893579f77cb478a11bbfd9d75ccf69b"
+    },
+    {
+      "path": "evidence/reconcile_verification_coverage_rrca.csv",
+      "sha256": "b199c56c9f1486d66a59f4053d4cd23178f3154344737997bf84160960ebffea"
+    },
+    {
+      "path": "evidence/reconcile_verification_coverage_rrca.sqlite.gz",
+      "sha256": "fbd2cb66ccaab36555e5a8492f291fa06700dd1b6e0abf0ffd8944a9bf761d7f"
+    },
+    {
+      "path": "evidence/reconcile_verification_legacy_unittest.log",
+      "sha256": "61816d216e46f3658ba970d0382dffcc7cc5aa349fa6e5de8eb11fcdb147a78e"
+    },
+    {
+      "path": "evidence/reconcile_verification_local_coverage.json.gz",
+      "sha256": "9bd51d26a699349ed121663e82943f55923f8742460b28f23f13d97b8e5420ba"
+    },
+    {
+      "path": "evidence/reconcile_verification_static.json",
+      "sha256": "87b6887cbbe6914a054c3345b36ed80a3301f06e58e50594ab23ff58e6246e77"
+    },
+    {
+      "path": "evidence/reconcile_verification_structure.log",
+      "sha256": "ad430bcd751b836a91fab4ff65c168e7e4f252c79243c40745308b866b554cb7"
+    },
+    {
+      "path": "evidence/reconcile_verification_structure.xml",
+      "sha256": "238e878892765c3ba0af0ddab6939ee082a40c978b0adaa1cc9c3349f15cdcd4"
+    },
+    {
+      "path": "evidence/reconcile_verification_unittest.log",
+      "sha256": "00fb182417769f11c05d1744d5ee37f9e50acb4c5892a357d229b89eda48c941"
+    }
+  ],
+  "sub_agent_task_attestation": "/root/verification_reconciliation; bounded derivative repair and executed witnesses; no release authority"
+}

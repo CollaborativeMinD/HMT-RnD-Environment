@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="6" skipped="0" tests="7" time="0.651" timestamp="2026-10-26T19:22:27.799680-04:00" hostname="812233b2011d"><testcase classname="tests.test_oob_lane_reservation" name="test_cross_lineage_cannot_consume_reserved_successor" time="0.068"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-92/test_cross_lineage_cannot_cons0')
+
+    def test_cross_lineage_cannot_consume_reserved_successor(tmp_path):
+        host, actor, request, store, opened = reopened(tmp_path)
+        before = counts(host)
+        intruder = make_candidate(tmp_path, "fixed").model_copy(update={"lineage_id": "mission-B"})
+&gt;       with pytest.raises(PermissionError, match="LANE_RESERVED_SUCCESSOR_BINDING"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_oob_lane_reservation.py:15: Failed</failure></testcase><testcase classname="tests.test_oob_lane_reservation" name="test_duplicate_global_reservation_denied_before_mutation" time="0.065"><failure message="sqlite3.IntegrityError: UNIQUE constraint failed: lane_reopens.successor">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-92/test_duplicate_global_reservat0')
+
+    def test_duplicate_global_reservation_denied_before_mutation(tmp_path):
+        host, actor, request, store, opened = reopened(tmp_path)
+        other = make_candidate(tmp_path, "other").model_copy(update={"lineage_id": "mission-B"})
+        store.submit(actor, request, other, lambda: Clock(now=12.0), execute_gate)
+        other.artifact.write_text("changed B")
+        before = counts(host)
+        collision = event(name="other-repair", changed="other").model_copy(
+            update={"lineage_id": "mission-B"})
+        with pytest.raises(PermissionError, match="LANE_SUCCESSOR_ALREADY_RESERVED"):
+&gt;           store.reopen(actor, reopen_request(host, actor, request), collision,
+                         lambda: Clock(now=13.0))
+
+tests/test_oob_lane_reservation.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/hmt_rnd/lane_store.py:31: in reopen
+    return reopen_candidate(db, identity, request, event, clock)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+db = &lt;sqlite3.Connection object at 0x7ff814eebd30&gt;
+identity = Identity(principal='alice', role='builder', lane='CMAD', stage='CMAD1', credential='local')
+request = Request(task_id='CMAD1', revision=1, operation='lane.reopen', root='/tmp/pytest-of-root/pytest-92/test_duplicate_global_reservat0', destination='local')
+event = Reopen(event_id='other-repair', lineage_id='mission-B', changed_candidates=('other',), successor_candidate_id='fixed', reason='ARTIFACT_DRIFT', termination_condition='Current exact-candidate gate receipt')
+clock = &lt;function test_duplicate_global_reservation_denied_before_mutation.&lt;locals&gt;.&lt;lambda&gt; at 0x7ff814e49e40&gt;
+
+    def reopen_candidate(db: sqlite3.Connection, identity: Identity, request: Request,
+                         event: Reopen, clock: ClockProvider) -&gt; ReopenEvent:
+        event = Reopen.model_validate_json(event.model_dump_json())
+        now = clock()
+        authority = authorize_and_checkpoint(db, identity, request, now)
+        rows = changed(db, event, Path(request.root), authority.policy, authority.epoch)
+        rows += discover_changes(db, event, Path(request.root), authority.policy, authority.epoch)
+        earliest = min(rows, key=lambda row: STAGES.index(row.candidate.stage))
+        stage = earliest.candidate.stage
+        check_stage(identity, request, stage, "lane.reopen")
+        if request.task_id != earliest.task_id:
+            raise PermissionError("LANE_REOPEN_TASK_MISMATCH")
+        policy_drift = any((row.gate.policy, row.gate.epoch) != (authority.policy, authority.epoch)
+                           for row in rows)
+        if policy_drift and identity.role != "human_architect":
+            raise PermissionError("LANE_POLICY_REOPEN_REQUIRES_ARCHITECT")
+        existing = db.execute("SELECT 1 FROM lane_candidates WHERE id=?",
+                              (event.successor_candidate_id,)).fetchone()
+        if existing:
+            raise PermissionError("LANE_SUCCESSOR_ALREADY_EXISTS")
+        scope = db.execute("SELECT id,stage FROM lane_candidates WHERE lineage=?",
+                           (event.lineage_id,)).fetchall()
+        invalidated = tuple(row[0] for row in scope if STAGES.index(row[1]) &gt;= STAGES.index(stage))
+        result = ReopenEvent(request=event, required_stage=stage, required_lane=lane(stage),
+                             origin_receipt_sha256=earliest.receipt_sha256,
+                             invalidated_candidates=invalidated, issued_by=identity.principal,
+                             issued_at=now.now)
+        authorize_and_checkpoint(db, identity, request, clock())
+&gt;       db.execute("INSERT INTO lane_reopens VALUES(?,?,?,?,?)", (event.event_id,
+                   event.lineage_id, stage, event.successor_candidate_id, result.model_dump_json()))
+E       sqlite3.IntegrityError: UNIQUE constraint failed: lane_reopens.successor
+
+src/hmt_rnd/lane_reopen.py:66: IntegrityError</failure></testcase><testcase classname="tests.test_oob_lane_epoch" name="test_event_drift_denied_with_fresh_builder_grant[False-policy-2]" time="0.067"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-92/test_event_drift_denied_with_f0')
+policy = 'policy-2', restart = False
+
+    @pytest.mark.parametrize("policy", ["policy-2", "policy-1"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_event_drift_denied_with_fresh_builder_grant(tmp_path, policy, restart):
+        host, actor, request, store, opened = reopened(tmp_path)
+        host.set_policy(policy)
+        current_grant(host, actor, request, policy, 2, "lane.seal")
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = counts(host)
+&gt;       with pytest.raises(PermissionError, match="LANE_REOPEN_AUTHORITY_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_oob_lane_epoch.py:18: Failed</failure></testcase><testcase classname="tests.test_oob_lane_epoch" name="test_event_drift_denied_with_fresh_builder_grant[False-policy-1]" time="0.059"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-92/test_event_drift_denied_with_f1')
+policy = 'policy-1', restart = False
+
+    @pytest.mark.parametrize("policy", ["policy-2", "policy-1"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_event_drift_denied_with_fresh_builder_grant(tmp_path, policy, restart):
+        host, actor, request, store, opened = reopened(tmp_path)
+        host.set_policy(policy)
+        current_grant(host, actor, request, policy, 2, "lane.seal")
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = counts(host)
+&gt;       with pytest.raises(PermissionError, match="LANE_REOPEN_AUTHORITY_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_oob_lane_epoch.py:18: Failed</failure></testcase><testcase classname="tests.test_oob_lane_epoch" name="test_event_drift_denied_with_fresh_builder_grant[True-policy-2]" time="0.045"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-92/test_event_drift_denied_with_f2')
+policy = 'policy-2', restart = True
+
+    @pytest.mark.parametrize("policy", ["policy-2", "policy-1"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_event_drift_denied_with_fresh_builder_grant(tmp_path, policy, restart):
+        host, actor, request, store, opened = reopened(tmp_path)
+        host.set_policy(policy)
+        current_grant(host, actor, request, policy, 2, "lane.seal")
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = counts(host)
+&gt;       with pytest.raises(PermissionError, match="LANE_REOPEN_AUTHORITY_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_oob_lane_epoch.py:18: Failed</failure></testcase><testcase classname="tests.test_oob_lane_epoch" name="test_event_drift_denied_with_fresh_builder_grant[True-policy-1]" time="0.061"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-92/test_event_drift_denied_with_f3')
+policy = 'policy-1', restart = True
+
+    @pytest.mark.parametrize("policy", ["policy-2", "policy-1"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_event_drift_denied_with_fresh_builder_grant(tmp_path, policy, restart):
+        host, actor, request, store, opened = reopened(tmp_path)
+        host.set_policy(policy)
+        current_grant(host, actor, request, policy, 2, "lane.seal")
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = counts(host)
+&gt;       with pytest.raises(PermissionError, match="LANE_REOPEN_AUTHORITY_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_oob_lane_epoch.py:18: Failed</failure></testcase><testcase classname="tests.test_oob_lane_epoch" name="test_unchanged_event_authority_seals_after_restart" time="0.070" /></testsuite></testsuites>

@@ -1,0 +1,51 @@
+{
+  "baseline": "3492b6f",
+  "primary_disposition": "HOLD",
+  "method": "Manual skill-guided read-only review; no target execution, repair or release",
+  "source_comments": [
+    {
+      "id": 4383918244,
+      "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383918244",
+      "path": "src/hmt_rnd/lane_reader.py",
+      "body": "`abspath()` removes `..` components before the no-follow traversal. For example, with `root/jump` pointing to `outside/child`, `root/jump/../source` is accepted and read as `root/source`, although opening the original path reads `outside/source`. The gate evaluator receives that original path in `GateContext`, while artifact verification and preservation use this normalized path, so a receipt can seal bytes the evaluator never checked. Reject parent-traversal components before normalization, or validate the original components during traversal, and cover this symlink-plus-`..` case for both digest and snapshot reads."
+    },
+    {
+      "id": 4383956251,
+      "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383956251",
+      "path": "src/hmt_rnd/lane_queries.py",
+      "body": "Advancing an upstream task does not fence its existing receipt here. For example, after sealing CMAD1 at revision 1 and assigning CMAD1 revision 2, a currently authorized CMAD2 submission can still use the revision-1 predecessor: these checks only compare policy/epoch and artifact bytes, and neither discovery nor assignment advancement invalidates that receipt. This lets downstream stages seal against superseded task evidence. Check each ancestor's recorded principal/revision against its current host_tasks assignment before accepting it."
+    },
+    {
+      "id": 4383956285,
+      "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383956285",
+      "path": "src/hmt_rnd/lane_drift.py",
+      "body": "Resolving the path here removes symlink components before the guarded reader can reject them. An artifact replaced by an in-scope symlink is rejected by `digest_file(original_path, root)`, but `source_changed` returns `True`; a dangling in-scope symlink also returns `True`. Consequently, reopening can accept these paths and persist invalidations despite the newly enforced symlink-denial policy. Pass the original path to the guarded reader and recognize missing-source drift only when its underlying failure is `FileNotFoundError`, preserving scope denials for symlinks."
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "RC-PATH-01",
+      "finding": 4383918244,
+      "status": "REVIEW_IN_PROGRESS",
+      "expected": [
+        "Native raw path with symlink-plus-parent component reads bytes different from lexically normalized in-root source; baseline evaluator observes raw bytes while digest and snapshot select different bytes.",
+        "Candidate rejects literal parent components in original input path AND root before normalization or any descriptor opening, with native typed scope denial through both callers.",
+        "Actual submission control demonstrates evaluator/artifact/snapshot mismatch before repair and atomic denial afterward, with unchanged ordinary-path bytes/digest/snapshot controls.",
+        "No original input is silently normalized into an apparently safe alias; no broadened path policy or general filesystem equivalence claim."
+      ]
+    },
+    {
+      "finding": 4383956251,
+      "status": "OPEN_REVIEW_HOLD",
+      "title": "Ancestor receipt versus current task assignment",
+      "scope": "Separate finding; neither repaired nor qualified by RC-PATH-01."
+    },
+    {
+      "finding": 4383956285,
+      "status": "OPEN_REVIEW_HOLD",
+      "title": "Drift source resolution bypasses original symlink denial",
+      "scope": "Separate finding; neither repaired nor qualified by RC-PATH-01."
+    }
+  ],
+  "release_condition": "Outside review reserved; user continuation HOLD remains. Separate findings stay open even if RC-PATH-01 bounded witnesses match."
+}

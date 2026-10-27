@@ -1,0 +1,95 @@
+{
+  "case_id": "RC-ANCESTOR-01",
+  "requirements": [
+    "HMT-B07@1",
+    "HMT-B10@1"
+  ],
+  "baseline": "608e3bdf",
+  "as_of": "2026-10-27T01:07:33.328003+00:00",
+  "finding": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383956251",
+  "initiating_condition": "Seal ancestor assignmentalice/revision1; advance/reassign/remove current host task while downstream retains fresh current grant.",
+  "retained_observations": "Eight baseline traces accepted downstreamSEALED and invoked evaluator despite immediate/nonimmediate stale assignment; original sealedreceipt stayed byte/identity consistent.",
+  "causal_chain": [
+    "Host admission checks downstream caller task only.",
+    "check_parent traverses immutable receipt integrity, current invalidation, lane/stage order, policy/epoch and artifact bytes.",
+    "No comparison existed between each ancestor receipt principal/revision and authoritative host_tasks current assignment.",
+    "Both pre-evaluator and post-evaluator chain checks therefore admitted stale task evidence while integrity checks passed."
+  ],
+  "corrective_task": "Within each existing ancestor traversal query host_tasks on the same SQLite connection and deny missing/mismatched (principal,revision) with LANE_PREDECESSOR_ASSIGNMENT_STALE. Existing before/after evaluator calls reuse this check.",
+  "change_scope": "Four productionlines in lane_queries.py only; no taskstore, assignmentpolicy, schemas, lifecycle transition, migration or revisionreauthorization redesign.",
+  "candidate_snapshot": {
+    "path": "evidence/ancestor_freshness_snapshot.json",
+    "sha256": "b82c4049916b44960ae0e925961f26bff59ba99131bca122bbaefdfba1f5126b"
+  },
+  "results": {
+    "before": {
+      "tests": 22,
+      "failed": 18,
+      "passed": 4
+    },
+    "after": {
+      "tests": 22,
+      "failed": 0,
+      "skipped": 0
+    },
+    "full_shared_worktree": {
+      "tests": 292,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 35.92,
+      "tracked_paths": 131,
+      "runtime_hash_changes": 0,
+      "qualification": "Local exact sourceinventory observed; independent supervisor replay/acceptance remains separate."
+    }
+  },
+  "negative_controls": [
+    "Immediate and nonimmediate ancestor: revisionadvance, APIreassignment principal+revision, missingassignment, controlled principalonly importedstate; each with/without HostStore/LaneStore reconstruction.",
+    "Preexistingdrift denies before gate call and leaves everySQLite logicaltable incl hostclock unchanged.",
+    "Controlled hosttransaction mutation during evaluator is denied by existing post-evaluator recheck and all DBchanges roll back."
+  ],
+  "positive_controls": [
+    "Unchanged chain seals after database reopen.",
+    "Unrelated task assignment advance/reassignment leaves unaffected chain usable.",
+    "Every prior sealedreceipt remains immutable across denial and acceptedcontrol."
+  ],
+  "fixture_limits": [
+    "Principalonly and missingassignment conditions are directly established trustedfixture states, not new public assignment API behaviors.",
+    "Post-evaluator mutation is deliberately injected on same trusted connection to test recheck; it is not a claim that concurrent externalSQLite writer bypasses BEGIN IMMEDIATE.",
+    "Persistence tests reconstruct HostStore/LaneStore over stored DB, not processkill/powerloss.",
+    "External fixturegate evidence files written during post-evaluator test are not rolled back; no durable task/receipt/snapshot/clock changes commit."
+  ],
+  "recovery_disposition": "Staleancestor blocks dependent progression. Crossrevision/principal migration unsupported; explicit architecture recovery remains HOLD, no automatic rewrites or repairedreceipt authority.",
+  "static_gates": {
+    "ruff": "PASS",
+    "pyrefly": "PASS basic",
+    "structure": "PASS"
+  },
+  "evidence": {
+    "evidence/ancestor_freshness_before_sources.json": "f91d5682e712e3ed21544fd6f9c52f7d70e8471bdb177cf761afe157a05d0d56",
+    "evidence/ancestor_freshness_before_tests.json": "40dff2848012b59ed370d7bb36eddcd195e11ca53f471a91c9f615fde2d89ec2",
+    "evidence/ancestor_freshness_before.xml": "539ea7b358d12650af404a8556df56c564ba58b98ae7cfc8741175c3a6cd4a6d",
+    "evidence/ancestor_freshness_before.log": "238e4f3f874faff6e110c69ba3d956dd4adb5fe1c554162c712beea9cff5c0f6",
+    "evidence/ancestor_freshness_trace.py": "527fc929919df2843e8c264145cc252dd8c9a90603bdb17082e455a6ca296d6b",
+    "evidence/ancestor_freshness_trace.json": "9fe1ebc82cb1b1159ff4e32ece6d00e70b39b06a260fe206deec41c39ecee626",
+    "evidence/ancestor_freshness_after.xml": "1748f53139e4a943b115f9189f139391f16f344ab16841416805c97c243090f3",
+    "evidence/ancestor_freshness_after.log": "d65506caa808102ce0e9dcfad12093447463dd17127b1fdbf40258aa7dff0d90",
+    "evidence/ancestor_freshness_full_regression.xml": "8483349cfa765ceb1a54c42594d01301aa2ce41d2d0f9755af439bde0b3d6749",
+    "evidence/ancestor_freshness_full_regression.log": "8109c6c9d1cd71b89d63ea25228ee06e0134dc814d73c9472cec62c539ae2a10",
+    "evidence/ancestor_freshness_runtime_inventory.json": "f573c778c4a982625eb94602d7b969db856e0816b14043cb61da3ea9540869f4",
+    "evidence/ancestor_freshness_runtime_changes.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+  },
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; HOLD pending independent supervisory reconciliation and outside review",
+  "sub_agent_task_attestation": {
+    "agent": "/root/lane_reconciliation",
+    "task": "RC-ANCESTOR-01",
+    "unsigned": true,
+    "ownership": [
+      "src/hmt_rnd/lane_queries.py",
+      "tests/test_ancestor_freshness*.py",
+      "evidence/ancestor_freshness*",
+      "docs/ancestor_freshness*"
+    ],
+    "no_reference_modifications": true,
+    "no_commit_push_or_promotion": true
+  }
+}

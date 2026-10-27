@@ -1,0 +1,8 @@
+{"arm": "intact", "exit_code": 0, "duration": 4.614092067000456}
+{"arm": "deletion", "exit_code": 1, "duration": 4.4887873269981355}
+{"arm": "restoration", "exit_code": 0, "duration": 4.649166850998881}
+{"arm": "sham", "exit_code": 0, "duration": 4.31501747200673}
+{"arm": "alternate_on", "exit_code": 0, "duration": 6.0956098239985295}
+{"arm": "alternate_off", "exit_code": 1, "duration": 3.907470877005835}
+{"arm": "mutant_store", "exit_code": 1, "duration": 4.430550080003741}
+{"arm": "mutant_root", "exit_code": 1, "duration": 4.164984628994716}

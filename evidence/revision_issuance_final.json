@@ -1,0 +1,25 @@
+{
+  "case_id": "RC-LANE-07",
+  "report_type": "FINAL_SUPERVISOR_RECONCILIATION_ADDENDUM",
+  "as_of": "2026-10-27T00:13:38.946834+00:00",
+  "baseline": "c922345c520db598f4b1f6afff2598c0770f0bba",
+  "candidate_snapshot_sha256": "2cc3a479fb49510996457aee2de9cd275f7a114f48a93054f133a49ba4335287",
+  "all_three_candidate_file_hashes_match_supervisor": true,
+  "supervisor_source_inventory_unchanged": true,
+  "supervisor_exit_code": 0,
+  "isolated_regression": {
+    "tests": 231,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "historical_mixed_run": "Prior231passes/2artifactfailures preserved in revision_issuance_full_regression.xml/log, not a candidate-qualified run; canonical artifact cases RC-ARTIFACT-01 and RC-ARTIFACT-02.",
+  "evidence": {
+    "evidence/revision_issuance_case.json": "09d47aba6668ce50482cbae4b5b1c759ae360ce0d1099286708a5e3a23200dce",
+    "evidence/revision_issuance_snapshot.json": "2cc3a479fb49510996457aee2de9cd275f7a114f48a93054f133a49ba4335287",
+    "evidence/latest_supervisor_revision_issuance_snapshot.json": "937f512b59fa721e907fcb2b4ec1a43ac0c3b6368494e650f6f9c439ebb7fb03",
+    "evidence/latest_supervisor_revision_issuance_snapshot.xml": "ec63247f8ac3d405a387f0f60cdae611626d76746423ae0e2f0771f89d76d39c",
+    "evidence/latest_supervisor_revision_issuance_snapshot.log": "1d3830a028c7b84bfc9e205f283d4c1206ac8a0ae5297958cdde31a6ed5172df"
+  },
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; scoped regression supported; HOLD pending outside review; no integrationrelease"
+}

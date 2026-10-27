@@ -1,0 +1,277 @@
+{
+  "campaign_id": "P1-AUTHORITY-EDGE-PROCESS-001",
+  "as_of": "2026-10-26T21:59:41.258893+00:00",
+  "requirements": [
+    "HMT-F02",
+    "HMT-F18",
+    "HMT-N05",
+    "HMT-N07",
+    "HMT-B01",
+    "HMT-B03",
+    "HMT-B06",
+    "HMT-B12"
+  ],
+  "causal_family": [
+    {
+      "arm": "intact",
+      "deleted_local_guard": false,
+      "deleted_endpoint_guard": false,
+      "sham": false,
+      "expected": {
+        "status": "STAGED",
+        "endpoint_effects": 0
+      },
+      "actual": {
+        "status": "STAGED",
+        "endpoint_effects": 0,
+        "rejection": "HOST_GRANT_DENIED"
+      },
+      "violated_invariants": [],
+      "fault_detected": false
+    },
+    {
+      "arm": "delete_local",
+      "deleted_local_guard": true,
+      "deleted_endpoint_guard": false,
+      "sham": false,
+      "expected": {
+        "status": "OUTCOME_UNCERTAIN",
+        "endpoint_effects": 0
+      },
+      "actual": {
+        "status": "OUTCOME_UNCERTAIN",
+        "endpoint_effects": 0,
+        "rejection": "HOST_GRANT_DENIED"
+      },
+      "violated_invariants": [
+        "REVOKED_RESERVATION_OCCURRED"
+      ],
+      "fault_detected": true
+    },
+    {
+      "arm": "restore_local",
+      "deleted_local_guard": false,
+      "deleted_endpoint_guard": false,
+      "sham": false,
+      "expected": {
+        "status": "STAGED",
+        "endpoint_effects": 0
+      },
+      "actual": {
+        "status": "STAGED",
+        "endpoint_effects": 0,
+        "rejection": "HOST_GRANT_DENIED"
+      },
+      "violated_invariants": [],
+      "fault_detected": false
+    },
+    {
+      "arm": "sham_query",
+      "deleted_local_guard": false,
+      "deleted_endpoint_guard": false,
+      "sham": true,
+      "expected": {
+        "status": "STAGED",
+        "endpoint_effects": 0
+      },
+      "actual": {
+        "status": "STAGED",
+        "endpoint_effects": 0,
+        "rejection": "HOST_GRANT_DENIED"
+      },
+      "violated_invariants": [],
+      "fault_detected": false
+    },
+    {
+      "arm": "alternate_on",
+      "deleted_local_guard": true,
+      "deleted_endpoint_guard": false,
+      "sham": false,
+      "expected": {
+        "status": "OUTCOME_UNCERTAIN",
+        "endpoint_effects": 0
+      },
+      "actual": {
+        "status": "OUTCOME_UNCERTAIN",
+        "endpoint_effects": 0,
+        "rejection": "HOST_GRANT_DENIED"
+      },
+      "violated_invariants": [
+        "REVOKED_RESERVATION_OCCURRED"
+      ],
+      "fault_detected": true
+    },
+    {
+      "arm": "alternate_off",
+      "deleted_local_guard": true,
+      "deleted_endpoint_guard": true,
+      "sham": false,
+      "expected": {
+        "status": "OUTCOME_UNCERTAIN",
+        "endpoint_effects": 1
+      },
+      "actual": {
+        "status": "OUTCOME_UNCERTAIN",
+        "endpoint_effects": 1,
+        "rejection": "NONE"
+      },
+      "violated_invariants": [
+        "REVOKED_RESERVATION_OCCURRED",
+        "REVOKED_ENDPOINT_EFFECT_OCCURRED"
+      ],
+      "fault_detected": true
+    }
+  ],
+  "process_witnesses": [
+    {
+      "reservation": {
+        "intent": {
+          "endpoint_id": "endpoint",
+          "principal": "alice",
+          "effect_id": "effect1",
+          "payload_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "reservation_id": "0bfe7d180f524ee4b7d1e78e832be1d9",
+        "status": "OUTCOME_UNCERTAIN"
+      },
+      "returncode": -9,
+      "cut": "after_reserve",
+      "before_reconcile": [
+        "OUTCOME_UNCERTAIN",
+        0
+      ],
+      "revoked_repeat_reserve_denied": true,
+      "proof": {
+        "intent": {
+          "endpoint_id": "endpoint",
+          "principal": "alice",
+          "effect_id": "effect1",
+          "payload_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "reservation_id": "0bfe7d180f524ee4b7d1e78e832be1d9",
+        "endpoint_id": "endpoint",
+        "outcome": "NOT_EXECUTED",
+        "signature": "73bb6c41239136ae90af53534cfb5fa8aeb73d5a9db4d053c4e2e6db5640c6e9"
+      },
+      "first_reconcile": "NOT_EXECUTED",
+      "repeat_reconcile": "NOT_EXECUTED",
+      "after_reconcile": [
+        "NOT_EXECUTED",
+        0
+      ],
+      "elapsed_seconds": 0.32247760799873504
+    },
+    {
+      "reservation": {
+        "intent": {
+          "endpoint_id": "endpoint",
+          "principal": "alice",
+          "effect_id": "effect1",
+          "payload_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "reservation_id": "c071a86ac966483e9a3576ac11bce35e",
+        "status": "OUTCOME_UNCERTAIN"
+      },
+      "returncode": -9,
+      "cut": "after_endpoint_commit",
+      "before_reconcile": [
+        "OUTCOME_UNCERTAIN",
+        1
+      ],
+      "revoked_repeat_reserve_denied": true,
+      "proof": {
+        "intent": {
+          "endpoint_id": "endpoint",
+          "principal": "alice",
+          "effect_id": "effect1",
+          "payload_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "reservation_id": "c071a86ac966483e9a3576ac11bce35e",
+        "endpoint_id": "endpoint",
+        "outcome": "COMMITTED",
+        "signature": "5169d8c0fef78ce965046b901004c22ae4b198b3b1360de8c11481bc026bfd6e"
+      },
+      "first_reconcile": "COMMITTED",
+      "repeat_reconcile": "COMMITTED",
+      "after_reconcile": [
+        "COMMITTED",
+        1
+      ],
+      "elapsed_seconds": 0.3278955620007764
+    }
+  ],
+  "executions": [
+    {
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "-m",
+        "pytest",
+        "tests/test_causal_authority_family.py",
+        "tests/test_temporal_process.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout": ".........                                                                [100%]\n9 passed in 1.98s\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "check",
+        "tests/test_causal_authority_family.py",
+        "tests/test_temporal_process.py",
+        "tests/test_temporal_support.py"
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "pyrefly",
+        "check",
+        "tests/test_causal_authority_family.py",
+        "tests/test_temporal_process.py",
+        "tests/test_temporal_support.py"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": " WARN PYTHONPATH environment variable is set to `src:tests`. Checks in other environments may not include these paths.\n INFO 0 errors\nNo `pyrefly.toml` found \u2014 using preset `basic`.\nRun `pyrefly init` to continue setting up Pyrefly.\nDocs: https://pyrefly.org/en/docs/installation/\n"
+    }
+  ],
+  "source_sha256": {
+    "src/hmt_rnd/custody_reconcile.py": "9366e0d93ccc80b86091efedffc6688cb3ec4b63c5850cc484b9515e9212ed62",
+    "src/hmt_rnd/custody_signing.py": "25cb6760bad8b257ffef5919f7d0242d812b2386740e2adb443fc235ccdaaac3",
+    "src/hmt_rnd/custody_operations.py": "dd50121fefdc8639d9114dd9c03bce74dfba32ba73636d04eb6eb46d172aed8e",
+    "src/hmt_rnd/custody_database.py": "2469edce2875cb6f37e6e8fe2fc5cc3f65413a8f8aff89587ef9a5dd94d3909b",
+    "src/hmt_rnd/custody_endpoint.py": "bdc64495a302bb44301fc932cff60a11dd788463424f40f07abf24783c1df3df",
+    "src/hmt_rnd/custody_adapter.py": "84942c052c4c3dd0e4a36aee4b73fd13ade1d4ade691def221653711bac03dad",
+    "src/hmt_rnd/custody_models.py": "b3f5cb013415f9502a8f996d9d7faf3675822f17d05fac3297578025dda0863e",
+    "src/hmt_rnd/host_models.py": "a8070768ce3818d521a6221879845a73f7c933620ec2c5ab7747f70e2f313e64",
+    "src/hmt_rnd/host_admission.py": "5b675de7eb0f0a84886c30d6092d3152b6d4224af552f8b3840e7e9e8d8ce1a5",
+    "src/hmt_rnd/host_checks.py": "7198c769641bebd17648040cd402001768c3df3fc7a26fce55e5c826274ee07a",
+    "src/hmt_rnd/host_admin.py": "3ef443d33cd5735deefb1f9435c334ac744fe5b89858009493af14172a0e7910",
+    "src/hmt_rnd/host_store.py": "dc5bc1ba541e5647093016b1ca9c9243be6d4e44a01597f4b84d7d5625867e84",
+    "src/hmt_rnd/host_schema.py": "94fc1948231e40f1b7c00c3970931bc36b4f1dc5df23d862a72db2bc867924a1",
+    "tests/test_causal_authority_family.py": "b40617596950fe6e308820a8165ea516983a6e4475cdbc090abece474616fb53",
+    "tests/test_temporal_process.py": "7a4cfcd5de0a9f95eaa8daa5aa69559e7c3a08d4bfe8e372f9f43d7e921c1d94",
+    "tests/test_temporal_support.py": "aebd72bcefbc2a35a611627c1d554ae7bee4047764f660b493307ed4ac0e9c42",
+    "docs/p1_verification.md": "da78d6c15535744a3a373d8f288f8d181e15988a9d68a570a0ccd75b21a1ac9b",
+    "contracts/requirements.json": "301592b8bf3a33c52318ab3ff37c47b072b12761385d8bc71bad7c07a7a97546"
+  },
+  "limits": [
+    "Process-kill only; not power/host loss",
+    "Local synthetic endpoint proof realm; no vendor qualification",
+    "Deterministic fixture clock, not hardware trusted-time custody",
+    "Faulty adapters are test-injected; production guards unchanged",
+    "One named causal edge and two cut points; no full-system coverage claim"
+  ],
+  "oracle_scope": "Fault-injected arms must match their declared observation and fail the unchanged revoked-safety oracle; intact/restoration/sham pass it. Alternate-off additionally violates endpoint zero-effect invariant.",
+  "source_stability_during_witness": "UNCHANGED"
+}

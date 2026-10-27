@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="5" time="0.305" timestamp="2026-10-26T18:47:52.823751-04:00" hostname="812233b2011d"><testcase classname="tests.test_reconcile_host_roots" name="test_relative_grant_rejected_before_provision[.]" time="0.028"><failure message="Failed: DID NOT RAISE ValidationError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-61/test_relative_grant_rejected_b0')
+root = '.'
+
+    @pytest.mark.parametrize("root", [".", "project", "../sibling"])
+    def test_relative_grant_rejected_before_provision(tmp_path, root):
+        store, _, _ = fixture_store(tmp_path / "host.sqlite")
+        body = stored_grant(store)
+        body["root"] = root
+&gt;       with pytest.raises(ValidationError, match="HOST_GRANT_ROOT_NOT_ABSOLUTE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+tests/test_reconcile_host_roots.py:23: Failed</failure></testcase><testcase classname="tests.test_reconcile_host_roots" name="test_relative_grant_rejected_before_provision[project]" time="0.026"><failure message="Failed: DID NOT RAISE ValidationError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-61/test_relative_grant_rejected_b1')
+root = 'project'
+
+    @pytest.mark.parametrize("root", [".", "project", "../sibling"])
+    def test_relative_grant_rejected_before_provision(tmp_path, root):
+        store, _, _ = fixture_store(tmp_path / "host.sqlite")
+        body = stored_grant(store)
+        body["root"] = root
+&gt;       with pytest.raises(ValidationError, match="HOST_GRANT_ROOT_NOT_ABSOLUTE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+tests/test_reconcile_host_roots.py:23: Failed</failure></testcase><testcase classname="tests.test_reconcile_host_roots" name="test_relative_grant_rejected_before_provision[../sibling]" time="0.017"><failure message="Failed: DID NOT RAISE ValidationError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-61/test_relative_grant_rejected_b2')
+root = '../sibling'
+
+    @pytest.mark.parametrize("root", [".", "project", "../sibling"])
+    def test_relative_grant_rejected_before_provision(tmp_path, root):
+        store, _, _ = fixture_store(tmp_path / "host.sqlite")
+        body = stored_grant(store)
+        body["root"] = root
+&gt;       with pytest.raises(ValidationError, match="HOST_GRANT_ROOT_NOT_ABSOLUTE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+tests/test_reconcile_host_roots.py:23: Failed</failure></testcase><testcase classname="tests.test_reconcile_host_roots" name="test_legacy_relative_grant_cannot_expand_after_restart" time="0.017"><failure message="Failed: DID NOT RAISE ValidationError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-61/test_legacy_relative_grant_can0')
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0x7f6adbf23100&gt;
+
+    def test_legacy_relative_grant_cannot_expand_after_restart(tmp_path, monkeypatch):
+        project = tmp_path / "project"
+        project.mkdir()
+        sibling = tmp_path / "sibling"
+        sibling.mkdir()
+        monkeypatch.chdir(project)
+        store, identity, request = fixture_store(project / "host.sqlite")
+        body = stored_grant(store)
+        body["root"] = "."
+        with store.transaction() as connection:
+            connection.execute("UPDATE host_grants SET body=?", (json.dumps(body),))
+        monkeypatch.chdir(tmp_path)
+        request = request.model_copy(update={"root": str(sibling)})
+&gt;       with pytest.raises(ValidationError, match="HOST_GRANT_ROOT_NOT_ABSOLUTE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_reconcile_host_roots.py:41: Failed</failure></testcase><testcase classname="tests.test_reconcile_host_roots" name="test_absolute_grant_preserves_scope_across_restart" time="0.013" /></testsuite></testsuites>

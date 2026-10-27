@@ -1,0 +1,26 @@
+[
+  {
+    "original": "evidence/Cumulative_Gate_Ledger.csv",
+    "preserved_at": "evidence/reconciliation_history/Cumulative_Gate_Ledger.csv",
+    "sha256": "5418d12d1242bbd2ba6eb2ec575439d095c1b85d2f570f0516744e868b15ebfe",
+    "source_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3"
+  },
+  {
+    "original": "evidence/Reverse_RCA_Ledger.csv",
+    "preserved_at": "evidence/reconciliation_history/Reverse_RCA_Ledger.csv",
+    "sha256": "2935ff2c22b6332e22a7c82a7d916ee48b4ccb6212b340c22e9f0e057b538b2a",
+    "source_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3"
+  },
+  {
+    "original": "evidence/build_ledgers.sqlite.gz",
+    "preserved_at": "evidence/reconciliation_history/build_ledgers.sqlite.gz",
+    "sha256": "90c7cd12bcc508a95827c034ccbd0cbfc93485d152b02499c3852383dca0c9e9",
+    "source_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3"
+  },
+  {
+    "original": "evidence/archive_index.json",
+    "preserved_at": "evidence/reconciliation_history/archive_index.json",
+    "sha256": "6c83d8d31429129cd7cb9455cc78f35322fb25c00a6b91e84b4799e2c9ab259d",
+    "source_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3"
+  }
+]

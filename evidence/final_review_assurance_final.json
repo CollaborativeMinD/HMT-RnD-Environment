@@ -1,0 +1,236 @@
+{
+  "schema": "hmt.manual-assurance-review.v1",
+  "as_of": "2026-10-27T00:21:30.936Z",
+  "primary_disposition": "HOLD",
+  "scope": "RC-LANE-07, RC-ARTIFACT-01, RC-ARTIFACT-02 bounded reconciliation, source/evidence identity and cumulative ledger continuity",
+  "baseline": "c922345c520db598f4b1f6afff2598c0770f0bba",
+  "candidate": "b8f8fac8a9ac55fed6e77f4363c39cd113555091",
+  "method": "Independent manual skill-guided read-only source, witness, GitHub blob, JSON/XML/CSV/gzip and in-memory SQLite inspection. No target execution, repair, remote comment, promotion or native mission-assurance MCP invocation.",
+  "release_condition": "Original out-of-band supervisor must review the exact resulting candidate and prior closure conditions. Internal bounded repair verification does not clear continuation. Integration instructions remain withheld.",
+  "cases": [
+    {
+      "id": "RC-LANE-07",
+      "scoped_assessment": "Declared issuance scenarios have matching positive, negative and regression witnesses; pending outside disposition.",
+      "cause": "Writer admitted revision-2 request against immutable revision-1 origin, creating an event and invalidation that downstream successor and architect reauthorization both rejected.",
+      "correction": "Two-line origin revision equality guard before event construction/insertion/invalidation. Existing origin/task/revision reader check unchanged. Cross-revision recovery remains unsupported.",
+      "before": {
+        "tests": 7,
+        "failures": 2,
+        "controls_passed": 5,
+        "trace": "Origin revision1, accepted event revision2, one event/invalidation, successor and reauthorization LANE_REOPEN_TASK_BINDING, no closure."
+      },
+      "after": {
+        "focused_tests": 7,
+        "failures": 0,
+        "isolated_full_tests": 231
+      },
+      "controls": [
+        "Fresh revision2 assignment and grants with and without database reopen denied LANE_REOPEN_REVISION_MISMATCH; entire SQLite table-content snapshot unchanged.",
+        "Unchanged revision1 event and designated successor work across HostStore/LaneStore reinstantiation; immutable origin retained.",
+        "Other-task, stale grant and revoked grant still deny without mutation."
+      ],
+      "commit": "6f5961c60c54caa2d4a92eefd1bfa672e2304c91"
+    },
+    {
+      "id": "RC-ARTIFACT-01",
+      "scoped_assessment": "Declared digest FIFO seam and unchanged-file controls have matching witnesses; pending outside disposition.",
+      "cause": "Path type check observed original regular inode; subsequent blocking open observed substituted FIFO while BEGIN IMMEDIATE remained held.",
+      "correction": "Shared descriptor reader traverses directories with O_DIRECTORY|O_NOFOLLOW, opens final component O_NONBLOCK|O_NOFOLLOW and checks S_ISREG on that descriptor before bounded read.",
+      "before": "Independent digest watchdog failure after3seconds; emitted regular-to-FIFO hook and shared_host_locked=true.",
+      "after": "LANE_ARTIFACT_SCOPE observed in0.0008253179985331371seconds; transaction rollback and subsequent revoke succeeded; restart test asserts exact HOST_GRANT_DENIED.",
+      "controls": [
+        "Empty, exact16MiB and16MiB+1 byte boundaries.",
+        "Regular bytes/digest identity; opened regular descriptor remains authoritative after pathname becomes FIFO.",
+        "Missing/directory/root escape and final/parent symlink rejection; late final/parent symlink substitution denial."
+      ],
+      "commit": "95649e428d4cbdbe7b1706f1cfb6c3983ed0456a"
+    },
+    {
+      "id": "RC-ARTIFACT-02",
+      "scoped_assessment": "Declared independent snapshot FIFO seam and custody controls have matching witnesses; pending outside disposition.",
+      "cause": "Snapshot repeated a later blocking check/open sequence independently of digest verification; digest-only repair left this second seam reachable.",
+      "correction": "Snapshot now invokes the same descriptor reader with remaining aggregate byte allowance. Digest verification, content-addressed storage and preserved byte validation remain.",
+      "before": "Independent snapshot watchdog failure after3seconds; emitted regular-to-FIFO hook and shared_host_locked=true.",
+      "after": "LANE_SNAPSHOT_SCOPE observed in0.003918917998817051seconds; transaction rollback and subsequent revoke succeeded; restart test asserts exact HOST_GRANT_DENIED.",
+      "controls": [
+        "Both-path focused suite27pass includes exact bytes,16MiB boundary, symlink races and descriptor custody.",
+        "Existing aggregate snapshot overflow test rolls back candidate and prior snapshot insertions.",
+        "SEALED and DENIED preserved artifact/evidence bytes remain available after path mutation."
+      ],
+      "commit": "b8f8fac8a9ac55fed6e77f4363c39cd113555091"
+    }
+  ],
+  "semantic_change": "All symlink path components are rejected, including formerly accepted in-scope symlinks. Explicit fail-closed tightening recorded by worker and CR-LATEST-REVIEW-006; not semantic parity for symlink input. Regular-byte/digest/bound behavior has matching controls.",
+  "witness_retention": "Original revision failures, explicit trapped-event trace, both FIFO timeout failures and raw mixed233test run remain. Mixed run had231passes/2artifactfailures with concurrent source/test changes and is not exact-candidate evidence; root isolated sequential231→241→255 replaces the qualification basis without erasing failures.",
+  "candidate_audit": {
+    "method": "Read-only stdlib data/hash inspection; no target execution",
+    "published_commit": "b8f8fac8a9ac55fed6e77f4363c39cd113555091",
+    "file_count": 123,
+    "remote_blob_mismatches": [],
+    "final_executable_mismatches": [],
+    "stages": [
+      {
+        "snapshot": "revision_issuance_snapshot",
+        "text_hash_mismatches": [],
+        "expected_equals_executed": true,
+        "source_unchanged_after": true,
+        "junit_hash_matches": true,
+        "suite": [
+          {
+            "name": "pytest",
+            "errors": "0",
+            "failures": "0",
+            "skipped": "0",
+            "tests": "231",
+            "time": "32.645",
+            "timestamp": "2026-10-26T20:11:37.637702-04:00",
+            "hostname": "812233b2011d"
+          }
+        ]
+      },
+      {
+        "snapshot": "artifact_fifo_step1",
+        "text_hash_mismatches": [],
+        "expected_equals_executed": true,
+        "source_unchanged_after": true,
+        "junit_hash_matches": true,
+        "suite": [
+          {
+            "name": "pytest",
+            "errors": "0",
+            "failures": "0",
+            "skipped": "0",
+            "tests": "241",
+            "time": "26.571",
+            "timestamp": "2026-10-26T20:14:55.617001-04:00",
+            "hostname": "812233b2011d"
+          }
+        ]
+      },
+      {
+        "snapshot": "artifact_fifo_step2",
+        "text_hash_mismatches": [],
+        "expected_equals_executed": true,
+        "source_unchanged_after": true,
+        "junit_hash_matches": true,
+        "suite": [
+          {
+            "name": "pytest",
+            "errors": "0",
+            "failures": "0",
+            "skipped": "0",
+            "tests": "255",
+            "time": "30.847",
+            "timestamp": "2026-10-26T20:16:37.589105-04:00",
+            "hostname": "812233b2011d"
+          }
+        ]
+      }
+    ],
+    "coverage": {
+      "changed_files_exact": true,
+      "changed_count": 31,
+      "raw_hash_matches": true,
+      "covered": 239,
+      "total": 254,
+      "excluded": 0,
+      "summary_mismatches": [],
+      "source_hash_mismatches": []
+    }
+  },
+  "ledger_audit": {
+    "manifest_hash_mismatches": [],
+    "sqlite_integrity": "ok",
+    "tables": {
+      "Cumulative_Gate_Ledger": {
+        "rows": 52,
+        "columns": 8,
+        "all_eight_columns": true,
+        "blank_attestations": 0,
+        "csv_sqlite_exact": true,
+        "historical_prefix_exact": true,
+        "historical_rows": 44,
+        "missing_worker_rows": [],
+        "hash_ref_mismatches": []
+      },
+      "Reverse_RCA_Ledger": {
+        "rows": 116,
+        "columns": 8,
+        "all_eight_columns": true,
+        "blank_attestations": 0,
+        "csv_sqlite_exact": true,
+        "historical_prefix_exact": true,
+        "historical_rows": 98,
+        "missing_worker_rows": [],
+        "hash_ref_mismatches": []
+      }
+    },
+    "register": {
+      "historical_count": 12,
+      "pending_count": 2,
+      "active_count": 3,
+      "states": [
+        "REPAIR_VERIFIED_HOLD_PENDING_OUT_OF_BAND_REVIEW",
+        "REPAIR_VERIFIED_HOLD_PENDING_OUT_OF_BAND_REVIEW",
+        "REPAIR_VERIFIED_HOLD_PENDING_OUT_OF_BAND_REVIEW"
+      ],
+      "reference_mismatches": []
+    },
+    "worker_declared_reference_count": 39,
+    "worker_reference_mismatches": []
+  },
+  "continuity_audit": {
+    "artifact_baseline_mismatches": [],
+    "historical_records_exact": true,
+    "prior_pending_records_exact": true,
+    "archive_errors": [],
+    "archives_checked": 5
+  },
+  "static_gates": "Supervisor records Ruff, Pyrefly basic, structural gate exit0 for exact final candidate. Assurance did not execute them.",
+  "coverage_claim": "Changed first-party executable denominator independently recomputed against9a5eb22:31files,239/254branches=94.09448818897638%, zero exclusions. This supports only the declared changed-code branch metric, not full N11.",
+  "limitations": [
+    "Hashes establish byte identity, not producer authenticity. Runtime observations are retained worker/supervisor execution records independently inspected here, not executions performed by assurance.",
+    "POSIX/Linux local filesystem FIFO and symlink seams only. O_NONBLOCK does not qualify arbitrary network/FUSE/device stalls, generalized filesystem liveness or universal latency.",
+    "FIFO transaction harness calls each production read under the real host write fence; it does not claim every submit/reopen interleaving was separately executed. Full regression supplies broader existing seams.",
+    "Restart controls recreate stores/connections or lane wrapper against persisted database; they do not establish process-kill, power-loss or all crash-cut-point durability.",
+    "Prior direct absent-lane.reauthorize-grant fixture remains absent; prior source-composition inference is not upgraded to direct execution by this campaign.",
+    "Full N11 applicable assertion and critical mutation obligations remain NOT_EXECUTED. Existing operational HOLDs, global Forge acceptance, integration and deployment are not released."
+  ],
+  "failure_disposition": "Any contradictory tracer reopens the affected canonical case and requirement explicitly; preserve prior evidence and exact scope. Do not silently shrink scenarios or substitute a passing unrelated test.",
+  "evidence_sha256": {
+    "evidence/final_review_assurance_sources.json": "75932e23dae50233508379e71a2fceb2365fb0eee13e879dc2be41035bd8005d",
+    "evidence/final_review_assurance_initial.json": "c77e6a35058083be388b128d3b440a9709296d7b27e3582f10366341740a8e20",
+    "evidence/revision_issuance_before_sources.json": "ecfcd48da5b17daf5514839d2c4e92e388b07c36da953ebac50e97c87c6a214f",
+    "evidence/revision_issuance_before_tests.json": "159dfa5f5137113dcbd0f3ca7a0f55f73f57a1228fb40b1fb01f5da0268c96ba",
+    "evidence/revision_issuance_before.xml": "3c72f3943edf72a66edef89b43cbd2481f13c75b4b8c2df3465e97fd8abeac06",
+    "evidence/revision_issuance_trace.json": "e25b1ff18eaeb7bd969cebaa9f59752e6f49de36f302bcb4de69bddffe80a375",
+    "evidence/revision_issuance_after.xml": "d89b8864f182e779db46b4654ed9408ce86f9f6bcbccd1217e4c96ea87d2db31",
+    "evidence/revision_issuance_case.json": "09d47aba6668ce50482cbae4b5b1c759ae360ce0d1099286708a5e3a23200dce",
+    "evidence/revision_issuance_final.json": "f53fd243a157f714875b578f74af57cf427d838def2adc6881b4ed2f40322d63",
+    "evidence/revision_issuance_full_regression.xml": "43a05aa85ae2a21fc7202d5d59879d63defdbd4885124acf01f128f6cdd1e857",
+    "evidence/revision_issuance_runtime_changes.json": "9893a374bf7deae8a07b47e462ab2d11ba333b0f0e0be077c9ed9e75bf67e692",
+    "evidence/revision_issuance_snapshot.json": "2cc3a479fb49510996457aee2de9cd275f7a114f48a93054f133a49ba4335287",
+    "evidence/artifact_fifo_baseline.json": "134162a46c3e1bacb5f158b17a144edcc2508d4545be132da41e0ba808e9bdaa",
+    "evidence/artifact_fifo_before.xml": "85eadd4b1dda1f371379d377f100a6538d3fdcc8bd0e8e305421d61be890dae0",
+    "evidence/artifact_fifo_summary.json": "2f320e74ff484d11d97822d88120458b44ff5f3b87e185524d0650261dfa9ce3",
+    "evidence/artifact_fifo_step1.json": "8e17f014b2d123093fc4bdb1d1d32cde1635301027a08a41f0966718c92a4f2e",
+    "evidence/artifact_fifo_step2.json": "7dd4edff3915770e904acecf0b1b1ef8073391ef201142073ad59e11066793bc",
+    "evidence/artifact_fifo_digest_observed.json": "57271a80cc9a3f09b482e419d2eab071fefb73f8a290cd8cb26a19b4f1dc9d38",
+    "evidence/artifact_fifo_snapshot_observed.json": "2a8d4e61f6812fda04dc8827ebf320b22c90e47f2608913fa7a5a9e185483df2",
+    "evidence/latest_supervisor_revision_issuance_snapshot.json": "937f512b59fa721e907fcb2b4ec1a43ac0c3b6368494e650f6f9c439ebb7fb03",
+    "evidence/latest_supervisor_artifact_fifo_step1.json": "9c7b02daa23d8fc9c485267fbe6115ad8e44f8a56c8f5497ff8c4def79fba0f5",
+    "evidence/latest_supervisor_artifact_fifo_step2.json": "771b10bc64f86134357c82ab3b300ec21e594c6d9092c0035d43a3ab7446c0ba",
+    "evidence/latest_review_supervisor_results.json": "6630d1e8d3cad2dd13b0cce3356c117881afc8c89d4fc2bba6e9deef0a6e9ac7",
+    "evidence/latest_review_changed_coverage.json": "ad94d8714d81e4cc4fa0c260a986506c73c449988e0bd8e2a054dc52ced3803b",
+    "evidence/latest_review_coverage.json": "2b5924c923ff019177d5d9c07a5287171f948ff4adc8cbb70d9a3bdb4e1d17e3",
+    "evidence/latest_review_ledger_manifest.json": "58e34ad705237fa1ba5e93b533a0ce671aff123c08918f24205e5a8d6f7ff278",
+    "evidence/latest_review_case_register.json": "32fad2d8fd6b4310e6448a371d1b960ea1e84264376965010f0aacf6e61b4ca7",
+    "evidence/Cumulative_Gate_Ledger.csv": "425c98c411b5fd383f208084a33fb121b8c1a5e401ff47db085cf2c7ec7cc8d7",
+    "evidence/Reverse_RCA_Ledger.csv": "4e3bf1400d06686e6a5f95dcd259aac6aa41db85b5e412f9358f771c9abec337",
+    "evidence/build_ledgers.sqlite.gz": "e327db594d93e817c6b8c72c928d57db3a1d9269974fad47bb77ee092b51ee9d",
+    "evidence/archive_index.json": "ee83cd39f95a147503101005f6363fb294c9ee3af21efed44fd4b142bd8df9b0",
+    "contracts/CR-LATEST-REVIEW-006.json": "9dc177bb62a4d7a019456e333f4af72465db6974a5406f80527a28902bbabe15",
+    "contracts/requirements.json": "301592b8bf3a33c52318ab3ff37c47b072b12761385d8bc71bad7c07a7a97546",
+    "AGENTS.md": "36dcd2535a962235d9771d8b74b0747429482eb4f22a4a52d7790d874b573cd2"
+  }
+}

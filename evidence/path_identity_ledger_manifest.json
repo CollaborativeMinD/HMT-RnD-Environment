@@ -1,0 +1,26 @@
+{
+  "columns": 8,
+  "rows": {
+    "Cumulative_Gate_Ledger": 60,
+    "Reverse_RCA_Ledger": 124
+  },
+  "retained_prefix": {
+    "Cumulative_Gate_Ledger": 52,
+    "Reverse_RCA_Ledger": 116
+  },
+  "sha256": {
+    "evidence/Cumulative_Gate_Ledger.csv": "7b00ee2d64bee5e5a491f3ec1ba448b77cc089ad5b31e75bb02db464e7345e66",
+    "evidence/Reverse_RCA_Ledger.csv": "51b9dc7f62e42ddb60a4a5ca16e83f50cc588b5def571aba9f60f83fa48a9ea2",
+    "evidence/build_ledgers.sqlite.gz": "9361b88d1e7926e092dc8e1c9b30e043e99b0f4088d6642a4436134683309bb1"
+  },
+  "history": {
+    "evidence/path_identity_history/Reverse_RCA_Ledger.csv": "4e3bf1400d06686e6a5f95dcd259aac6aa41db85b5e412f9358f771c9abec337",
+    "evidence/path_identity_history/Cumulative_Gate_Ledger.csv": "425c98c411b5fd383f208084a33fb121b8c1a5e401ff47db085cf2c7ec7cc8d7",
+    "evidence/path_identity_history/build_ledgers.sqlite.gz": "e327db594d93e817c6b8c72c928d57db3a1d9269974fad47bb77ee092b51ee9d",
+    "evidence/path_identity_history/archive_index.json": "ee83cd39f95a147503101005f6363fb294c9ee3af21efed44fd4b142bd8df9b0"
+  },
+  "worker_rows_retained": [
+    "evidence/path_identity_cumulative.csv",
+    "evidence/path_identity_rrca.csv"
+  ]
+}

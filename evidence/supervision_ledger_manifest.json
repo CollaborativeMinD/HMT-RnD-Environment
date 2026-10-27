@@ -1,0 +1,47 @@
+{
+  "columns": 8,
+  "tables": {
+    "cumulative_gate_ledger": {
+      "prior_rows": 67,
+      "current_rows": 69,
+      "columns": [
+        "timestamp",
+        "task",
+        "gate_id",
+        "requirement",
+        "status",
+        "evidence_ref",
+        "evidence_hash_reason",
+        "sub_agent_task_attestation"
+      ]
+    },
+    "reverse_rca_ledger": {
+      "prior_rows": 136,
+      "current_rows": 141,
+      "columns": [
+        "timestamp",
+        "incident_id",
+        "checkpoint",
+        "observed_state",
+        "causal_evidence",
+        "validation_test",
+        "disposition",
+        "sub_agent_task_attestation"
+      ]
+    }
+  },
+  "prefix_retained": true,
+  "CSV_SQLite_parity": true,
+  "SQLite_integrity": "ok",
+  "current_sha256": {
+    "evidence/Cumulative_Gate_Ledger.csv": "a8d51ba7519249ee4969a8fb12f5eae99a41b7e311b855f50034b19bbdd18cd4",
+    "evidence/Reverse_RCA_Ledger.csv": "3523bf0587a5a3b5d57a9aa5ef0990a17126b0c3e61971d3872964d0e56e356b",
+    "evidence/build_ledgers.sqlite.gz": "31df1f3cfbd7fe210ebbab895ae842e5a15d5ff4e4489b9bd2fe673ae03b46c6"
+  },
+  "history_sha256": {
+    "evidence/supervision_history/Reverse_RCA_Ledger.csv": "3375878c45de4c56d87c1ebd8ab2cacd8d7dd5422a1069c415be50524487f7ef",
+    "evidence/supervision_history/Cumulative_Gate_Ledger.csv": "e7b9d68349b6dcac7b1158433b568f75a0e724a9b4b1954c1094a35876161c46",
+    "evidence/supervision_history/build_ledgers.sqlite.gz": "aafaaf703bd433a394927bff3f9fdb4bf69e33d5dfc5fdd7fa6e858cc74b53fc",
+    "evidence/supervision_history/archive_index.json": "c0fda719733a505751d9ec48e25054e7108fa8efb787a480dca13bfe3f71546d"
+  }
+}

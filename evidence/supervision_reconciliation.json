@@ -1,0 +1,878 @@
+{
+  "case_id": "RC-REOPEN-EXPIRY-01",
+  "producer": "/root",
+  "as_of": "2026-10-27T02:52:53.400214+00:00",
+  "baseline": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe",
+  "review_source": {
+    "id": 6432383110,
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#issuecomment-6432383110"
+  },
+  "source_candidate": "this commit; exact 141-file SHA-256 inventory in evidence/reopen_expiry_candidate.json",
+  "disposition": "REPAIR_VERIFIED_HOLD_PENDING_OUT_OF_BAND_REVIEW",
+  "primary_operational_disposition": "HOLD",
+  "integration": "BLOCKED",
+  "merge": "NOT_AUTHORIZED",
+  "new_workers": 0,
+  "live_workers_at_audit": [
+    "/root"
+  ],
+  "governing_sources": [
+    {
+      "kind": "plan",
+      "path": "/workspace/scratch/bc6d4e512874/deliverable/task_plan.md",
+      "version": "0.1.0 revision 2",
+      "sha256": "56630afcf2efb1a0ea2de0980adf7141d7bf68a9c83171000d7e16b553747d7b",
+      "inspection": "read; static text only, no reference execution",
+      "public_payload": "identity only; private bodies excluded"
+    },
+    {
+      "kind": "implementation_laws",
+      "path": "/workspace/scratch/bc6d4e512874/deliverable/implementation_laws.html",
+      "version": "0.1.0 revision 2",
+      "sha256": "c18310546c3368fccb4276b69a67d50dc65a9424e769b06182acf34d88176a94",
+      "inspection": "read; static text only, no reference execution",
+      "public_payload": "identity only; private bodies excluded"
+    },
+    {
+      "kind": "high_level_design",
+      "path": "/workspace/scratch/bc6d4e512874/hmt-system-preview.html",
+      "version": "available rendered source; no independent signed seal",
+      "sha256": "9a22479a8b9615b2be9254a994fe765cc0aa92ef59e9ee8f5f4fa69bee9b2874",
+      "inspection": "read; static text only, no reference execution",
+      "public_payload": "identity only; private bodies excluded"
+    },
+    {
+      "kind": "low_level_design",
+      "path": "/workspace/scratch/bc6d4e512874/HMT_Forge_Low_Level_Design_Review_v0.1.0.html",
+      "version": "0.1.0",
+      "sha256": "e0284902ba9dd4e64044ec1be9424498478b406d17799ca3a69c21a769d4854c",
+      "inspection": "read; static text only, no reference execution",
+      "public_payload": "identity only; private bodies excluded"
+    },
+    {
+      "kind": "governing_rrca",
+      "path": "/workspace/scratch/bc6d4e512874/project_sources/09-rrca_verification_and_validation_v4.md",
+      "version": "v4",
+      "sha256": "9e40b6b088a8196f959fba170403d0b6da8340a27ab1fe04a5843004e234076d",
+      "inspection": "read; static text only, no reference execution",
+      "public_payload": "identity only; private bodies excluded"
+    },
+    {
+      "kind": "active_build_contract",
+      "path": "AGENTS.md",
+      "sha256": "36dcd2535a962235d9771d8b74b0747429482eb4f22a4a52d7790d874b573cd2",
+      "revision_source": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe"
+    },
+    {
+      "kind": "active_build_contract",
+      "path": "Runbook.md",
+      "sha256": "c6b23d5b8948ca4584681427b5496a236879190cdb255ee50b69b46eb4bad996",
+      "revision_source": "published parent plus this scoped Runbook correction"
+    },
+    {
+      "kind": "active_build_contract",
+      "path": "docs/build_plan.md",
+      "sha256": "0ab86038a4514aaf073d47499f13f09abacf84406812f2516de12a484b1b0928",
+      "revision_source": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe"
+    },
+    {
+      "kind": "active_build_contract",
+      "path": "contracts/build_baseline.json",
+      "sha256": "41713dfba5ad59b8e0d9d76cf6c9663aae6963dc82d115f7003dc7c0883b6ca3",
+      "revision_source": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe"
+    },
+    {
+      "kind": "active_build_contract",
+      "path": "contracts/requirements.json",
+      "sha256": "301592b8bf3a33c52318ab3ff37c47b072b12761385d8bc71bad7c07a7a97546",
+      "revision_source": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe"
+    },
+    {
+      "kind": "active_build_contract",
+      "path": "contracts/vv_methodology.json",
+      "sha256": "988f9974d3e048f0eb2327a322ffd7641c4d90c8d3ec2f2ca4ec5ad858d5699d",
+      "revision_source": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe"
+    },
+    {
+      "kind": "active_build_contract",
+      "path": "contracts/complexity_policy.json",
+      "sha256": "f17828f8ec44d2db444066ea89e0c8fece24b90a78ab3e637491f5482769c35d",
+      "revision_source": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe"
+    },
+    {
+      "kind": "active_build_contract",
+      "path": "contracts/binding.schema.json",
+      "sha256": "c672e380308976cb47cb0f438b2da61e7717b88c28124ff1123a32d31c5f8444",
+      "revision_source": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe"
+    },
+    {
+      "kind": "active_build_contract",
+      "path": "contracts/binding_register.json",
+      "sha256": "53b91df393d62c2a1974d37cc4d0495cf61a282c691b74343149a4c1fdc0e3c3",
+      "revision_source": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe"
+    },
+    {
+      "kind": "active_build_contract",
+      "path": "contracts/work_packages.json",
+      "sha256": "885c2cbf05be4b96ab5b55bec09101d129812c6df05ee09c35ab086774f1d98a",
+      "revision_source": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe"
+    },
+    {
+      "kind": "active_build_contract",
+      "path": "contracts/CR-REFERENCE-DERIVATION-003.json",
+      "sha256": "84b5983231c192cc6a263c47616da5254a6ac63690eb80c5016c89f6490969c8",
+      "revision_source": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe"
+    }
+  ],
+  "precedence": [
+    "Current user instructions and reference-only override supersede old live-reference host recommendations.",
+    "Current stricter complexity policy supersedes old 180-line design ceiling.",
+    "Original high/low/interface views remain design evidence, not runtime qualification."
+  ],
+  "governing_gaps": [
+    "High-level rendered source is available but has no independently signed design seal; its current hash is an inspection identity.",
+    "Original interface discussion has no separate sealed standalone design file here; active binding.schema.json and binding_register.json provide the concrete pinned interface contracts. Outside review remains required."
+  ],
+  "requirements_reopened": [
+    {
+      "id": "HMT-F02",
+      "revision": 1,
+      "owner": "Host",
+      "acceptance": "Intersect principal, role, lane, stage, task ownership, lease, epoch, policy, resource scope, and current evidence at the effect boundary. Hidden-tool direct invocation receives the same decision.",
+      "verification_method": "API boundary tests and concurrent authority-change experiments",
+      "required_evidence": [
+        "Authenticated identity",
+        "policy/epoch",
+        "admission event",
+        "endpoint effect journal"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-F14",
+      "revision": 1,
+      "owner": "RRCA",
+      "acceptance": "Compile one incident history and repair budget; traverse evidence backward to the last supported edge, preserve unknown frontier, and route repair to its owning lane. RRCA cannot execute repair or promote.",
+      "verification_method": "Injected known faults; false-cause and duplicate-incident tests",
+      "required_evidence": [
+        "Incident identity",
+        "admitted causal edges",
+        "frontier",
+        "corrective task and regression links"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-N11",
+      "revision": 1,
+      "owner": "Quality",
+      "acceptance": "100% required applicable assertions have current witnesses; all critical gate mutants are killed; changed first-party executable code branch coverage >=90% with fixed denominator and no exclusions/suppressions. Every surviving noncritical mutant receives disposition; no aggregate score hides a critical survivor.",
+      "verification_method": "Coverage and mutation campaigns with immutable denominator",
+      "required_evidence": [
+        "Covered/total branches",
+        "mutant catalog",
+        "killed/survived results",
+        "critical gate effects"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-N12",
+      "revision": 1,
+      "owner": "DOKE",
+      "acceptance": "Every claim witness binds source/build/policy/schema/environment, UTC event time, monotonic duration where applicable, raw artifact digests, producer identity, and replay scope. No automatic evidence/tombstone deletion in baseline. Freshness evaluated at use under pinned profile.",
+      "verification_method": "Tampered/stale/mixed-build evidence and retention-capacity tests",
+      "required_evidence": [
+        "Hash manifest",
+        "authenticated producer records",
+        "freshness decision",
+        "retained failures",
+        "replay ranges"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-B07",
+      "revision": 1,
+      "owner": "Host",
+      "acceptance": "A changed predecessor/policy/schema invalidates affected descendants. Preserve denied/sealed artifacts immutable; create typed successor routed to earliest changed authority. Unaffected work may continue only with recorded dependency analysis.",
+      "verification_method": "Sequence S07; changed upstream hash and stale downstream receipt",
+      "required_evidence": [
+        "Dependency graph",
+        "invalidation set",
+        "predecessor/successor links",
+        "denied stale promotion"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-B10",
+      "revision": 1,
+      "owner": "Supervisor",
+      "acceptance": "A reproducible contradiction reopens exact requirements/assumptions and affected packages; retain original expectation and witness. Worker stops affected progression, files change request, and cannot relax success criteria. New baseline requires architecture-authority decision and regression closure.",
+      "verification_method": "Sequence S10 with intentionally false pinned assumption",
+      "required_evidence": [
+        "Contradiction",
+        "impact graph",
+        "change request",
+        "decision",
+        "old/new requirement revisions",
+        "rerun evidence"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-B11",
+      "revision": 1,
+      "owner": "Quality",
+      "acceptance": "Retain old failure/test identity. Superseding test must cover same requirement, failure mechanism, and boundaries, with matched reproduction and repair evidence; otherwise record changed contract and approved revision. New pass alone cannot close old failure.",
+      "verification_method": "Sequence S11; weaker replacement and changed-boundary controls",
+      "required_evidence": [
+        "Old/new test hashes",
+        "coverage equivalence",
+        "original fail",
+        "repaired rerun",
+        "approved contract delta"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-B15",
+      "revision": 1,
+      "owner": "Supervisor",
+      "acceptance": "Work packages pin requirement revisions, inputs, interfaces, owned files, expected observations, budgets, forbidden effects, and reopen route. Supervisor reconciles upstream/downstream attestations. Human retains architecture change and final closeout authority.",
+      "verification_method": "Cross-package contradiction and release rehearsal",
+      "required_evidence": [
+        "Package manifests",
+        "coupling checks",
+        "eight-column attestation ledger when delegated",
+        "exact-build acceptance packet"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    }
+  ],
+  "requirement_assertion_receipt_trace": [
+    {
+      "requirement": "HMT-F02@1",
+      "owner": "Host",
+      "assertions": [
+        "exclusive grant expiry",
+        "exclusive evidence expiry",
+        "full-table rollback",
+        "historical receipt equality",
+        "immediate/deep read cut",
+        "unchanged/below positive controls"
+      ],
+      "test": "tests/test_reopen_expiry.py::test_reopen_authority_after_real_parent_reads",
+      "receipts": [
+        "evidence/reopen_expiry_before.xml",
+        "evidence/reopen_expiry_after.xml",
+        "evidence/reopen_expiry_full.xml"
+      ],
+      "failure_disposition": "HOLD and reopen affected requirement; do not weaken acceptance"
+    },
+    {
+      "requirement": "HMT-F14@1",
+      "owner": "RRCA",
+      "assertions": [
+        "scoped repair regression; broader requirement remains NOT_EXECUTED"
+      ],
+      "test": "tests/test_reopen_expiry.py::test_reopen_authority_after_real_parent_reads",
+      "receipts": [
+        "evidence/reopen_expiry_before.xml",
+        "evidence/reopen_expiry_after.xml",
+        "evidence/reopen_expiry_full.xml"
+      ],
+      "failure_disposition": "HOLD and reopen affected requirement; do not weaken acceptance"
+    },
+    {
+      "requirement": "HMT-N11@1",
+      "owner": "Quality",
+      "assertions": [
+        "scoped repair regression; broader requirement remains NOT_EXECUTED"
+      ],
+      "test": "tests/test_reopen_expiry.py::test_reopen_authority_after_real_parent_reads",
+      "receipts": [
+        "evidence/reopen_expiry_before.xml",
+        "evidence/reopen_expiry_after.xml",
+        "evidence/reopen_expiry_full.xml"
+      ],
+      "failure_disposition": "HOLD and reopen affected requirement; do not weaken acceptance"
+    },
+    {
+      "requirement": "HMT-N12@1",
+      "owner": "DOKE",
+      "assertions": [
+        "scoped repair regression; broader requirement remains NOT_EXECUTED"
+      ],
+      "test": "tests/test_reopen_expiry.py::test_reopen_authority_after_real_parent_reads",
+      "receipts": [
+        "evidence/reopen_expiry_before.xml",
+        "evidence/reopen_expiry_after.xml",
+        "evidence/reopen_expiry_full.xml"
+      ],
+      "failure_disposition": "HOLD and reopen affected requirement; do not weaken acceptance"
+    },
+    {
+      "requirement": "HMT-B07@1",
+      "owner": "Host",
+      "assertions": [
+        "scoped repair regression; broader requirement remains NOT_EXECUTED"
+      ],
+      "test": "tests/test_reopen_expiry.py::test_reopen_authority_after_real_parent_reads",
+      "receipts": [
+        "evidence/reopen_expiry_before.xml",
+        "evidence/reopen_expiry_after.xml",
+        "evidence/reopen_expiry_full.xml"
+      ],
+      "failure_disposition": "HOLD and reopen affected requirement; do not weaken acceptance"
+    },
+    {
+      "requirement": "HMT-B10@1",
+      "owner": "Supervisor",
+      "assertions": [
+        "scoped repair regression; broader requirement remains NOT_EXECUTED"
+      ],
+      "test": "tests/test_reopen_expiry.py::test_reopen_authority_after_real_parent_reads",
+      "receipts": [
+        "evidence/reopen_expiry_before.xml",
+        "evidence/reopen_expiry_after.xml",
+        "evidence/reopen_expiry_full.xml"
+      ],
+      "failure_disposition": "HOLD and reopen affected requirement; do not weaken acceptance"
+    },
+    {
+      "requirement": "HMT-B11@1",
+      "owner": "Quality",
+      "assertions": [
+        "scoped repair regression; broader requirement remains NOT_EXECUTED"
+      ],
+      "test": "tests/test_reopen_expiry.py::test_reopen_authority_after_real_parent_reads",
+      "receipts": [
+        "evidence/reopen_expiry_before.xml",
+        "evidence/reopen_expiry_after.xml",
+        "evidence/reopen_expiry_full.xml"
+      ],
+      "failure_disposition": "HOLD and reopen affected requirement; do not weaken acceptance"
+    },
+    {
+      "requirement": "HMT-B15@1",
+      "owner": "Supervisor",
+      "assertions": [
+        "scoped repair regression; broader requirement remains NOT_EXECUTED"
+      ],
+      "test": "tests/test_reopen_expiry.py::test_reopen_authority_after_real_parent_reads",
+      "receipts": [
+        "evidence/reopen_expiry_before.xml",
+        "evidence/reopen_expiry_after.xml",
+        "evidence/reopen_expiry_full.xml"
+      ],
+      "failure_disposition": "HOLD and reopen affected requirement; do not weaken acceptance"
+    }
+  ],
+  "observed_chain": [
+    "Fresh downstream owner requests genuine artifact-drift reopen of CMAD2/CMAD3.",
+    "Initial and former final authority checks occur at time 12, before parent I/O.",
+    "Real parent verification completes and controlled trusted clock reaches exclusive grant/evidence expiry.",
+    "Old order inserts event/invalidation without another clock read; all 24 negative cases mutate.",
+    "Swapped existing calls perform current admission after parent I/O; expiry rejects and transaction rolls back all tables."
+  ],
+  "corrective_task": {
+    "owner": "/root acting as implementation supervisor",
+    "source": "src/hmt_rnd/lane_reopen.py",
+    "delta": "Move the existing final authorize_and_checkpoint below check_parent. No extra admission implementation.",
+    "contract_change": "none; requirements unchanged",
+    "scope_limit": "No claim of atomically freezing physical time or arbitrary concurrent filesystem mutation."
+  },
+  "supervisor_personal_review": {
+    "inspected": [
+      "exact two-line source diff",
+      "canonical host expiry comparison and transaction rollback",
+      "parent validator real descriptor-backed artifact/evidence reads",
+      "previous ancestor and drift worker tests and case records",
+      "negative/positive test assertions and raw observations",
+      "candidate source identities and preserved original failures"
+    ],
+    "executed": [
+      "48-case original candidate reproduction",
+      "same 48-case repaired test",
+      "isolated 387-test cumulative replay",
+      "27 existing verification unittest tests",
+      "Ruff src/tests/scripts",
+      "Pyrefly basic src",
+      "structure/suppression gate with explicit src import path",
+      "two critical mutants with original 48 assertions"
+    ],
+    "not_executed": [
+      "reference implementations",
+      "live vendors or hardware",
+      "complete mission acceptance",
+      "independent out-of-band review"
+    ]
+  },
+  "results": {
+    "before": {
+      "tests": 48,
+      "failures": 24,
+      "errors": 0,
+      "skips": 0,
+      "receipt": "evidence/reopen_expiry_before.xml",
+      "sha256": "9903c5cae043854056b2d359a3428b4d68ba8e62c58c7343d7973aa60c497c52"
+    },
+    "after": {
+      "tests": 48,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "receipt": "evidence/reopen_expiry_after.xml",
+      "sha256": "a3509dcdace5f3c958a05d91c4e84c2fb22198f5c7b9fcd022fcba444b89115e"
+    },
+    "cumulative": {
+      "tests": 387,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "receipt": "evidence/reopen_expiry_full.xml",
+      "sha256": "59977ab24b92bfae9c2b8748d99e9ad154fd8f52ad5caec3336bcb6b96f5ffc5"
+    }
+  },
+  "unittest": {
+    "tests": 27,
+    "failures": 0,
+    "scope": "existing verification unittest entrypoint; not a second runner for the new pytest expiry cases"
+  },
+  "mutations": [
+    {
+      "id": "delete_final_admission",
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+        "--no-sync",
+        "python",
+        "-m",
+        "pytest",
+        "tests/test_reopen_expiry.py",
+        "-q",
+        "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/reopen_expiry_mutant_delete_final_admission.xml"
+      ],
+      "cwd": "/workspace/scratch/bc6d4e512874/supervisor_expiry_mutant_delete_final_admission",
+      "source_sha256": "4d032924349c24c82b93b9e91e75fdf723f176d9852fbab80fa0c1e90cefc1fd",
+      "returncode": 1,
+      "seconds": 8.332242292999581,
+      "expected": "24 negative cases fail; 24 unchanged/below controls pass",
+      "summary": "24 failed, 24 passed in 6.74s"
+    },
+    {
+      "id": "restore_old_order",
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+        "--no-sync",
+        "python",
+        "-m",
+        "pytest",
+        "tests/test_reopen_expiry.py",
+        "-q",
+        "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/reopen_expiry_mutant_restore_old_order.xml"
+      ],
+      "cwd": "/workspace/scratch/bc6d4e512874/supervisor_expiry_mutant_restore_old_order",
+      "source_sha256": "0ed09b7b6570884c47b89a07149dc87cabbd5b37da55e3768903cbe8b2f1b482",
+      "returncode": 1,
+      "seconds": 5.235521452999819,
+      "expected": "24 negative cases fail; 24 unchanged/below controls pass",
+      "summary": "24 failed, 24 passed in 4.81s"
+    }
+  ],
+  "coverage": "evidence/reopen_expiry_changed_coverage.json",
+  "source_identity": {
+    "baseline_executable_and_configuration_git_blobs_checked": 139,
+    "mismatches": 0,
+    "candidate_pre_post_source_pins": 141,
+    "mismatches_after_replay": 0,
+    "manifest": "evidence/reopen_expiry_candidate.json"
+  },
+  "invocation_failure_retained": {
+    "record": "evidence/reopen_expiry_structure.log",
+    "observed": "ModuleNotFoundError: hmt_rnd; command lacked PYTHONPATH=src",
+    "correction": "Explicit documented src import path; no source/test change or suppression",
+    "passing_record": "evidence/reopen_expiry_structure_retry.log"
+  },
+  "prior_cases": {
+    "register": "evidence/remaining_holds_case_register.json",
+    "RC-ANCESTOR-01": "Existing assignment checks retained, new timing seam reopened under this case.",
+    "RC-DRIFT-01": "No source change; included unchanged in cumulative replay.",
+    "outside_status": "Prior pending cases are not auto-closed by this candidate."
+  },
+  "work_package_account": [
+    {
+      "id": "WP-01",
+      "owner": "Host/IIEA",
+      "operation": "Resolve canonical host, authority, and source identities",
+      "requirements": [
+        "HMT-F01",
+        "HMT-F02",
+        "HMT-F03",
+        "HMT-F17",
+        "HMT-F20"
+      ],
+      "predecessors": [],
+      "status": "PARTIAL_DERIVATIVE_WITNESSES",
+      "recorded_support": "host admission/task store and MCP context",
+      "remaining_acceptance": "production identity/clock plus complete lane/task/skill projection",
+      "execution_now": "BLOCKED under current HOLD; not delegated",
+      "accountability_owner": "/root; implementation owner retained as declared",
+      "verification": "Existing checkpoint/requirement and binding records inspected; not a fresh whole-package source/behavior audit."
+    },
+    {
+      "id": "WP-02",
+      "owner": "CSSI",
+      "operation": "Prove credential, egress, isolation, and temporal admission",
+      "requirements": [
+        "HMT-F04",
+        "HMT-N04",
+        "HMT-N07",
+        "HMT-B08"
+      ],
+      "predecessors": [
+        "WP-01"
+      ],
+      "status": "PARTIAL_FIXTURE_WITNESSES",
+      "recorded_support": "host negative authority tests",
+      "remaining_acceptance": "real credential custody and OS/network isolation qualification",
+      "execution_now": "BLOCKED under current HOLD; not delegated",
+      "accountability_owner": "/root; implementation owner retained as declared",
+      "verification": "Existing checkpoint/requirement and binding records inspected; not a fresh whole-package source/behavior audit."
+    },
+    {
+      "id": "WP-03",
+      "owner": "Custody/Continuity",
+      "operation": "Prove bounded dispatch, fallback, restart, and reconciliation",
+      "requirements": [
+        "HMT-F18",
+        "HMT-B01",
+        "HMT-B02",
+        "HMT-B03",
+        "HMT-B04",
+        "HMT-B05",
+        "HMT-B06",
+        "HMT-B09",
+        "HMT-B13",
+        "HMT-B14",
+        "HMT-N05",
+        "HMT-N06"
+      ],
+      "predecessors": [
+        "WP-01",
+        "WP-02"
+      ],
+      "status": "PARTIAL_FIXTURE_WITNESSES",
+      "recorded_support": "local custody, process cuts and proof reconciliation",
+      "remaining_acceptance": "actual endpoint proofs, recovery target and operational qualification",
+      "execution_now": "BLOCKED under current HOLD; not delegated",
+      "accountability_owner": "/root; implementation owner retained as declared",
+      "verification": "Existing checkpoint/requirement and binding records inspected; not a fresh whole-package source/behavior audit."
+    },
+    {
+      "id": "WP-04",
+      "owner": "CMAD/PMCT/DOKE/MR",
+      "operation": "Bind lane artifacts to existing research and data kernels",
+      "requirements": [
+        "HMT-F05",
+        "HMT-F06",
+        "HMT-F07",
+        "HMT-F08",
+        "HMT-F16",
+        "HMT-N13"
+      ],
+      "predecessors": [
+        "WP-01",
+        "WP-02"
+      ],
+      "status": "NOT_QUALIFIED",
+      "recorded_support": "reference discovery and generic stage declarations",
+      "remaining_acceptance": "R&D derivatives, Station extensions, modeling and stage-specific evaluators",
+      "execution_now": "BLOCKED under current HOLD; not delegated",
+      "accountability_owner": "/root; implementation owner retained as declared",
+      "verification": "Existing checkpoint/requirement and binding records inspected; not a fresh whole-package source/behavior audit."
+    },
+    {
+      "id": "WP-05",
+      "owner": "IIEA/UIUX/Build",
+      "operation": "Prove specification, design, and browser-test bounded operations",
+      "requirements": [
+        "HMT-F10",
+        "HMT-F11"
+      ],
+      "predecessors": [
+        "WP-01",
+        "WP-02",
+        "WP-03"
+      ],
+      "status": "NOT_QUALIFIED",
+      "recorded_support": "design-pinned interface bindings",
+      "remaining_acceptance": "actual specification/design/browser bounded operation witnesses",
+      "execution_now": "BLOCKED under current HOLD; not delegated",
+      "accountability_owner": "/root; implementation owner retained as declared",
+      "verification": "Existing checkpoint/requirement and binding records inspected; not a fresh whole-package source/behavior audit."
+    },
+    {
+      "id": "WP-06",
+      "owner": "CSSI/Build/OPS",
+      "operation": "Prove scan, completion, observability, and authorized delivery",
+      "requirements": [
+        "HMT-F09",
+        "HMT-F12",
+        "HMT-F13",
+        "HMT-F19"
+      ],
+      "predecessors": [
+        "WP-01",
+        "WP-02",
+        "WP-03"
+      ],
+      "status": "NOT_QUALIFIED",
+      "recorded_support": "generic lifecycle receipts only",
+      "remaining_acceptance": "real scan, completion firewall, observability and delivery witnesses",
+      "execution_now": "BLOCKED under current HOLD; not delegated",
+      "accountability_owner": "/root; implementation owner retained as declared",
+      "verification": "Existing checkpoint/requirement and binding records inspected; not a fresh whole-package source/behavior audit."
+    },
+    {
+      "id": "WP-07",
+      "owner": "RRCA/MissionAssurance",
+      "operation": "Prove independent cases, causal experiments, and scoped evaluation",
+      "requirements": [
+        "HMT-F14",
+        "HMT-F15",
+        "HMT-B12"
+      ],
+      "predecessors": [
+        "WP-01"
+      ],
+      "status": "PARTIAL_MANUAL_EVIDENCE",
+      "recorded_support": "manual retained RRCA and read-only assurance reports",
+      "remaining_acceptance": "qualified RRCA/assurance role and executable bindings; manual records are no substitute",
+      "execution_now": "BLOCKED under current HOLD; not delegated",
+      "accountability_owner": "/root; implementation owner retained as declared",
+      "verification": "Existing checkpoint/requirement and binding records inspected; not a fresh whole-package source/behavior audit."
+    },
+    {
+      "id": "WP-08",
+      "owner": "Quality",
+      "operation": "Bind falsifiers and prove gate/collection/complexity integrity",
+      "requirements": [
+        "HMT-N08",
+        "HMT-N09",
+        "HMT-N10",
+        "HMT-N11",
+        "HMT-N12",
+        "HMT-B11"
+      ],
+      "predecessors": [
+        "WP-01"
+      ],
+      "status": "PARTIAL_DERIVATIVE_WITNESSES",
+      "recorded_support": "structural/ledger checks and fixed branch denominator",
+      "remaining_acceptance": "all 189 applicable target-oracles and full required mutation/behavioral families",
+      "execution_now": "BLOCKED under current HOLD; not delegated",
+      "accountability_owner": "/root; implementation owner retained as declared",
+      "verification": "Existing checkpoint/requirement and binding records inspected; not a fresh whole-package source/behavior audit."
+    },
+    {
+      "id": "WP-09",
+      "owner": "Host/OPS",
+      "operation": "Qualify control-plane budgets on declared hardware",
+      "requirements": [
+        "HMT-N01",
+        "HMT-N02",
+        "HMT-N03"
+      ],
+      "predecessors": [
+        "WP-01",
+        "WP-03"
+      ],
+      "status": "NOT_QUALIFIED",
+      "recorded_support": "no target budget acceptance claimed",
+      "remaining_acceptance": "pinned hardware benchmarks, resource/history limits and recovery measurements",
+      "execution_now": "BLOCKED under current HOLD; not delegated",
+      "accountability_owner": "/root; implementation owner retained as declared",
+      "verification": "Existing checkpoint/requirement and binding records inspected; not a fresh whole-package source/behavior audit."
+    },
+    {
+      "id": "WP-10",
+      "owner": "Supervisor",
+      "operation": "Reconcile dependency changes and human acceptance packet",
+      "requirements": [
+        "HMT-B07",
+        "HMT-B10",
+        "HMT-B15"
+      ],
+      "predecessors": [
+        "WP-02",
+        "WP-03",
+        "WP-04",
+        "WP-05",
+        "WP-06",
+        "WP-07",
+        "WP-08",
+        "WP-09",
+        "WP-11"
+      ],
+      "status": "OPEN_REVIEW_HOLD",
+      "recorded_support": "this supervisor account and exact candidate packet",
+      "remaining_acceptance": "dependency closure, outside acceptance and human closeout",
+      "execution_now": "BLOCKED under current HOLD; not delegated",
+      "accountability_owner": "/root; implementation owner retained as declared",
+      "verification": "Existing checkpoint/requirement and binding records inspected; not a fresh whole-package source/behavior audit."
+    },
+    {
+      "id": "WP-11",
+      "owner": "UIUX",
+      "supporting_owners": [
+        "Host",
+        "IIEA",
+        "CSSI",
+        "Quality"
+      ],
+      "operation": "Implement and prove Wispr-compatible voice ingress and task-specific steering, with typed-input parity",
+      "requirements": [
+        "HMT-V01",
+        "HMT-V02",
+        "HMT-V03",
+        "HMT-V04",
+        "HMT-V05",
+        "HMT-V06",
+        "HMT-V07",
+        "HMT-V08",
+        "HMT-V09",
+        "HMT-V10"
+      ],
+      "predecessors": [
+        "WP-01",
+        "WP-02",
+        "WP-03"
+      ],
+      "status": "PARTIAL_ENGINE_WITNESSES",
+      "recorded_support": "draft adapter and prior local Whisper smoke",
+      "remaining_acceptance": "Wispr ingress, steering UI, typed parity, 100-utterance corpus and accessibility/device validation",
+      "execution_now": "BLOCKED under current HOLD; not delegated",
+      "accountability_owner": "/root; implementation owner retained as declared",
+      "verification": "Existing checkpoint/requirement and binding records inspected; not a fresh whole-package source/behavior audit."
+    }
+  ],
+  "review_debt": {
+    "pr": 3,
+    "observed_changed_files": 576,
+    "observed_commits": 32,
+    "action": "One scoped repair commit. Preserve existing history; do not disguise the PR as bounded.",
+    "complete_requirement_statuses_changed": 0
+  },
+  "limits": [
+    "Trusted clock/read instrumentation and local SQLite fixtures only.",
+    "Database-object reconstruction is not actual process crash or power loss.",
+    "Producer identity is caller asserted, not signed authentication.",
+    "Two mutations do not qualify complete HMT-N11 or the full causal-edge family.",
+    "Full acceptance of every work package remains unqualified; no integration instructions inferred."
+  ],
+  "release_condition": "Original out-of-band reviewer accepts the exact successor commit; internal review does not release HOLD.",
+  "environment": {
+    "python": "3.13.16 (main, Oct 14 2026, 01:04:01) [Clang 23.1.3 ]",
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39"
+  },
+  "commands": [
+    {
+      "command": "uv run --no-sync python -m pytest tests/test_reopen_expiry.py -q --basetemp=/tmp/hmt-reopen-expiry-before --junitxml=evidence/reopen_expiry_before.xml",
+      "cwd": "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+      "exit": 1,
+      "receipt": "evidence/reopen_expiry_before.log"
+    },
+    {
+      "command": "uv run --no-sync python -m pytest tests/test_reopen_expiry.py -q --basetemp=/tmp/hmt-reopen-expiry-after --junitxml=evidence/reopen_expiry_after.xml",
+      "cwd": "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+      "exit": 0,
+      "receipt": "evidence/reopen_expiry_after.log"
+    },
+    {
+      "command": "PYTHONPATH=src COVERAGE_FILE=/tmp/hmt-reopen-expiry-final.coverage uv run --project /workspace/scratch/bc6d4e512874/HMT-RnD-Environment --no-sync coverage run --source=hmt_rnd,scripts -m pytest -q --junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/reopen_expiry_full.xml",
+      "cwd": "/workspace/scratch/bc6d4e512874/supervisor_expiry_replay",
+      "exit": 0,
+      "receipt": "evidence/reopen_expiry_full.log"
+    },
+    {
+      "command": "PYTHONPATH=src uv run --no-sync python -m unittest discover -s tests -p 'test_verification*.py' -v",
+      "cwd": "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+      "exit": 0,
+      "receipt": "evidence/reopen_expiry_unittest.log"
+    },
+    {
+      "command": "uv run --no-sync ruff check src tests scripts",
+      "cwd": "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+      "exit": 0,
+      "receipt": "evidence/reopen_expiry_ruff.log"
+    },
+    {
+      "command": "uv run --no-sync pyrefly check src",
+      "cwd": "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+      "exit": 0,
+      "receipt": "evidence/reopen_expiry_pyrefly.log"
+    },
+    {
+      "command": "uv run --no-sync python scripts/check_structure.py",
+      "cwd": "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+      "exit": 1,
+      "receipt": "evidence/reopen_expiry_structure.log"
+    },
+    {
+      "command": "PYTHONPATH=src uv run --no-sync python scripts/check_structure.py",
+      "cwd": "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+      "exit": 0,
+      "receipt": "evidence/reopen_expiry_structure_retry.log"
+    }
+  ],
+  "ledger_manifest": "evidence/supervision_ledger_manifest.json",
+  "archives": "evidence/reopen_expiry_archives.json"
+}

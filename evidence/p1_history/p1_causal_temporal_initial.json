@@ -1,0 +1,242 @@
+{
+  "campaign_id": "P1-AUTHORITY-EDGE-PROCESS-001",
+  "as_of": "2026-10-26T21:58:09.382441+00:00",
+  "requirements": [
+    "HMT-F02",
+    "HMT-F18",
+    "HMT-N05",
+    "HMT-N07",
+    "HMT-B01",
+    "HMT-B03",
+    "HMT-B06",
+    "HMT-B12"
+  ],
+  "causal_family": [
+    {
+      "arm": "intact",
+      "deleted_local_guard": false,
+      "deleted_endpoint_guard": false,
+      "sham": false,
+      "expected": {
+        "status": "STAGED",
+        "endpoint_effects": 0
+      },
+      "actual": {
+        "status": "STAGED",
+        "endpoint_effects": 0,
+        "rejection": "HOST_GRANT_DENIED"
+      }
+    },
+    {
+      "arm": "delete_local",
+      "deleted_local_guard": true,
+      "deleted_endpoint_guard": false,
+      "sham": false,
+      "expected": {
+        "status": "OUTCOME_UNCERTAIN",
+        "endpoint_effects": 0
+      },
+      "actual": {
+        "status": "OUTCOME_UNCERTAIN",
+        "endpoint_effects": 0,
+        "rejection": "HOST_GRANT_DENIED"
+      }
+    },
+    {
+      "arm": "restore_local",
+      "deleted_local_guard": false,
+      "deleted_endpoint_guard": false,
+      "sham": false,
+      "expected": {
+        "status": "STAGED",
+        "endpoint_effects": 0
+      },
+      "actual": {
+        "status": "STAGED",
+        "endpoint_effects": 0,
+        "rejection": "HOST_GRANT_DENIED"
+      }
+    },
+    {
+      "arm": "sham_query",
+      "deleted_local_guard": false,
+      "deleted_endpoint_guard": false,
+      "sham": true,
+      "expected": {
+        "status": "STAGED",
+        "endpoint_effects": 0
+      },
+      "actual": {
+        "status": "STAGED",
+        "endpoint_effects": 0,
+        "rejection": "HOST_GRANT_DENIED"
+      }
+    },
+    {
+      "arm": "alternate_on",
+      "deleted_local_guard": true,
+      "deleted_endpoint_guard": false,
+      "sham": false,
+      "expected": {
+        "status": "OUTCOME_UNCERTAIN",
+        "endpoint_effects": 0
+      },
+      "actual": {
+        "status": "OUTCOME_UNCERTAIN",
+        "endpoint_effects": 0,
+        "rejection": "HOST_GRANT_DENIED"
+      }
+    },
+    {
+      "arm": "alternate_off",
+      "deleted_local_guard": true,
+      "deleted_endpoint_guard": true,
+      "sham": false,
+      "expected": {
+        "status": "OUTCOME_UNCERTAIN",
+        "endpoint_effects": 1
+      },
+      "actual": {
+        "status": "OUTCOME_UNCERTAIN",
+        "endpoint_effects": 1,
+        "rejection": "NONE"
+      }
+    }
+  ],
+  "process_witnesses": [
+    {
+      "reservation": {
+        "intent": {
+          "endpoint_id": "endpoint",
+          "principal": "alice",
+          "effect_id": "effect1",
+          "payload_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "reservation_id": "1a74410aa7904660b7204270461b537d",
+        "status": "OUTCOME_UNCERTAIN"
+      },
+      "returncode": -9,
+      "cut": "after_reserve",
+      "before_reconcile": [
+        "OUTCOME_UNCERTAIN",
+        0
+      ],
+      "revoked_repeat_reserve_denied": true,
+      "proof": {
+        "intent": {
+          "endpoint_id": "endpoint",
+          "principal": "alice",
+          "effect_id": "effect1",
+          "payload_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "reservation_id": "1a74410aa7904660b7204270461b537d",
+        "endpoint_id": "endpoint",
+        "outcome": "NOT_EXECUTED",
+        "signature": "db0240d9c5d640666b55c810dcf73f075dae9ed8cc2c69fc84d370a88af4cbac"
+      },
+      "first_reconcile": "NOT_EXECUTED",
+      "repeat_reconcile": "NOT_EXECUTED",
+      "after_reconcile": [
+        "NOT_EXECUTED",
+        0
+      ],
+      "elapsed_seconds": 0.23835521900036838
+    },
+    {
+      "reservation": {
+        "intent": {
+          "endpoint_id": "endpoint",
+          "principal": "alice",
+          "effect_id": "effect1",
+          "payload_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "reservation_id": "88c4da96ac044495a6edcb8130137c8f",
+        "status": "OUTCOME_UNCERTAIN"
+      },
+      "returncode": -9,
+      "cut": "after_endpoint_commit",
+      "before_reconcile": [
+        "OUTCOME_UNCERTAIN",
+        1
+      ],
+      "revoked_repeat_reserve_denied": true,
+      "proof": {
+        "intent": {
+          "endpoint_id": "endpoint",
+          "principal": "alice",
+          "effect_id": "effect1",
+          "payload_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        },
+        "reservation_id": "88c4da96ac044495a6edcb8130137c8f",
+        "endpoint_id": "endpoint",
+        "outcome": "COMMITTED",
+        "signature": "72709b6166af0098b39725960277ebb10f5b0832d20487a1006f9def48c60e92"
+      },
+      "first_reconcile": "COMMITTED",
+      "repeat_reconcile": "COMMITTED",
+      "after_reconcile": [
+        "COMMITTED",
+        1
+      ],
+      "elapsed_seconds": 0.221005667001009
+    }
+  ],
+  "executions": [
+    {
+      "command": [
+        "uv",
+        "run",
+        "python",
+        "-m",
+        "pytest",
+        "tests/test_causal_authority_family.py",
+        "tests/test_temporal_process.py",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout": ".........                                                                [100%]\n9 passed in 1.55s\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "uv",
+        "run",
+        "ruff",
+        "check",
+        "tests/test_causal_authority_family.py",
+        "tests/test_temporal_process.py",
+        "tests/test_temporal_support.py"
+      ],
+      "exit_code": 0,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    }
+  ],
+  "source_sha256": {
+    "src/hmt_rnd/custody_reconcile.py": "9366e0d93ccc80b86091efedffc6688cb3ec4b63c5850cc484b9515e9212ed62",
+    "src/hmt_rnd/custody_signing.py": "25cb6760bad8b257ffef5919f7d0242d812b2386740e2adb443fc235ccdaaac3",
+    "src/hmt_rnd/custody_operations.py": "dd50121fefdc8639d9114dd9c03bce74dfba32ba73636d04eb6eb46d172aed8e",
+    "src/hmt_rnd/custody_database.py": "2469edce2875cb6f37e6e8fe2fc5cc3f65413a8f8aff89587ef9a5dd94d3909b",
+    "src/hmt_rnd/custody_endpoint.py": "bdc64495a302bb44301fc932cff60a11dd788463424f40f07abf24783c1df3df",
+    "src/hmt_rnd/custody_adapter.py": "84942c052c4c3dd0e4a36aee4b73fd13ade1d4ade691def221653711bac03dad",
+    "src/hmt_rnd/custody_models.py": "b3f5cb013415f9502a8f996d9d7faf3675822f17d05fac3297578025dda0863e",
+    "src/hmt_rnd/host_models.py": "a8070768ce3818d521a6221879845a73f7c933620ec2c5ab7747f70e2f313e64",
+    "src/hmt_rnd/host_admission.py": "5b675de7eb0f0a84886c30d6092d3152b6d4224af552f8b3840e7e9e8d8ce1a5",
+    "src/hmt_rnd/host_checks.py": "7198c769641bebd17648040cd402001768c3df3fc7a26fce55e5c826274ee07a",
+    "src/hmt_rnd/host_admin.py": "3ef443d33cd5735deefb1f9435c334ac744fe5b89858009493af14172a0e7910",
+    "src/hmt_rnd/host_store.py": "dc5bc1ba541e5647093016b1ca9c9243be6d4e44a01597f4b84d7d5625867e84",
+    "src/hmt_rnd/host_schema.py": "94fc1948231e40f1b7c00c3970931bc36b4f1dc5df23d862a72db2bc867924a1",
+    "tests/test_causal_authority_family.py": "b83698f0f52ddef35e7c5cde2ec4b7a136b69f5b566e5483d94d88d6bbf9621f",
+    "tests/test_temporal_process.py": "7a4cfcd5de0a9f95eaa8daa5aa69559e7c3a08d4bfe8e372f9f43d7e921c1d94",
+    "tests/test_temporal_support.py": "aebd72bcefbc2a35a611627c1d554ae7bee4047764f660b493307ed4ac0e9c42",
+    "docs/p1_verification.md": "da78d6c15535744a3a373d8f288f8d181e15988a9d68a570a0ccd75b21a1ac9b",
+    "contracts/requirements.json": "301592b8bf3a33c52318ab3ff37c47b072b12761385d8bc71bad7c07a7a97546"
+  },
+  "limits": [
+    "Process-kill only; not power/host loss",
+    "Local synthetic endpoint proof realm; no vendor qualification",
+    "Deterministic fixture clock, not hardware trusted-time custody",
+    "Faulty adapters are test-injected; production guards unchanged",
+    "One named causal edge and two cut points; no full-system coverage claim"
+  ]
+}

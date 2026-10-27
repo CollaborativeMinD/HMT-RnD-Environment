@@ -1,0 +1,20 @@
+[
+  {
+    "original": "evidence/oob_supervisor_stage2.xml",
+    "stored": "evidence/oob_supervisor_stage2.xml.gz",
+    "sha256": "97c4a9e11e1e179cad9a2c09261ff478f48acf331e5012a87fc5a1dafa849285",
+    "stored_sha256": "c5f93eb3d3f9da3a5ad906f3ee4b88a0a67f33330faf845d38d8a79644c414b8"
+  },
+  {
+    "original": "evidence/oob_supervisor_coverage.json",
+    "stored": "evidence/oob_supervisor_coverage.json.gz",
+    "sha256": "ae3888581d5dfd250567f40456b34e942e9d889d4c6f5373dca819a64398c7ae",
+    "stored_sha256": "9671b68327f4d920ea8d2141742e6759e5e00469d26f2e89c075dbe95be6a750"
+  },
+  {
+    "original": "evidence/oob_supervisor_coverage_tests.xml",
+    "stored": "evidence/oob_supervisor_coverage_tests.xml.gz",
+    "sha256": "9ac48303b7215c0f02fd82153dbf9cce2b173b78312381cc13a6e4231d21355a",
+    "stored_sha256": "d144cf5bd7b2d86ea599137d240d1b447914a07993faefdb7d1442a855ce8922"
+  }
+]

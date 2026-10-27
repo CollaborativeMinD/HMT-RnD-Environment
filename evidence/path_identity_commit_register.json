@@ -1,0 +1,33 @@
+[
+  {
+    "sha": "fa8161270454ec3697bcaa5a1e26d0a6ad62e6c9",
+    "cases": [
+      "RC-PATH-01"
+    ],
+    "paths": [
+      "src/hmt_rnd/lane_reader.py",
+      "tests/test_path_identity_controls.py",
+      "tests/test_path_identity_support.py",
+      "tests/test_path_identity_tracer.py",
+      "evidence/path_identity_baseline.json",
+      "evidence/path_identity_before.xml",
+      "evidence/path_identity_before.log",
+      "evidence/path_identity_after.xml",
+      "evidence/path_identity_after.log",
+      "evidence/path_identity_v2_tests.xml",
+      "evidence/path_identity_v2_tests.log",
+      "evidence/path_identity_ruff.log",
+      "evidence/path_identity_ruff_v2.log",
+      "evidence/path_identity_snapshot.json",
+      "evidence/path_identity_snapshot_v2.json",
+      "evidence/path_identity_handoff.json",
+      "evidence/path_identity_supervisor.json",
+      "evidence/path_identity_supervisor.xml.gz",
+      "evidence/path_identity_supervisor.log",
+      "evidence/path_identity_coverage.json.gz",
+      "evidence/path_identity_changed_coverage.json",
+      "evidence/path_identity_supervisor_results.json",
+      "evidence/path_identity_archives.json"
+    ]
+  }
+]

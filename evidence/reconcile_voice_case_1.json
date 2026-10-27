@@ -1,0 +1,27 @@
+{
+  "id": "RC-VOICE-01",
+  "alias": "VOICE-FIFO-001",
+  "requirements": [
+    "HMT-V09",
+    "HMT-N02",
+    "HMT-N03"
+  ],
+  "test": "tests/test_reconcile_voice_input.py::test_fifo_audio_rejected_without_writer",
+  "observation": "Outer tracer subprocess timeout at 2s; FIFO open without writer blocked before voice subprocess deadline.",
+  "cause": [
+    "Caller admitted scoped path to read_audio",
+    "Path resolution checked location but not file type",
+    "Blocking rb open on FIFO waited for writer",
+    "Process timeout was not yet active"
+  ],
+  "repair": "Open audio with O_NONBLOCK and O_NOFOLLOW, fstat same descriptor and reject nonregular before read.",
+  "before": "assets_before.txt",
+  "after": "assets_fifo_after.txt",
+  "source": "src/hmt_rnd/voice_assets.py",
+  "gate": "G-VOICE-FIFO-001",
+  "after_record": "fifo_after",
+  "before_sha256": "1aa6d28efe2d2ae0071792c7ac70d703abe8d509684a92ffd453664740a55cce",
+  "after_sha256": "a0fd2d18e69dffc79de76b954f80e3cc86af196f9809e5e62067c47e54e70b1d",
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; supervisor and independent review required",
+  "worker_attestation": "/root/voice_reconciliation; actual disposable subprocess execution; no target-provider/model invocation; unsigned"
+}

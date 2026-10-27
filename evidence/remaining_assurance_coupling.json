@@ -1,0 +1,24 @@
+{
+  "primary_disposition": "HOLD",
+  "type": "SOURCE_INFERRED_COUPLING_GAP",
+  "case_id": "RC-ANCESTOR-01",
+  "scope": "Post-fix ancestor submission checks versus reopening issuance",
+  "requirements": [
+    "HMT-F02",
+    "HMT-B07",
+    "HMT-B10"
+  ],
+  "source_refs": [
+    "src/hmt_rnd/lane_queries.py:check_parent",
+    "src/hmt_rnd/lane_reopen.py:reopen_candidate",
+    "src/hmt_rnd/lane_discovery.py:discover_changes"
+  ],
+  "inference": "Current check_parent rejects stale assignment when successor is submitted. Reopening discovery still only classifies artifact/policy/outcome and can issue a downstream event when its immutable ancestor assignment is stale. The successor would then be denied.",
+  "execution_status": "NOT_EXECUTED_BY_ASSURANCE; source inference only, before reviewing any coupling witness.",
+  "expected": [
+    "Seal CMAD1 and CMAD2; advance CMAD1 assignment; mutate CMAD2 source; attempt CMAD2 reopening with current authorized CMAD2 grant.",
+    "Require denial before event/invalidation mutation while cross-revision migration is unsupported; immutable receipts remain.",
+    "Matched unchanged assignment reopening remains usable; current authorized revision and owner conditions are enforced."
+  ],
+  "scope_control": "Do not silently treat submit-only witnesses as lifecycle closure. Reproduce/refute within bounded same-invariant work or retain explicit OPEN_REVIEW_HOLD. No implicit assignment migration, rerouting, or release authority."
+}

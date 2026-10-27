@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="7" time="0.680" timestamp="2026-10-26T20:10:22.040888-04:00" hostname="812233b2011d"><testcase classname="tests.test_revision_issuance_guards" name="test_fresh_revision_cannot_invalidate_previous_revision_origin[False]" time="0.070"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-103/test_fresh_revision_cannot_inv0')
+restart = False
+
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_fresh_revision_cannot_invalidate_previous_revision_origin(tmp_path, restart):
+        host, actor, request, store, origin = changed_origin(tmp_path)
+        revised = advance(host, actor, request)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+&gt;       with pytest.raises(PermissionError, match="LANE_REOPEN_REVISION_MISMATCH"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_revision_issuance_guards.py:19: Failed</failure></testcase><testcase classname="tests.test_revision_issuance_guards" name="test_fresh_revision_cannot_invalidate_previous_revision_origin[True]" time="0.067"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-103/test_fresh_revision_cannot_inv1')
+restart = True
+
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_fresh_revision_cannot_invalidate_previous_revision_origin(tmp_path, restart):
+        host, actor, request, store, origin = changed_origin(tmp_path)
+        revised = advance(host, actor, request)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+&gt;       with pytest.raises(PermissionError, match="LANE_REOPEN_REVISION_MISMATCH"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_revision_issuance_guards.py:19: Failed</failure></testcase><testcase classname="tests.test_revision_issuance_guards" name="test_unchanged_revision_event_remains_usable_after_restart[False]" time="0.069" /><testcase classname="tests.test_revision_issuance_guards" name="test_unchanged_revision_event_remains_usable_after_restart[True]" time="0.070" /><testcase classname="tests.test_revision_issuance_guards" name="test_origin_and_current_authority_controls[other-task-LANE_REOPEN_TASK_MISMATCH]" time="0.056" /><testcase classname="tests.test_revision_issuance_guards" name="test_origin_and_current_authority_controls[stale-grant-HOST_TASK_REVISION_DENIED]" time="0.067" /><testcase classname="tests.test_revision_issuance_guards" name="test_origin_and_current_authority_controls[revoked-HOST_GRANT_DENIED]" time="0.080" /></testsuite></testsuites>

@@ -1,0 +1,12 @@
+{
+  "case_id": "RC-PATH-01",
+  "baseline": "3492b6f2f86f7757706d470a0f5e119c1069d013",
+  "source_commit": "fa8161270454ec3697bcaa5a1e26d0a6ad62e6c9",
+  "status": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; HOLD_PENDING_OUT_OF_BAND_REVIEW",
+  "summary_ref": "evidence/path_identity_summary.json",
+  "summary_sha256": "917f5be7ca04beb74ea957b787ca22ed6e2659264c99a5a2c063cc6f6dfefbc4",
+  "separate_open_holds": [
+    4383956251,
+    4383956285
+  ]
+}

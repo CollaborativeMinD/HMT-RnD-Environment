@@ -1,0 +1,195 @@
+{
+  "parent": "4f30bf36e4e4cdaee1806d5f55ba01d9f466c833",
+  "review_id": 4384097209,
+  "files": {
+    "src/hmt_rnd/custody_database.py": {
+      "sha256": "2469edce2875cb6f37e6e8fe2fc5cc3f65413a8f8aff89587ef9a5dd94d3909b",
+      "text": "\"\"\"One local domain; host revokes must serialize in this same SQLite file.\"\"\"\nimport sqlite3\nfrom collections.abc import Callable, Iterator\nfrom contextlib import contextmanager\nfrom pathlib import Path\n\nAuthority = Callable[[sqlite3.Connection, str, str, str], None]\n\n\nclass CustodyFault(Exception):\n    \"\"\"Explicit boundary condition; no automatic fallback handler.\"\"\"\n\n\nclass Domain:\n    def __init__(self, path: Path, authority: Authority) -> None:\n        self.path, self.authority = path, authority\n        with self.transaction() as db:\n            db.execute(\"CREATE TABLE IF NOT EXISTS custody_intents(principal TEXT,effect TEXT,\"\n                       \"digest TEXT,target TEXT,status TEXT,reservation TEXT,\"\n                       \"PRIMARY KEY(principal,effect))\")\n            columns = {row[1] for row in db.execute(\"PRAGMA table_info(custody_intents)\")}\n            if \"target\" not in columns:\n                raise CustodyFault(\"SCHEMA_REVISION_REQUIRED\")\n            db.execute(\"CREATE TABLE IF NOT EXISTS custody_endpoint_reservations(\"\n                       \"id TEXT PRIMARY KEY,principal TEXT,effect TEXT,digest TEXT,status TEXT)\")\n            db.execute(\"CREATE TABLE IF NOT EXISTS custody_endpoint_effects(\"\n                       \"principal TEXT,effect TEXT,digest TEXT,PRIMARY KEY(principal,effect))\")\n\n    @contextmanager\n    def transaction(self) -> Iterator[sqlite3.Connection]:\n        db = sqlite3.connect(self.path, timeout=5, isolation_level=None)\n        db.row_factory = sqlite3.Row\n        try:\n            db.execute(\"PRAGMA synchronous=FULL\")\n            db.execute(\"BEGIN IMMEDIATE\")\n            yield db\n            db.commit()\n        except BaseException:\n            db.rollback()\n            raise\n        finally:\n            db.close()\n"
+    },
+    "src/hmt_rnd/custody_endpoint.py": {
+      "sha256": "a3fd05954c01cb82290e7b7d26a147a258dd6fcac65404b9fed775a3b9b0c56f",
+      "text": "\"\"\"Local simulated resource endpoint; cancellation and effects serialize here.\"\"\"\nfrom pathlib import Path\n\nfrom .custody_database import Authority, CustodyFault, Domain\nfrom .custody_models import Proof, Reservation\nfrom .custody_signing import sign\n\n\nclass Endpoint:\n    def __init__(self, path: Path, endpoint_id: str, key: bytes,\n                 authority: Authority) -> None:\n        if len(key) < 32:\n            raise CustodyFault(\"ENDPOINT_KEY_INVALID\")\n        self.domain, self.endpoint_id, self.key = Domain(path, authority), endpoint_id, key\n\n    def apply(self, reservation: Reservation) -> Proof:\n        return self._transition(reservation, cancel=False)\n\n    def lookup_or_cancel(self, reservation: Reservation) -> Proof:\n        return self._transition(reservation, cancel=True)\n\n    def _transition(self, reservation: Reservation, cancel: bool) -> Proof:\n        reservation = Reservation.model_validate(reservation)\n        intent, rid = reservation.intent, reservation.reservation_id\n        if intent.endpoint_id != self.endpoint_id:\n            raise CustodyFault(\"ENDPOINT_SCOPE_MISMATCH\")\n        with self.domain.transaction() as db:\n            self.domain.authority(db, \"endpoint.cancel\" if cancel else \"endpoint.apply\",\n                                  intent.principal, intent.effect_id)\n            row = db.execute(\"SELECT * FROM custody_endpoint_reservations WHERE id=?\",\n                             (rid,)).fetchone()\n            identity = (intent.principal, intent.effect_id, intent.payload_digest)\n            if row and tuple(row)[1:4] != identity:\n                raise CustodyFault(\"RESERVATION_COLLISION\")\n            if row and row[\"status\"] == \"NOT_EXECUTED\" and not cancel:\n                raise CustodyFault(\"RESERVATION_CANCELLED\")\n            conflict = db.execute(\"SELECT 1 FROM custody_endpoint_reservations \"\n                                  \"WHERE principal=? AND effect=? AND digest<>? LIMIT 1\",\n                                  identity).fetchone()\n            if conflict:\n                raise CustodyFault(\"INTENT_COLLISION\")\n            done = db.execute(\"SELECT digest FROM custody_endpoint_effects \"\n                              \"WHERE principal=? AND effect=?\", identity[:2]).fetchone()\n            if done and done[\"digest\"] != intent.payload_digest:\n                raise CustodyFault(\"INTENT_COLLISION\")\n            outcome = \"COMMITTED\" if done or not cancel else \"NOT_EXECUTED\"\n            if not cancel:\n                db.execute(\"INSERT OR IGNORE INTO custody_endpoint_effects VALUES(?,?,?)\", identity)\n            db.execute(\"INSERT OR IGNORE INTO custody_endpoint_reservations VALUES(?,?,?,?,?)\",\n                       (rid, *identity, outcome))\n            proof = Proof(intent=intent, reservation_id=rid, endpoint_id=self.endpoint_id,\n                          outcome=outcome, signature=\"0\" * 64)\n            return proof.model_copy(update={\"signature\": sign(proof, self.key)})\n"
+    },
+    "tests/test_custody_index.py": {
+      "sha256": "35238b55497c9f1eee03f2804518bbbe34716a933f796c1c9c8e65631c5dbacb",
+      "text": "\"\"\"RC-CUSTODY-INDEX-01: principal/effect lookups must not scan unrelated history.\"\"\"\nimport json\nimport sqlite3\n\nimport pytest\nfrom test_custody_index_support import INDEX, observe, seed_history, state_digest, table_state\nfrom test_custody_support import KEY, authority, setup\n\nfrom hmt_rnd.custody_endpoint import Endpoint\n\n\n@pytest.mark.parametrize(\"operation\", [\"apply\", \"lookup_or_cancel\"])\n@pytest.mark.parametrize(\"count\", [0, 512, 10000])\n@pytest.mark.parametrize(\"existing\", [False, True])\ndef test_actual_endpoint_lookup_uses_scoped_covering_index(\n        tmp_path, monkeypatch, operation, count, existing):\n    store, endpoint, _ = setup(tmp_path)\n    reservation = store.reserve(\"alice\", \"effect1\")\n    path = endpoint.domain.path\n    if existing:\n        with sqlite3.connect(path) as db:\n            db.execute(\"DROP INDEX IF EXISTS \" + INDEX)\n    seed_history(path, count)\n    before = table_state(path)\n    endpoint = Endpoint(path, \"endpoint\", KEY, authority)\n    after = table_state(path)\n    proof, observed = observe(endpoint, operation, reservation, monkeypatch)\n    with sqlite3.connect(path) as db:\n        columns = [row[2] for row in db.execute(\"PRAGMA index_info(\" + INDEX + \")\")]\n        retained = db.execute(\"SELECT count(*) FROM custody_endpoint_reservations\").fetchone()[0]\n    record = {\"count\": count, \"operation\": operation, \"existing\": existing, **observed,\n              \"index_columns\": columns, \"before\": state_digest(before),\n              \"after_provision\": state_digest(after), \"rows_retained\": retained}\n    (tmp_path / \"index_observation.json\").write_text(json.dumps(record, indent=2) + \"\\n\")\n    assert before == after\n    assert columns == [\"principal\", \"effect\", \"digest\"]\n    assert len(observed[\"plan\"]) == 1\n    assert \"SEARCH\" in observed[\"plan\"][0] and INDEX in observed[\"plan\"][0]\n    assert \"COVERING INDEX\" in observed[\"plan\"][0]\n    assert retained == count + 4\n    expected = \"COMMITTED\" if operation == \"apply\" else \"NOT_EXECUTED\"\n    assert proof.outcome == expected\n    assert store.reconcile(proof) == expected\n    Endpoint(path, \"endpoint\", KEY, authority)\n    assert table_state(path) == table_state(endpoint.domain.path)\n"
+    },
+    "tests/test_custody_index_support.py": {
+      "sha256": "3101e111b95211968c7dcc842d93631d9e31ac9be34a191a370f35bc5f4e41ec",
+      "text": "\"\"\"Measure actual endpoint SQL; synthetic retained history is never compacted.\"\"\"\nimport hashlib\nimport sqlite3\n\nfrom hmt_rnd import custody_database\n\nINDEX = \"custody_reservation_identity\"\n\n\ndef table_state(path):\n    with sqlite3.connect(path) as db:\n        names = db.execute(\"SELECT name FROM sqlite_master WHERE type='table' ORDER BY name\")\n        return {name: sorted(db.execute('SELECT * FROM \"' + name + '\"').fetchall(), key=repr)\n                for (name,) in names.fetchall()}\n\n\ndef seed_history(path, count):\n    rows = [(f\"unrelated-{i}\", \"bob\" if i % 2 else \"alice\", f\"unrelated-{i}\",\n             \"b\" * 64, \"NOT_EXECUTED\") for i in range(count)]\n    rows += [(f\"old-{i}\", \"alice\", \"effect1\", \"a\" * 64, \"NOT_EXECUTED\") for i in range(3)]\n    with sqlite3.connect(path) as db:\n        db.executemany(\"INSERT INTO custody_endpoint_reservations VALUES(?,?,?,?,?)\", rows)\n\n\ndef observe(endpoint, operation, reservation, monkeypatch):\n    records = []\n\n    class Measured(sqlite3.Connection):\n        def start(self):\n            self.steps, self.statements = 0, []\n            self.set_trace_callback(self.statements.append)\n            self.set_progress_handler(self.progress, 1)\n\n        def progress(self):\n            self.steps += 1\n            return 0\n\n        def close(self):\n            records.append({\"steps\": self.steps, \"statements\": self.statements})\n            super().close()\n\n    original = sqlite3.connect\n\n    def connect(*args, **kwargs):\n        db = original(*args, factory=Measured, **kwargs)\n        db.start()\n        return db\n\n    with monkeypatch.context() as patch:\n        patch.setattr(custody_database.sqlite3, \"connect\", connect)\n        proof = getattr(endpoint, operation)(reservation)\n    assert len(records) == 1\n    conflict = [q for q in records[0][\"statements\"]\n                if q.startswith(\"SELECT 1 FROM custody_endpoint_reservations \")]\n    assert len(conflict) == 1\n    with sqlite3.connect(endpoint.domain.path) as db:\n        plan = [row[3] for row in db.execute(\"EXPLAIN QUERY PLAN \" + conflict[0])]\n    return proof, {\"query\": conflict[0], \"plan\": plan, \"vm_steps\": records[0][\"steps\"]}\n\n\ndef state_digest(value):\n    return hashlib.sha256(repr(value).encode()).hexdigest()\n"
+    }
+  },
+  "observations": [
+    {
+      "count": 0,
+      "operation": "apply",
+      "existing": false,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SCAN custody_endpoint_reservations"
+      ],
+      "vm_steps": 183,
+      "index_columns": [],
+      "before": "41fb21d9a37c6297ba5439924fb3934aeedb28a2ef2670bd232cc7aeb3983c5c",
+      "after_provision": "41fb21d9a37c6297ba5439924fb3934aeedb28a2ef2670bd232cc7aeb3983c5c",
+      "rows_retained": 4
+    },
+    {
+      "count": 0,
+      "operation": "lookup_or_cancel",
+      "existing": false,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SCAN custody_endpoint_reservations"
+      ],
+      "vm_steps": 164,
+      "index_columns": [],
+      "before": "41fb21d9a37c6297ba5439924fb3934aeedb28a2ef2670bd232cc7aeb3983c5c",
+      "after_provision": "41fb21d9a37c6297ba5439924fb3934aeedb28a2ef2670bd232cc7aeb3983c5c",
+      "rows_retained": 4
+    },
+    {
+      "count": 10000,
+      "operation": "apply",
+      "existing": true,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SCAN custody_endpoint_reservations"
+      ],
+      "vm_steps": 40183,
+      "index_columns": [],
+      "before": "f4ae8f14b578897dd703dd721918089f7a277dbda8d73b5800a66a59f0e1550b",
+      "after_provision": "f4ae8f14b578897dd703dd721918089f7a277dbda8d73b5800a66a59f0e1550b",
+      "rows_retained": 10004
+    },
+    {
+      "count": 10000,
+      "operation": "lookup_or_cancel",
+      "existing": true,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SCAN custody_endpoint_reservations"
+      ],
+      "vm_steps": 40164,
+      "index_columns": [],
+      "before": "f4ae8f14b578897dd703dd721918089f7a277dbda8d73b5800a66a59f0e1550b",
+      "after_provision": "f4ae8f14b578897dd703dd721918089f7a277dbda8d73b5800a66a59f0e1550b",
+      "rows_retained": 10004
+    },
+    {
+      "count": 512,
+      "operation": "apply",
+      "existing": false,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SCAN custody_endpoint_reservations"
+      ],
+      "vm_steps": 2231,
+      "index_columns": [],
+      "before": "e94cbc9557ed450cf3cd0dae57f13588fbf9311235f49753b1e3463009c15e30",
+      "after_provision": "e94cbc9557ed450cf3cd0dae57f13588fbf9311235f49753b1e3463009c15e30",
+      "rows_retained": 516
+    },
+    {
+      "count": 512,
+      "operation": "lookup_or_cancel",
+      "existing": false,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SCAN custody_endpoint_reservations"
+      ],
+      "vm_steps": 2212,
+      "index_columns": [],
+      "before": "e94cbc9557ed450cf3cd0dae57f13588fbf9311235f49753b1e3463009c15e30",
+      "after_provision": "e94cbc9557ed450cf3cd0dae57f13588fbf9311235f49753b1e3463009c15e30",
+      "rows_retained": 516
+    },
+    {
+      "count": 10000,
+      "operation": "apply",
+      "existing": false,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SCAN custody_endpoint_reservations"
+      ],
+      "vm_steps": 40183,
+      "index_columns": [],
+      "before": "f4ae8f14b578897dd703dd721918089f7a277dbda8d73b5800a66a59f0e1550b",
+      "after_provision": "f4ae8f14b578897dd703dd721918089f7a277dbda8d73b5800a66a59f0e1550b",
+      "rows_retained": 10004
+    },
+    {
+      "count": 10000,
+      "operation": "lookup_or_cancel",
+      "existing": false,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SCAN custody_endpoint_reservations"
+      ],
+      "vm_steps": 40164,
+      "index_columns": [],
+      "before": "f4ae8f14b578897dd703dd721918089f7a277dbda8d73b5800a66a59f0e1550b",
+      "after_provision": "f4ae8f14b578897dd703dd721918089f7a277dbda8d73b5800a66a59f0e1550b",
+      "rows_retained": 10004
+    },
+    {
+      "count": 0,
+      "operation": "apply",
+      "existing": true,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SCAN custody_endpoint_reservations"
+      ],
+      "vm_steps": 183,
+      "index_columns": [],
+      "before": "41fb21d9a37c6297ba5439924fb3934aeedb28a2ef2670bd232cc7aeb3983c5c",
+      "after_provision": "41fb21d9a37c6297ba5439924fb3934aeedb28a2ef2670bd232cc7aeb3983c5c",
+      "rows_retained": 4
+    },
+    {
+      "count": 0,
+      "operation": "lookup_or_cancel",
+      "existing": true,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SCAN custody_endpoint_reservations"
+      ],
+      "vm_steps": 164,
+      "index_columns": [],
+      "before": "41fb21d9a37c6297ba5439924fb3934aeedb28a2ef2670bd232cc7aeb3983c5c",
+      "after_provision": "41fb21d9a37c6297ba5439924fb3934aeedb28a2ef2670bd232cc7aeb3983c5c",
+      "rows_retained": 4
+    },
+    {
+      "count": 512,
+      "operation": "apply",
+      "existing": true,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SCAN custody_endpoint_reservations"
+      ],
+      "vm_steps": 2231,
+      "index_columns": [],
+      "before": "e94cbc9557ed450cf3cd0dae57f13588fbf9311235f49753b1e3463009c15e30",
+      "after_provision": "e94cbc9557ed450cf3cd0dae57f13588fbf9311235f49753b1e3463009c15e30",
+      "rows_retained": 516
+    },
+    {
+      "count": 512,
+      "operation": "lookup_or_cancel",
+      "existing": true,
+      "query": "SELECT 1 FROM custody_endpoint_reservations WHERE principal='alice' AND effect='effect1' AND digest<>'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' LIMIT 1",
+      "plan": [
+        "SCAN custody_endpoint_reservations"
+      ],
+      "vm_steps": 2212,
+      "index_columns": [],
+      "before": "e94cbc9557ed450cf3cd0dae57f13588fbf9311235f49753b1e3463009c15e30",
+      "after_provision": "e94cbc9557ed450cf3cd0dae57f13588fbf9311235f49753b1e3463009c15e30",
+      "rows_retained": 516
+    }
+  ],
+  "expected": "SCOPED SEARCH using principal/effect prefix; no unrelated-history scan",
+  "actual": "12 full scans; all 12 required index assertions fail",
+  "limits": "Synthetic local endpoint; VM steps are not latency, hardware or global history bounds."
+}

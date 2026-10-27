@@ -1,0 +1,50 @@
+{
+  "case_id": "LANE-AUTHORITY-001",
+  "requirements": [
+    "HMT-B07@1",
+    "HMT-B10@1"
+  ],
+  "boundary": "Generic lane lifecycle within derivative trusted host SQLite transaction; no domain evaluator qualification.",
+  "gate_id": "G-ARCH-LANE-AUTHORITY-001",
+  "baseline_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+  "initiating_observation": "Supplied reason conceals simultaneous policy drift or an earlier changed owner.",
+  "test_ids": [
+    "test_artifact_reason_cannot_bypass_policy_authority",
+    "test_denial_reason_cannot_hide_earlier_artifact_drift"
+  ],
+  "retained_failure_witness": {
+    "path": "evidence/reconcile_lane_before.xml",
+    "sha256": "1450a7789e19af999765c92679c39255f3a892dae4ee14f0a08735ef53777678"
+  },
+  "causal_traversal": [
+    "Current host grants admit a builder under new policy or a downstream owner.",
+    "Event ARTIFACT_DRIFT bypasses reason-based architect guard; DENIED_REPAIR filters earlier artifact drift out of discovery.",
+    "Reopen either admits builder despite policy drift or selects wrong stage owner."
+  ],
+  "corrective_task": "Discover artifact/evidence/policy/denial causes independently of caller reason; choose earliest current receipt and require human_architect for any observed policy/epoch drift.",
+  "candidate_snapshot": {
+    "path": "evidence/reconcile_lane_step3.json",
+    "sha256": "26b6bb17edffbcec7f1106319c45b2c5f5608b11a85687757dff7ccc0dfc930b"
+  },
+  "candidate_identity": "SHA-256 content snapshot; commit assigned by supervisor publication",
+  "focused_and_prior_lane_regression": {
+    "path": "evidence/reconcile_lane_authority_after.xml",
+    "sha256": "9695d26cb695d7d5e0ed7babe534b0ad473cdf52a28eb55cb74ab51780d9db76",
+    "tests": 38,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "files": [
+    "src/hmt_rnd/lane_reopen.py",
+    "src/hmt_rnd/lane_discovery.py",
+    "tests/test_reconcile_lane_authority.py"
+  ],
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; AWAITING_SUPERVISOR_RECONCILIATION",
+  "sub_agent_task_attestation": {
+    "agent": "/root/lane_reconciliation",
+    "task": "LANE-AUTHORITY-001",
+    "scope": "Owned derivative lane source and new tests/evidence only; no reference changes, no commit/push, no feature/integration progression",
+    "unsigned": true
+  }
+}

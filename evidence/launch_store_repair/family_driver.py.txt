@@ -1,0 +1,64 @@
+"""Isolated source overlays for bounded store/root binding falsification."""
+import hashlib
+import json
+import os
+import pathlib
+import shutil
+import subprocess
+import time
+
+REPO = pathlib.Path('/workspace/scratch/bc6d4e512874/HMT-RnD-Environment')
+BASE = pathlib.Path('/workspace/scratch/bc6d4e512874/launch_store_arms')
+SOURCE = pathlib.Path('src/hmt_rnd/mcp_contracts.py')
+ORIGINAL = (REPO / SOURCE).read_text()
+GUARD = '        if not value.is_absolute():'
+SELECT = 'alternate and host.sqlite and not ..'
+
+def run(arm, source, alternate=False):
+    root = BASE / arm
+    root.mkdir(parents=True, exist_ok=True)
+    for name in ('src', 'tests'):
+        shutil.copytree(REPO / name, root / name, dirs_exist_ok=True,
+                        ignore=shutil.ignore_patterns('__pycache__'))
+    for name in ('pyproject.toml', 'uv.lock'):
+        shutil.copyfile(REPO / name, root / name)
+    (root / 'evidence/launch_store_repair').mkdir(parents=True, exist_ok=True)
+    (root / SOURCE).write_text(source)
+    overlays = {str(SOURCE): source}
+    if alternate:
+        path = pathlib.Path('src/hmt_rnd/mcp_surface.py')
+        native = (root / path).read_text()
+        native = native.replace('        self.store = HostStore(self.binding.store)',
+            '        if not self.binding.store.is_absolute() or not self.binding.root.is_absolute():\n'
+            '            raise ValueError("MCP_BINDING_PATH_NOT_ABSOLUTE")\n'
+            '        self.store = HostStore(self.binding.store)')
+        (root / path).write_text(native)
+        overlays[str(path)] = native
+    cmd = ['uv', 'run', '--project', str(root), 'pytest',
+           'tests/test_launch_identity_invalid.py', '-q', '-k', SELECT,
+           '--junitxml=' + str(REPO / 'evidence/launch_store_repair' / (arm + '.xml'))]
+    env = dict(os.environ, UV_PROJECT_ENVIRONMENT=str(REPO / '.venv'))
+    start = time.monotonic()
+    done = subprocess.run(cmd, cwd=root, env=env, capture_output=True, timeout=60)
+    log = REPO / 'evidence/launch_store_repair' / (arm + '.log')
+    log.write_bytes(done.stdout + done.stderr)
+    item = dict(arm=arm, argv=cmd, cwd=str(root), exit_code=done.returncode,
+                duration=time.monotonic()-start, source_overlays=overlays,
+                source_sha256={p:hashlib.sha256(s.encode()).hexdigest()
+                               for p,s in overlays.items()}, log=str(log.relative_to(REPO)))
+    print(json.dumps({k:item[k] for k in ('arm','exit_code','duration')}), flush=True)
+    return item
+
+results=[]
+for name, source, alt in [
+    ('intact', ORIGINAL, False),
+    ('deletion', ORIGINAL.replace(GUARD, '        if False:'), False),
+    ('restoration', ORIGINAL, False),
+    ('sham', ORIGINAL.replace('Immutable host launch binding', 'Immutable host launch binding [sham]'), False),
+    ('alternate_on', ORIGINAL.replace(GUARD, '        if False:'), True),
+    ('alternate_off', ORIGINAL.replace(GUARD, '        if False:'), False),
+    ('mutant_store', ORIGINAL.replace('@field_validator("store", "root")', '@field_validator("root")'), False),
+    ('mutant_root', ORIGINAL.replace('@field_validator("store", "root")', '@field_validator("store")'), False),
+]:
+    results.append(run(name, source, alt))
+(REPO/'evidence/launch_store_repair/causal_family.json').write_text(json.dumps(results,indent=2)+'\n')

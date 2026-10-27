@@ -1,0 +1,54 @@
+{
+  "case_id": "LANE-DRIFT-001",
+  "requirements": [
+    "HMT-B07@1",
+    "HMT-B10@1"
+  ],
+  "boundary": "Generic lane lifecycle within derivative trusted host SQLite transaction; no domain evaluator qualification.",
+  "gate_id": "G-ARCH-LANE-DRIFT-001",
+  "baseline_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+  "initiating_observation": "Gate-evidence hash changes or in-scope missing artifact/evidence cannot reach supported ARTIFACT_DRIFT repair; earlier evidence drift omitted from discovery.",
+  "test_ids": [
+    "test_drift_repair_reachable[evidence-False]",
+    "test_drift_repair_reachable[evidence-True]",
+    "test_drift_repair_reachable[artifact-True]",
+    "test_discovery_includes_earlier_evidence"
+  ],
+  "retained_failure_witness": {
+    "path": "evidence/reconcile_lane_before.xml",
+    "sha256": "1450a7789e19af999765c92679c39255f3a892dae4ee14f0a08735ef53777678"
+  },
+  "causal_traversal": [
+    "Receipt artifact unchanged but gate evidence changed/absent, or artifact absent.",
+    "Explicit validation compares only main artifact; missing main path raises scope error.",
+    "Discovery compares only main artifact, permitting downstream ownership to omit earlier evidence change."
+  ],
+  "corrective_task": "Shared scope-checked detector reads every bound artifact/evidence path and treats an absent in-scope source as drift; outside-root symlink remains denied. Sealing validation unchanged.",
+  "candidate_snapshot": {
+    "path": "evidence/reconcile_lane_step1.json",
+    "sha256": "50e8641da97da470d464e1bb14c2fa083baa882a613b8e6ead6cc98675f0ce04"
+  },
+  "candidate_identity": "SHA-256 content snapshot; commit assigned by supervisor publication",
+  "focused_and_prior_lane_regression": {
+    "path": "evidence/reconcile_lane_drift_after.xml",
+    "sha256": "eb3ac2875762665182802d5541e13e760d144de389ac1b769460b55963687559",
+    "tests": 34,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "files": [
+    "src/hmt_rnd/lane_drift.py",
+    "src/hmt_rnd/lane_reopen.py",
+    "src/hmt_rnd/lane_discovery.py",
+    "tests/test_reconcile_lane_support.py",
+    "tests/test_reconcile_lane_drift.py"
+  ],
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; AWAITING_SUPERVISOR_RECONCILIATION",
+  "sub_agent_task_attestation": {
+    "agent": "/root/lane_reconciliation",
+    "task": "LANE-DRIFT-001",
+    "scope": "Owned derivative lane source and new tests/evidence only; no reference changes, no commit/push, no feature/integration progression",
+    "unsigned": true
+  }
+}

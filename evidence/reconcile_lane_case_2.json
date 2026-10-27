@@ -1,0 +1,49 @@
+{
+  "case_id": "LANE-HISTORY-001",
+  "requirements": [
+    "HMT-B07@1",
+    "HMT-B10@1"
+  ],
+  "boundary": "Generic lane lifecycle within derivative trusted host SQLite transaction; no domain evaluator qualification.",
+  "gate_id": "G-ARCH-LANE-HISTORY-001",
+  "baseline_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+  "initiating_observation": "Already-invalidated historical receipts can reopen a healthy successor.",
+  "test_ids": [
+    "test_resolved_history_cannot_reopen_again[DENIED_REPAIR]",
+    "test_resolved_history_cannot_reopen_again[ARTIFACT_DRIFT]"
+  ],
+  "retained_failure_witness": {
+    "path": "evidence/reconcile_lane_before.xml",
+    "sha256": "1450a7789e19af999765c92679c39255f3a892dae4ee14f0a08735ef53777678"
+  },
+  "causal_traversal": [
+    "Original denied/changed receipt remains immutable after repair.",
+    "Explicit changed-reference validation reads historical body without consulting lane_invalidations.",
+    "Reopen invalidates lineage descendants including valid replacement."
+  ],
+  "corrective_task": "Check lane_invalidations inside current host transaction before accepting any explicit changed receipt.",
+  "candidate_snapshot": {
+    "path": "evidence/reconcile_lane_step2.json",
+    "sha256": "c94f840f235c504f17423d686c576da43332f78a50ce0858ffdc1fcbc55975d8"
+  },
+  "candidate_identity": "SHA-256 content snapshot; commit assigned by supervisor publication",
+  "focused_and_prior_lane_regression": {
+    "path": "evidence/reconcile_lane_historical_after.xml",
+    "sha256": "b8830877abc084dc729590bfb1920649e4d9bc62ec2a1f542a9de096b09560d7",
+    "tests": 36,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "files": [
+    "src/hmt_rnd/lane_reopen.py",
+    "tests/test_reconcile_lane_historical.py"
+  ],
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; AWAITING_SUPERVISOR_RECONCILIATION",
+  "sub_agent_task_attestation": {
+    "agent": "/root/lane_reconciliation",
+    "task": "LANE-HISTORY-001",
+    "scope": "Owned derivative lane source and new tests/evidence only; no reference changes, no commit/push, no feature/integration progression",
+    "unsigned": true
+  }
+}

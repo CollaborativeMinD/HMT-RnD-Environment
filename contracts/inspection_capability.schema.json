@@ -1,0 +1,211 @@
+{
+  "$defs": {
+    "CredentialScope": {
+      "additionalProperties": false,
+      "properties": {
+        "credential_ref": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Credential Ref",
+          "type": "string"
+        },
+        "destination": {
+          "const": "local",
+          "title": "Destination",
+          "type": "string"
+        },
+        "external_egress": {
+          "const": "DENY",
+          "title": "External Egress",
+          "type": "string"
+        }
+      },
+      "required": [
+        "credential_ref",
+        "destination",
+        "external_egress"
+      ],
+      "title": "CredentialScope",
+      "type": "object"
+    },
+    "InspectionLimits": {
+      "additionalProperties": false,
+      "properties": {
+        "input_bytes": {
+          "maximum": 65536,
+          "minimum": 1,
+          "title": "Input Bytes",
+          "type": "integer"
+        },
+        "output_bytes": {
+          "maximum": 4096,
+          "minimum": 1,
+          "title": "Output Bytes",
+          "type": "integer"
+        },
+        "source_file_bytes": {
+          "maximum": 65536,
+          "minimum": 1,
+          "title": "Source File Bytes",
+          "type": "integer"
+        },
+        "source_total_bytes": {
+          "maximum": 131072,
+          "minimum": 1,
+          "title": "Source Total Bytes",
+          "type": "integer"
+        },
+        "deadline_seconds": {
+          "maximum": 30,
+          "minimum": 1,
+          "title": "Deadline Seconds",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "input_bytes",
+        "output_bytes",
+        "source_file_bytes",
+        "source_total_bytes",
+        "deadline_seconds"
+      ],
+      "title": "InspectionLimits",
+      "type": "object"
+    },
+    "RetryOwner": {
+      "additionalProperties": false,
+      "properties": {
+        "owner": {
+          "const": "Host",
+          "title": "Owner",
+          "type": "string"
+        },
+        "maximum_attempts": {
+          "maximum": 1,
+          "minimum": 1,
+          "title": "Maximum Attempts",
+          "type": "integer"
+        },
+        "automatic_retry": {
+          "title": "Automatic Retry",
+          "type": "boolean"
+        },
+        "uncertain": {
+          "const": "HOLD",
+          "title": "Uncertain",
+          "type": "string"
+        }
+      },
+      "required": [
+        "owner",
+        "maximum_attempts",
+        "automatic_retry",
+        "uncertain"
+      ],
+      "title": "RetryOwner",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "operation_id": {
+      "const": "inspect_context",
+      "title": "Operation Id",
+      "type": "string"
+    },
+    "owner": {
+      "const": "Host/IIEA",
+      "title": "Owner",
+      "type": "string"
+    },
+    "effect_class": {
+      "const": "LOCAL_MUTATION",
+      "title": "Effect Class",
+      "type": "string"
+    },
+    "implementation": {
+      "const": "hmt_rnd.mcp_surface.inspect_context",
+      "title": "Implementation",
+      "type": "string"
+    },
+    "binding_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Binding Sha256",
+      "type": "string"
+    },
+    "epoch": {
+      "minimum": 1,
+      "title": "Epoch",
+      "type": "integer"
+    },
+    "source_pins": {
+      "additionalProperties": {
+        "pattern": "^[0-9a-f]{64}$",
+        "type": "string"
+      },
+      "maxProperties": 32,
+      "minProperties": 1,
+      "title": "Source Pins",
+      "type": "object"
+    },
+    "input_schema_pin": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Input Schema Pin",
+      "type": "string"
+    },
+    "output_schema_pin": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Output Schema Pin",
+      "type": "string"
+    },
+    "credential_scope_and_data_egress": {
+      "$ref": "#/$defs/CredentialScope"
+    },
+    "retry_reconciliation_owner": {
+      "$ref": "#/$defs/RetryOwner"
+    },
+    "limits": {
+      "$ref": "#/$defs/InspectionLimits"
+    },
+    "valid_from": {
+      "minimum": 0,
+      "title": "Valid From",
+      "type": "number"
+    },
+    "valid_until": {
+      "exclusiveMinimum": 0,
+      "title": "Valid Until",
+      "type": "number"
+    },
+    "resource_profile": {
+      "const": "LOCAL-CTRL-1",
+      "title": "Resource Profile",
+      "type": "string"
+    },
+    "evidence_contract": {
+      "const": "atomic clock checkpoint and immutable native-result receipt",
+      "title": "Evidence Contract",
+      "type": "string"
+    }
+  },
+  "required": [
+    "operation_id",
+    "owner",
+    "effect_class",
+    "implementation",
+    "binding_sha256",
+    "epoch",
+    "source_pins",
+    "input_schema_pin",
+    "output_schema_pin",
+    "credential_scope_and_data_egress",
+    "retry_reconciliation_owner",
+    "limits",
+    "valid_from",
+    "valid_until",
+    "resource_profile",
+    "evidence_contract"
+  ],
+  "title": "InspectionCapability",
+  "type": "object"
+}

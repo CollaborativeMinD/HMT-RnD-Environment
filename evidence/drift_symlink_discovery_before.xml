@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="6" skipped="0" tests="6" time="0.731" timestamp="2026-10-26T21:07:29.616230-04:00" hostname="812233b2011d"><testcase classname="tests.test_drift_symlink_discovery" name="test_discovery_never_hides_invalid_source[earlier_undeclared-False]" time="0.094"><failure message="AssertionError: assert (None == 'LANE_ARTIFACT_SCOPE')">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-132/test_discovery_never_hides_inv0')
+dangling = False, location = 'earlier_undeclared'
+
+    @pytest.mark.parametrize("dangling", [False, True])
+    @pytest.mark.parametrize("location", ["earlier_undeclared", "later_undeclared", "same_receipt"])
+    def test_discovery_never_hides_invalid_source(tmp_path, dangling, location):
+        host, owner, request, store, first, _, _, second = two_stages(tmp_path)
+        scoped = reopen_request(host, owner, request)
+        if location == "earlier_undeclared":
+            invalid = first.gate.evidence[0].path
+            second.candidate.artifact.write_bytes(b"declared later drift")
+            change = event(changed="second")
+        else:
+            first.candidate.artifact.write_bytes(b"declared earlier drift")
+            invalid = (second if location == "later_undeclared" else first).gate.evidence[0].path
+            change = event()
+        replace_with_link(invalid, tmp_path, dangling)
+        with pytest.raises(PermissionError, match="LANE_ARTIFACT_SCOPE"):
+            digest_file(invalid, tmp_path)
+        before, denial, result = state(host), None, None
+        try:
+            result = store.reopen(owner, scoped, change, lambda: Clock(now=12.0))
+        except PermissionError as error:
+            denial = str(error)
+        witness = {"location": location, "dangling": dangling, "denial": denial,
+                   "invalidated": None if result is None else list(result.invalidated_candidates),
+                   "before": before, "after": state(host)}
+        (tmp_path / "drift_symlink_observed.json").write_text(json.dumps(witness))
+        print(json.dumps(witness))
+&gt;       assert denial == "LANE_ARTIFACT_SCOPE" and state(host) == before
+E       AssertionError: assert (None == 'LANE_ARTIFACT_SCOPE')
+
+tests/test_drift_symlink_discovery.py:39: AssertionError</failure></testcase><testcase classname="tests.test_drift_symlink_discovery" name="test_discovery_never_hides_invalid_source[earlier_undeclared-True]" time="0.069"><failure message="AssertionError: assert (None == 'LANE_ARTIFACT_SCOPE')">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-132/test_discovery_never_hides_inv1')
+dangling = True, location = 'earlier_undeclared'
+
+    @pytest.mark.parametrize("dangling", [False, True])
+    @pytest.mark.parametrize("location", ["earlier_undeclared", "later_undeclared", "same_receipt"])
+    def test_discovery_never_hides_invalid_source(tmp_path, dangling, location):
+        host, owner, request, store, first, _, _, second = two_stages(tmp_path)
+        scoped = reopen_request(host, owner, request)
+        if location == "earlier_undeclared":
+            invalid = first.gate.evidence[0].path
+            second.candidate.artifact.write_bytes(b"declared later drift")
+            change = event(changed="second")
+        else:
+            first.candidate.artifact.write_bytes(b"declared earlier drift")
+            invalid = (second if location == "later_undeclared" else first).gate.evidence[0].path
+            change = event()
+        replace_with_link(invalid, tmp_path, dangling)
+        with pytest.raises(PermissionError, match="LANE_ARTIFACT_SCOPE"):
+            digest_file(invalid, tmp_path)
+        before, denial, result = state(host), None, None
+        try:
+            result = store.reopen(owner, scoped, change, lambda: Clock(now=12.0))
+        except PermissionError as error:
+            denial = str(error)
+        witness = {"location": location, "dangling": dangling, "denial": denial,
+                   "invalidated": None if result is None else list(result.invalidated_candidates),
+                   "before": before, "after": state(host)}
+        (tmp_path / "drift_symlink_observed.json").write_text(json.dumps(witness))
+        print(json.dumps(witness))
+&gt;       assert denial == "LANE_ARTIFACT_SCOPE" and state(host) == before
+E       AssertionError: assert (None == 'LANE_ARTIFACT_SCOPE')
+
+tests/test_drift_symlink_discovery.py:39: AssertionError</failure></testcase><testcase classname="tests.test_drift_symlink_discovery" name="test_discovery_never_hides_invalid_source[later_undeclared-False]" time="0.094"><failure message="AssertionError: assert (None == 'LANE_ARTIFACT_SCOPE')">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-132/test_discovery_never_hides_inv2')
+dangling = False, location = 'later_undeclared'
+
+    @pytest.mark.parametrize("dangling", [False, True])
+    @pytest.mark.parametrize("location", ["earlier_undeclared", "later_undeclared", "same_receipt"])
+    def test_discovery_never_hides_invalid_source(tmp_path, dangling, location):
+        host, owner, request, store, first, _, _, second = two_stages(tmp_path)
+        scoped = reopen_request(host, owner, request)
+        if location == "earlier_undeclared":
+            invalid = first.gate.evidence[0].path
+            second.candidate.artifact.write_bytes(b"declared later drift")
+            change = event(changed="second")
+        else:
+            first.candidate.artifact.write_bytes(b"declared earlier drift")
+            invalid = (second if location == "later_undeclared" else first).gate.evidence[0].path
+            change = event()
+        replace_with_link(invalid, tmp_path, dangling)
+        with pytest.raises(PermissionError, match="LANE_ARTIFACT_SCOPE"):
+            digest_file(invalid, tmp_path)
+        before, denial, result = state(host), None, None
+        try:
+            result = store.reopen(owner, scoped, change, lambda: Clock(now=12.0))
+        except PermissionError as error:
+            denial = str(error)
+        witness = {"location": location, "dangling": dangling, "denial": denial,
+                   "invalidated": None if result is None else list(result.invalidated_candidates),
+                   "before": before, "after": state(host)}
+        (tmp_path / "drift_symlink_observed.json").write_text(json.dumps(witness))
+        print(json.dumps(witness))
+&gt;       assert denial == "LANE_ARTIFACT_SCOPE" and state(host) == before
+E       AssertionError: assert (None == 'LANE_ARTIFACT_SCOPE')
+
+tests/test_drift_symlink_discovery.py:39: AssertionError</failure></testcase><testcase classname="tests.test_drift_symlink_discovery" name="test_discovery_never_hides_invalid_source[later_undeclared-True]" time="0.088"><failure message="AssertionError: assert (None == 'LANE_ARTIFACT_SCOPE')">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-132/test_discovery_never_hides_inv3')
+dangling = True, location = 'later_undeclared'
+
+    @pytest.mark.parametrize("dangling", [False, True])
+    @pytest.mark.parametrize("location", ["earlier_undeclared", "later_undeclared", "same_receipt"])
+    def test_discovery_never_hides_invalid_source(tmp_path, dangling, location):
+        host, owner, request, store, first, _, _, second = two_stages(tmp_path)
+        scoped = reopen_request(host, owner, request)
+        if location == "earlier_undeclared":
+            invalid = first.gate.evidence[0].path
+            second.candidate.artifact.write_bytes(b"declared later drift")
+            change = event(changed="second")
+        else:
+            first.candidate.artifact.write_bytes(b"declared earlier drift")
+            invalid = (second if location == "later_undeclared" else first).gate.evidence[0].path
+            change = event()
+        replace_with_link(invalid, tmp_path, dangling)
+        with pytest.raises(PermissionError, match="LANE_ARTIFACT_SCOPE"):
+            digest_file(invalid, tmp_path)
+        before, denial, result = state(host), None, None
+        try:
+            result = store.reopen(owner, scoped, change, lambda: Clock(now=12.0))
+        except PermissionError as error:
+            denial = str(error)
+        witness = {"location": location, "dangling": dangling, "denial": denial,
+                   "invalidated": None if result is None else list(result.invalidated_candidates),
+                   "before": before, "after": state(host)}
+        (tmp_path / "drift_symlink_observed.json").write_text(json.dumps(witness))
+        print(json.dumps(witness))
+&gt;       assert denial == "LANE_ARTIFACT_SCOPE" and state(host) == before
+E       AssertionError: assert (None == 'LANE_ARTIFACT_SCOPE')
+
+tests/test_drift_symlink_discovery.py:39: AssertionError</failure></testcase><testcase classname="tests.test_drift_symlink_discovery" name="test_discovery_never_hides_invalid_source[same_receipt-False]" time="0.071"><failure message="AssertionError: assert (None == 'LANE_ARTIFACT_SCOPE')">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-132/test_discovery_never_hides_inv4')
+dangling = False, location = 'same_receipt'
+
+    @pytest.mark.parametrize("dangling", [False, True])
+    @pytest.mark.parametrize("location", ["earlier_undeclared", "later_undeclared", "same_receipt"])
+    def test_discovery_never_hides_invalid_source(tmp_path, dangling, location):
+        host, owner, request, store, first, _, _, second = two_stages(tmp_path)
+        scoped = reopen_request(host, owner, request)
+        if location == "earlier_undeclared":
+            invalid = first.gate.evidence[0].path
+            second.candidate.artifact.write_bytes(b"declared later drift")
+            change = event(changed="second")
+        else:
+            first.candidate.artifact.write_bytes(b"declared earlier drift")
+            invalid = (second if location == "later_undeclared" else first).gate.evidence[0].path
+            change = event()
+        replace_with_link(invalid, tmp_path, dangling)
+        with pytest.raises(PermissionError, match="LANE_ARTIFACT_SCOPE"):
+            digest_file(invalid, tmp_path)
+        before, denial, result = state(host), None, None
+        try:
+            result = store.reopen(owner, scoped, change, lambda: Clock(now=12.0))
+        except PermissionError as error:
+            denial = str(error)
+        witness = {"location": location, "dangling": dangling, "denial": denial,
+                   "invalidated": None if result is None else list(result.invalidated_candidates),
+                   "before": before, "after": state(host)}
+        (tmp_path / "drift_symlink_observed.json").write_text(json.dumps(witness))
+        print(json.dumps(witness))
+&gt;       assert denial == "LANE_ARTIFACT_SCOPE" and state(host) == before
+E       AssertionError: assert (None == 'LANE_ARTIFACT_SCOPE')
+
+tests/test_drift_symlink_discovery.py:39: AssertionError</failure></testcase><testcase classname="tests.test_drift_symlink_discovery" name="test_discovery_never_hides_invalid_source[same_receipt-True]" time="0.094"><failure message="AssertionError: assert (None == 'LANE_ARTIFACT_SCOPE')">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-132/test_discovery_never_hides_inv5')
+dangling = True, location = 'same_receipt'
+
+    @pytest.mark.parametrize("dangling", [False, True])
+    @pytest.mark.parametrize("location", ["earlier_undeclared", "later_undeclared", "same_receipt"])
+    def test_discovery_never_hides_invalid_source(tmp_path, dangling, location):
+        host, owner, request, store, first, _, _, second = two_stages(tmp_path)
+        scoped = reopen_request(host, owner, request)
+        if location == "earlier_undeclared":
+            invalid = first.gate.evidence[0].path
+            second.candidate.artifact.write_bytes(b"declared later drift")
+            change = event(changed="second")
+        else:
+            first.candidate.artifact.write_bytes(b"declared earlier drift")
+            invalid = (second if location == "later_undeclared" else first).gate.evidence[0].path
+            change = event()
+        replace_with_link(invalid, tmp_path, dangling)
+        with pytest.raises(PermissionError, match="LANE_ARTIFACT_SCOPE"):
+            digest_file(invalid, tmp_path)
+        before, denial, result = state(host), None, None
+        try:
+            result = store.reopen(owner, scoped, change, lambda: Clock(now=12.0))
+        except PermissionError as error:
+            denial = str(error)
+        witness = {"location": location, "dangling": dangling, "denial": denial,
+                   "invalidated": None if result is None else list(result.invalidated_candidates),
+                   "before": before, "after": state(host)}
+        (tmp_path / "drift_symlink_observed.json").write_text(json.dumps(witness))
+        print(json.dumps(witness))
+&gt;       assert denial == "LANE_ARTIFACT_SCOPE" and state(host) == before
+E       AssertionError: assert (None == 'LANE_ARTIFACT_SCOPE')
+
+tests/test_drift_symlink_discovery.py:39: AssertionError</failure></testcase></testsuite></testsuites>

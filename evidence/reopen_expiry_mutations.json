@@ -1,0 +1,46 @@
+[
+  {
+    "id": "delete_final_admission",
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+      "--no-sync",
+      "python",
+      "-m",
+      "pytest",
+      "tests/test_reopen_expiry.py",
+      "-q",
+      "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/reopen_expiry_mutant_delete_final_admission.xml"
+    ],
+    "cwd": "/workspace/scratch/bc6d4e512874/supervisor_expiry_mutant_delete_final_admission",
+    "source_sha256": "4d032924349c24c82b93b9e91e75fdf723f176d9852fbab80fa0c1e90cefc1fd",
+    "returncode": 1,
+    "seconds": 8.332242292999581,
+    "expected": "24 negative cases fail; 24 unchanged/below controls pass",
+    "summary": "24 failed, 24 passed in 6.74s"
+  },
+  {
+    "id": "restore_old_order",
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+      "--no-sync",
+      "python",
+      "-m",
+      "pytest",
+      "tests/test_reopen_expiry.py",
+      "-q",
+      "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/reopen_expiry_mutant_restore_old_order.xml"
+    ],
+    "cwd": "/workspace/scratch/bc6d4e512874/supervisor_expiry_mutant_restore_old_order",
+    "source_sha256": "0ed09b7b6570884c47b89a07149dc87cabbd5b37da55e3768903cbe8b2f1b482",
+    "returncode": 1,
+    "seconds": 5.235521452999819,
+    "expected": "24 negative cases fail; 24 unchanged/below controls pass",
+    "summary": "24 failed, 24 passed in 4.81s"
+  }
+]

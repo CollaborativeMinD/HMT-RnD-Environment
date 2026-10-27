@@ -1,0 +1,26 @@
+{
+  "id": "CR-REMAINING-HOLDS-008",
+  "cases": [
+    "RC-ANCESTOR-01",
+    "RC-DRIFT-01"
+  ],
+  "review_ids": [
+    4383956251,
+    4383956285
+  ],
+  "affected_requirements": [
+    "HMT-B07",
+    "HMT-B10",
+    "HMT-B11",
+    "HMT-B14",
+    "HMT-F02",
+    "HMT-F03",
+    "HMT-F14",
+    "HMT-N04",
+    "HMT-N11",
+    "HMT-N12"
+  ],
+  "criteria": "Existing acceptance retained; current assignment freshness applies to every ancestor pre/post evaluator and before reopen insertion. Original paths retain guarded denial semantics; only genuine missing descendants under valid root classify as drift.",
+  "authority_boundary": "No assignment migration/rerouting, integration, deployment or release authority added.",
+  "release": "HOLD_PENDING_OUT_OF_BAND_REVIEW"
+}

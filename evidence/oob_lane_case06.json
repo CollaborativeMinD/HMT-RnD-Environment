@@ -1,0 +1,65 @@
+{
+  "case_id": "RC-LANE-06",
+  "requirements": [
+    "HMT-B07@1",
+    "HMT-B10@1"
+  ],
+  "baseline": "6619aee",
+  "as_of": "2026-10-26T23:28:38.080768+00:00",
+  "initiating_condition": "ARTIFACT_DRIFT event issued at policyA/epoch1; host advances policy or epoch and gives builder fresh lane.seal grant; initialstage successor consumes old event.",
+  "observed_failure": "All4 policy/epoch x restart traces admitted and closed stale event despite current builder grant; unchanged-policy control passed.",
+  "causal_chain": [
+    "ReopenEvent omitted issuance policy/epoch and taskrevision authority binding.",
+    "Submission checked current hostgrant and pendingevent candidate binding but never eventissuance authority.",
+    "InitialCMAD1 has no predecessor whose stale policy would incidentally block it.",
+    "Fresh builder permission therefore closes prior event after architecture-policy drift."
+  ],
+  "corrective_task": "Pin event issuance policy/epoch/task/revision; require event current authority at use. Recovery appends current hostadmitted human_architect decision bound to exact eventdigest, originreceipt, lineage, stage, task/revision. Immutable event retained.",
+  "api_scope": "Trusted LaneStore.reauthorize only, operation lane.reauthorize; no MCP tool exposed.",
+  "legacy_disposition": "Missing event authority fields fail LANE_REOPEN_BINDING_MISSING; no guessed migration or default authority.",
+  "candidate_snapshot": "evidence/oob_lane_step2.json",
+  "candidate_sha256": "c0fbda08cf7e0c08d7782695fc206dd4caf5d0a9e4b728498ee3d752502701f0",
+  "evidence": {
+    "evidence/oob_lane_before.xml": "590efda4e4d40886699c424be388c4032e483bcde7ee3998685a2f10f32b5392",
+    "evidence/oob_lane_before_sources.json": "930a7f9c0b61871508e7b5a0ad6118bec3c24b2f55c2378b997b583895beca5b",
+    "evidence/oob_lane_before_tests.json": "b67d6ea8f0dd64cdf30ca81ed04b3a8f5ca4f5170263098d0b87c5779eb80004",
+    "evidence/oob_lane_epoch_recovery.xml": "155cc1c609c71dc0a5961abddbe8ea62c98ef7eec06a046fadea72efcadefce3",
+    "evidence/oob_lane_epoch_recovery_v2.xml": "90fe399b12d128146fafc6207b83339e77d6d2b2fc5071c215d070ea322274be",
+    "evidence/oob_lane_full_regression.xml": "0471b7e730a222d06224805cb1a85473c228ff77c460b353236308c720f58a03",
+    "evidence/oob_lane_runtime_inventory.json": "d52859136530d8c4873e7557f13c31e0fcb0e5d73ee3b6039e3cdf07b1e58362"
+  },
+  "results": {
+    "focused_oob_tests": 29,
+    "full_previous_tests": 224,
+    "failures": 0,
+    "skips": 0,
+    "source_inventory_paths": 116,
+    "before_after_inventory_mismatches": 0,
+    "ruff": "PASS",
+    "pyrefly": "PASS basic",
+    "structure": "PASS"
+  },
+  "harness_correction": {
+    "retained_observation": "Initial new negative expected HOST_GRANT_DENIED but actual preserved native HOST_IDENTITY_SCOPE_DENIED; denial itself occurred.",
+    "change": "Expected exact reason corrected, no production behavior or authorization acceptance relaxed.",
+    "original": "evidence/oob_lane_epoch_recovery.xml",
+    "satisfying_same_boundary": "evidence/oob_lane_epoch_recovery_v2.xml"
+  },
+  "controls": [
+    "Fresh buildergrant policychange, epochonly, processobject restart",
+    "Unchangedauthority success after restart",
+    "Explicit architect recovery exact eventdigest and immutable origin; idempotent same decision",
+    "Wrongrole including forgedrole with another role grant, task, revision, stage, operation, revoked, stale, expired grant",
+    "Unknown/closed event denial and zero newauthorization",
+    "Legacybodymissingbinding denied for use and recovery",
+    "ApprovalforA cannot authorizeB; wrong-event placed approval rejects",
+    "Malformedevent origin/task/stage; no mutation on denial",
+    "Afterapproval newepoch again denies until newcurrent architect approval"
+  ],
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; HOLD pending owner outside review",
+  "sub_agent_task_attestation": {
+    "agent": "/root/lane_reconciliation",
+    "scope": "RC-LANE-06 derivative repair only; source frozen snapshot2; no reference changes, no publication or release authority",
+    "unsigned": true
+  }
+}

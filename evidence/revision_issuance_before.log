@@ -1,0 +1,49 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.7.0
+rootdir: /workspace/scratch/bc6d4e512874/HMT-RnD-Environment
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collected 7 items
+
+tests/test_revision_issuance_guards.py FF.....                           [100%]
+
+=================================== FAILURES ===================================
+____ test_fresh_revision_cannot_invalidate_previous_revision_origin[False] _____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-103/test_fresh_revision_cannot_inv0')
+restart = False
+
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_fresh_revision_cannot_invalidate_previous_revision_origin(tmp_path, restart):
+        host, actor, request, store, origin = changed_origin(tmp_path)
+        revised = advance(host, actor, request)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_REOPEN_REVISION_MISMATCH"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_revision_issuance_guards.py:19: Failed
+_____ test_fresh_revision_cannot_invalidate_previous_revision_origin[True] _____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-103/test_fresh_revision_cannot_inv1')
+restart = True
+
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_fresh_revision_cannot_invalidate_previous_revision_origin(tmp_path, restart):
+        host, actor, request, store, origin = changed_origin(tmp_path)
+        revised = advance(host, actor, request)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_REOPEN_REVISION_MISMATCH"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_revision_issuance_guards.py:19: Failed
+- generated xml file: /workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/revision_issuance_before.xml -
+=========================== short test summary info ============================
+FAILED tests/test_revision_issuance_guards.py::test_fresh_revision_cannot_invalidate_previous_revision_origin[False]
+FAILED tests/test_revision_issuance_guards.py::test_fresh_revision_cannot_invalidate_previous_revision_origin[True]
+========================= 2 failed, 5 passed in 0.70s ==========================

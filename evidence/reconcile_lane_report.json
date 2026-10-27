@@ -1,0 +1,264 @@
+{
+  "report_id": "HMT-RECONCILE-LANE-001",
+  "as_of": "2026-10-26T22:50:06.987771+00:00",
+  "baseline": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+  "scope": "Four reproduced review finding families; source-scope control and historical regression retained",
+  "before": {
+    "tests": 10,
+    "failed": 9,
+    "passed": 1,
+    "note": "pytest returned 1; shell wrapper printed log and returned 0. JUnit/log preserve actual failing pytest outcome."
+  },
+  "after": {
+    "tests": 39,
+    "failed": 0,
+    "skipped": 0
+  },
+  "cases": [
+    {
+      "case_id": "LANE-DRIFT-001",
+      "requirements": [
+        "HMT-B07@1",
+        "HMT-B10@1"
+      ],
+      "boundary": "Generic lane lifecycle within derivative trusted host SQLite transaction; no domain evaluator qualification.",
+      "gate_id": "G-ARCH-LANE-DRIFT-001",
+      "baseline_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+      "initiating_observation": "Gate-evidence hash changes or in-scope missing artifact/evidence cannot reach supported ARTIFACT_DRIFT repair; earlier evidence drift omitted from discovery.",
+      "test_ids": [
+        "test_drift_repair_reachable[evidence-False]",
+        "test_drift_repair_reachable[evidence-True]",
+        "test_drift_repair_reachable[artifact-True]",
+        "test_discovery_includes_earlier_evidence"
+      ],
+      "retained_failure_witness": {
+        "path": "evidence/reconcile_lane_before.xml",
+        "sha256": "1450a7789e19af999765c92679c39255f3a892dae4ee14f0a08735ef53777678"
+      },
+      "causal_traversal": [
+        "Receipt artifact unchanged but gate evidence changed/absent, or artifact absent.",
+        "Explicit validation compares only main artifact; missing main path raises scope error.",
+        "Discovery compares only main artifact, permitting downstream ownership to omit earlier evidence change."
+      ],
+      "corrective_task": "Shared scope-checked detector reads every bound artifact/evidence path and treats an absent in-scope source as drift; outside-root symlink remains denied. Sealing validation unchanged.",
+      "candidate_snapshot": {
+        "path": "evidence/reconcile_lane_step1.json",
+        "sha256": "50e8641da97da470d464e1bb14c2fa083baa882a613b8e6ead6cc98675f0ce04"
+      },
+      "candidate_identity": "SHA-256 content snapshot; commit assigned by supervisor publication",
+      "focused_and_prior_lane_regression": {
+        "path": "evidence/reconcile_lane_drift_after.xml",
+        "sha256": "eb3ac2875762665182802d5541e13e760d144de389ac1b769460b55963687559",
+        "tests": 34,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "files": [
+        "src/hmt_rnd/lane_drift.py",
+        "src/hmt_rnd/lane_reopen.py",
+        "src/hmt_rnd/lane_discovery.py",
+        "tests/test_reconcile_lane_support.py",
+        "tests/test_reconcile_lane_drift.py"
+      ],
+      "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; AWAITING_SUPERVISOR_RECONCILIATION",
+      "sub_agent_task_attestation": {
+        "agent": "/root/lane_reconciliation",
+        "task": "LANE-DRIFT-001",
+        "scope": "Owned derivative lane source and new tests/evidence only; no reference changes, no commit/push, no feature/integration progression",
+        "unsigned": true
+      }
+    },
+    {
+      "case_id": "LANE-HISTORY-001",
+      "requirements": [
+        "HMT-B07@1",
+        "HMT-B10@1"
+      ],
+      "boundary": "Generic lane lifecycle within derivative trusted host SQLite transaction; no domain evaluator qualification.",
+      "gate_id": "G-ARCH-LANE-HISTORY-001",
+      "baseline_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+      "initiating_observation": "Already-invalidated historical receipts can reopen a healthy successor.",
+      "test_ids": [
+        "test_resolved_history_cannot_reopen_again[DENIED_REPAIR]",
+        "test_resolved_history_cannot_reopen_again[ARTIFACT_DRIFT]"
+      ],
+      "retained_failure_witness": {
+        "path": "evidence/reconcile_lane_before.xml",
+        "sha256": "1450a7789e19af999765c92679c39255f3a892dae4ee14f0a08735ef53777678"
+      },
+      "causal_traversal": [
+        "Original denied/changed receipt remains immutable after repair.",
+        "Explicit changed-reference validation reads historical body without consulting lane_invalidations.",
+        "Reopen invalidates lineage descendants including valid replacement."
+      ],
+      "corrective_task": "Check lane_invalidations inside current host transaction before accepting any explicit changed receipt.",
+      "candidate_snapshot": {
+        "path": "evidence/reconcile_lane_step2.json",
+        "sha256": "c94f840f235c504f17423d686c576da43332f78a50ce0858ffdc1fcbc55975d8"
+      },
+      "candidate_identity": "SHA-256 content snapshot; commit assigned by supervisor publication",
+      "focused_and_prior_lane_regression": {
+        "path": "evidence/reconcile_lane_historical_after.xml",
+        "sha256": "b8830877abc084dc729590bfb1920649e4d9bc62ec2a1f542a9de096b09560d7",
+        "tests": 36,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "files": [
+        "src/hmt_rnd/lane_reopen.py",
+        "tests/test_reconcile_lane_historical.py"
+      ],
+      "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; AWAITING_SUPERVISOR_RECONCILIATION",
+      "sub_agent_task_attestation": {
+        "agent": "/root/lane_reconciliation",
+        "task": "LANE-HISTORY-001",
+        "scope": "Owned derivative lane source and new tests/evidence only; no reference changes, no commit/push, no feature/integration progression",
+        "unsigned": true
+      }
+    },
+    {
+      "case_id": "LANE-AUTHORITY-001",
+      "requirements": [
+        "HMT-B07@1",
+        "HMT-B10@1"
+      ],
+      "boundary": "Generic lane lifecycle within derivative trusted host SQLite transaction; no domain evaluator qualification.",
+      "gate_id": "G-ARCH-LANE-AUTHORITY-001",
+      "baseline_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+      "initiating_observation": "Supplied reason conceals simultaneous policy drift or an earlier changed owner.",
+      "test_ids": [
+        "test_artifact_reason_cannot_bypass_policy_authority",
+        "test_denial_reason_cannot_hide_earlier_artifact_drift"
+      ],
+      "retained_failure_witness": {
+        "path": "evidence/reconcile_lane_before.xml",
+        "sha256": "1450a7789e19af999765c92679c39255f3a892dae4ee14f0a08735ef53777678"
+      },
+      "causal_traversal": [
+        "Current host grants admit a builder under new policy or a downstream owner.",
+        "Event ARTIFACT_DRIFT bypasses reason-based architect guard; DENIED_REPAIR filters earlier artifact drift out of discovery.",
+        "Reopen either admits builder despite policy drift or selects wrong stage owner."
+      ],
+      "corrective_task": "Discover artifact/evidence/policy/denial causes independently of caller reason; choose earliest current receipt and require human_architect for any observed policy/epoch drift.",
+      "candidate_snapshot": {
+        "path": "evidence/reconcile_lane_step3.json",
+        "sha256": "26b6bb17edffbcec7f1106319c45b2c5f5608b11a85687757dff7ccc0dfc930b"
+      },
+      "candidate_identity": "SHA-256 content snapshot; commit assigned by supervisor publication",
+      "focused_and_prior_lane_regression": {
+        "path": "evidence/reconcile_lane_authority_after.xml",
+        "sha256": "9695d26cb695d7d5e0ed7babe534b0ad473cdf52a28eb55cb74ab51780d9db76",
+        "tests": 38,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "files": [
+        "src/hmt_rnd/lane_reopen.py",
+        "src/hmt_rnd/lane_discovery.py",
+        "tests/test_reconcile_lane_authority.py"
+      ],
+      "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; AWAITING_SUPERVISOR_RECONCILIATION",
+      "sub_agent_task_attestation": {
+        "agent": "/root/lane_reconciliation",
+        "task": "LANE-AUTHORITY-001",
+        "scope": "Owned derivative lane source and new tests/evidence only; no reference changes, no commit/push, no feature/integration progression",
+        "unsigned": true
+      }
+    },
+    {
+      "case_id": "LANE-SUCCESSOR-001",
+      "requirements": [
+        "HMT-B07@1",
+        "HMT-B10@1"
+      ],
+      "boundary": "Generic lane lifecycle within derivative trusted host SQLite transaction; no domain evaluator qualification.",
+      "gate_id": "G-ARCH-LANE-SUCCESSOR-001",
+      "baseline_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+      "initiating_observation": "An older closed ancestor permits unbound candidate to bypass a pending stage-specific repair.",
+      "test_ids": [
+        "test_old_closed_ancestor_cannot_bypass_new_pending_reopen"
+      ],
+      "retained_failure_witness": {
+        "path": "evidence/reconcile_lane_before.xml",
+        "sha256": "1450a7789e19af999765c92679c39255f3a892dae4ee14f0a08735ef53777678"
+      },
+      "causal_traversal": [
+        "Earlier CMAD1 reopen closed; its successor parents regenerated CMAD2.",
+        "CMAD2 is reopened and designated successor remains pending.",
+        "No-reopen_id candidate inherits old closed ancestor permission, occupies stage, and strands designated successor."
+      ],
+      "corrective_task": "Before ancestor-based descendant permission, require any pending event rooted at this stage to match exact candidate ID and reopen ID.",
+      "candidate_snapshot": {
+        "path": "evidence/reconcile_lane_step4.json",
+        "sha256": "db11623fbd1f10bb43a8a861b6df46d0e115f696493bd506489e9f437e40ffbe"
+      },
+      "candidate_identity": "SHA-256 content snapshot; commit assigned by supervisor publication",
+      "focused_and_prior_lane_regression": {
+        "path": "evidence/reconcile_lane_pending_after.xml",
+        "sha256": "beaeb1e5553bb8190ee9d6a3abf0906b9b59799cb70d572af678352652047216",
+        "tests": 39,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "files": [
+        "src/hmt_rnd/lane_successor.py",
+        "src/hmt_rnd/lane_submission.py",
+        "tests/test_reconcile_lane_pending.py"
+      ],
+      "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; AWAITING_SUPERVISOR_RECONCILIATION",
+      "sub_agent_task_attestation": {
+        "agent": "/root/lane_reconciliation",
+        "task": "LANE-SUCCESSOR-001",
+        "scope": "Owned derivative lane source and new tests/evidence only; no reference changes, no commit/push, no feature/integration progression",
+        "unsigned": true
+      }
+    }
+  ],
+  "static_gates": {
+    "ruff": "PASS",
+    "pyrefly": "PASS basic preset, zero errors",
+    "structure": "PASS with PYTHONPATH=src; initial invocation without PYTHONPATH failed module import, corrected command rerun successfully"
+  },
+  "coverage": {
+    "covered_lines": 371,
+    "num_statements": 391,
+    "percent_covered": 92.07920792079207,
+    "percent_covered_display": "92",
+    "missing_lines": 20,
+    "excluded_lines": 0,
+    "percent_statements_covered": 94.8849104859335,
+    "percent_statements_covered_display": "95",
+    "num_branches": 114,
+    "num_partial_branches": 20,
+    "covered_branches": 94,
+    "missing_branches": 20,
+    "percent_branches_covered": 82.45614035087719,
+    "percent_branches_covered_display": "82"
+  },
+  "nonclaims": [
+    "No integration release or global HOLD clearance.",
+    "No domain evaluator or whole HMT-B07/B10 qualification.",
+    "OS isolation, concurrent filesystem replacement and historical resource growth remain separate qualification scope.",
+    "Full shared-package cumulative gates and independent review remain supervisor responsibilities."
+  ],
+  "snapshot_integrity": {
+    "src/hmt_rnd/lane_artifacts.py": "6d45fbe94b98a7b61e5e8697141dca8a3e41ead641609a8cd00561237f91e735",
+    "src/hmt_rnd/lane_discovery.py": "7d34db0c2cee5915abbee6c0fe7f41bcdaac1160f0bcc47ec122dad0ad47899e",
+    "src/hmt_rnd/lane_drift.py": "25c14ea8d82cbb6a037ae4d3c1fb38eabc489275782408aa79e386b253ae207b",
+    "src/hmt_rnd/lane_evidence.py": "bbe9b135f3d275483252206a6b481ba26d8f619e302818d64bebb607ac00b083",
+    "src/hmt_rnd/lane_handoff.py": "14afaffb90d4f3e33c0247ef3c54e21216703e312f4cd6738bf1a00bff5b96fa",
+    "src/hmt_rnd/lane_models.py": "fd1f45e5416c2c31d2d6d6562724196e31913dfa32cafe73c265c4a9ed5080e6",
+    "src/hmt_rnd/lane_queries.py": "41e3966acf63f27a229d9cd22339c0f58944d73376815b429155e7a378f7333a",
+    "src/hmt_rnd/lane_records.py": "386597142f6a6dffa7c59f19de92e29c97cfa653828b9d70ee9878503d5577b7",
+    "src/hmt_rnd/lane_reopen.py": "4d2b56937cd00eff3aba1bfebc642bc400e2f3c67409111ab236e2a6b1cf6bcf",
+    "src/hmt_rnd/lane_schema.py": "86e3868aed1ad9d2e651657d811d5cd64023e24c71de2ba1a5f215bfabe1ab57",
+    "src/hmt_rnd/lane_stages.py": "0746aaa8a8ad6cbf0359f43f0e371712c1835bd5de42efa6554b1a2e36110d97",
+    "src/hmt_rnd/lane_store.py": "1fef69c0d5c817af941a3b3a72051105229c227338860132b2840b457bfdb6bc",
+    "src/hmt_rnd/lane_submission.py": "b0d0c0385439d58378ebd1a366e4e142667056234346f7602d89779c14535081",
+    "src/hmt_rnd/lane_successor.py": "381f6489953b135e093e093a2f6b0ad7a053ec250cf482bd740f182954509ae5"
+  }
+}

@@ -1,0 +1,628 @@
+{
+  "review_id": "HMT-RECONCILIATION-MA-PUBLICATION-001",
+  "as_of": "2026-10-26T23:07:50.438Z",
+  "method": "Read-only GitHub API commit/tree retrieval and local Git blob hash comparison; no target execution",
+  "commit": "ce754d63cc9f8541da945e6636f519a17e04aefb",
+  "commit_tree": "abebd845b77da6c3e2eb1dfbe3367843751358cb",
+  "retrieved_tree": "abebd845b77da6c3e2eb1dfbe3367843751358cb",
+  "tree_truncated": false,
+  "commit_tree_matches": true,
+  "executable_file_count": 102,
+  "all_executable_files_match": true,
+  "checks": [
+    {
+      "path": "src/hmt_rnd/__init__.py",
+      "expected_git_blob_sha": "c2d2208e204435739fbcf5a2abc120a93a4e5ac4",
+      "published_git_blob_sha": "c2d2208e204435739fbcf5a2abc120a93a4e5ac4",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/custody_adapter.py",
+      "expected_git_blob_sha": "9db3d61d6234096f174cb8d11784f4f8e21f6126",
+      "published_git_blob_sha": "9db3d61d6234096f174cb8d11784f4f8e21f6126",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/custody_database.py",
+      "expected_git_blob_sha": "da59e14b34892a591bcb9cbeb61721a48c3c57ba",
+      "published_git_blob_sha": "da59e14b34892a591bcb9cbeb61721a48c3c57ba",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/custody_endpoint.py",
+      "expected_git_blob_sha": "26ea7cd7e64ae468f5d007efafc1541b3bed724b",
+      "published_git_blob_sha": "26ea7cd7e64ae468f5d007efafc1541b3bed724b",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/custody_models.py",
+      "expected_git_blob_sha": "17bed3adde70944a614e6f3866042746f16d8939",
+      "published_git_blob_sha": "17bed3adde70944a614e6f3866042746f16d8939",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/custody_operations.py",
+      "expected_git_blob_sha": "043b9c6e922f7d780a562d0ea9d353301502f32a",
+      "published_git_blob_sha": "043b9c6e922f7d780a562d0ea9d353301502f32a",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/custody_reconcile.py",
+      "expected_git_blob_sha": "e24324ed406c031b44abd34835eae1e860de17e8",
+      "published_git_blob_sha": "e24324ed406c031b44abd34835eae1e860de17e8",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/custody_signing.py",
+      "expected_git_blob_sha": "d32b276604f430924e777e38c0be88aa06e200b2",
+      "published_git_blob_sha": "d32b276604f430924e777e38c0be88aa06e200b2",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/host_admin.py",
+      "expected_git_blob_sha": "50e9a0b137f58b91985f62896f927cb439e32032",
+      "published_git_blob_sha": "50e9a0b137f58b91985f62896f927cb439e32032",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/host_admission.py",
+      "expected_git_blob_sha": "d454078a2abf6ca6bcf11fae87e649b1f3777e92",
+      "published_git_blob_sha": "d454078a2abf6ca6bcf11fae87e649b1f3777e92",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/host_checks.py",
+      "expected_git_blob_sha": "73ea2e8015ce2032dcb2a6ce9bb57b21b4b23adf",
+      "published_git_blob_sha": "73ea2e8015ce2032dcb2a6ce9bb57b21b4b23adf",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/host_models.py",
+      "expected_git_blob_sha": "cd0d5e021a6cc36b1ec29703a11cdee1207d5601",
+      "published_git_blob_sha": "cd0d5e021a6cc36b1ec29703a11cdee1207d5601",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/host_schema.py",
+      "expected_git_blob_sha": "bd7f778a2e0400302102ef87c1ed3cc7dc35aa16",
+      "published_git_blob_sha": "bd7f778a2e0400302102ef87c1ed3cc7dc35aa16",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/host_store.py",
+      "expected_git_blob_sha": "571538b715be407eb3d61c059e5da46342a9a923",
+      "published_git_blob_sha": "571538b715be407eb3d61c059e5da46342a9a923",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_artifacts.py",
+      "expected_git_blob_sha": "7856c57c10bbf7eea0092ac6cedea2e5f295e4a9",
+      "published_git_blob_sha": "7856c57c10bbf7eea0092ac6cedea2e5f295e4a9",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_discovery.py",
+      "expected_git_blob_sha": "06937bb7133e1b2ac9f8cc407ed6a470bb9a6cf8",
+      "published_git_blob_sha": "06937bb7133e1b2ac9f8cc407ed6a470bb9a6cf8",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_drift.py",
+      "expected_git_blob_sha": "63094b05aa8e4b6fe087d3fd9fd7aa6c77a84058",
+      "published_git_blob_sha": "63094b05aa8e4b6fe087d3fd9fd7aa6c77a84058",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_evidence.py",
+      "expected_git_blob_sha": "28e0d37721d4aa21ed77f6a8d30659e0bf4ba4ea",
+      "published_git_blob_sha": "28e0d37721d4aa21ed77f6a8d30659e0bf4ba4ea",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_handoff.py",
+      "expected_git_blob_sha": "1a1075ddc6d5a5d0caad71958a9aa0ee9960ee9a",
+      "published_git_blob_sha": "1a1075ddc6d5a5d0caad71958a9aa0ee9960ee9a",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_models.py",
+      "expected_git_blob_sha": "13e957a4f9d7e43e4cd9e84755cfab713303c716",
+      "published_git_blob_sha": "13e957a4f9d7e43e4cd9e84755cfab713303c716",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_queries.py",
+      "expected_git_blob_sha": "c9ac2b04e58db12b8be7dd4612e07de2cfa99bf6",
+      "published_git_blob_sha": "c9ac2b04e58db12b8be7dd4612e07de2cfa99bf6",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_records.py",
+      "expected_git_blob_sha": "600dec520272877e77aaefa00858b56af38cffd1",
+      "published_git_blob_sha": "600dec520272877e77aaefa00858b56af38cffd1",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_reopen.py",
+      "expected_git_blob_sha": "b154cee807463f753c78b9193479d7757ea50976",
+      "published_git_blob_sha": "b154cee807463f753c78b9193479d7757ea50976",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_schema.py",
+      "expected_git_blob_sha": "70ac4c81eba6e219eca729c1a745afd2110a02e2",
+      "published_git_blob_sha": "70ac4c81eba6e219eca729c1a745afd2110a02e2",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_stages.py",
+      "expected_git_blob_sha": "a609be0541a70c92eaf357f32dd5ffc70f1b92cd",
+      "published_git_blob_sha": "a609be0541a70c92eaf357f32dd5ffc70f1b92cd",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_store.py",
+      "expected_git_blob_sha": "1c665e61bf79391064bd4536204a16fed9482e9d",
+      "published_git_blob_sha": "1c665e61bf79391064bd4536204a16fed9482e9d",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_submission.py",
+      "expected_git_blob_sha": "3260e7e000fad0a0af5d6dfe1b6014e2bc40c75f",
+      "published_git_blob_sha": "3260e7e000fad0a0af5d6dfe1b6014e2bc40c75f",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_successor.py",
+      "expected_git_blob_sha": "2e980ee1a88f9a046e3a238b4cf53cc373d0b51a",
+      "published_git_blob_sha": "2e980ee1a88f9a046e3a238b4cf53cc373d0b51a",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/mcp_contracts.py",
+      "expected_git_blob_sha": "ba4f6c47f6d3448be35e63bd9ecbe3090de44446",
+      "published_git_blob_sha": "ba4f6c47f6d3448be35e63bd9ecbe3090de44446",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/mcp_framing.py",
+      "expected_git_blob_sha": "b978511a2390b16447430436a25fafc83d7d605c",
+      "published_git_blob_sha": "b978511a2390b16447430436a25fafc83d7d605c",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/mcp_handoff.py",
+      "expected_git_blob_sha": "1cf3067abdb85579d56a37b42090e83337486970",
+      "published_git_blob_sha": "1cf3067abdb85579d56a37b42090e83337486970",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/mcp_server.py",
+      "expected_git_blob_sha": "dbe5a7869d636f1d9d1a0aead8fa90bde7f63da8",
+      "published_git_blob_sha": "dbe5a7869d636f1d9d1a0aead8fa90bde7f63da8",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/mcp_stdio.py",
+      "expected_git_blob_sha": "9ae133cecc9518503b044b1848f61c696c6a0d09",
+      "published_git_blob_sha": "9ae133cecc9518503b044b1848f61c696c6a0d09",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/mcp_surface.py",
+      "expected_git_blob_sha": "fdf9627d7c0ab55fc231bae5275ed7f63e8f156d",
+      "published_git_blob_sha": "fdf9627d7c0ab55fc231bae5275ed7f63e8f156d",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/verification_complexity.py",
+      "expected_git_blob_sha": "83483cbfe4b9e7b3691325912cfca29c3618fa71",
+      "published_git_blob_sha": "83483cbfe4b9e7b3691325912cfca29c3618fa71",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/verification_ledger.py",
+      "expected_git_blob_sha": "6885716277bf7ce2bc44a08a0adc3db5b21cf261",
+      "published_git_blob_sha": "6885716277bf7ce2bc44a08a0adc3db5b21cf261",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/verification_models.py",
+      "expected_git_blob_sha": "43ca291a0adf05b78d2bafe254d0768814c0633a",
+      "published_git_blob_sha": "43ca291a0adf05b78d2bafe254d0768814c0633a",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/verification_sql.py",
+      "expected_git_blob_sha": "0a5cf855f00b70aa9a7ddf6c6794e8a67b7de7ba",
+      "published_git_blob_sha": "0a5cf855f00b70aa9a7ddf6c6794e8a67b7de7ba",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/verification_suppression.py",
+      "expected_git_blob_sha": "5ea65710c5198d36d5cc24de6e5a422b2fe85910",
+      "published_git_blob_sha": "5ea65710c5198d36d5cc24de6e5a422b2fe85910",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/voice_adapter.py",
+      "expected_git_blob_sha": "c0982e78adfc4d180fd9b2c2167c12373d1e39ff",
+      "published_git_blob_sha": "c0982e78adfc4d180fd9b2c2167c12373d1e39ff",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/voice_assets.py",
+      "expected_git_blob_sha": "413b20cfa68202804dbb27eaaf72e5ef17685a8c",
+      "published_git_blob_sha": "413b20cfa68202804dbb27eaaf72e5ef17685a8c",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/voice_models.py",
+      "expected_git_blob_sha": "a519f91a1a2d82d22ba4ffa83f1ad536c4e138ac",
+      "published_git_blob_sha": "a519f91a1a2d82d22ba4ffa83f1ad536c4e138ac",
+      "matches": true
+    },
+    {
+      "path": "src/hmt_rnd/voice_process.py",
+      "expected_git_blob_sha": "add6489764287a995510b23325d756216a3808db",
+      "published_git_blob_sha": "add6489764287a995510b23325d756216a3808db",
+      "matches": true
+    },
+    {
+      "path": "tests/test_causal_authority_family.py",
+      "expected_git_blob_sha": "521aaa511bea0db3cbc712b8b3c00b4b536f4e67",
+      "published_git_blob_sha": "521aaa511bea0db3cbc712b8b3c00b4b536f4e67",
+      "matches": true
+    },
+    {
+      "path": "tests/test_custody_authority.py",
+      "expected_git_blob_sha": "5015a039b293321add09c6eb47decdd4aa911341",
+      "published_git_blob_sha": "5015a039b293321add09c6eb47decdd4aa911341",
+      "matches": true
+    },
+    {
+      "path": "tests/test_custody_endpoint_collisions.py",
+      "expected_git_blob_sha": "b8864a1a88c5ca30bcf4116761fa5e5bb66b60cf",
+      "published_git_blob_sha": "b8864a1a88c5ca30bcf4116761fa5e5bb66b60cf",
+      "matches": true
+    },
+    {
+      "path": "tests/test_custody_endpoint_scope.py",
+      "expected_git_blob_sha": "98f74036b11e8b6e01c1a4b740cd608e8e63b869",
+      "published_git_blob_sha": "98f74036b11e8b6e01c1a4b740cd608e8e63b869",
+      "matches": true
+    },
+    {
+      "path": "tests/test_custody_limits.py",
+      "expected_git_blob_sha": "36548ae9edf20461b13179a2b02cce6b0b22ad0e",
+      "published_git_blob_sha": "36548ae9edf20461b13179a2b02cce6b0b22ad0e",
+      "matches": true
+    },
+    {
+      "path": "tests/test_custody_ordering.py",
+      "expected_git_blob_sha": "b2b061c8c54623c1215b60004b117f91e36f8dd7",
+      "published_git_blob_sha": "b2b061c8c54623c1215b60004b117f91e36f8dd7",
+      "matches": true
+    },
+    {
+      "path": "tests/test_custody_proof_boundaries.py",
+      "expected_git_blob_sha": "3c180d0f8c47ec9aa00db516edbe6dd3b64a1861",
+      "published_git_blob_sha": "3c180d0f8c47ec9aa00db516edbe6dd3b64a1861",
+      "matches": true
+    },
+    {
+      "path": "tests/test_custody_support.py",
+      "expected_git_blob_sha": "1447106cbabbef8d70eeb58bdfaf9941b075273f",
+      "published_git_blob_sha": "1447106cbabbef8d70eeb58bdfaf9941b075273f",
+      "matches": true
+    },
+    {
+      "path": "tests/test_custody_transitions.py",
+      "expected_git_blob_sha": "eababf0d3c9db1e75f330f3f6b0b664543e4d43c",
+      "published_git_blob_sha": "eababf0d3c9db1e75f330f3f6b0b664543e4d43c",
+      "matches": true
+    },
+    {
+      "path": "tests/test_host_boundaries.py",
+      "expected_git_blob_sha": "f256b6594c4e3d423680f892403c790e2131ef8a",
+      "published_git_blob_sha": "f256b6594c4e3d423680f892403c790e2131ef8a",
+      "matches": true
+    },
+    {
+      "path": "tests/test_host_custody_seam.py",
+      "expected_git_blob_sha": "1ce59798e99c71e4804813cc045f4ac93978260c",
+      "published_git_blob_sha": "1ce59798e99c71e4804813cc045f4ac93978260c",
+      "matches": true
+    },
+    {
+      "path": "tests/test_host_storage_boundaries.py",
+      "expected_git_blob_sha": "ce80783022cb989eff0e6a9d20e9b50720993861",
+      "published_git_blob_sha": "ce80783022cb989eff0e6a9d20e9b50720993861",
+      "matches": true
+    },
+    {
+      "path": "tests/test_host_tracer.py",
+      "expected_git_blob_sha": "53be9c4b16a74bb352866472664100731b3ca0a7",
+      "published_git_blob_sha": "53be9c4b16a74bb352866472664100731b3ca0a7",
+      "matches": true
+    },
+    {
+      "path": "tests/test_host_transaction.py",
+      "expected_git_blob_sha": "43deae47fcca17e17df826e01419df41ba743c32",
+      "published_git_blob_sha": "43deae47fcca17e17df826e01419df41ba743c32",
+      "matches": true
+    },
+    {
+      "path": "tests/test_lane_artifacts.py",
+      "expected_git_blob_sha": "dc608180b41cdd477ae725d36367bd52e59b514d",
+      "published_git_blob_sha": "dc608180b41cdd477ae725d36367bd52e59b514d",
+      "matches": true
+    },
+    {
+      "path": "tests/test_lane_boundaries.py",
+      "expected_git_blob_sha": "99636652c5d578da95205b21854aac3707a01817",
+      "published_git_blob_sha": "99636652c5d578da95205b21854aac3707a01817",
+      "matches": true
+    },
+    {
+      "path": "tests/test_lane_contracts.py",
+      "expected_git_blob_sha": "023737e3a4a40c76be8f1cf9d4e48f37b5d36f3e",
+      "published_git_blob_sha": "023737e3a4a40c76be8f1cf9d4e48f37b5d36f3e",
+      "matches": true
+    },
+    {
+      "path": "tests/test_lane_discovery.py",
+      "expected_git_blob_sha": "d20a409a7a52d06733317b098f2e23590c02489f",
+      "published_git_blob_sha": "d20a409a7a52d06733317b098f2e23590c02489f",
+      "matches": true
+    },
+    {
+      "path": "tests/test_lane_invalid_reopen.py",
+      "expected_git_blob_sha": "1e418f9a9b3cef4cba1d53878d7f2d3c47125480",
+      "published_git_blob_sha": "1e418f9a9b3cef4cba1d53878d7f2d3c47125480",
+      "matches": true
+    },
+    {
+      "path": "tests/test_lane_policy_reopen.py",
+      "expected_git_blob_sha": "2618b535903680ce427e9e91504d477aa1f99b5c",
+      "published_git_blob_sha": "2618b535903680ce427e9e91504d477aa1f99b5c",
+      "matches": true
+    },
+    {
+      "path": "tests/test_lane_reopen.py",
+      "expected_git_blob_sha": "d0ea7bc820e97a27826876ad9c6c4303c3b9b83c",
+      "published_git_blob_sha": "d0ea7bc820e97a27826876ad9c6c4303c3b9b83c",
+      "matches": true
+    },
+    {
+      "path": "tests/test_lane_snapshot_failures.py",
+      "expected_git_blob_sha": "f4ed9a2f43fe61d0a083af98dc994eb47a796aaf",
+      "published_git_blob_sha": "f4ed9a2f43fe61d0a083af98dc994eb47a796aaf",
+      "matches": true
+    },
+    {
+      "path": "tests/test_lane_tracer.py",
+      "expected_git_blob_sha": "9f30b9f99e70585dd8736f5f918a934a097ac322",
+      "published_git_blob_sha": "9f30b9f99e70585dd8736f5f918a934a097ac322",
+      "matches": true
+    },
+    {
+      "path": "tests/test_mcp_binding_boundaries.py",
+      "expected_git_blob_sha": "def335f9df4fed2219f16ea6c286f2c8dfc71945",
+      "published_git_blob_sha": "def335f9df4fed2219f16ea6c286f2c8dfc71945",
+      "matches": true
+    },
+    {
+      "path": "tests/test_mcp_direct.py",
+      "expected_git_blob_sha": "066f7b4f59cdedbec962cc6aaf2c67d1c105fad0",
+      "published_git_blob_sha": "066f7b4f59cdedbec962cc6aaf2c67d1c105fad0",
+      "matches": true
+    },
+    {
+      "path": "tests/test_mcp_launch.py",
+      "expected_git_blob_sha": "125c138c6171c781c892241008963038e5e5ee78",
+      "published_git_blob_sha": "125c138c6171c781c892241008963038e5e5ee78",
+      "matches": true
+    },
+    {
+      "path": "tests/test_mcp_protocol.py",
+      "expected_git_blob_sha": "03e26f77239ac02c4bcea436680b137400ecdaf3",
+      "published_git_blob_sha": "03e26f77239ac02c4bcea436680b137400ecdaf3",
+      "matches": true
+    },
+    {
+      "path": "tests/test_mcp_scope.py",
+      "expected_git_blob_sha": "92f77a87b15989f56ea2e0c4d276d97a10d0d05e",
+      "published_git_blob_sha": "92f77a87b15989f56ea2e0c4d276d97a10d0d05e",
+      "matches": true
+    },
+    {
+      "path": "tests/test_mcp_support.py",
+      "expected_git_blob_sha": "2f9bf6d3456be399e2f938aa235a2f93b61eff37",
+      "published_git_blob_sha": "2f9bf6d3456be399e2f938aa235a2f93b61eff37",
+      "matches": true
+    },
+    {
+      "path": "tests/test_mcp_validation.py",
+      "expected_git_blob_sha": "1195661decba4f8f3f26d47557ec1641b7b9e35f",
+      "published_git_blob_sha": "1195661decba4f8f3f26d47557ec1641b7b9e35f",
+      "matches": true
+    },
+    {
+      "path": "tests/test_reconcile_custody_identity.py",
+      "expected_git_blob_sha": "a9e82e4544c9974a99bc0a5ceafd046fa4051e45",
+      "published_git_blob_sha": "a9e82e4544c9974a99bc0a5ceafd046fa4051e45",
+      "matches": true
+    },
+    {
+      "path": "tests/test_reconcile_host_roots.py",
+      "expected_git_blob_sha": "9e7b96bc2dba7d855698bdeeaea09f7c25c8a3fb",
+      "published_git_blob_sha": "9e7b96bc2dba7d855698bdeeaea09f7c25c8a3fb",
+      "matches": true
+    },
+    {
+      "path": "tests/test_reconcile_lane_authority.py",
+      "expected_git_blob_sha": "30c8dfb81966ebfa20bf0a52d3229ffe47d11e3c",
+      "published_git_blob_sha": "30c8dfb81966ebfa20bf0a52d3229ffe47d11e3c",
+      "matches": true
+    },
+    {
+      "path": "tests/test_reconcile_lane_controls.py",
+      "expected_git_blob_sha": "c0498369f8dae4d67614df9c4437b97258172110",
+      "published_git_blob_sha": "c0498369f8dae4d67614df9c4437b97258172110",
+      "matches": true
+    },
+    {
+      "path": "tests/test_reconcile_lane_drift.py",
+      "expected_git_blob_sha": "eca4fcab63df98b9f4eb4fc2290b7ae5e26ef8fa",
+      "published_git_blob_sha": "eca4fcab63df98b9f4eb4fc2290b7ae5e26ef8fa",
+      "matches": true
+    },
+    {
+      "path": "tests/test_reconcile_lane_historical.py",
+      "expected_git_blob_sha": "78a50a3e1827f1b0c6467ff1e9e7a6cfaa98bd83",
+      "published_git_blob_sha": "78a50a3e1827f1b0c6467ff1e9e7a6cfaa98bd83",
+      "matches": true
+    },
+    {
+      "path": "tests/test_reconcile_lane_pending.py",
+      "expected_git_blob_sha": "5c306b1ac632808cacf4cbf4fd8a48734904d277",
+      "published_git_blob_sha": "5c306b1ac632808cacf4cbf4fd8a48734904d277",
+      "matches": true
+    },
+    {
+      "path": "tests/test_reconcile_lane_support.py",
+      "expected_git_blob_sha": "9cf6a76798167812abc303c5080753752b4b92dd",
+      "published_git_blob_sha": "9cf6a76798167812abc303c5080753752b4b92dd",
+      "matches": true
+    },
+    {
+      "path": "tests/test_reconcile_verification_identity.py",
+      "expected_git_blob_sha": "6e5bca59b9398ddd77225da414bb956f6ca099e5",
+      "published_git_blob_sha": "6e5bca59b9398ddd77225da414bb956f6ca099e5",
+      "matches": true
+    },
+    {
+      "path": "tests/test_reconcile_verification_structure.py",
+      "expected_git_blob_sha": "212c2c96ba7cb203a221e18bab3c9960977a3fc8",
+      "published_git_blob_sha": "212c2c96ba7cb203a221e18bab3c9960977a3fc8",
+      "matches": true
+    },
+    {
+      "path": "tests/test_reconcile_voice_deadline.py",
+      "expected_git_blob_sha": "ffda041bf0e95814533b80251807d92445c96488",
+      "published_git_blob_sha": "ffda041bf0e95814533b80251807d92445c96488",
+      "matches": true
+    },
+    {
+      "path": "tests/test_reconcile_voice_input.py",
+      "expected_git_blob_sha": "edb3c0097434a88f768c3e3e6430b1dd4f70779f",
+      "published_git_blob_sha": "edb3c0097434a88f768c3e3e6430b1dd4f70779f",
+      "matches": true
+    },
+    {
+      "path": "tests/test_reconcile_voice_input_race.py",
+      "expected_git_blob_sha": "828c58296d84adfb75f7ef606306e0e3cac79226",
+      "published_git_blob_sha": "828c58296d84adfb75f7ef606306e0e3cac79226",
+      "matches": true
+    },
+    {
+      "path": "tests/test_reconcile_voice_lifetime.py",
+      "expected_git_blob_sha": "df7bd425c1b9d0a40935d35c32d33ad94d64cd8d",
+      "published_git_blob_sha": "df7bd425c1b9d0a40935d35c32d33ad94d64cd8d",
+      "matches": true
+    },
+    {
+      "path": "tests/test_temporal_process.py",
+      "expected_git_blob_sha": "ebcf16630eb9ca6f341ff0b0618300962a06c5c7",
+      "published_git_blob_sha": "ebcf16630eb9ca6f341ff0b0618300962a06c5c7",
+      "matches": true
+    },
+    {
+      "path": "tests/test_temporal_support.py",
+      "expected_git_blob_sha": "b44b77b422bae72d5a44faf9f71e4eee3d002241",
+      "published_git_blob_sha": "b44b77b422bae72d5a44faf9f71e4eee3d002241",
+      "matches": true
+    },
+    {
+      "path": "tests/test_verification_boundaries.py",
+      "expected_git_blob_sha": "a91085cb91767649f4a75e07c1950e43dfd25c65",
+      "published_git_blob_sha": "a91085cb91767649f4a75e07c1950e43dfd25c65",
+      "matches": true
+    },
+    {
+      "path": "tests/test_verification_complexity.py",
+      "expected_git_blob_sha": "cbd8a2e2b5ff191423ebe8259fd6166927bf9111",
+      "published_git_blob_sha": "cbd8a2e2b5ff191423ebe8259fd6166927bf9111",
+      "matches": true
+    },
+    {
+      "path": "tests/test_verification_identity.py",
+      "expected_git_blob_sha": "8f00bb3aea0cbbf2bc25521144574d675e79f171",
+      "published_git_blob_sha": "8f00bb3aea0cbbf2bc25521144574d675e79f171",
+      "matches": true
+    },
+    {
+      "path": "tests/test_verification_ledger.py",
+      "expected_git_blob_sha": "3a6c3cbe9c412d2cb3abc14e008c2a078040be65",
+      "published_git_blob_sha": "3a6c3cbe9c412d2cb3abc14e008c2a078040be65",
+      "matches": true
+    },
+    {
+      "path": "tests/test_verification_output_limits.py",
+      "expected_git_blob_sha": "f27057fc8da5897258baf6390b258890080427ba",
+      "published_git_blob_sha": "f27057fc8da5897258baf6390b258890080427ba",
+      "matches": true
+    },
+    {
+      "path": "tests/test_verification_suppression.py",
+      "expected_git_blob_sha": "8463a4731e20c718e1d615a555583b39c709972d",
+      "published_git_blob_sha": "8463a4731e20c718e1d615a555583b39c709972d",
+      "matches": true
+    },
+    {
+      "path": "tests/test_voice_adapter.py",
+      "expected_git_blob_sha": "123ea28f44a85b31bf3244f69c1cc100ca4dfb1e",
+      "published_git_blob_sha": "123ea28f44a85b31bf3244f69c1cc100ca4dfb1e",
+      "matches": true
+    },
+    {
+      "path": "tests/test_voice_asset_boundaries.py",
+      "expected_git_blob_sha": "841520ec571382b45bca579374a52b5e9a39020b",
+      "published_git_blob_sha": "841520ec571382b45bca579374a52b5e9a39020b",
+      "matches": true
+    },
+    {
+      "path": "tests/test_voice_failures.py",
+      "expected_git_blob_sha": "b26e9fbfe1f5df8f2496a8278e5d43cb90192b9f",
+      "published_git_blob_sha": "b26e9fbfe1f5df8f2496a8278e5d43cb90192b9f",
+      "matches": true
+    },
+    {
+      "path": "tests/test_voice_guard.py",
+      "expected_git_blob_sha": "e1a7b6fa795ee79e2f78edb7aba39e505036000f",
+      "published_git_blob_sha": "e1a7b6fa795ee79e2f78edb7aba39e505036000f",
+      "matches": true
+    },
+    {
+      "path": "tests/test_voice_process_boundaries.py",
+      "expected_git_blob_sha": "da182b7886d417b894978a210f0c488e29cd6736",
+      "published_git_blob_sha": "da182b7886d417b894978a210f0c488e29cd6736",
+      "matches": true
+    },
+    {
+      "path": "tests/test_voice_support.py",
+      "expected_git_blob_sha": "72c523d93b687596d219a9568159086409b203fd",
+      "published_git_blob_sha": "72c523d93b687596d219a9568159086409b203fd",
+      "matches": true
+    },
+    {
+      "path": "scripts/check_structure.py",
+      "expected_git_blob_sha": "b16aac27794995a99af927df958801462427312c",
+      "published_git_blob_sha": "b16aac27794995a99af927df958801462427312c",
+      "matches": true
+    }
+  ],
+  "scope": "Publishes the same102source/test/script bytes bound by reconciliation_assurance_final.json; does not qualify integration or deployment.",
+  "final_review_sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377"
+}

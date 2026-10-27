@@ -1,0 +1,65 @@
+[
+  {
+    "original": "evidence/reopen_expiry_after.xml",
+    "stored": "evidence/reopen_expiry_after.xml.gz",
+    "sha256": "a3509dcdace5f3c958a05d91c4e84c2fb22198f5c7b9fcd022fcba444b89115e",
+    "compressed_sha256": "02a1858d727bcd872cf307c725631c5502941b790906f164e82d605cc80be1e9",
+    "bytes": 7161
+  },
+  {
+    "original": "evidence/reopen_expiry_before.xml",
+    "stored": "evidence/reopen_expiry_before.xml.gz",
+    "sha256": "9903c5cae043854056b2d359a3428b4d68ba8e62c58c7343d7973aa60c497c52",
+    "compressed_sha256": "db7d00bf382658327991fe0ea2d276d4c3e533375066af6eaa11325bf599f52e",
+    "bytes": 58114
+  },
+  {
+    "original": "evidence/reopen_expiry_full.xml",
+    "stored": "evidence/reopen_expiry_full.xml.gz",
+    "sha256": "59977ab24b92bfae9c2b8748d99e9ad154fd8f52ad5caec3336bcb6b96f5ffc5",
+    "compressed_sha256": "abab799b186173bae1d36076cafc5c63ba331ff00672837b801b6b2f04996df9",
+    "bytes": 123042
+  },
+  {
+    "original": "evidence/reopen_expiry_mutant_delete_final_admission.xml",
+    "stored": "evidence/reopen_expiry_mutant_delete_final_admission.xml.gz",
+    "sha256": "51882ee68bb0b68ba334eb4d0259fa37c613a9d0ab136fabdd99af50dd302484",
+    "compressed_sha256": "e74fc1a2ac4c657043f792e1986007302ede133c7aeb4bae67f4c406bc78d92d",
+    "bytes": 58810
+  },
+  {
+    "original": "evidence/reopen_expiry_mutant_restore_old_order.xml",
+    "stored": "evidence/reopen_expiry_mutant_restore_old_order.xml.gz",
+    "sha256": "93d6115b570f18ec6c5048807da6472ec591caf0b294d5646fd65a627fb81ba0",
+    "compressed_sha256": "30e4773da266a3f51df478a096ef90b730711e52bbbe9f7bad8b6f063d5f0b80",
+    "bytes": 58810
+  },
+  {
+    "original": "evidence/reopen_expiry_coverage.json",
+    "stored": "evidence/reopen_expiry_coverage.json.gz",
+    "sha256": "d426a0499ead604e10a7e568e0c0fe4471dc2e1363fc023861b802c652072837",
+    "compressed_sha256": "7b420f6665234594cebef30bd452e0ed2e0d9dabe1629c4ff75b769cfc42fd5b",
+    "bytes": 190909
+  },
+  {
+    "original": "evidence/reopen_expiry_mutant_restore_old_order.log",
+    "stored": "evidence/reopen_expiry_mutant_restore_old_order.log.gz",
+    "sha256": "c8a58c44e56807ab69c9257c68d08055cb2a39735124505cbf9f8a20a3cd4690",
+    "compressed_sha256": "7ca0158af329cdfbe1625de0ccc04d7a268d8a7694e9199ecb9f0b1025fcd3d2",
+    "bytes": 53888
+  },
+  {
+    "original": "evidence/reopen_expiry_before.log",
+    "stored": "evidence/reopen_expiry_before.log.gz",
+    "sha256": "b01f2e091f86d2c58a728a2a87a8cbbfcf3c7277405a8b46b948afd751bfa163",
+    "compressed_sha256": "71df49a7ef857d9845e51d571e4761406834ff14313b0634f88e4825324664b3",
+    "bytes": 53192
+  },
+  {
+    "original": "evidence/reopen_expiry_mutant_delete_final_admission.log",
+    "stored": "evidence/reopen_expiry_mutant_delete_final_admission.log.gz",
+    "sha256": "c10068b83f8075f5173ef6498f9ba9f850565ee44a67489849c1a135cd923f3d",
+    "compressed_sha256": "2f69a3ac7965f3063d05ca58f8631950c861bb1932dd33df8569b10be0c7c095",
+    "bytes": 53888
+  }
+]

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="4" skipped="0" tests="5" time="0.417" timestamp="2026-10-26T18:46:56.393054-04:00" hostname="812233b2011d"><testcase classname="tests.test_reconcile_custody_identity" name="test_cancelled_effect_rejects_changed_input[False-apply]" time="0.040"><failure message="Failed: DID NOT RAISE CustodyFault">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-57/test_cancelled_effect_rejects_0')
+operation = 'apply', restart = False
+
+    @pytest.mark.parametrize("operation", ["apply", "lookup_or_cancel"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_cancelled_effect_rejects_changed_input(tmp_path, operation, restart):
+        store, endpoint, _ = setup(tmp_path)
+        old = store.reserve("alice", "effect1")
+        assert store.reconcile(endpoint.lookup_or_cancel(old)) == "NOT_EXECUTED"
+        changed = old.model_copy(update={
+            "reservation_id": "new-reservation",
+            "intent": old.intent.model_copy(update={"payload_digest": "b" * 64})})
+        if restart:
+            endpoint = Endpoint(endpoint.domain.path, "endpoint", KEY, authority)
+&gt;       with pytest.raises(CustodyFault, match="INTENT_COLLISION"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE CustodyFault
+
+tests/test_reconcile_custody_identity.py:22: Failed</failure></testcase><testcase classname="tests.test_reconcile_custody_identity" name="test_cancelled_effect_rejects_changed_input[False-lookup_or_cancel]" time="0.031"><failure message="Failed: DID NOT RAISE CustodyFault">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-57/test_cancelled_effect_rejects_1')
+operation = 'lookup_or_cancel', restart = False
+
+    @pytest.mark.parametrize("operation", ["apply", "lookup_or_cancel"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_cancelled_effect_rejects_changed_input(tmp_path, operation, restart):
+        store, endpoint, _ = setup(tmp_path)
+        old = store.reserve("alice", "effect1")
+        assert store.reconcile(endpoint.lookup_or_cancel(old)) == "NOT_EXECUTED"
+        changed = old.model_copy(update={
+            "reservation_id": "new-reservation",
+            "intent": old.intent.model_copy(update={"payload_digest": "b" * 64})})
+        if restart:
+            endpoint = Endpoint(endpoint.domain.path, "endpoint", KEY, authority)
+&gt;       with pytest.raises(CustodyFault, match="INTENT_COLLISION"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE CustodyFault
+
+tests/test_reconcile_custody_identity.py:22: Failed</failure></testcase><testcase classname="tests.test_reconcile_custody_identity" name="test_cancelled_effect_rejects_changed_input[True-apply]" time="0.027"><failure message="Failed: DID NOT RAISE CustodyFault">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-57/test_cancelled_effect_rejects_2')
+operation = 'apply', restart = True
+
+    @pytest.mark.parametrize("operation", ["apply", "lookup_or_cancel"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_cancelled_effect_rejects_changed_input(tmp_path, operation, restart):
+        store, endpoint, _ = setup(tmp_path)
+        old = store.reserve("alice", "effect1")
+        assert store.reconcile(endpoint.lookup_or_cancel(old)) == "NOT_EXECUTED"
+        changed = old.model_copy(update={
+            "reservation_id": "new-reservation",
+            "intent": old.intent.model_copy(update={"payload_digest": "b" * 64})})
+        if restart:
+            endpoint = Endpoint(endpoint.domain.path, "endpoint", KEY, authority)
+&gt;       with pytest.raises(CustodyFault, match="INTENT_COLLISION"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE CustodyFault
+
+tests/test_reconcile_custody_identity.py:22: Failed</failure></testcase><testcase classname="tests.test_reconcile_custody_identity" name="test_cancelled_effect_rejects_changed_input[True-lookup_or_cancel]" time="0.029"><failure message="Failed: DID NOT RAISE CustodyFault">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-57/test_cancelled_effect_rejects_3')
+operation = 'lookup_or_cancel', restart = True
+
+    @pytest.mark.parametrize("operation", ["apply", "lookup_or_cancel"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_cancelled_effect_rejects_changed_input(tmp_path, operation, restart):
+        store, endpoint, _ = setup(tmp_path)
+        old = store.reserve("alice", "effect1")
+        assert store.reconcile(endpoint.lookup_or_cancel(old)) == "NOT_EXECUTED"
+        changed = old.model_copy(update={
+            "reservation_id": "new-reservation",
+            "intent": old.intent.model_copy(update={"payload_digest": "b" * 64})})
+        if restart:
+            endpoint = Endpoint(endpoint.domain.path, "endpoint", KEY, authority)
+&gt;       with pytest.raises(CustodyFault, match="INTENT_COLLISION"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE CustodyFault
+
+tests/test_reconcile_custody_identity.py:22: Failed</failure></testcase><testcase classname="tests.test_reconcile_custody_identity" name="test_same_input_retry_survives_restart_and_old_cancel_fence" time="0.038" /></testsuite></testsuites>

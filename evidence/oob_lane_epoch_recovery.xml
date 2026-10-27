@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="22" time="1.952" timestamp="2026-10-26T19:25:55.027055-04:00" hostname="812233b2011d"><testcase classname="tests.test_oob_lane_epoch" name="test_event_drift_denied_with_fresh_builder_grant[False-policy-2]" time="0.076" /><testcase classname="tests.test_oob_lane_epoch" name="test_event_drift_denied_with_fresh_builder_grant[False-policy-1]" time="0.084" /><testcase classname="tests.test_oob_lane_epoch" name="test_event_drift_denied_with_fresh_builder_grant[True-policy-2]" time="0.064" /><testcase classname="tests.test_oob_lane_epoch" name="test_event_drift_denied_with_fresh_builder_grant[True-policy-1]" time="0.058" /><testcase classname="tests.test_oob_lane_epoch" name="test_unchanged_event_authority_seals_after_restart" time="0.060" /><testcase classname="tests.test_oob_lane_reauth_denials" name="test_reauthorization_requires_exact_current_host_authority[builder-LANE_REAUTHORIZATION_REQUIRES_ARCHITECT]" time="0.074" /><testcase classname="tests.test_oob_lane_reauth_denials" name="test_reauthorization_requires_exact_current_host_authority[ungranted-role-HOST_GRANT_DENIED]" time="0.056"><failure message="AssertionError: Regex pattern did not match.&#10;  Expected regex: 'HOST_GRANT_DENIED'&#10;  Actual message: 'HOST_IDENTITY_SCOPE_DENIED'">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-98/test_reauthorization_requires_1')
+change = 'ungranted-role', reason = 'HOST_GRANT_DENIED'
+
+    @pytest.mark.parametrize("change,reason", [
+        ("builder", "LANE_REAUTHORIZATION_REQUIRES_ARCHITECT"),
+        ("ungranted-role", "HOST_GRANT_DENIED"),
+        ("wrong-stage", "LANE_STAGE_OR_OPERATION_DENIED"),
+        ("wrong-operation", "LANE_STAGE_OR_OPERATION_DENIED"),
+        ("wrong-task", "LANE_REOPEN_TASK_BINDING"),
+        ("wrong-revision", "LANE_REOPEN_TASK_BINDING"),
+        ("revoked", "HOST_GRANT_DENIED"),
+        ("unknown-event", "LANE_REOPEN_UNKNOWN"),
+    ])
+    def test_reauthorization_requires_exact_current_host_authority(tmp_path, change, reason):
+        host, actor, request, store, opened = reopened(tmp_path)
+        host.set_policy("policy-2")
+        architect = actor.model_copy(update={"role": "human_architect"})
+        if change == "builder":
+            architect = actor
+        if change == "wrong-stage":
+            architect = architect.model_copy(update={"stage": "CMAD2"})
+        if change == "wrong-task":
+            request = request.model_copy(update={"task_id": "other"})
+            host.assign(Assignment(task_id="other", principal=actor.principal, revision=1))
+        if change == "wrong-revision":
+            request = request.model_copy(update={"revision": 2})
+            host.assign(Assignment(task_id=request.task_id, principal=actor.principal, revision=2))
+        operation = "lane.seal" if change == "wrong-operation" else "lane.reauthorize"
+        grant_actor = actor if change == "ungranted-role" else architect
+        scoped = current_grant(host, grant_actor, request, "policy-2", 2, operation)
+        if change == "revoked":
+            host.revoke(actor.principal)
+        before = counts(host)
+&gt;       with pytest.raises(PermissionError, match=reason):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Regex pattern did not match.
+E         Expected regex: 'HOST_GRANT_DENIED'
+E         Actual message: 'HOST_IDENTITY_SCOPE_DENIED'
+
+tests/test_oob_lane_reauth_denials.py:38: AssertionError</failure></testcase><testcase classname="tests.test_oob_lane_reauth_denials" name="test_reauthorization_requires_exact_current_host_authority[wrong-stage-LANE_STAGE_OR_OPERATION_DENIED]" time="0.069" /><testcase classname="tests.test_oob_lane_reauth_denials" name="test_reauthorization_requires_exact_current_host_authority[wrong-operation-LANE_STAGE_OR_OPERATION_DENIED]" time="0.077" /><testcase classname="tests.test_oob_lane_reauth_denials" name="test_reauthorization_requires_exact_current_host_authority[wrong-task-LANE_REOPEN_TASK_BINDING]" time="0.070" /><testcase classname="tests.test_oob_lane_reauth_denials" name="test_reauthorization_requires_exact_current_host_authority[wrong-revision-LANE_REOPEN_TASK_BINDING]" time="0.067" /><testcase classname="tests.test_oob_lane_reauth_denials" name="test_reauthorization_requires_exact_current_host_authority[revoked-HOST_GRANT_DENIED]" time="0.075" /><testcase classname="tests.test_oob_lane_reauth_denials" name="test_reauthorization_requires_exact_current_host_authority[unknown-event-LANE_REOPEN_UNKNOWN]" time="0.072" /><testcase classname="tests.test_oob_lane_reauthorization" name="test_architect_reauthorizes_exact_event_and_survives_restart[policy-2]" time="0.103" /><testcase classname="tests.test_oob_lane_reauthorization" name="test_architect_reauthorizes_exact_event_and_survives_restart[policy-1]" time="0.100" /><testcase classname="tests.test_oob_lane_reauthorization" name="test_approval_expires_on_next_epoch_even_with_fresh_grants" time="0.101" /><testcase classname="tests.test_oob_lane_reservation" name="test_cross_lineage_cannot_consume_reserved_successor" time="0.079" /><testcase classname="tests.test_oob_lane_reservation" name="test_duplicate_global_reservation_denied_before_mutation" time="0.094" /><testcase classname="tests.test_oob_lane_reservation_controls" name="test_reserved_successor_requires_every_binding[updates0]" time="0.073" /><testcase classname="tests.test_oob_lane_reservation_controls" name="test_reserved_successor_requires_every_binding[updates1]" time="0.073" /><testcase classname="tests.test_oob_lane_reservation_controls" name="test_reserved_successor_requires_every_binding[updates2]" time="0.089" /><testcase classname="tests.test_oob_lane_reservation_controls" name="test_reserved_successor_requires_every_binding[updates3]" time="0.059" /></testsuite></testsuites>

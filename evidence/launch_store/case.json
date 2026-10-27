@@ -1,0 +1,179 @@
+{
+  "case": "RC-LAUNCH-STORE-01",
+  "examined_candidate": "608d6460384b841c8617dcda22b55fce2f2387a6",
+  "status": "OPEN_REVIEW_HOLD",
+  "requirements": [
+    "HMT-F01@1",
+    "HMT-F20@1"
+  ],
+  "owner": "Host/IIEA",
+  "verifier": "root / WP-08",
+  "delegation": "none",
+  "executed": "8 cases; 2 denial-contract failures; 6 passing controls; direct and actual SDK stdio",
+  "source_inventory": "evidence/inspection_candidate.json: 170 runtime/config SHA256 pins personally recomputed with zero mismatches",
+  "outcomes": [
+    {
+      "path": "evidence/launch_store/direct-False-alternate.json",
+      "sha256": "3623772b30b306f5afaf7465cd589ded033a44317034a042ca5efd9ea083f071",
+      "denied": true,
+      "origin_denied": true,
+      "native_dispatches": 0,
+      "receipt_counts": [
+        0,
+        0
+      ],
+      "databases_unchanged": [
+        true,
+        true
+      ]
+    },
+    {
+      "path": "evidence/launch_store/direct-False-authority.json",
+      "sha256": "9b4377a7bc4d0e4055ccd98a3605ba308ecb5716e591fb785f32422a60585896",
+      "denied": true,
+      "origin_denied": true,
+      "native_dispatches": 0,
+      "receipt_counts": [
+        0,
+        0
+      ],
+      "databases_unchanged": [
+        true,
+        true
+      ]
+    },
+    {
+      "path": "evidence/launch_store/direct-True-alternate.json",
+      "sha256": "a35e802af62ce21447e9d21b3a5957ed9a09ea506482bc13985a707be959a4d9",
+      "denied": false,
+      "origin_denied": true,
+      "native_dispatches": 1,
+      "receipt_counts": [
+        0,
+        1
+      ],
+      "databases_unchanged": [
+        true,
+        false
+      ]
+    },
+    {
+      "path": "evidence/launch_store/direct-True-authority.json",
+      "sha256": "dcfe6c5db28855a6654148564962b608a1f5d8236b029fc0fa9f7440c97e500a",
+      "denied": true,
+      "origin_denied": true,
+      "native_dispatches": 0,
+      "receipt_counts": [
+        0,
+        0
+      ],
+      "databases_unchanged": [
+        true,
+        true
+      ]
+    },
+    {
+      "path": "evidence/launch_store/mcp-False-alternate.json",
+      "sha256": "47fb2aa95dde2e831e9b0b2200ede0d804a6dfd12e228cc3fba9466009ff1b83",
+      "denied": true,
+      "origin_denied": true,
+      "native_dispatches": 0,
+      "receipt_counts": [
+        0,
+        0
+      ],
+      "databases_unchanged": [
+        true,
+        true
+      ]
+    },
+    {
+      "path": "evidence/launch_store/mcp-False-authority.json",
+      "sha256": "e4097ccc6309c7fcabbf1a71df2601858aa983d0f23e66cdffb24476ccc1e9c9",
+      "denied": true,
+      "origin_denied": true,
+      "native_dispatches": 0,
+      "receipt_counts": [
+        0,
+        0
+      ],
+      "databases_unchanged": [
+        true,
+        true
+      ]
+    },
+    {
+      "path": "evidence/launch_store/mcp-True-alternate.json",
+      "sha256": "763892fd2c4099b29628568e899bc2e030983f0780bfbf65d9a2bce8de474d14",
+      "denied": false,
+      "origin_denied": true,
+      "native_dispatches": 1,
+      "receipt_counts": [
+        0,
+        1
+      ],
+      "databases_unchanged": [
+        true,
+        false
+      ]
+    },
+    {
+      "path": "evidence/launch_store/mcp-True-authority.json",
+      "sha256": "62876a6dd5e3abca8b52e8e3d575ccba014576612feac276f9de0afdb41469e8",
+      "denied": true,
+      "origin_denied": true,
+      "native_dispatches": 0,
+      "receipt_counts": [
+        0,
+        0
+      ],
+      "databases_unchanged": [
+        true,
+        true
+      ]
+    }
+  ],
+  "production_changed": false,
+  "repair_claimed": false,
+  "acceptance_claimed": false,
+  "evidence_limit": "Synthetic same-policy/task/epoch stores; fixture clock20; host-bound credential reference inert; no production identity or OS isolation qualification",
+  "causal_path": [
+    "relative Path accepted by LaneBinding",
+    "launch digest hashes textual store path",
+    "LaneSurface constructs HostStore from unanchored path",
+    "HostStore resolves against construction cwd",
+    "alternate database canonical grant admits",
+    "native result and receipt committed to alternate database"
+  ],
+  "missing_evidence_for_acceptance": [
+    "repair within pinned contract",
+    "retained falsifiers pass on repaired exact source",
+    "repair-specific causal and regression evidence",
+    "out-of-band review"
+  ],
+  "cumulative": {
+    "command": "uv run pytest -q --junitxml=evidence/launch_store/cumulative.xml",
+    "result": "545 passed; does not include deliberately separate new falsifiers",
+    "retains_prior_suite": true
+  },
+  "artifacts": {
+    "evidence/launch_store/initial.xml": "ec51e1cbe95930ab9338e7e0d91b7bd1bfa6b0c82694e57ef646c960151b4d37",
+    "evidence/launch_store/mcp-False-alternate.json": "47fb2aa95dde2e831e9b0b2200ede0d804a6dfd12e228cc3fba9466009ff1b83",
+    "evidence/launch_store/cumulative.log": "a0259c9fa71572b36fabb2f15f01738785e4f00f634002c75736a77120634f32",
+    "evidence/launch_store/ruff_final.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "evidence/launch_store/direct-False-alternate.json": "3623772b30b306f5afaf7465cd589ded033a44317034a042ca5efd9ea083f071",
+    "evidence/launch_store/direct-True-authority.json": "dcfe6c5db28855a6654148564962b608a1f5d8236b029fc0fa9f7440c97e500a",
+    "evidence/launch_store/direct-False-authority.json": "9b4377a7bc4d0e4055ccd98a3605ba308ecb5716e591fb785f32422a60585896",
+    "evidence/launch_store/cumulative.xml": "74c6b8c5508d6e0d6049f02535cdd5f0e9d4e2e3e59cc12b46020e525804a293",
+    "evidence/launch_store/direct-True-alternate.json": "a35e802af62ce21447e9d21b3a5957ed9a09ea506482bc13985a707be959a4d9",
+    "evidence/launch_store/ruff.log": "70e39fb5e78a202438a8c54f298f4450253a922d9ef3fc56c037be42ef01db57",
+    "evidence/launch_store/baseline.xml": "95787c629da80efe98c055c0cca57d5a8b8862f7ef6e002e8ce6530a4b0191e9",
+    "evidence/launch_store/mcp-True-authority.json": "62876a6dd5e3abca8b52e8e3d575ccba014576612feac276f9de0afdb41469e8",
+    "evidence/launch_store/mcp-False-authority.json": "e4097ccc6309c7fcabbf1a71df2601858aa983d0f23e66cdffb24476ccc1e9c9",
+    "evidence/launch_store/initial.log": "2131e3b8987375e751fc386e65c541b8409b5b7e811b4c8923a66509e30a0932",
+    "evidence/launch_store/mcp-True-alternate.json": "763892fd2c4099b29628568e899bc2e030983f0780bfbf65d9a2bce8de474d14",
+    "evidence/launch_store/cases.py": "658ad36c45f6a8c8f7d5ef452a7692e94ce7d94a60a54c4e7fda0f227943946b",
+    "evidence/launch_store/support.py": "648bb131ac36943b79d6cc4adcaf72622cad66cc0c80edaabf2ca7838fc742a6",
+    "evidence/launch_store/baseline.log": "4d36a8dea1aed5849c01d30d8b88afa70067c830915b6169c1d0e07d797e12ba"
+  }
+}

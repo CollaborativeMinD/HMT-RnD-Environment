@@ -1,0 +1,89 @@
+{
+  "case_id": "RC-PATH-01",
+  "as_of": "2026-10-27T00:48:18.870291+00:00",
+  "baseline": "3492b6f2f86f7757706d470a0f5e119c1069d013",
+  "finding": 4383918244,
+  "requirements": {
+    "HMT-F01": "Same artifact identity across verifier, evaluator, snapshot",
+    "HMT-F03": "Ambiguous original path rejects before evaluator invocation",
+    "HMT-N04": "Do not normalize away scope-changing symlink/parent components",
+    "HMT-B07": "Sealed snapshot identity corresponds to evaluated artifact in declared fixtures"
+  },
+  "claim_scope": "Controlled path interpretation mismatch and bounded lexical parent-component rejection; not full requirement or filesystem-sandbox qualification",
+  "status": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; HOLD_PENDING_OUT_OF_BAND_REVIEW",
+  "causal_trace": [
+    "Controlled gate observed outside bytes while a SEALED receipt snapshot contained inside bytes.",
+    "Native evaluator retained original symlink/parent path; guarded digest and snapshot used lexical abspath result.",
+    "abspath erased the parent component before no-follow traversal, so the symlink was not traversed or rejected by the reader.",
+    "Reproducible initiating condition: original path contains symlink then parent component, with differing outside and normalized in-root source bytes. No earlier causal origin or filesystem race is claimed."
+  ],
+  "repair": "Reject literal parent components in original path and root before abspath or os.open. Two production lines; no other lane source edits.",
+  "semantic_delta": "All parent traversal is now rejected, including ordinary in-scope traversal. Canonical/relative paths without parent components retain support.",
+  "before": {
+    "test_count": 3,
+    "failed": 3,
+    "evaluator_observed_sha256": "6911073fcca8555708061db2a2b9d938f5710f8cfe7427d56dc43413d71f7b9b",
+    "snapshot_sha256": "1dab3147626c762c3428ac6ae755a9098a8aec3eaa89a845016f0904b658f42e",
+    "receipt": "SEALED",
+    "candidate_rows": 1,
+    "blob_rows": 2
+  },
+  "after": {
+    "focused_v2_pass": 15,
+    "initial_preformat_full_pass": 270,
+    "initial_full_inventories_identical": true,
+    "initial_ruff": "FAIL I001/E501; retained path_identity_ruff.log",
+    "v2_ruff": "PASS; only import layout corrected",
+    "pyrefly": "PASS basic, production unchanged through V2",
+    "structure_v2": "PASS",
+    "exact_v2_full_replay": "Supervisor-owned isolated replay; initial270 result not relabeled"
+  },
+  "test_continuity": "All three original failing assertions retained. Additional controls and import layout do not supersede the failures.",
+  "source_sha256": {
+    "src/hmt_rnd/lane_reader.py": "840a3d3ed36c00f5a43e5ed8ea9fb73813620093f12966e08975014d3cf8ba05",
+    "tests/test_path_identity_controls.py": "2c7c4fe678167a4ff7f41388c9c332bf26456871e5d3d4e04ffc52f6a317e4d0",
+    "tests/test_path_identity_support.py": "f2e19fb4efae470dd2add1aadf7f3afef17250ba6f87b1b4812f3ecbd2c16d7c",
+    "tests/test_path_identity_tracer.py": "2727ff27354852a7b93b780814d73a9d1cc1f9b0582957f0331ec20ad4194d9d"
+  },
+  "evidence_sha256": {
+    "evidence/path_identity_baseline.json": "5aba522caaa96028dee16b1b561d0b30a8e58f52498aba673de57fb7e1d1dea0",
+    "evidence/path_identity_before.xml": "4bf3d4ac7975d6315cc1d8494b0bc49bded8a8dc919ca110ad2661298917d1d6",
+    "evidence/path_identity_before.log": "264af1d13cfa36e93b975cc9ffc1e547901b437535c7da4bed22a5d63a413079",
+    "evidence/path_identity_snapshot.json": "f5fc97f2e17dfc5cfe8d3ccd3973ce41bc84d5b80bd50c25306f0dc8e8f58fa3",
+    "evidence/path_identity_snapshot_v2.json": "34c2f0684147521123583ff69b0984c263a2e81f199c591b9010d683786bf44a",
+    "evidence/path_identity_v2_tests.xml": "68a97f3d7c6dc7ec542fbb55c85c62b187cfb86409c1da3771b0a73f00d6cafa",
+    "evidence/path_identity_v2_tests.log": "f7d128a184dd22347cc679254774e66ca346a5d8b6ad72dd62b74c515f4ce16d",
+    "evidence/path_identity_v2_observed.json": "234f02ee5d1708357366267a53ccdd930dee3452915171feb2affa4473cc7c9b",
+    "evidence/path_identity_v2_observed.log": "9f0ccd4b507ab6aa4f9031982aec28a98a73e3f9355c0f389fb7bc427f91af27",
+    "evidence/path_identity_full.xml": "703b48f71675617b4c69275c2461a9955e764d7af1426b2991b38892aefe8809",
+    "evidence/path_identity_full.log": "6397afc473208de0683d68325d47afe662446ca60dd533e802494e3276bf1547",
+    "evidence/path_identity_ruff.log": "21a07804c56aa2a3858c9154430e22e64025fdfdee1fd21ebc45c5d09df2e444",
+    "evidence/path_identity_ruff_v2.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "evidence/path_identity_pyrefly.log": "05d3adb250ea5d9900fd29288c6bfc6d7b9b2734aca99f5e4a115c28729dee3d",
+    "evidence/path_identity_structure_v2.log": "7c6430f6d8bb04dc13d4361e92282d50c22fa0cb126d84d618b73cfd8c8bd696",
+    "evidence/path_identity_inventory_before.json": "cfabfa2a18bfe9f6fde0eb5d3c3040f65b27d408347977b0f93bdb082b0ce5ba",
+    "evidence/path_identity_inventory_initial_after.json": "cfabfa2a18bfe9f6fde0eb5d3c3040f65b27d408347977b0f93bdb082b0ce5ba",
+    "evidence/path_identity_inventory_v2.json": "ee47ea9f1fa20a859da82e5fadd99454c1fadc711289b9b50f039d69edc4f594"
+  },
+  "separate_open_holds": [
+    4383956251,
+    4383956285
+  ],
+  "limits": [
+    "Trusted controlled evaluator and local synthetic files only.",
+    "No general filesystem equivalence or mutable-path sandbox proof.",
+    "No integration, deployment, full requirements acceptance or owner HOLD release."
+  ],
+  "sub_agent_task_attestation": {
+    "task_id": "WP-PATH-IDENTITY-RECONCILIATION",
+    "worker": "/root/custody_reconciliation",
+    "owned_paths": [
+      "src/hmt_rnd/lane_reader.py",
+      "tests/test_path_identity_controls.py",
+      "tests/test_path_identity_support.py",
+      "tests/test_path_identity_tracer.py"
+    ],
+    "authority": "Bounded repair only; no integration or HOLD release",
+    "signature": "Unsigned worker attestation; hashes prove integrity only"
+  }
+}

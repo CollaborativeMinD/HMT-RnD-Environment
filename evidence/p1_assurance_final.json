@@ -1,0 +1,304 @@
+{
+  "review_id": "HMT-P1-MA-FINAL-001",
+  "as_of": "2026-10-26T22:18:13.266448+00:00",
+  "primary_disposition": "INSUFFICIENT_EVIDENCE",
+  "scope": "Read-only final cumulative P1 records and one public-sample Whisper smoke; prior independent P1 report remains unchanged.",
+  "method": "No reviewer target imports, tests, attacks or embedded command execution. Read source/evidence/metadata and wrote only this new report plus appended owned documentation section.",
+  "prior_review_sha256": "bfe81bb5e38b2c7c657ccc8d13a8ace5e1f463575bb081e851a2476cde661f0c",
+  "cumulative_junit_counts": {
+    "tests": 159,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "branch_metric": {
+    "source": "hmt_rnd Python package, branch mode, subprocess coverage combined under recorded config",
+    "covered": 290,
+    "total": 308,
+    "percent": 94.15584415584415,
+    "excluded_lines": 0,
+    "missing_branches": 18,
+    "interpretation": "Current executable-code metric; not a requirements-satisfaction or whole-system assurance metric."
+  },
+  "reported_gates": {
+    "pytest": "PASS;159 tests",
+    "ruff": 0,
+    "pyrefly": {
+      "exit_code": 0,
+      "profile": "basic; explicit PYTHONPATH warning retained"
+    },
+    "structure": 0
+  },
+  "production_snapshots": [
+    {
+      "path": "src/hmt_rnd/custody_reconcile.py",
+      "prior_sha256": "9366e0d93ccc80b86091efedffc6688cb3ec4b63c5850cc484b9515e9212ed62",
+      "current_sha256": "9366e0d93ccc80b86091efedffc6688cb3ec4b63c5850cc484b9515e9212ed62",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/custody_signing.py",
+      "prior_sha256": "25cb6760bad8b257ffef5919f7d0242d812b2386740e2adb443fc235ccdaaac3",
+      "current_sha256": "25cb6760bad8b257ffef5919f7d0242d812b2386740e2adb443fc235ccdaaac3",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/custody_operations.py",
+      "prior_sha256": "dd50121fefdc8639d9114dd9c03bce74dfba32ba73636d04eb6eb46d172aed8e",
+      "current_sha256": "dd50121fefdc8639d9114dd9c03bce74dfba32ba73636d04eb6eb46d172aed8e",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/custody_database.py",
+      "prior_sha256": "2469edce2875cb6f37e6e8fe2fc5cc3f65413a8f8aff89587ef9a5dd94d3909b",
+      "current_sha256": "2469edce2875cb6f37e6e8fe2fc5cc3f65413a8f8aff89587ef9a5dd94d3909b",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/custody_endpoint.py",
+      "prior_sha256": "bdc64495a302bb44301fc932cff60a11dd788463424f40f07abf24783c1df3df",
+      "current_sha256": "bdc64495a302bb44301fc932cff60a11dd788463424f40f07abf24783c1df3df",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/custody_adapter.py",
+      "prior_sha256": "84942c052c4c3dd0e4a36aee4b73fd13ade1d4ade691def221653711bac03dad",
+      "current_sha256": "84942c052c4c3dd0e4a36aee4b73fd13ade1d4ade691def221653711bac03dad",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/custody_models.py",
+      "prior_sha256": "b3f5cb013415f9502a8f996d9d7faf3675822f17d05fac3297578025dda0863e",
+      "current_sha256": "b3f5cb013415f9502a8f996d9d7faf3675822f17d05fac3297578025dda0863e",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/host_models.py",
+      "prior_sha256": "a8070768ce3818d521a6221879845a73f7c933620ec2c5ab7747f70e2f313e64",
+      "current_sha256": "a8070768ce3818d521a6221879845a73f7c933620ec2c5ab7747f70e2f313e64",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/host_admission.py",
+      "prior_sha256": "5b675de7eb0f0a84886c30d6092d3152b6d4224af552f8b3840e7e9e8d8ce1a5",
+      "current_sha256": "5b675de7eb0f0a84886c30d6092d3152b6d4224af552f8b3840e7e9e8d8ce1a5",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/host_checks.py",
+      "prior_sha256": "7198c769641bebd17648040cd402001768c3df3fc7a26fce55e5c826274ee07a",
+      "current_sha256": "7198c769641bebd17648040cd402001768c3df3fc7a26fce55e5c826274ee07a",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/host_admin.py",
+      "prior_sha256": "3ef443d33cd5735deefb1f9435c334ac744fe5b89858009493af14172a0e7910",
+      "current_sha256": "3ef443d33cd5735deefb1f9435c334ac744fe5b89858009493af14172a0e7910",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/host_store.py",
+      "prior_sha256": "dc5bc1ba541e5647093016b1ca9c9243be6d4e44a01597f4b84d7d5625867e84",
+      "current_sha256": "dc5bc1ba541e5647093016b1ca9c9243be6d4e44a01597f4b84d7d5625867e84",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/host_schema.py",
+      "prior_sha256": "94fc1948231e40f1b7c00c3970931bc36b4f1dc5df23d862a72db2bc867924a1",
+      "current_sha256": "94fc1948231e40f1b7c00c3970931bc36b4f1dc5df23d862a72db2bc867924a1",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/mcp_contracts.py",
+      "prior_sha256": "728521617e0c48c3bafa3bdf9ee719de3a357055f05485cb62ee5dc97cc667e6",
+      "current_sha256": "728521617e0c48c3bafa3bdf9ee719de3a357055f05485cb62ee5dc97cc667e6",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/mcp_framing.py",
+      "prior_sha256": "b371dc0a3c01316f4b8659926e8bd1d024662b4c9608758b3f9f6b691b1e2692",
+      "current_sha256": "b371dc0a3c01316f4b8659926e8bd1d024662b4c9608758b3f9f6b691b1e2692",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/mcp_handoff.py",
+      "prior_sha256": "8766cce44f243ada83f6da97b6c4bbd6e086365d61ccd3cda1acb7225cd1f022",
+      "current_sha256": "8766cce44f243ada83f6da97b6c4bbd6e086365d61ccd3cda1acb7225cd1f022",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/mcp_server.py",
+      "prior_sha256": "61d33eccd521a20717b3010fcf3baf21fb4853643bf178074c6282eca4d80e09",
+      "current_sha256": "61d33eccd521a20717b3010fcf3baf21fb4853643bf178074c6282eca4d80e09",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/mcp_stdio.py",
+      "prior_sha256": "215f82e2a68a842443c6b2fd5dee93359a92a84c42b62d47418fe35d1f74aa39",
+      "current_sha256": "215f82e2a68a842443c6b2fd5dee93359a92a84c42b62d47418fe35d1f74aa39",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/mcp_surface.py",
+      "prior_sha256": "2dc15d903d69a3f376fb8b729ea926970d200e906ec591dc4683968355481c72",
+      "current_sha256": "2dc15d903d69a3f376fb8b729ea926970d200e906ec591dc4683968355481c72",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_artifacts.py",
+      "prior_sha256": "6d45fbe94b98a7b61e5e8697141dca8a3e41ead641609a8cd00561237f91e735",
+      "current_sha256": "6d45fbe94b98a7b61e5e8697141dca8a3e41ead641609a8cd00561237f91e735",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_discovery.py",
+      "prior_sha256": "e4b832011793d68e60fd1cca507cde6ba096ae15e5c5cdf7919bf9d41f96b95b",
+      "current_sha256": "e4b832011793d68e60fd1cca507cde6ba096ae15e5c5cdf7919bf9d41f96b95b",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_evidence.py",
+      "prior_sha256": "bbe9b135f3d275483252206a6b481ba26d8f619e302818d64bebb607ac00b083",
+      "current_sha256": "bbe9b135f3d275483252206a6b481ba26d8f619e302818d64bebb607ac00b083",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_handoff.py",
+      "prior_sha256": "14afaffb90d4f3e33c0247ef3c54e21216703e312f4cd6738bf1a00bff5b96fa",
+      "current_sha256": "14afaffb90d4f3e33c0247ef3c54e21216703e312f4cd6738bf1a00bff5b96fa",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_models.py",
+      "prior_sha256": "fd1f45e5416c2c31d2d6d6562724196e31913dfa32cafe73c265c4a9ed5080e6",
+      "current_sha256": "fd1f45e5416c2c31d2d6d6562724196e31913dfa32cafe73c265c4a9ed5080e6",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_queries.py",
+      "prior_sha256": "41e3966acf63f27a229d9cd22339c0f58944d73376815b429155e7a378f7333a",
+      "current_sha256": "41e3966acf63f27a229d9cd22339c0f58944d73376815b429155e7a378f7333a",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_records.py",
+      "prior_sha256": "386597142f6a6dffa7c59f19de92e29c97cfa653828b9d70ee9878503d5577b7",
+      "current_sha256": "386597142f6a6dffa7c59f19de92e29c97cfa653828b9d70ee9878503d5577b7",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_reopen.py",
+      "prior_sha256": "2d528e401e362df7b4ac7cf9d091fd4e11ae27b4f1ffa5cc161530ec4880d676",
+      "current_sha256": "2d528e401e362df7b4ac7cf9d091fd4e11ae27b4f1ffa5cc161530ec4880d676",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_schema.py",
+      "prior_sha256": "86e3868aed1ad9d2e651657d811d5cd64023e24c71de2ba1a5f215bfabe1ab57",
+      "current_sha256": "86e3868aed1ad9d2e651657d811d5cd64023e24c71de2ba1a5f215bfabe1ab57",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_stages.py",
+      "prior_sha256": "0746aaa8a8ad6cbf0359f43f0e371712c1835bd5de42efa6554b1a2e36110d97",
+      "current_sha256": "0746aaa8a8ad6cbf0359f43f0e371712c1835bd5de42efa6554b1a2e36110d97",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_store.py",
+      "prior_sha256": "1fef69c0d5c817af941a3b3a72051105229c227338860132b2840b457bfdb6bc",
+      "current_sha256": "1fef69c0d5c817af941a3b3a72051105229c227338860132b2840b457bfdb6bc",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_submission.py",
+      "prior_sha256": "8c7346540ca610a4e3eff9580853c2a388c6692c9161e92e985d56fede0b8b79",
+      "current_sha256": "8c7346540ca610a4e3eff9580853c2a388c6692c9161e92e985d56fede0b8b79",
+      "unchanged": true
+    },
+    {
+      "path": "src/hmt_rnd/lane_successor.py",
+      "prior_sha256": "31a66871020668dab6c4c1334aa863333377b88cbc079049000b760b7191d815",
+      "current_sha256": "31a66871020668dab6c4c1334aa863333377b88cbc079049000b760b7191d815",
+      "unchanged": true
+    }
+  ],
+  "historical_continuity": [
+    {
+      "original": "docs/lane_lifecycle.md",
+      "reviewed_sha256": "d9e9a97e2391c68d2e6835e084ead0a5c49196d58a971ff8e245ae2c61b435d4",
+      "preserved_at": "evidence/lane_lifecycle_17case.md",
+      "preserved_sha256": "d9e9a97e2391c68d2e6835e084ead0a5c49196d58a971ff8e245ae2c61b435d4",
+      "exact_bytes_match": true,
+      "current_path_changed": true
+    },
+    {
+      "original": "evidence/lane_lifecycle.json",
+      "reviewed_sha256": "3af5ed04863c42c1b491f5fa2f02014e2958335b2a2fda5ea127fa18c922c121",
+      "preserved_at": "evidence/lane_lifecycle_17case.json",
+      "preserved_sha256": "3af5ed04863c42c1b491f5fa2f02014e2958335b2a2fda5ea127fa18c922c121",
+      "exact_bytes_match": true,
+      "current_path_changed": true
+    },
+    {
+      "original": "evidence/lane_tests.xml",
+      "reviewed_sha256": "ce30142c84917ee35ff7e87f33e4e598f03533d8c5f0d197f28072b0b04c30fd",
+      "preserved_at": "evidence/lane_tests_17case.xml",
+      "preserved_sha256": "ce30142c84917ee35ff7e87f33e4e598f03533d8c5f0d197f28072b0b04c30fd",
+      "exact_bytes_match": true,
+      "current_path_changed": true
+    }
+  ],
+  "live_whisper": {
+    "status": "TRANSCRIPTION_OBSERVED",
+    "fixture_count": 1,
+    "fixture": "Public built-in JFK sample; potentially familiar to model",
+    "model": "base.en",
+    "runtime_commit": "231638a0717b7822784297e5980965ffcec05810",
+    "model_sha256": "a03779c86df3323075f5e796cb2ce5029f00ec8869eee3fdfb897afe36c6d002",
+    "executable_sha256": "8c9e359121f123ff89a2f3efaa27b98f9e0ad4330f0b2d4276c9d4f8de08f7d1",
+    "draft_authority": "NONE",
+    "normalized_word_errors": 0,
+    "reference_words": 22,
+    "elapsed_seconds": 3.8963693709993095,
+    "largest_child_peak_rss_kib": 287356,
+    "memory_scope": "Largest child in this driver; probe child was tiny, inference child dominates; excludes Python parent.",
+    "network_observation": "Seccomp selected native socket/connect/sendto/sendmsg operations denied; socket probe EPERM. Network namespace setup denied EPERM. No packet/all-workstation/ABI-hardening sandbox claim.",
+    "limits": [
+      "A single public sample provides no technical-term, speaker/noise/multilingual or generalization qualification.",
+      "Synthetic host admission, draft-only output; no microphone/UI/task steering/production authentication or effect authority.",
+      "Runtime/model provisioned via network before inference; no offline appliance cold-install/restart workflow proved.",
+      "One latency/RSS observation is not a distribution or total parent+child system resource measurement."
+    ]
+  },
+  "assessment": [
+    "Current submitted cumulative159-test record passes with zero JUnit failures/errors/skips.",
+    "Current290/308branch metric meets the pinned90percent changed-code branch threshold for the measured package denominator;18branches remain visible and no exclusions are reported.",
+    "Ruff, basic Pyrefly and structural gates report success; earlier source/evidence review findings remain scoped as stated.",
+    "Live Whisper inference is now observed for one pinned public fixture and returns DRAFT/authority NONE. The prior no-live-inference evidence remains historically true at its original as-of.",
+    "Historical17-case lane witness, prior lane documentation and18-case MCP witness remain retained; no failing test is deleted, skipped, or relabeled by this review."
+  ],
+  "not_established": [
+    "Complete58-requirement acceptance, actual stage-domain evaluators and full lifecycle/tool/role coverage",
+    "Full critical gate mutation and causal families beyond declared scoped campaigns",
+    "Live user voice corpus, microphone/composer/accessibility, and userhardware latency/resource profiles",
+    "Operational offline hydration, full OS/egress/same-UID-host isolation, hardware trusted time and external rollback anchors",
+    "Live external endpoint/vendor semantics, deployment, release or human task closeout"
+  ],
+  "snapshots_sha256": {
+    "evidence/p1_assurance.json": "bfe81bb5e38b2c7c657ccc8d13a8ace5e1f463575bb081e851a2476cde661f0c",
+    "evidence/p1_supervisor_results.json": "ed6dee95d77963ca254bd04f198bbb49611006ca118ebbd109cbab037e5cbf0d",
+    "evidence/p1_supervisor_tests.xml": "3032ca09f981a4b551bdb3d971ea1698a699149cf1dae5e37ace01fbebc174c3",
+    "evidence/p1_coverage.json": "9f17167840fd64344fac4eefe128af1243fcd060f29c5e5778b163ced8c904c2",
+    "evidence/whisper_live_tracer.json": "441656f1ad512e181d0097403769b900c82dfac34555e9bc9b01f14df0c8069a",
+    "evidence/lane_lifecycle.json": "315e6a57cf7d021348c3f43b7d50f632b244ea7ef316047bfd88009f62aa4325",
+    "evidence/lane_tests.xml": "3aeb2d84e21859453cdac66f0efc4f2f61ebd78a73a1c92adc0f9d658b2add13",
+    "evidence/mcp_stdio.json": "4d394e39a812025b92aba79ebd6fbdf68d445bcc75a3da6861e306f48750892a",
+    "evidence/mcp_initial18.json": "132d4c249f91127ff144f9cbe6ebdf8c0ed5fa0ea6e713ea7220f19395afa977",
+    "evidence/mcp_direct.json": "73bce34083adf17e2df3fe4bc1db543427ac3874f14ab5d5f9ba26a1944a9cc2",
+    "docs/lane_lifecycle.md": "c03b297becae02cbd1cd804a806008c18fa4ae6350ac00bc82b27dafa579e3f6",
+    "evidence/lane_lifecycle_17case.md": "d9e9a97e2391c68d2e6835e084ead0a5c49196d58a971ff8e245ae2c61b435d4",
+    "evidence/lane_lifecycle_17case.json": "3af5ed04863c42c1b491f5fa2f02014e2958335b2a2fda5ea127fa18c922c121",
+    "evidence/lane_tests_17case.xml": "ce30142c84917ee35ff7e87f33e4e598f03533d8c5f0d197f28072b0b04c30fd"
+  }
+}

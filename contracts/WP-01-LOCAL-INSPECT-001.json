@@ -1,0 +1,82 @@
+{
+  "id": "WP-01-LOCAL-INSPECT-001",
+  "parent": "fbf14378e6c82a3deebea0d415a6a85151e0a382",
+  "authority": "docs/OUT_OF_BAND_CONTINUATION_2026-10-27.md",
+  "requirements": [
+    "HMT-F01@1",
+    "HMT-F20@1"
+  ],
+  "falsifiers_owner": "WP-08 / root",
+  "implementation_owner": "Host/IIEA / root",
+  "operation": "inspect_context",
+  "current_implementation": "hmt_rnd.mcp_surface.LaneSurface.invoke(inspect_context,{})",
+  "current_source_sha256": "2dc15d903d69a3f376fb8b729ea926970d200e906ec591dc4683968355481c72",
+  "input_schema": "hmt_rnd.mcp_contracts.EmptyArguments",
+  "output_schema": "hmt_rnd.host_models.Decision",
+  "scope": {
+    "principal": "host-authenticated fixture Build/B3 principal",
+    "task": "host-assigned task/revision",
+    "policy": "current host policy/epoch and exclusive lease",
+    "resources": "one configured host SQLite file and protected launch context",
+    "effect": "LOCAL_MUTATION: admission clock checkpoint plus immutable inspection receipt; no task/mission/external effect",
+    "credential_egress": "exact host credential reference; local destination only; no external adapter/network call",
+    "retry_reconciliation_owner": "Host; one attempt, no automatic retry/fallback, uncertain completion stays with owner"
+  },
+  "budget": {
+    "input_bytes": 65536,
+    "output_bytes": 4096,
+    "source_file_bytes": 65536,
+    "source_total_bytes": 131072,
+    "deadline_seconds": 30,
+    "maximum_attempts": 1,
+    "target_latency_resources": "Not qualified; existing LOCAL-CTRL-1 obligations remain"
+  },
+  "planned_change": "Narrow configured adapter over canonical host admission and extracted unchanged native inspection function; durable receipt in same host transaction. Existing default launcher and other tools unchanged. Protected loader is shared, not duplicated.",
+  "owned_files": [
+    "src/hmt_rnd/inspection_models.py",
+    "src/hmt_rnd/inspection_binding.py",
+    "src/hmt_rnd/inspection_receipts.py",
+    "src/hmt_rnd/inspection_surface.py",
+    "src/hmt_rnd/inspection_execution.py",
+    "src/hmt_rnd/mcp_surface.py",
+    "src/hmt_rnd/mcp_stdio.py",
+    "tests/test_inspection*.py",
+    "tests/inspection_worker.py",
+    "contracts/WP-01-LOCAL-INSPECT-001.json",
+    "docs/local_inspection_binding.md",
+    "src/hmt_rnd/inspection_policy.py",
+    "tests/inspection_family_driver.py"
+  ],
+  "expected": [
+    "Missing, conflicting, stale source/schema/scope/epoch/time binding: zero native dispatch, zero committed admission clock change, zero receipt; direct/MCP parity.",
+    "Current binding and native grant: exact unchanged Decision output, independently observed native dispatch, atomic clock/receipt commit.",
+    "Unknown wire authority fields, unavailable optional vendor and hidden operations cannot widen this local operation.",
+    "Post-dispatch output/drift/receipt failure rolls back owning transaction; do not retroactively claim zero dispatch.",
+    "Discovery is projection; it invokes no native inspection and creates no operation receipt."
+  ],
+  "definition_of_done": [
+    "pin closed capability descriptor with owner/source/schema/scope/credential-egress/retry/resource/evidence fields",
+    "execute actual native implementation and canonical authority, not a stand-in",
+    "real stdio direct/MCP positive/negative parity and independent dispatch observer",
+    "retain baseline gap observations and original assertions",
+    "critical mutants and edge-specific causal family",
+    "personal source/seam/assertion/raw-evidence review; cumulative source-pinned regression and fixed coverage",
+    "return exact candidate and bounded nonclaims; all11 full packages remain open"
+  ],
+  "forbidden": [
+    "new task store or authorizer",
+    "default launcher activation",
+    "unresolved providers",
+    "integration",
+    "merge",
+    "deployment",
+    "credential/access expansion",
+    "complete work-package promotion"
+  ],
+  "delegation": "none; root owns and verifies this milestone",
+  "bounded_decomposition_note": "Split typed credential/retry/resource restrictions into inspection_policy.py to retain bounded modules; no operation, authority or requirement change.",
+  "native_schema_pins": {
+    "input": "4757414b28c839a41f2541d9f5854fa0e32f88990afb5194d5ecdaae880a8250",
+    "output": "6ca6b6c1f2cc102a9f601c5718665517b4dc21f97d5335b150ba0962aff3a94f"
+  }
+}

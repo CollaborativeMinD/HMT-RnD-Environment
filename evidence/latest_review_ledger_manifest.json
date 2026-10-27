@@ -1,0 +1,26 @@
+{
+  "columns": 8,
+  "rows": {
+    "Cumulative_Gate_Ledger": 52,
+    "Reverse_RCA_Ledger": 116
+  },
+  "retained_prefix": {
+    "Cumulative_Gate_Ledger": 44,
+    "Reverse_RCA_Ledger": 98
+  },
+  "sha256": {
+    "evidence/Cumulative_Gate_Ledger.csv": "425c98c411b5fd383f208084a33fb121b8c1a5e401ff47db085cf2c7ec7cc8d7",
+    "evidence/Reverse_RCA_Ledger.csv": "4e3bf1400d06686e6a5f95dcd259aac6aa41db85b5e412f9358f771c9abec337",
+    "evidence/build_ledgers.sqlite.gz": "e327db594d93e817c6b8c72c928d57db3a1d9269974fad47bb77ee092b51ee9d"
+  },
+  "history": {
+    "evidence/latest_review_history/Reverse_RCA_Ledger.csv": "e399f2d03c870b99f03f035f17a722f6c3cab618b78d6398fd74def722b6078f",
+    "evidence/latest_review_history/Cumulative_Gate_Ledger.csv": "0ac73bbc72588ada43d6b79aebc6f6dbf4ccade27ee918dbcee901a36b1015de",
+    "evidence/latest_review_history/build_ledgers.sqlite.gz": "46f25f3623ed7dfa44433a361575c32030baef01ab681c69e57a5e236813c1c0",
+    "evidence/latest_review_history/archive_index.json": "ad46baefc93c2b55701afe8714872127cea722fd8cfb60bdf6ed8244abed0f73"
+  },
+  "worker_rows_retained": [
+    "evidence/artifact_fifo_rrca.csv",
+    "evidence/artifact_fifo_cumulative.csv"
+  ]
+}

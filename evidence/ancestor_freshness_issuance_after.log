@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.7.0
+rootdir: /workspace/scratch/bc6d4e512874/HMT-RnD-Environment
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collected 20 items
+
+tests/test_ancestor_freshness_issuance.py ....................           [100%]
+
+- generated xml file: /workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/ancestor_freshness_issuance_after.xml -
+============================== 20 passed in 6.65s ==============================

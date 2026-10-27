@@ -1,0 +1,17 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.7.0
+rootdir: /workspace/scratch/bc6d4e512874/HMT-RnD-Environment
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collected 29 items
+
+tests/test_oob_lane_epoch.py .....                                       [ 17%]
+tests/test_oob_lane_reauth_denials.py ........                           [ 44%]
+tests/test_oob_lane_reauth_identity.py ....                              [ 58%]
+tests/test_oob_lane_reauth_limits.py ...                                 [ 68%]
+tests/test_oob_lane_reauthorization.py ...                               [ 79%]
+tests/test_oob_lane_reservation.py ..                                    [ 86%]
+tests/test_oob_lane_reservation_controls.py ....                         [100%]
+
+- generated xml file: /workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/oob_lane_epoch_recovery_v2.xml -
+============================== 29 passed in 1.72s ==============================

@@ -1,0 +1,20 @@
+{
+  "case_id": "RC-ARTIFACT-01",
+  "baseline": "c922345",
+  "requirements": [
+    "HMT-N02",
+    "HMT-N04",
+    "HMT-B14"
+  ],
+  "status": "SOLUTION_CANDIDATE_APPLIED; PENDING_SUPERVISOR_RECONCILIATION",
+  "cause": "Path.is_file checks the old inode; the later blocking Path.open can open a substituted FIFO while the host write transaction remains open. A competing writer was observed locked before each baseline hang.",
+  "repair": "Walk all path components with nofollow directory descriptors, open final component with O_NONBLOCK|O_NOFOLLOW, fstat the same descriptor as regular, and bound reads before digesting.",
+  "semantic_delta": "All symlink components now reject, including in-scope symlinks that old Path.resolve accepted. This is an intentional fail-closed scope restriction; regular-file bytes/digest and16MiB cap are retained.",
+  "before": "evidence/artifact_fifo_before.xml contains independent digest and snapshot watchdog failures. Step1 repairs digest only. Snapshot case RC-ARTIFACT-02 remains HOLD until second bounded repair.",
+  "after": "10 focused cases pass; exact positive race events in artifact_fifo_digest_observed.json show typed denial, rollback, revocation and HOST_GRANT_DENIED restart. Supervisor must replay exact snapshot.",
+  "limits": [
+    "No arbitrary blocking-filesystem latency guarantee; local regular-filesystem fixture only.",
+    "No target OS sandbox or global integration/requirements release."
+  ],
+  "worker": "/root/custody_reconciliation"
+}

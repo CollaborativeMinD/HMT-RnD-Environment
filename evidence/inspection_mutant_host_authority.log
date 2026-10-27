@@ -1,0 +1,194 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+______ test_current_host_change_denies_cached_direct_and_mcp_call[revoke] ______
+  + Exception Group Traceback (most recent call last):
+  |   File "/workspace/scratch/bc6d4e512874/supervisor_inspection_replay/tests/test_inspection_sequences.py", line 36, in test_current_host_change_denies_cached_direct_and_mcp_call
+  |     asyncio.run(scenario())
+  |     ~~~~~~~~~~~^^^^^^^^^^^^
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/asyncio/runners.py", line 196, in run
+  |     return runner.run(main)
+  |            ~~~~~~~~~~^^^^^^
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/asyncio/runners.py", line 119, in run
+  |     return self._loop.run_until_complete(task)
+  |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py", line 726, in run_until_complete
+  |     return future.result()
+  |            ~~~~~~~~~~~~~^^
+  |   File "/workspace/scratch/bc6d4e512874/supervisor_inspection_replay/tests/test_inspection_sequences.py", line 20, in scenario
+  |     async with client(binding, (cap,), tmp_path) as session:
+  |                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/mcp/client/client.py", line 480, in __aexit__
+  |     await self._exit_stack.__aexit__(exc_type, exc_val, exc_tb)
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/contextlib.py", line 768, in __aexit__
+  |     raise exc
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/contextlib.py", line 751, in __aexit__
+  |     cb_suppress = await cb(*exc_details)
+  |                   ^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/contextlib.py", line 235, in __aexit__
+  |     await self.gen.athrow(value)
+  |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 201, in stdio_client
+  |     async with anyio.create_task_group() as tg:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 847, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Exception Group Traceback (most recent call last):
+    |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 205, in stdio_client
+    |     yield read_stream, write_stream
+    |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/contextlib.py", line 751, in __aexit__
+    |     cb_suppress = await cb(*exc_details)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/mcp/client/session.py", line 514, in __aexit__
+    |     result = await self._task_group.__aexit__(exc_type, exc_val, exc_tb)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 847, in __aexit__
+    |     raise BaseExceptionGroup(
+    |         "unhandled errors in a TaskGroup", self._exceptions
+    |     ) from None
+    | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+    +-+---------------- 1 ----------------
+      | Traceback (most recent call last):
+      |   File "/workspace/scratch/bc6d4e512874/supervisor_inspection_replay/tests/test_inspection_sequences.py", line 31, in scenario
+      |     assert (await session.call_tool("inspect_context", {})).is_error
+      | AssertionError: assert False
+      |  +  where False = CallToolResult(meta={'io.modelcontextprotocol/serverInfo': {'name': 'HMT lane: Build', 'version': ''}}, content=[TextC...nspect_context', 'policy': 'policy-1', 'epoch': 1, 'effect_authority': 'NONE'}, is_error=False, result_type='complete').is_error
+      +------------------------------------
+_____ test_current_host_change_denies_cached_direct_and_mcp_call[revision] _____
+  + Exception Group Traceback (most recent call last):
+  |   File "/workspace/scratch/bc6d4e512874/supervisor_inspection_replay/tests/test_inspection_sequences.py", line 36, in test_current_host_change_denies_cached_direct_and_mcp_call
+  |     asyncio.run(scenario())
+  |     ~~~~~~~~~~~^^^^^^^^^^^^
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/asyncio/runners.py", line 196, in run
+  |     return runner.run(main)
+  |            ~~~~~~~~~~^^^^^^
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/asyncio/runners.py", line 119, in run
+  |     return self._loop.run_until_complete(task)
+  |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py", line 726, in run_until_complete
+  |     return future.result()
+  |            ~~~~~~~~~~~~~^^
+  |   File "/workspace/scratch/bc6d4e512874/supervisor_inspection_replay/tests/test_inspection_sequences.py", line 20, in scenario
+  |     async with client(binding, (cap,), tmp_path) as session:
+  |                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/mcp/client/client.py", line 480, in __aexit__
+  |     await self._exit_stack.__aexit__(exc_type, exc_val, exc_tb)
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/contextlib.py", line 768, in __aexit__
+  |     raise exc
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/contextlib.py", line 751, in __aexit__
+  |     cb_suppress = await cb(*exc_details)
+  |                   ^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/contextlib.py", line 235, in __aexit__
+  |     await self.gen.athrow(value)
+  |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 201, in stdio_client
+  |     async with anyio.create_task_group() as tg:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 847, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Exception Group Traceback (most recent call last):
+    |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 205, in stdio_client
+    |     yield read_stream, write_stream
+    |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/contextlib.py", line 751, in __aexit__
+    |     cb_suppress = await cb(*exc_details)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/mcp/client/session.py", line 514, in __aexit__
+    |     result = await self._task_group.__aexit__(exc_type, exc_val, exc_tb)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 847, in __aexit__
+    |     raise BaseExceptionGroup(
+    |         "unhandled errors in a TaskGroup", self._exceptions
+    |     ) from None
+    | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+    +-+---------------- 1 ----------------
+      | Traceback (most recent call last):
+      |   File "/workspace/scratch/bc6d4e512874/supervisor_inspection_replay/tests/test_inspection_sequences.py", line 31, in scenario
+      |     assert (await session.call_tool("inspect_context", {})).is_error
+      | AssertionError: assert False
+      |  +  where False = CallToolResult(meta={'io.modelcontextprotocol/serverInfo': {'name': 'HMT lane: Build', 'version': ''}}, content=[TextC...nspect_context', 'policy': 'policy-1', 'epoch': 1, 'effect_authority': 'NONE'}, is_error=False, result_type='complete').is_error
+      +------------------------------------
+______ test_current_host_change_denies_cached_direct_and_mcp_call[policy] ______
+  + Exception Group Traceback (most recent call last):
+  |   File "/workspace/scratch/bc6d4e512874/supervisor_inspection_replay/tests/test_inspection_sequences.py", line 36, in test_current_host_change_denies_cached_direct_and_mcp_call
+  |     asyncio.run(scenario())
+  |     ~~~~~~~~~~~^^^^^^^^^^^^
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/asyncio/runners.py", line 196, in run
+  |     return runner.run(main)
+  |            ~~~~~~~~~~^^^^^^
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/asyncio/runners.py", line 119, in run
+  |     return self._loop.run_until_complete(task)
+  |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/asyncio/base_events.py", line 726, in run_until_complete
+  |     return future.result()
+  |            ~~~~~~~~~~~~~^^
+  |   File "/workspace/scratch/bc6d4e512874/supervisor_inspection_replay/tests/test_inspection_sequences.py", line 20, in scenario
+  |     async with client(binding, (cap,), tmp_path) as session:
+  |                ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/mcp/client/client.py", line 480, in __aexit__
+  |     await self._exit_stack.__aexit__(exc_type, exc_val, exc_tb)
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/contextlib.py", line 768, in __aexit__
+  |     raise exc
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/contextlib.py", line 751, in __aexit__
+  |     cb_suppress = await cb(*exc_details)
+  |                   ^^^^^^^^^^^^^^^^^^^^^^
+  |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/contextlib.py", line 235, in __aexit__
+  |     await self.gen.athrow(value)
+  |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 201, in stdio_client
+  |     async with anyio.create_task_group() as tg:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 847, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Exception Group Traceback (most recent call last):
+    |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/mcp/client/stdio.py", line 205, in stdio_client
+    |     yield read_stream, write_stream
+    |   File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/contextlib.py", line 751, in __aexit__
+    |     cb_suppress = await cb(*exc_details)
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/mcp/client/session.py", line 514, in __aexit__
+    |     result = await self._task_group.__aexit__(exc_type, exc_val, exc_tb)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 847, in __aexit__
+    |     raise BaseExceptionGroup(
+    |         "unhandled errors in a TaskGroup", self._exceptions
+    |     ) from None
+    | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+    +-+---------------- 1 ----------------
+      | Traceback (most recent call last):
+      |   File "/workspace/scratch/bc6d4e512874/supervisor_inspection_replay/tests/test_inspection_sequences.py", line 31, in scenario
+      |     assert (await session.call_tool("inspect_context", {})).is_error
+      | AssertionError: assert False
+      |  +  where False = CallToolResult(meta={'io.modelcontextprotocol/serverInfo': {'name': 'HMT lane: Build', 'version': ''}}, content=[TextC...nspect_context', 'policy': 'policy-1', 'epoch': 1, 'effect_authority': 'NONE'}, is_error=False, result_type='complete').is_error
+      +------------------------------------
+___ test_self_consistent_descriptor_does_not_grant_a_new_principal_authority ___
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-162/test_self_consistent_descripto0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fb435d03240>
+
+    def test_self_consistent_descriptor_does_not_grant_a_new_principal_authority(tmp_path, monkeypatch):
+        store, binding, cap = fixture(tmp_path)
+        forged = binding.model_copy(update={"identity": binding.identity.model_copy(
+            update={"principal": "not-assigned"})})
+        cap["binding_sha256"] = receipt_digest(forged.model_dump(mode="json"))
+        target = surface(forged, (cap,))
+        watch(monkeypatch, tmp_path / "native.jsonl")
+        before = snapshot(store)
+>       with pytest.raises(PermissionError, match="HOST_GRANT_DENIED"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+../supervisor_inspection_replay/tests/test_inspection_sequences.py:49: Failed
+=========================== short test summary info ============================
+FAILED tests/test_inspection_sequences.py::test_current_host_change_denies_cached_direct_and_mcp_call[revoke]
+FAILED tests/test_inspection_sequences.py::test_current_host_change_denies_cached_direct_and_mcp_call[revision]
+FAILED tests/test_inspection_sequences.py::test_current_host_change_denies_cached_direct_and_mcp_call[policy]
+FAILED tests/test_inspection_sequences.py::test_self_consistent_descriptor_does_not_grant_a_new_principal_authority
+4 failed in 6.66s

@@ -1,0 +1,134 @@
+{
+  "status": "TRANSCRIPTION_OBSERVED",
+  "draft": {
+    "state": "DRAFT",
+    "provider": "whisper.cpp",
+    "text": "And so my fellow Americans, ask not what your country can do for you, ask what you can do for your country.",
+    "audio_sha256": "59dfb9a4acb36fe2a2affc14bacbee2920ff435cb13cc314a08c13f66ba7860e",
+    "model_sha256": "a03779c86df3323075f5e796cb2ce5029f00ec8869eee3fdfb897afe36c6d002",
+    "executable_sha256": "8c9e359121f123ff89a2f3efaa27b98f9e0ad4330f0b2d4276c9d4f8de08f7d1",
+    "authority": "NONE"
+  },
+  "predeclared_plan": {
+    "expected_reference": "And so my fellow Americans ask not what your country can do for you ask what you can do for your country.",
+    "comparison": "lowercase word tokens, punctuation ignored; record actual WER and exact equality before any model tuning",
+    "audio_sha256": "59dfb9a4acb36fe2a2affc14bacbee2920ff435cb13cc314a08c13f66ba7860e",
+    "source_commit": "231638a0717b7822784297e5980965ffcec05810",
+    "model": "base.en",
+    "budget": {
+      "audio_seconds": 30,
+      "decode_seconds": 30,
+      "threads": 2,
+      "model_bytes_max": 209715200
+    },
+    "network_namespace_probe": "unshare -n true returned EPERM; enforcement not qualified",
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "cpu_count": 9
+  },
+  "model_pin": {
+    "url": "https://huggingface.co/ggerganov/whisper.cpp/resolve/5359861c739e955e79d9a303bcbc70fb988958b1/ggml-base.en.bin",
+    "revision": "5359861c739e955e79d9a303bcbc70fb988958b1",
+    "size": 147964211,
+    "sha256": "a03779c86df3323075f5e796cb2ce5029f00ec8869eee3fdfb897afe36c6d002",
+    "upstream_sha1_verified": "137c40403d78fd54d454da0f9bd998f78703390c",
+    "license": "mit"
+  },
+  "executable_sha256": "8c9e359121f123ff89a2f3efaa27b98f9e0ad4330f0b2d4276c9d4f8de08f7d1",
+  "executable_bytes": 3245200,
+  "seccomp_wrapper_sha256": "c48abc693bb1e35c61f61eb691c0d563691b7cc8a596d1d1d2b8301ccd3a30b0",
+  "seccomp_source_sha256": "952d8d935532d538c6930785e96b9a0ddcd59f9deb74ef1c134a041bd1dc0afb",
+  "seccomp_source": "#include <errno.h>\n#include <linux/filter.h>\n#include <linux/seccomp.h>\n#include <stddef.h>\n#include <stdio.h>\n#include <string.h>\n#include <sys/prctl.h>\n#include <sys/socket.h>\n#include <sys/syscall.h>\n#include <unistd.h>\nint main(int argc, char **argv) {\n    struct sock_filter code[] = {\n        BPF_STMT(BPF_LD | BPF_W | BPF_ABS, offsetof(struct seccomp_data, nr)),\n        BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, __NR_socket, 0, 1),\n        BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_ERRNO | EPERM),\n        BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, __NR_connect, 0, 1),\n        BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_ERRNO | EPERM),\n        BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, __NR_sendto, 0, 1),\n        BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_ERRNO | EPERM),\n        BPF_JUMP(BPF_JMP | BPF_JEQ | BPF_K, __NR_sendmsg, 0, 1),\n        BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_ERRNO | EPERM),\n        BPF_STMT(BPF_RET | BPF_K, SECCOMP_RET_ALLOW)\n    };\n    struct sock_fprog filter = {sizeof(code)/sizeof(code[0]), code};\n    if (prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0) ||\n        prctl(PR_SET_SECCOMP, SECCOMP_MODE_FILTER, &filter)) {perror(\"seccomp\"); return 70;}\n    if (argc == 2 && !strcmp(argv[1], \"--probe\")) {\n        int fd = socket(AF_INET, SOCK_STREAM, 0);\n        if (fd != -1 || errno != EPERM) return 71;\n        puts(\"SOCKET_DENIED_EPERM\"); return 0;\n    }\n    if (argc < 2) return 72;\n    execv(argv[1], &argv[1]); perror(\"execv\"); return 73;\n}\n",
+  "seccomp_probe": {
+    "returncode": 0,
+    "stdout": "SOCKET_DENIED_EPERM\n",
+    "stderr": ""
+  },
+  "network_scope": "socket/connect/sendto/sendmsg denied by inherited seccomp filter on native x86_64. Parent voice runner closes unrelated descriptors. Namespace isolation unavailable (EPERM); not a general adversarial sandbox/packet trace.",
+  "guard_observations": [
+    {
+      "selected_provider": "whisper.cpp",
+      "decision": "ADMITTED",
+      "authority": "Synthetic host-trusted admission for public test sample only"
+    },
+    {
+      "selected_provider": "whisper.cpp",
+      "decision": "ADMITTED",
+      "authority": "Synthetic host-trusted admission for public test sample only"
+    }
+  ],
+  "commands": [
+    {
+      "argv": [
+        "/workspace/scratch/bc6d4e512874/whisper_tracer/no_network",
+        "/workspace/scratch/bc6d4e512874/whisper_tracer/build/bin/whisper-cli",
+        "--model",
+        "/workspace/scratch/bc6d4e512874/whisper_tracer/models/ggml-base.en.bin",
+        "--file",
+        "/tmp/hmt-voice-bly546lo/input.wav",
+        "--no-timestamps",
+        "--no-prints",
+        "--no-gpu",
+        "--language",
+        "en",
+        "--threads",
+        "2"
+      ],
+      "timeout": 30.0,
+      "max_output_bytes": 65536
+    }
+  ],
+  "elapsed_seconds": 3.8963693709993095,
+  "child_user_seconds_delta": 6.906354,
+  "child_system_seconds_delta": 0.285027,
+  "largest_child_peak_rss_kib": 287356,
+  "peak_rss_scope": "Largest child in this driver; probe child was tiny, inference child dominates; excludes Python parent.",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "python": "3.13.16",
+  "cpu_model": "INTEL(R) XEON(R) PLATINUM 8573C",
+  "comparison": {
+    "reference_word_count": 22,
+    "actual_word_count": 22,
+    "word_errors": 0,
+    "word_error_rate": 0.0,
+    "normalized_exact_match": true,
+    "note": "One public sample; not technical corpus, noise, speaker, or userhardware qualification."
+  },
+  "task_id": "WP-11-LIVE-WHISPER-SMOKE-001",
+  "source_repo": "https://github.com/ggml-org/whisper.cpp",
+  "source_commit": "231638a0717b7822784297e5980965ffcec05810",
+  "source_license": {
+    "id": "MIT",
+    "license_sha256": "94f29bbed6a22c35b992c5c6ebf0e7c92f13b836b90f36f461c9cf2f0f1d010d",
+    "inspection": "LICENSE, models/README.md, official download script and sample fixture inspected before execution."
+  },
+  "predeclared_plan_sha256": "b6c9bf460bfeca0dd68ea811ff82722538af347cdb1b4628572ee14900ea7995",
+  "driver_sha256": "4e6213cc7ef05ece035ada46f8485ee08b1694f577bfc6e3af0d2918d6c577fc",
+  "adapter_source_sha256": {
+    "src/hmt_rnd/voice_adapter.py": "2f4bc628575753c882c983787ccdcf6309762eb6927e268f8d81335543ac04a0",
+    "src/hmt_rnd/voice_assets.py": "1aa6d28efe2d2ae0071792c7ac70d703abe8d509684a92ffd453664740a55cce",
+    "src/hmt_rnd/voice_models.py": "e4b2c19a06e30f794f8d1f0cc2eaddd6fb2d6c72f8a092a6d074441eafca5ec2",
+    "src/hmt_rnd/voice_process.py": "9351e9ae196b8c4d74c3657628b64728777dd9d31feeaad9e72a7faef4e7076e"
+  },
+  "build": {
+    "configure": "uv run --no-project --with cmake cmake -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=OFF -DGGML_NATIVE=OFF -DWHISPER_BUILD_TESTS=OFF -DGGML_CUDA=OFF -DWHISPER_CURL=OFF",
+    "compile": "uv run --no-project --with cmake cmake --build build --target whisper-cli -j 2",
+    "compiler": "GNU C/C++13.3.0",
+    "target": "whisper-cli; static CPU build; curl and CUDA disabled",
+    "version": "1.9.5-dev at exact commit, not a production stable-release qualification",
+    "build_warnings": [
+      "CMake compatibility below3.10 deprecated",
+      "ccache unavailable; not installed or suppressed"
+    ]
+  },
+  "selection": "OpenAI Whisper/whisper.cpp local operational fallback candidate; no NVIDIA runtime/model acquired.",
+  "qualification": "SCOPED_SAMPLE_OBSERVED; full voice feature and offline operational assurance remain INSUFFICIENT_EVIDENCE",
+  "limitations": [
+    "One public built-in JFK example; may be familiar to the model; no generalization claim.",
+    "No microphone/device/hotkey or actual user speech tested.",
+    "No 100-utterance technical corpus, noise, multilingual, accessibility, task-steering, latency distribution or physical userhardware qualification.",
+    "Seccomp blocked selected native socket operations for the trusted executable; architecture-hardening, alternative syscall ABIs, malicious binary/host and full sandbox escape are not qualified.",
+    "No packet capture or all-process workstation egress proof. Network namespace creation was denied by environment.",
+    "Model/runtime retrieval used network before inference; offline appliance hydration and install/restart workflow not yet qualified.",
+    "Peak RSS is largest child in this driver, excluding Python parent; not complete system memory peak."
+  ]
+}

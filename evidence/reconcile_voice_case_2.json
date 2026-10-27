@@ -1,0 +1,26 @@
+{
+  "id": "RC-VOICE-02",
+  "alias": "VOICE-DESCENDANT-001",
+  "requirements": [
+    "HMT-V09",
+    "HMT-N02"
+  ],
+  "test": "tests/test_reconcile_voice_lifetime.py::test_successful_parent_does_not_leave_running_descendant",
+  "observation": "Forked descendant closed pipes, parent exited successfully, descendant wrote delayed marker after run_local returned.",
+  "cause": [
+    "CLI started new POSIX session/group",
+    "Descendant inherited group but closed stdout/stderr",
+    "Drain observed EOF and parent success",
+    "Group termination only ran on exception"
+  ],
+  "repair": "Always terminate process group in finally after drain, preserving original parent return status.",
+  "before": "process_before.txt",
+  "after": "process_descendant_after.txt",
+  "source": "src/hmt_rnd/voice_process.py",
+  "gate": "G-VOICE-DESCENDANT-001",
+  "after_record": "descendant_after",
+  "before_sha256": "9351e9ae196b8c4d74c3657628b64728777dd9d31feeaad9e72a7faef4e7076e",
+  "after_sha256": "e6b9dd68c9c5df549aec81ad03e3d9512d9a00ea76064bad4ea7b459291264e9",
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; supervisor and independent review required",
+  "worker_attestation": "/root/voice_reconciliation; actual disposable subprocess execution; no target-provider/model invocation; unsigned"
+}

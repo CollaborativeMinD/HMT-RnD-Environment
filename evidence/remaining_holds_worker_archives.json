@@ -1,0 +1,20 @@
+[
+  {
+    "original": "evidence/ancestor_freshness_full_regression.xml",
+    "stored": "evidence/ancestor_freshness_full_regression.xml.gz",
+    "sha256": "8483349cfa765ceb1a54c42594d01301aa2ce41d2d0f9755af439bde0b3d6749",
+    "stored_sha256": "5269ece83fc1bf8b7e856d68d461fd94c1576387c1c0f70bed10014efd3389b5"
+  },
+  {
+    "original": "evidence/ancestor_freshness_issuance_full_regression.xml",
+    "stored": "evidence/ancestor_freshness_issuance_full_regression.xml.gz",
+    "sha256": "94a25be26c805f9c6382e5f6251e1792c2b5a06a38c781abdde3cf2642df476f",
+    "stored_sha256": "ab798c445102b1986d8f14e48ad2836c60c7b576f2ab873fda0e70c58fb42991"
+  },
+  {
+    "original": "evidence/drift_symlink_full.xml",
+    "stored": "evidence/drift_symlink_full.xml.gz",
+    "sha256": "3eca5949174e9030563a17b729a1f927bbc7a74cd8ec76a83c983e35c9c2a60c",
+    "stored_sha256": "91b2987aad418cbe65d63444d7737d2436c19c60edbde6dec1b36ae64579ed8f"
+  }
+]

@@ -1,0 +1,145 @@
+{
+  "raw": {
+    "identity": {
+      "principal": "worker-build",
+      "role": "builder",
+      "lane": "Build",
+      "stage": "B3",
+      "credential": "host-bound-credential"
+    },
+    "store": "/tmp/pytest-of-root/pytest-175/test_absolute_restart_control_1/authority/host.sqlite",
+    "task_id": "task-1",
+    "revision": 1,
+    "root": "/tmp/pytest-of-root/pytest-175/test_absolute_restart_control_1/authority",
+    "destination": "local",
+    "policy": "policy-1"
+  },
+  "config_sha256": "26068e8f29483d7afd4cb159b10e82df52d47f368acfdd06d87f7ea951ad969b",
+  "observations": [
+    {
+      "denied": false,
+      "result": {
+        "principal": "worker-build",
+        "task_id": "task-1",
+        "task_revision": 1,
+        "operation": "inspect_context",
+        "policy": "policy-1",
+        "epoch": 1,
+        "effect_authority": "NONE"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"principal\": \"worker-build\", \"task_id\": \"task-1\", \"task_revision\": 1, \"operation\": \"inspect_context\", \"policy\": \"policy-1\", \"epoch\": 1, \"effect_authority\": \"NONE\"}",
+          "annotations": null,
+          "meta": null
+        }
+      ]
+    },
+    {
+      "denied": false,
+      "result": {
+        "principal": "worker-build",
+        "task_id": "task-1",
+        "task_revision": 1,
+        "operation": "inspect_context",
+        "policy": "policy-1",
+        "epoch": 1,
+        "effect_authority": "NONE"
+      },
+      "content": [
+        {
+          "type": "text",
+          "text": "{\"principal\": \"worker-build\", \"task_id\": \"task-1\", \"task_revision\": 1, \"operation\": \"inspect_context\", \"policy\": \"policy-1\", \"epoch\": 1, \"effect_authority\": \"NONE\"}",
+          "annotations": null,
+          "meta": null
+        }
+      ]
+    }
+  ],
+  "native": [
+    "{\"result_sha256\": \"b87c60a42709887bb2f30dc6c9f1029d5835e737d68315d04f551b7361a99a4c\"}",
+    "{\"result_sha256\": \"b87c60a42709887bb2f30dc6c9f1029d5835e737d68315d04f551b7361a99a4c\"}"
+  ],
+  "stores": [
+    "/tmp/pytest-of-root/pytest-175/test_absolute_restart_control_1/authority/host.sqlite",
+    "/tmp/pytest-of-root/pytest-175/test_absolute_restart_control_1/authority/host.sqlite"
+  ],
+  "before": [
+    [
+      "BEGIN TRANSACTION;",
+      "CREATE TABLE host_grants(\n principal TEXT NOT NULL,task_id TEXT NOT NULL,operation TEXT NOT NULL,\n body TEXT NOT NULL,revoked INTEGER NOT NULL DEFAULT 0,\n PRIMARY KEY(principal,task_id,operation));",
+      "INSERT INTO \"host_grants\" VALUES('worker-build','task-1','validate_handoff','{\"principal\":\"worker-build\",\"role\":\"builder\",\"lane\":\"Build\",\"stage\":\"B3\",\"credential\":\"host-bound-credential\",\"task_id\":\"task-1\",\"revision\":1,\"operation\":\"validate_handoff\",\"root\":\"/tmp/pytest-of-root/pytest-175/test_absolute_restart_control_1/authority\",\"destination\":\"local\",\"policy\":\"policy-1\",\"epoch\":1,\"not_before\":1793078771.2122355,\"expires\":1793078866.2122366,\"evidence_expires\":1793078856.212237}',0);",
+      "INSERT INTO \"host_grants\" VALUES('worker-build','task-1','inspect_context','{\"principal\":\"worker-build\",\"role\":\"builder\",\"lane\":\"Build\",\"stage\":\"B3\",\"credential\":\"host-bound-credential\",\"task_id\":\"task-1\",\"revision\":1,\"operation\":\"inspect_context\",\"root\":\"/tmp/pytest-of-root/pytest-175/test_absolute_restart_control_1/authority\",\"destination\":\"local\",\"policy\":\"policy-1\",\"epoch\":1,\"not_before\":1.0,\"expires\":100.0,\"evidence_expires\":90.0}',0);",
+      "CREATE TABLE host_inspection_receipts(id TEXT PRIMARY KEY,body TEXT NOT NULL,digest TEXT NOT NULL);",
+      "CREATE TABLE host_meta(\n id INTEGER PRIMARY KEY CHECK(id=1),policy TEXT NOT NULL,epoch INTEGER NOT NULL,\n last_clock REAL NOT NULL DEFAULT 0);",
+      "INSERT INTO \"host_meta\" VALUES(1,'policy-1',1,0.0);",
+      "CREATE TABLE host_tasks(\n task_id TEXT PRIMARY KEY,principal TEXT NOT NULL,revision INTEGER NOT NULL);",
+      "INSERT INTO \"host_tasks\" VALUES('task-1','worker-build',1);",
+      "CREATE TRIGGER inspection_no_UPDATE BEFORE UPDATE ON host_inspection_receipts BEGIN SELECT RAISE(ABORT,'INSPECTION_RECEIPT_IMMUTABLE'); END;",
+      "CREATE TRIGGER inspection_no_DELETE BEFORE DELETE ON host_inspection_receipts BEGIN SELECT RAISE(ABORT,'INSPECTION_RECEIPT_IMMUTABLE'); END;",
+      "COMMIT;"
+    ],
+    [
+      "BEGIN TRANSACTION;",
+      "CREATE TABLE host_grants(\n principal TEXT NOT NULL,task_id TEXT NOT NULL,operation TEXT NOT NULL,\n body TEXT NOT NULL,revoked INTEGER NOT NULL DEFAULT 0,\n PRIMARY KEY(principal,task_id,operation));",
+      "INSERT INTO \"host_grants\" VALUES('worker-build','task-1','validate_handoff','{\"principal\":\"worker-build\",\"role\":\"builder\",\"lane\":\"Build\",\"stage\":\"B3\",\"credential\":\"host-bound-credential\",\"task_id\":\"task-1\",\"revision\":1,\"operation\":\"validate_handoff\",\"root\":\"/tmp/pytest-of-root/pytest-175/test_absolute_restart_control_1/authority\",\"destination\":\"local\",\"policy\":\"policy-1\",\"epoch\":1,\"not_before\":1793078771.2122355,\"expires\":1793078866.2122366,\"evidence_expires\":1793078856.212237}',0);",
+      "INSERT INTO \"host_grants\" VALUES('worker-build','task-1','inspect_context','{\"principal\":\"worker-build\",\"role\":\"builder\",\"lane\":\"Build\",\"stage\":\"B3\",\"credential\":\"host-bound-credential\",\"task_id\":\"task-1\",\"revision\":1,\"operation\":\"inspect_context\",\"root\":\"/tmp/pytest-of-root/pytest-175/test_absolute_restart_control_1/authority\",\"destination\":\"local\",\"policy\":\"policy-1\",\"epoch\":1,\"not_before\":1.0,\"expires\":100.0,\"evidence_expires\":90.0}',0);",
+      "CREATE TABLE host_inspection_receipts(id TEXT PRIMARY KEY,body TEXT NOT NULL,digest TEXT NOT NULL);",
+      "CREATE TABLE host_meta(\n id INTEGER PRIMARY KEY CHECK(id=1),policy TEXT NOT NULL,epoch INTEGER NOT NULL,\n last_clock REAL NOT NULL DEFAULT 0);",
+      "INSERT INTO \"host_meta\" VALUES(1,'policy-1',1,0.0);",
+      "CREATE TABLE host_tasks(\n task_id TEXT PRIMARY KEY,principal TEXT NOT NULL,revision INTEGER NOT NULL);",
+      "INSERT INTO \"host_tasks\" VALUES('task-1','worker-build',1);",
+      "CREATE TRIGGER inspection_no_UPDATE BEFORE UPDATE ON host_inspection_receipts BEGIN SELECT RAISE(ABORT,'INSPECTION_RECEIPT_IMMUTABLE'); END;",
+      "CREATE TRIGGER inspection_no_DELETE BEFORE DELETE ON host_inspection_receipts BEGIN SELECT RAISE(ABORT,'INSPECTION_RECEIPT_IMMUTABLE'); END;",
+      "COMMIT;"
+    ]
+  ],
+  "after": [
+    [
+      "BEGIN TRANSACTION;",
+      "CREATE TABLE host_grants(\n principal TEXT NOT NULL,task_id TEXT NOT NULL,operation TEXT NOT NULL,\n body TEXT NOT NULL,revoked INTEGER NOT NULL DEFAULT 0,\n PRIMARY KEY(principal,task_id,operation));",
+      "INSERT INTO \"host_grants\" VALUES('worker-build','task-1','validate_handoff','{\"principal\":\"worker-build\",\"role\":\"builder\",\"lane\":\"Build\",\"stage\":\"B3\",\"credential\":\"host-bound-credential\",\"task_id\":\"task-1\",\"revision\":1,\"operation\":\"validate_handoff\",\"root\":\"/tmp/pytest-of-root/pytest-175/test_absolute_restart_control_1/authority\",\"destination\":\"local\",\"policy\":\"policy-1\",\"epoch\":1,\"not_before\":1793078771.2122355,\"expires\":1793078866.2122366,\"evidence_expires\":1793078856.212237}',0);",
+      "INSERT INTO \"host_grants\" VALUES('worker-build','task-1','inspect_context','{\"principal\":\"worker-build\",\"role\":\"builder\",\"lane\":\"Build\",\"stage\":\"B3\",\"credential\":\"host-bound-credential\",\"task_id\":\"task-1\",\"revision\":1,\"operation\":\"inspect_context\",\"root\":\"/tmp/pytest-of-root/pytest-175/test_absolute_restart_control_1/authority\",\"destination\":\"local\",\"policy\":\"policy-1\",\"epoch\":1,\"not_before\":1.0,\"expires\":100.0,\"evidence_expires\":90.0}',0);",
+      "CREATE TABLE host_inspection_receipts(id TEXT PRIMARY KEY,body TEXT NOT NULL,digest TEXT NOT NULL);",
+      "INSERT INTO \"host_inspection_receipts\" VALUES('d1d13d2a-a809-4fa0-a507-dffea9b023d5','{\"call_id\": \"d1d13d2a-a809-4fa0-a507-dffea9b023d5\", \"capability_sha256\": \"53029160365caf4e877203c25cef1a0d2a2dc94ee5fe19ce9514456bbeaca5ad\", \"source_manifest_sha256\": \"7a306955f4224a0072aa344a1f1da2a99492b6df84b957304a52647fc2a7451c\", \"input_schema_sha256\": \"4757414b28c839a41f2541d9f5854fa0e32f88990afb5194d5ecdaae880a8250\", \"output_schema_sha256\": \"6ca6b6c1f2cc102a9f601c5718665517b4dc21f97d5335b150ba0962aff3a94f\", \"arguments_sha256\": \"44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a\", \"result\": {\"principal\": \"worker-build\", \"task_id\": \"task-1\", \"task_revision\": 1, \"operation\": \"inspect_context\", \"policy\": \"policy-1\", \"epoch\": 1, \"effect_authority\": \"NONE\"}, \"result_sha256\": \"b87c60a42709887bb2f30dc6c9f1029d5835e737d68315d04f551b7361a99a4c\", \"clock_checkpoint\": 20.0, \"effect_class\": \"LOCAL_MUTATION\", \"external_effects\": 0}','88c9b463297aa80c6a8c471b0ce55468bf8dbc8c37498f02c16b05dacec9e8c9');",
+      "INSERT INTO \"host_inspection_receipts\" VALUES('43ad2fbd-0a33-4d1a-97ae-0a3b7f2d925e','{\"call_id\": \"43ad2fbd-0a33-4d1a-97ae-0a3b7f2d925e\", \"capability_sha256\": \"53029160365caf4e877203c25cef1a0d2a2dc94ee5fe19ce9514456bbeaca5ad\", \"source_manifest_sha256\": \"7a306955f4224a0072aa344a1f1da2a99492b6df84b957304a52647fc2a7451c\", \"input_schema_sha256\": \"4757414b28c839a41f2541d9f5854fa0e32f88990afb5194d5ecdaae880a8250\", \"output_schema_sha256\": \"6ca6b6c1f2cc102a9f601c5718665517b4dc21f97d5335b150ba0962aff3a94f\", \"arguments_sha256\": \"44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a\", \"result\": {\"principal\": \"worker-build\", \"task_id\": \"task-1\", \"task_revision\": 1, \"operation\": \"inspect_context\", \"policy\": \"policy-1\", \"epoch\": 1, \"effect_authority\": \"NONE\"}, \"result_sha256\": \"b87c60a42709887bb2f30dc6c9f1029d5835e737d68315d04f551b7361a99a4c\", \"clock_checkpoint\": 20.0, \"effect_class\": \"LOCAL_MUTATION\", \"external_effects\": 0}','da376a985319cfd95b56fe75ea332c7e5525570ee1682d4f56ff04bce8682e24');",
+      "CREATE TABLE host_meta(\n id INTEGER PRIMARY KEY CHECK(id=1),policy TEXT NOT NULL,epoch INTEGER NOT NULL,\n last_clock REAL NOT NULL DEFAULT 0);",
+      "INSERT INTO \"host_meta\" VALUES(1,'policy-1',1,20.0);",
+      "CREATE TABLE host_tasks(\n task_id TEXT PRIMARY KEY,principal TEXT NOT NULL,revision INTEGER NOT NULL);",
+      "INSERT INTO \"host_tasks\" VALUES('task-1','worker-build',1);",
+      "CREATE TRIGGER inspection_no_UPDATE BEFORE UPDATE ON host_inspection_receipts BEGIN SELECT RAISE(ABORT,'INSPECTION_RECEIPT_IMMUTABLE'); END;",
+      "CREATE TRIGGER inspection_no_DELETE BEFORE DELETE ON host_inspection_receipts BEGIN SELECT RAISE(ABORT,'INSPECTION_RECEIPT_IMMUTABLE'); END;",
+      "COMMIT;"
+    ],
+    [
+      "BEGIN TRANSACTION;",
+      "CREATE TABLE host_grants(\n principal TEXT NOT NULL,task_id TEXT NOT NULL,operation TEXT NOT NULL,\n body TEXT NOT NULL,revoked INTEGER NOT NULL DEFAULT 0,\n PRIMARY KEY(principal,task_id,operation));",
+      "INSERT INTO \"host_grants\" VALUES('worker-build','task-1','validate_handoff','{\"principal\":\"worker-build\",\"role\":\"builder\",\"lane\":\"Build\",\"stage\":\"B3\",\"credential\":\"host-bound-credential\",\"task_id\":\"task-1\",\"revision\":1,\"operation\":\"validate_handoff\",\"root\":\"/tmp/pytest-of-root/pytest-175/test_absolute_restart_control_1/authority\",\"destination\":\"local\",\"policy\":\"policy-1\",\"epoch\":1,\"not_before\":1793078771.2122355,\"expires\":1793078866.2122366,\"evidence_expires\":1793078856.212237}',0);",
+      "INSERT INTO \"host_grants\" VALUES('worker-build','task-1','inspect_context','{\"principal\":\"worker-build\",\"role\":\"builder\",\"lane\":\"Build\",\"stage\":\"B3\",\"credential\":\"host-bound-credential\",\"task_id\":\"task-1\",\"revision\":1,\"operation\":\"inspect_context\",\"root\":\"/tmp/pytest-of-root/pytest-175/test_absolute_restart_control_1/authority\",\"destination\":\"local\",\"policy\":\"policy-1\",\"epoch\":1,\"not_before\":1.0,\"expires\":100.0,\"evidence_expires\":90.0}',0);",
+      "CREATE TABLE host_inspection_receipts(id TEXT PRIMARY KEY,body TEXT NOT NULL,digest TEXT NOT NULL);",
+      "CREATE TABLE host_meta(\n id INTEGER PRIMARY KEY CHECK(id=1),policy TEXT NOT NULL,epoch INTEGER NOT NULL,\n last_clock REAL NOT NULL DEFAULT 0);",
+      "INSERT INTO \"host_meta\" VALUES(1,'policy-1',1,0.0);",
+      "CREATE TABLE host_tasks(\n task_id TEXT PRIMARY KEY,principal TEXT NOT NULL,revision INTEGER NOT NULL);",
+      "INSERT INTO \"host_tasks\" VALUES('task-1','worker-build',1);",
+      "CREATE TRIGGER inspection_no_UPDATE BEFORE UPDATE ON host_inspection_receipts BEGIN SELECT RAISE(ABORT,'INSPECTION_RECEIPT_IMMUTABLE'); END;",
+      "CREATE TRIGGER inspection_no_DELETE BEFORE DELETE ON host_inspection_receipts BEGIN SELECT RAISE(ABORT,'INSPECTION_RECEIPT_IMMUTABLE'); END;",
+      "COMMIT;"
+    ]
+  ],
+  "receipts": [
+    [
+      [
+        "d1d13d2a-a809-4fa0-a507-dffea9b023d5",
+        "{\"call_id\": \"d1d13d2a-a809-4fa0-a507-dffea9b023d5\", \"capability_sha256\": \"53029160365caf4e877203c25cef1a0d2a2dc94ee5fe19ce9514456bbeaca5ad\", \"source_manifest_sha256\": \"7a306955f4224a0072aa344a1f1da2a99492b6df84b957304a52647fc2a7451c\", \"input_schema_sha256\": \"4757414b28c839a41f2541d9f5854fa0e32f88990afb5194d5ecdaae880a8250\", \"output_schema_sha256\": \"6ca6b6c1f2cc102a9f601c5718665517b4dc21f97d5335b150ba0962aff3a94f\", \"arguments_sha256\": \"44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a\", \"result\": {\"principal\": \"worker-build\", \"task_id\": \"task-1\", \"task_revision\": 1, \"operation\": \"inspect_context\", \"policy\": \"policy-1\", \"epoch\": 1, \"effect_authority\": \"NONE\"}, \"result_sha256\": \"b87c60a42709887bb2f30dc6c9f1029d5835e737d68315d04f551b7361a99a4c\", \"clock_checkpoint\": 20.0, \"effect_class\": \"LOCAL_MUTATION\", \"external_effects\": 0}",
+        "88c9b463297aa80c6a8c471b0ce55468bf8dbc8c37498f02c16b05dacec9e8c9"
+      ],
+      [
+        "43ad2fbd-0a33-4d1a-97ae-0a3b7f2d925e",
+        "{\"call_id\": \"43ad2fbd-0a33-4d1a-97ae-0a3b7f2d925e\", \"capability_sha256\": \"53029160365caf4e877203c25cef1a0d2a2dc94ee5fe19ce9514456bbeaca5ad\", \"source_manifest_sha256\": \"7a306955f4224a0072aa344a1f1da2a99492b6df84b957304a52647fc2a7451c\", \"input_schema_sha256\": \"4757414b28c839a41f2541d9f5854fa0e32f88990afb5194d5ecdaae880a8250\", \"output_schema_sha256\": \"6ca6b6c1f2cc102a9f601c5718665517b4dc21f97d5335b150ba0962aff3a94f\", \"arguments_sha256\": \"44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a\", \"result\": {\"principal\": \"worker-build\", \"task_id\": \"task-1\", \"task_revision\": 1, \"operation\": \"inspect_context\", \"policy\": \"policy-1\", \"epoch\": 1, \"effect_authority\": \"NONE\"}, \"result_sha256\": \"b87c60a42709887bb2f30dc6c9f1029d5835e737d68315d04f551b7361a99a4c\", \"clock_checkpoint\": 20.0, \"effect_class\": \"LOCAL_MUTATION\", \"external_effects\": 0}",
+        "da376a985319cfd95b56fe75ea332c7e5525570ee1682d4f56ff04bce8682e24"
+      ]
+    ],
+    []
+  ]
+}

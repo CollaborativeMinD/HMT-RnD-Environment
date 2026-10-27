@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="2" time="6.374" timestamp="2026-10-26T20:10:49.995082-04:00" hostname="812233b2011d"><testcase classname="tests.test_artifact_fifo_race" name="test_fifo_replacement_denies_and_releases_host_fence[digest]" time="3.009"><failure message="Failed: FIFO_DEADLINE_EXCEEDED: b'{&quot;race&quot;: &quot;regular-to-FIFO&quot;, &quot;shared_host_locked&quot;: true}\n'">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-104/test_fifo_replacement_denies_a0')
+mode = 'digest'
+
+    @pytest.mark.parametrize("mode", ["digest", "snapshot"])
+    def test_fifo_replacement_denies_and_releases_host_fence(tmp_path, mode):
+        environment = {**os.environ, "PYTHONPATH": "src:tests"}
+        command = [sys.executable, "-m", "test_artifact_fifo_worker", str(tmp_path), mode]
+        try:
+&gt;           result = subprocess.run(command, env=environment, capture_output=True, text=True,
+                                    timeout=3, check=False)
+
+tests/test_artifact_fifo_race.py:15: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/subprocess.py:557: in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/subprocess.py:1223: in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/subprocess.py:2156: in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Popen: returncode: -9 args: ['/workspace/scratch/bc6d4e512874/HMT-RnD-Envir...&gt;
+endtime = 22039.318767744, orig_timeout = 3
+stdout_seq = [b'{"race": "regular-to-FIFO", "shared_host_locked": true}\n']
+stderr_seq = [], skip_check_and_raise = False
+
+    def _check_timeout(self, endtime, orig_timeout, stdout_seq, stderr_seq,
+                       skip_check_and_raise=False):
+        """Convenience for checking if a timeout has expired."""
+        if endtime is None:
+            return
+        if skip_check_and_raise or _time() &gt; endtime:
+&gt;           raise TimeoutExpired(
+                    self.args, orig_timeout,
+                    output=b''.join(stdout_seq) if stdout_seq else None,
+                    stderr=b''.join(stderr_seq) if stderr_seq else None)
+E           subprocess.TimeoutExpired: Command '['/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/bin/python', '-m', 'test_artifact_fifo_worker', '/tmp/pytest-of-root/pytest-104/test_fifo_replacement_denies_a0', 'digest']' timed out after 3 seconds
+
+/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/subprocess.py:1270: TimeoutExpired
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-104/test_fifo_replacement_denies_a0')
+mode = 'digest'
+
+    @pytest.mark.parametrize("mode", ["digest", "snapshot"])
+    def test_fifo_replacement_denies_and_releases_host_fence(tmp_path, mode):
+        environment = {**os.environ, "PYTHONPATH": "src:tests"}
+        command = [sys.executable, "-m", "test_artifact_fifo_worker", str(tmp_path), mode]
+        try:
+            result = subprocess.run(command, env=environment, capture_output=True, text=True,
+                                    timeout=3, check=False)
+        except subprocess.TimeoutExpired as error:
+&gt;           pytest.fail(f"FIFO_DEADLINE_EXCEEDED: {error.stdout!r}")
+E           Failed: FIFO_DEADLINE_EXCEEDED: b'{"race": "regular-to-FIFO", "shared_host_locked": true}\n'
+
+tests/test_artifact_fifo_race.py:18: Failed</failure></testcase><testcase classname="tests.test_artifact_fifo_race" name="test_fifo_replacement_denies_and_releases_host_fence[snapshot]" time="3.135"><failure message="Failed: FIFO_DEADLINE_EXCEEDED: b'{&quot;race&quot;: &quot;regular-to-FIFO&quot;, &quot;shared_host_locked&quot;: true}\n'">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-104/test_fifo_replacement_denies_a1')
+mode = 'snapshot'
+
+    @pytest.mark.parametrize("mode", ["digest", "snapshot"])
+    def test_fifo_replacement_denies_and_releases_host_fence(tmp_path, mode):
+        environment = {**os.environ, "PYTHONPATH": "src:tests"}
+        command = [sys.executable, "-m", "test_artifact_fifo_worker", str(tmp_path), mode]
+        try:
+&gt;           result = subprocess.run(command, env=environment, capture_output=True, text=True,
+                                    timeout=3, check=False)
+
+tests/test_artifact_fifo_race.py:15: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/subprocess.py:557: in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/subprocess.py:1223: in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/subprocess.py:2156: in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;Popen: returncode: -9 args: ['/workspace/scratch/bc6d4e512874/HMT-RnD-Envir...&gt;
+endtime = 22042.40816509, orig_timeout = 3
+stdout_seq = [b'{"race": "regular-to-FIFO", "shared_host_locked": true}\n']
+stderr_seq = [], skip_check_and_raise = False
+
+    def _check_timeout(self, endtime, orig_timeout, stdout_seq, stderr_seq,
+                       skip_check_and_raise=False):
+        """Convenience for checking if a timeout has expired."""
+        if endtime is None:
+            return
+        if skip_check_and_raise or _time() &gt; endtime:
+&gt;           raise TimeoutExpired(
+                    self.args, orig_timeout,
+                    output=b''.join(stdout_seq) if stdout_seq else None,
+                    stderr=b''.join(stderr_seq) if stderr_seq else None)
+E           subprocess.TimeoutExpired: Command '['/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/bin/python', '-m', 'test_artifact_fifo_worker', '/tmp/pytest-of-root/pytest-104/test_fifo_replacement_denies_a1', 'snapshot']' timed out after 3 seconds
+
+/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/subprocess.py:1270: TimeoutExpired
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-104/test_fifo_replacement_denies_a1')
+mode = 'snapshot'
+
+    @pytest.mark.parametrize("mode", ["digest", "snapshot"])
+    def test_fifo_replacement_denies_and_releases_host_fence(tmp_path, mode):
+        environment = {**os.environ, "PYTHONPATH": "src:tests"}
+        command = [sys.executable, "-m", "test_artifact_fifo_worker", str(tmp_path), mode]
+        try:
+            result = subprocess.run(command, env=environment, capture_output=True, text=True,
+                                    timeout=3, check=False)
+        except subprocess.TimeoutExpired as error:
+&gt;           pytest.fail(f"FIFO_DEADLINE_EXCEEDED: {error.stdout!r}")
+E           Failed: FIFO_DEADLINE_EXCEEDED: b'{"race": "regular-to-FIFO", "shared_host_locked": true}\n'
+
+tests/test_artifact_fifo_race.py:18: Failed</failure></testcase></testsuite></testsuites>

@@ -1,0 +1,26 @@
+[
+  {
+    "original": "evidence/remaining_supervisor_ancestor_freshness_snapshot.xml",
+    "stored": "evidence/remaining_supervisor_ancestor_freshness_snapshot.xml.gz",
+    "sha256": "4f49f09fe8db49896cb854398a7f87cabce0763b4c26626b116b11414736a839",
+    "stored_sha256": "40ecff21c2e726c55ffe8fe2adf9212e9028ad77c45f05086f98f8727aedf28d"
+  },
+  {
+    "original": "evidence/remaining_supervisor_drift_symlink_snapshot.xml",
+    "stored": "evidence/remaining_supervisor_drift_symlink_snapshot.xml.gz",
+    "sha256": "a73aaf927721bbb441c13929355e48dbbd28150b84d5cb2406bcc3e4efd33db7",
+    "stored_sha256": "f1862f640ae7d2288be1ccae8e1e0abed152abe567f786c1d440c1c8b91adebe"
+  },
+  {
+    "original": "evidence/remaining_supervisor_ancestor_freshness_issuance_snapshot.xml",
+    "stored": "evidence/remaining_supervisor_ancestor_freshness_issuance_snapshot.xml.gz",
+    "sha256": "493c873a3298e7fe1bf64943ff772515fae32d753077b8f142c934e4acb76cb2",
+    "stored_sha256": "b55d9c0dc0ca80f9f7ec545a7fbe0cf52e6916a10c06e71b21af0239ae6a35b0"
+  },
+  {
+    "original": "evidence/remaining_holds_coverage.json",
+    "stored": "evidence/remaining_holds_coverage.json.gz",
+    "sha256": "8156a30c1e66be668f4d1478b7e26ec406e9a15584c561bd3dbd97fdd0a64e66",
+    "stored_sha256": "d2434930177f69d39390aaa34be7e5c6f580c8f3d874a8055e7aa5cfcb01a9e3"
+  }
+]

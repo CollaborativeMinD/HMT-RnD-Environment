@@ -1,0 +1,23 @@
+{
+  "baseline": "608e3bdf95e07ded956ef1b80a0d2e0376f8efbe",
+  "cases": [
+    "RC-ANCESTOR-01",
+    "RC-DRIFT-01"
+  ],
+  "status": "HOLD_PENDING_OUT_OF_BAND_REVIEW",
+  "scope": "Only ancestor-task assignment freshness and drift-symlink reconciliation; no integration.",
+  "findings": [
+    {
+      "id": 4383956251,
+      "path": "src/hmt_rnd/lane_queries.py",
+      "body": "Advancing an upstream task does not fence its existing receipt here. For example, after sealing CMAD1 at revision 1 and assigning CMAD1 revision 2, a currently authorized CMAD2 submission can still use the revision-1 predecessor: these checks only compare policy/epoch and artifact bytes, and neither discovery nor assignment advancement invalidates that receipt. This lets downstream stages seal against superseded task evidence. Check each ancestor's recorded principal/revision against its current host_tasks assignment before accepting it.",
+      "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383956251"
+    },
+    {
+      "id": 4383956285,
+      "path": "src/hmt_rnd/lane_drift.py",
+      "body": "Resolving the path here removes symlink components before the guarded reader can reject them. An artifact replaced by an in-scope symlink is rejected by `digest_file(original_path, root)`, but `source_changed` returns `True`; a dangling in-scope symlink also returns `True`. Consequently, reopening can accept these paths and persist invalidations despite the newly enforced symlink-denial policy. Pass the original path to the guarded reader and recognize missing-source drift only when its underlying failure is `FileNotFoundError`, preserving scope denials for symlinks.",
+      "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383956285"
+    }
+  ]
+}

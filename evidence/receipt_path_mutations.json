@@ -1,0 +1,45 @@
+[
+  {
+    "id": "delete_binding",
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+      "--no-sync",
+      "python",
+      "-m",
+      "pytest",
+      "tests/test_receipt_path_restart.py",
+      "tests/test_receipt_path_drift.py",
+      "-q",
+      "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/receipt_path_mutant_delete_binding.xml"
+    ],
+    "cwd": "/workspace/scratch/bc6d4e512874/receipt_path_mutant_delete_binding",
+    "source_sha256": "6d8531a8663602fbc8d4db79ea6fcd3243f17c8d4e3b0dad9cbaf035126f0df3",
+    "returncode": 1,
+    "seconds": 10.211205039006018,
+    "summary": "30 failed, 10 passed in 9.84s"
+  },
+  {
+    "id": "bind_after_final_admission",
+    "command": [
+      "uv",
+      "run",
+      "--project",
+      "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+      "--no-sync",
+      "python",
+      "-m",
+      "pytest",
+      "tests/test_receipt_path_expiry.py",
+      "-q",
+      "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/receipt_path_mutant_bind_after_final_admission.xml"
+    ],
+    "cwd": "/workspace/scratch/bc6d4e512874/receipt_path_mutant_bind_after_final_admission",
+    "source_sha256": "d6446d78e0bcda8a905d68ca25999614c39fadfb0e9771dfa10d1af45ebb834b",
+    "returncode": 1,
+    "seconds": 2.4696343790055835,
+    "summary": "4 failed in 1.31s"
+  }
+]

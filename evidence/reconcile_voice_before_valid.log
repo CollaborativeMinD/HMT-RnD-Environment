@@ -1,0 +1,137 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+___________________ test_fifo_audio_rejected_without_writer ____________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-64/test_fifo_audio_rejected_witho0')
+
+    def test_fifo_audio_rejected_without_writer(tmp_path):
+        _, config = make_voice(tmp_path)
+        fifo = tmp_path / "blocked.wav"
+        os.mkfifo(fifo)
+        config_path = tmp_path / "config.json"
+        config_path.write_text(config.model_dump_json())
+        code = """import sys
+    from pathlib import Path
+    from hmt_rnd.voice_assets import read_audio
+    from hmt_rnd.voice_models import LocalVoiceConfig
+    config = LocalVoiceConfig.model_validate_json(Path(sys.argv[1]).read_text())
+    try:
+        read_audio(Path(sys.argv[2]), config)
+    except ValueError as error:
+        print(str(error))
+    """
+>       result = subprocess.run([sys.executable, "-c", code, str(config_path), str(fifo)],
+                                capture_output=True, timeout=2, check=True,
+                                env={**os.environ, "PYTHONPATH": "src"})
+
+tests/test_reconcile_voice_input.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/subprocess.py:557: in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/subprocess.py:1223: in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/subprocess.py:2156: in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Popen: returncode: -9 args: ['/workspace/scratch/bc6d4e512874/HMT-RnD-Envir...>
+endtime = 17071.060783717, orig_timeout = 2, stdout_seq = [], stderr_seq = []
+skip_check_and_raise = False
+
+    def _check_timeout(self, endtime, orig_timeout, stdout_seq, stderr_seq,
+                       skip_check_and_raise=False):
+        """Convenience for checking if a timeout has expired."""
+        if endtime is None:
+            return
+        if skip_check_and_raise or _time() > endtime:
+>           raise TimeoutExpired(
+                    self.args, orig_timeout,
+                    output=b''.join(stdout_seq) if stdout_seq else None,
+                    stderr=b''.join(stderr_seq) if stderr_seq else None)
+E           subprocess.TimeoutExpired: Command '['/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/bin/python', '-c', 'import sys\nfrom pathlib import Path\nfrom hmt_rnd.voice_assets import read_audio\nfrom hmt_rnd.voice_models import LocalVoiceConfig\nconfig = LocalVoiceConfig.model_validate_json(Path(sys.argv[1]).read_text())\ntry:\n    read_audio(Path(sys.argv[2]), config)\nexcept ValueError as error:\n    print(str(error))\n', '/tmp/pytest-of-root/pytest-64/test_fifo_audio_rejected_witho0/config.json', '/tmp/pytest-of-root/pytest-64/test_fifo_audio_rejected_witho0/blocked.wav']' timed out after 2 seconds
+
+/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/subprocess.py:1270: TimeoutExpired
+___________ test_successful_parent_does_not_leave_running_descendant ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-64/test_successful_parent_does_no0')
+
+    def test_successful_parent_does_not_leave_running_descendant(tmp_path):
+        marker = tmp_path / "survived"
+        code = """import os, sys, time
+    from pathlib import Path
+    pid = os.fork()
+    if pid == 0:
+        os.close(1)
+        os.close(2)
+        time.sleep(0.3)
+        Path(sys.argv[1]).write_text('VOICE_DESCENDANT_SURVIVED_SUCCESS')
+        os._exit(0)
+    print(pid, flush=True)
+    """
+        result = run_local([sys.executable, "-c", code, str(marker)], 2.0, 1024)
+        time.sleep(0.6)
+>       assert not marker.exists(), "VOICE_DESCENDANT_SURVIVED_SUCCESS"
+E       AssertionError: VOICE_DESCENDANT_SURVIVED_SUCCESS
+E       assert not True
+E        +  where True = exists()
+E        +    where exists = PosixPath('/tmp/pytest-of-root/pytest-64/test_successful_parent_does_no0/survived').exists
+
+tests/test_reconcile_voice_lifetime.py:25: AssertionError
+______________ test_closed_pipes_preserve_typed_deadline_failure _______________
+
+    def test_closed_pipes_preserve_typed_deadline_failure():
+        code = "import os,time; os.close(1); os.close(2); time.sleep(30)"
+        started = time.monotonic()
+        with pytest.raises(TimeoutError, match="VOICE_PROCESS_TIMEOUT"):
+>           run_local([sys.executable, "-c", code], 0.1, 1024)
+
+tests/test_reconcile_voice_lifetime.py:33: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/hmt_rnd/voice_process.py:49: in run_local
+    output = drain(process, timeout, limit)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/hmt_rnd/voice_process.py:38: in drain
+    process.wait(timeout=max(0.001, deadline - time.monotonic()))
+/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/subprocess.py:1281: in wait
+    return self._wait(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Popen: returncode: -9 args: ['/workspace/scratch/bc6d4e512874/HMT-RnD-Envir...>
+timeout = 0.08624711099764681
+
+    def _wait(self, timeout):
+        """Internal implementation of wait() on POSIX."""
+        if self.returncode is not None:
+            return self.returncode
+    
+        if timeout is not None:
+            endtime = _time() + timeout
+            # Enter a busy loop if we have a timeout.  This busy loop was
+            # cribbed from Lib/threading.py in Thread.wait() at r71065.
+            delay = 0.0005 # 500 us -> initial delay of 1 ms
+            while True:
+                if self._waitpid_lock.acquire(False):
+                    try:
+                        if self.returncode is not None:
+                            break  # Another thread waited.
+                        (pid, sts) = self._try_wait(os.WNOHANG)
+                        assert pid == self.pid or pid == 0
+                        if pid == self.pid:
+                            self._handle_exitstatus(sts)
+                            break
+                    finally:
+                        self._waitpid_lock.release()
+                remaining = self._remaining_time(endtime)
+                if remaining <= 0:
+>                   raise TimeoutExpired(self.args, timeout)
+E                   subprocess.TimeoutExpired: Command '['/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/bin/python', '-c', 'import os,time; os.close(1); os.close(2); time.sleep(30)']' timed out after 0.08624711099764681 seconds
+
+/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/subprocess.py:2078: TimeoutExpired
+=========================== short test summary info ============================
+FAILED tests/test_reconcile_voice_input.py::test_fifo_audio_rejected_without_writer
+FAILED tests/test_reconcile_voice_lifetime.py::test_successful_parent_does_not_leave_running_descendant
+FAILED tests/test_reconcile_voice_lifetime.py::test_closed_pipes_preserve_typed_deadline_failure
+3 failed in 3.08s

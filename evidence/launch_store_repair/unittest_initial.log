@@ -1,0 +1,95 @@
+EEEEEE
+======================================================================
+ERROR: test_verification_boundaries (unittest.loader._FailedTest.test_verification_boundaries)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_verification_boundaries
+Traceback (most recent call last):
+  File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/unittest/loader.py", line 403, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/unittest/loader.py", line 346, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_verification_boundaries.py", line 6, in <module>
+    from hmt_rnd.verification_models import Dimensions, Invariant
+ModuleNotFoundError: No module named 'hmt_rnd'
+
+
+======================================================================
+ERROR: test_verification_complexity (unittest.loader._FailedTest.test_verification_complexity)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_verification_complexity
+Traceback (most recent call last):
+  File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/unittest/loader.py", line 403, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/unittest/loader.py", line 346, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_verification_complexity.py", line 4, in <module>
+    from hmt_rnd.verification_complexity import band, inspect_source
+ModuleNotFoundError: No module named 'hmt_rnd'
+
+
+======================================================================
+ERROR: test_verification_identity (unittest.loader._FailedTest.test_verification_identity)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_verification_identity
+Traceback (most recent call last):
+  File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/unittest/loader.py", line 403, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/unittest/loader.py", line 346, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_verification_identity.py", line 7, in <module>
+    from hmt_rnd.verification_ledger import create_ledger
+ModuleNotFoundError: No module named 'hmt_rnd'
+
+
+======================================================================
+ERROR: test_verification_ledger (unittest.loader._FailedTest.test_verification_ledger)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_verification_ledger
+Traceback (most recent call last):
+  File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/unittest/loader.py", line 403, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/unittest/loader.py", line 346, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_verification_ledger.py", line 9, in <module>
+    from hmt_rnd.verification_ledger import create_ledger, verify_seal
+ModuleNotFoundError: No module named 'hmt_rnd'
+
+
+======================================================================
+ERROR: test_verification_output_limits (unittest.loader._FailedTest.test_verification_output_limits)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_verification_output_limits
+Traceback (most recent call last):
+  File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/unittest/loader.py", line 403, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/unittest/loader.py", line 346, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_verification_output_limits.py", line 7, in <module>
+    from hmt_rnd import verification_ledger
+ModuleNotFoundError: No module named 'hmt_rnd'
+
+
+======================================================================
+ERROR: test_verification_suppression (unittest.loader._FailedTest.test_verification_suppression)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_verification_suppression
+Traceback (most recent call last):
+  File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/unittest/loader.py", line 403, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/root/.local/share/uv/python/cpython-3.13.16-linux-x86_64-gnu/lib/python3.13/unittest/loader.py", line 346, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_verification_suppression.py", line 4, in <module>
+    from hmt_rnd.verification_suppression import reconcile_collection, violations
+ModuleNotFoundError: No module named 'hmt_rnd'
+
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.000s
+
+FAILED (errors=6)

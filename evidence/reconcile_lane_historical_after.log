@@ -1,0 +1,21 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.7.0
+rootdir: /workspace/scratch/bc6d4e512874/HMT-RnD-Environment
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collected 36 items
+
+tests/test_lane_artifacts.py ...                                         [  8%]
+tests/test_lane_boundaries.py ....                                       [ 19%]
+tests/test_lane_contracts.py ......                                      [ 36%]
+tests/test_lane_discovery.py .                                           [ 38%]
+tests/test_lane_invalid_reopen.py ......                                 [ 55%]
+tests/test_lane_policy_reopen.py ..                                      [ 61%]
+tests/test_lane_reopen.py ..                                             [ 66%]
+tests/test_lane_snapshot_failures.py ....                                [ 77%]
+tests/test_lane_tracer.py .                                              [ 80%]
+tests/test_reconcile_lane_drift.py .....                                 [ 94%]
+tests/test_reconcile_lane_historical.py ..                               [100%]
+
+- generated xml file: /workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/reconcile_lane_historical_after.xml -
+============================== 36 passed in 2.48s ==============================

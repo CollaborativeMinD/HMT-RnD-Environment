@@ -1,0 +1,100 @@
+{
+  "case_id": "RC-DRIFT-01",
+  "as_of": "2026-10-27T01:13:51.017992+00:00",
+  "baseline": "608e3bdf95e07ded956ef1b80a0d2e0376f8efbe",
+  "finding": 4383956285,
+  "requirements": {
+    "HMT-B07": "Original-source drift preserves typed reopening boundaries and earliest owner",
+    "HMT-N04": "No symlink/parent/root scope error reclassified as drift",
+    "HMT-F03": "Denied source rejected before event/invalidation promotion",
+    "HMT-B14": "Host rollback and revocation remain available after denied reopening"
+  },
+  "full_requirement_satisfaction": false,
+  "status": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; HOLD_PENDING_OUT_OF_BAND_REVIEW",
+  "causal_trace": [
+    "A source rejected by guarded digest nevertheless caused reopen event/invalidation/clock mutation.",
+    "Drift code resolved original symlink to a permitted changed or absent target, then bypassed original-path denial.",
+    "Explicit changes and current-lineage discovery both call that drift helper; the same misclassification entered both paths even with eager all-source evaluation.",
+    "Reproducible initiating condition is replacing an original artifact/evidence file with an in-scope live/dangling symlink. Earlier external origin is not asserted.",
+    "Companion classification boundary: ENOENT during root traversal is not evidence of a missing source beneath a valid root."
+  ],
+  "change": "Original path/root passed to digest_file; only immediate FileNotFoundError cause qualifies absent-source drift. Existing descriptor traversal remaps missing root-prefix or normalization context to generic scope error. No schema/authority/discovery change.",
+  "baseline_observations": {
+    "declared_failures": 4,
+    "discovery_failures": 6,
+    "missing_root_failures": 1,
+    "valid_missing_controls_passed": 2,
+    "all_historical_failures_retained": true
+  },
+  "candidate_observations": {
+    "focused_pass": 27,
+    "shared_full_pass": 319,
+    "shared_full_inventory_changes": [],
+    "shared_full_new_files": [],
+    "all_ruff_exit": 0,
+    "basic_pyrefly_exit": 0,
+    "structure_exit": 0,
+    "supervisor_isolated_replay": "319passed,zero failures/errors/skips,unchanged exact source inventory; see supervisor_isolated_step_b. Later issuance work remains separate."
+  },
+  "source_sha256": {
+    "src/hmt_rnd/lane_drift.py": "6fa27761a9e5960214815a5a0d54259182e6f8dfd0f66b565faab0456ae99644",
+    "src/hmt_rnd/lane_reader.py": "6f7449459955157ab804de4e6d43c6dcfe6b699d46be64e1c6e4eb4ad32006d0",
+    "tests/test_drift_symlink_boundaries.py": "6327dde8c2f6f9c037dfd23a2a0a3c7b737206a815b3814fbd53c3aa65b64347",
+    "tests/test_drift_symlink_discovery.py": "4157956cd4e4bdb019a3e87acc5dc178a778cd261faae0c3af4a40c42c92ea52",
+    "tests/test_drift_symlink_recovery.py": "0ebb1537281cdf4629cd07d817e306b5b1f35370223144eb5bbbef1e7c469a80",
+    "tests/test_drift_symlink_root.py": "bc3ef51fb9797adc26b759065c6253b39439dc04e6d2ce2e854750b52883e9c3",
+    "tests/test_drift_symlink_support.py": "55f8e937cb6cc8f12ffb811afafb472c382a41622643f58e69b2dfc159c66420",
+    "tests/test_drift_symlink_tracer.py": "95314f6074caa334fc92fa400e755dd344917c8ffb46d865cb57a582d3f581b6"
+  },
+  "evidence_sha256": {
+    "evidence/drift_symlink_baseline.json": "ef8e9157c3d7994cad8422ba574d22140dc9ee627dd737344534ecd30161b303",
+    "evidence/drift_symlink_before.xml": "be9468455cf2b595e7cd3ffebe47796ad4ce8e7f210a327e552f01ff26949086",
+    "evidence/drift_symlink_discovery_before.xml": "610b8be89c1a209cb3041964e84a90fc18119962452d1e1df3b9269c41d1126d",
+    "evidence/drift_symlink_after.xml": "81225a4220860c9d9c21828f139d366018c5a72fe9827742d93f84bcad8d4522",
+    "evidence/drift_symlink_observed.xml": "e49faf1b61c89df45f13276b1ec4fd4d40332b1bc589495df51f2877b6e0599c",
+    "evidence/drift_symlink_observed.log": "b305f01ccab06d7a1925713a346658e027af8d77484fb089bb923619415fa551",
+    "evidence/drift_symlink_full.xml": "3eca5949174e9030563a17b729a1f927bbc7a74cd8ec76a83c983e35c9c2a60c",
+    "evidence/drift_symlink_inventory_before.json": "4ec7c6ff756d2e1ed8eaa6e782d4e517d08971e10ed341cbcb994671521d5582",
+    "evidence/drift_symlink_inventory_after.json": "1a54c4a27e2e1c9ac147d943dddb74902aabda8e3aaff7355b8f2db12a8095ba",
+    "evidence/drift_symlink_snapshot.json": "380f1a1c6d638f741327d7cf7033ed14a5dfa68e837631381b56356f017c6dc9",
+    "evidence/drift_symlink_all_ruff.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "evidence/drift_symlink_all_pyrefly.log": "05d3adb250ea5d9900fd29288c6bfc6d7b9b2734aca99f5e4a115c28729dee3d",
+    "evidence/drift_symlink_structure.log": "7c6430f6d8bb04dc13d4361e92282d50c22fa0cb126d84d618b73cfd8c8bd696",
+    "evidence/drift_symlink_observed.json": "4834fcf9abd42d28de4c2f90776539332637e9f1d78668b42b12388294890164"
+  },
+  "limits": [
+    "Local controlled file replacement and synthetic host fixtures only.",
+    "No general immutable-filesystem/sandbox claim or full requirement satisfaction.",
+    "Ancestor freshness and issuance changes belong to another worker; not repaired or released here.",
+    "Integration/deployment and out-of-band HOLD release remain outside worker authority."
+  ],
+  "sub_agent_task_attestation": {
+    "task_id": "WP-DRIFT-SYMLINK-RECONCILIATION",
+    "worker": "/root/custody_reconciliation",
+    "owned_paths": [
+      "src/hmt_rnd/lane_drift.py",
+      "src/hmt_rnd/lane_reader.py",
+      "tests/test_drift_symlink_boundaries.py",
+      "tests/test_drift_symlink_discovery.py",
+      "tests/test_drift_symlink_recovery.py",
+      "tests/test_drift_symlink_root.py",
+      "tests/test_drift_symlink_support.py",
+      "tests/test_drift_symlink_tracer.py"
+    ],
+    "authority": "Bounded repair with supervisor-approved missing-root distinction; no HOLD or integration release",
+    "signature": "Unsigned worker attestation; hashes establish integrity only"
+  },
+  "supervisor_isolated_step_b": {
+    "record": "evidence/remaining_supervisor_drift_symlink_snapshot.json",
+    "sha256": "52daf6d29ad054c03cc182964dffa8196ca6adf0037ff921a572a4960e0e6b7f",
+    "junit": "evidence/remaining_supervisor_drift_symlink_snapshot.xml",
+    "junit_sha256": "a73aaf927721bbb441c13929355e48dbbd28150b84d5cb2406bcc3e4efd33db7",
+    "tests": 319,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "unchanged_after": true,
+    "source_scope": "Frozen ancestor initial A + frozen drift B atop608e3bdf; excludes subsequent ancestor issuance repair."
+  },
+  "worker_case_sha256": "d70a4690b8ed4b852cd0cb967b9fbaf503cb89b9b83c8faeef8562d11893d408"
+}

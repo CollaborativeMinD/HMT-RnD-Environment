@@ -1,0 +1,253 @@
+{
+  "review_id": "HMT-OOB-MA-FINAL-001",
+  "as_of": "2026-10-26T23:32:07.298Z",
+  "primary_disposition": "HOLD",
+  "scope": "Independent read-only assessment of RC-LANE-05 and RC-LANE-06 bounded repair witnesses, exact published candidate, cumulative regressions and consolidated ledgers.",
+  "candidate_commit": "0892ba269597be15e49eb3310a76918f8ce77ff0",
+  "case_commits": {
+    "RC-LANE-05": "8a3f93a43777be949aab9c9bdffc593d68ec02fe",
+    "RC-LANE-06": "0892ba269597be15e49eb3310a76918f8ce77ff0"
+  },
+  "authority_boundary": "The owner reserved reconciliation HOLD release for the original out-of-band supervisor after review of the exact resulting commit and prior closure conditions. This worker supplies evidence evaluation only and does not release HOLD. Integration instructions remain withheld; no deployment, new authority or broader acceptance is granted.",
+  "method": "Read-only source/test/evidence inspection, local digest and Git blob arithmetic, parsing supplied XML/JSON/CSV, in-memory SQLite read queries, and GitHub commit/tree reads. No target imports, tests, attacks, repair, runtime execution or mission-assurance MCP execution.",
+  "case_assessments": [
+    {
+      "case_id": "RC-LANE-05",
+      "status": "REPAIR_EVIDENCE_MATCHES_WITHIN_DECLARED_BOUNDARY; HOLD_PENDING_OUT_OF_BAND_REVIEW",
+      "expected": "A globally reserved successor cannot be consumed by a candidate with omitted or mismatched event,lineage or stage; denial preserves intended owner recovery.",
+      "before": "Cross-lineage submission consumed reserved identity before the fix. Duplicate reservation issuance separately failed atomically via SQLite UNIQUE: this control is an error-contract improvement, not a prior overwrite or mutation defect.",
+      "correction": "Every candidate passes global successor reservation validation before mutation; issuance rejects existing candidate/reservation with explicit reason.",
+      "observed_after": "Owner recovery remains successful after each denied mismatch; unchanged prior suite and added controls pass in exact stage1 candidate201tests and stage2 cumulative224tests.",
+      "causal_boundary": "The original stage/lineage-only check omitted the global candidate identity reservation; no external-system causal claim."
+    },
+    {
+      "case_id": "RC-LANE-06",
+      "status": "REPAIR_EVIDENCE_MATCHES_WITHIN_DECLARED_BOUNDARY; HOLD_PENDING_OUT_OF_BAND_REVIEW",
+      "expected": "Pending event policy/epoch authority cannot be restored by a current builder grant. Policy change, epoch-only change and restart must deny without successor/closure writes; explicit current architect reauthorization permits only the exact event.",
+      "before": "Four policy/epoch-by-restart scenarios admitted stale events under intentionally renewed builder lane.seal grants; unchanged-policy control passed.",
+      "correction": "Event pins issuance policy,epoch,task and revision. Submission validates immutable origin/task/lineage/stage and current policy/epoch; stale event requires append-only exact-event-digest approval.",
+      "recovery_authority": "Trusted LaneStore.reauthorize requires current host lane.reauthorize permission, exact event/origin task revision and owner stage, human_architect role, nonclosed known event, and final current authority check in the same SQLite transaction. Approval binds exact event digest, origin receipt, lineage,stage,task/revision and current policy/epoch. Original event remains immutable; no MCP tool was added.",
+      "observed_after": "Policy/epoch and restart negatives, unchanged-policy positive, explicit architect recovery, idempotent approval, next-epoch invalidation, closed/unknown/wrong-event/legacy denial and wrong-role/stage/operation/task/revision/revoked/stale/expired grant controls are recorded passing.",
+      "limits": "Direct absent-lane.reauthorize-grant fixture was not separately executed. Rejection for absence is a compositional source inference from the first authorize_and_checkpoint call and existing host missing-grant tests, not a claimed dedicated recovery witness. Task revision changes and missing legacy issuance binding fail closed; no migration or rebinding authority is provided."
+    }
+  ],
+  "retained_failures": {
+    "initial": "evidence/oob_lane_before.xml retains7tests:6failures and1unchanged-policy positive.",
+    "recovery_oracle": "evidence/oob_lane_epoch_recovery.xml retains22tests with1expected-reason mismatch. The caller actually had a builder-role grant while requesting architect identity, so preserved native HOST_IDENTITY_SCOPE_DENIED was correct; old HOST_GRANT_DENIED expectation was corrected without weakening denial/no-write boundary.",
+    "oracle_continuity": "evidence/oob_lane_oracle_correction.json retains exact one-line diff and reconstructed before-source explicitly labeled as reconstructed, plus after-source. Recovery_v2 records29passing cases; full224suite retains the same authorization boundary.",
+    "previous_closures": "Prior12scoped case records and cumulative40/RRCA90row prefixes remain exact historical evidence. They are not blanket approval of the newly tested seams."
+  },
+  "verification": {
+    "runtime_count": 116,
+    "runtime_hash_mismatches": [],
+    "stages": [
+      {
+        "stage": 1,
+        "exact_overlay_match": true,
+        "embedded_snapshot_mismatches": [],
+        "candidate_files": 106,
+        "producer_reports_unchanged_after": true,
+        "junit_hash_match": true,
+        "tests": 201,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "stage": 2,
+        "exact_overlay_match": true,
+        "embedded_snapshot_mismatches": [],
+        "candidate_files": 114,
+        "producer_reports_unchanged_after": true,
+        "junit_hash_match": true,
+        "tests": 224,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "coverage": {
+      "changed_files": 30,
+      "exact_changed_file_set_matches": true,
+      "raw_coverage_hash_matches": true,
+      "summary_mismatches": [],
+      "covered": 235,
+      "total": 252,
+      "excluded": 0,
+      "percent": 93.25396825396825,
+      "branch_subcondition": "PASS",
+      "whole_HMT_N11": "NOT_EXECUTED; applicable assertion and full critical mutation obligations remain unestablished"
+    },
+    "ledger_hash_checks": [
+      {
+        "path": "evidence/Cumulative_Gate_Ledger.csv",
+        "matches": true
+      },
+      {
+        "path": "evidence/Reverse_RCA_Ledger.csv",
+        "matches": true
+      },
+      {
+        "path": "evidence/build_ledgers.sqlite.gz",
+        "matches": true
+      },
+      {
+        "path": "evidence/oob_history/Cumulative_Gate_Ledger.csv",
+        "matches": true
+      },
+      {
+        "path": "evidence/oob_history/Reverse_RCA_Ledger.csv",
+        "matches": true
+      },
+      {
+        "path": "evidence/oob_history/archive_index.json",
+        "matches": true
+      },
+      {
+        "path": "evidence/oob_history/build_ledgers.sqlite.gz",
+        "matches": true
+      }
+    ],
+    "sqlite_integrity": "ok",
+    "ledger_tables": [
+      {
+        "table": "cumulative_gate_ledger",
+        "rows": 44,
+        "columns": 8,
+        "csv_sqlite_parity": true,
+        "blank_attestations": 0,
+        "historical_prefix": 40,
+        "prefix_exact": true
+      },
+      {
+        "table": "reverse_rca_ledger",
+        "rows": 98,
+        "columns": 8,
+        "csv_sqlite_parity": true,
+        "blank_attestations": 0,
+        "historical_prefix": 90,
+        "prefix_exact": true
+      }
+    ],
+    "historical_cases_exact": true,
+    "active_cases": [
+      {
+        "case_id": "RC-LANE-05",
+        "case_hash_matches": true,
+        "regression_hash_matches": true,
+        "status": "REPAIR_VERIFIED_HOLD_PENDING_OUT_OF_BAND_REVIEW",
+        "checkpoints": [
+          "INITIATION",
+          "CAUSAL_CORRECTION",
+          "REGRESSION",
+          "DISPOSITION"
+        ]
+      },
+      {
+        "case_id": "RC-LANE-06",
+        "case_hash_matches": true,
+        "regression_hash_matches": true,
+        "status": "REPAIR_VERIFIED_HOLD_PENDING_OUT_OF_BAND_REVIEW",
+        "checkpoints": [
+          "INITIATION",
+          "CAUSAL_CORRECTION",
+          "REGRESSION",
+          "DISPOSITION"
+        ]
+      }
+    ],
+    "case_evidence_checks": [
+      {
+        "path": "evidence/oob_lane_before.xml",
+        "matches": true
+      },
+      {
+        "path": "evidence/oob_lane_before_sources.json",
+        "matches": true
+      },
+      {
+        "path": "evidence/oob_lane_before_tests.json",
+        "matches": true
+      },
+      {
+        "path": "evidence/oob_lane_reservation_regression.xml",
+        "matches": true
+      },
+      {
+        "path": "evidence/oob_lane_reservation_formatted.xml",
+        "matches": true
+      },
+      {
+        "path": "evidence/oob_lane_before.xml",
+        "matches": true
+      },
+      {
+        "path": "evidence/oob_lane_before_sources.json",
+        "matches": true
+      },
+      {
+        "path": "evidence/oob_lane_before_tests.json",
+        "matches": true
+      },
+      {
+        "path": "evidence/oob_lane_epoch_recovery.xml",
+        "matches": true
+      },
+      {
+        "path": "evidence/oob_lane_epoch_recovery_v2.xml",
+        "matches": true
+      },
+      {
+        "path": "evidence/oob_lane_full_regression.xml",
+        "matches": true
+      },
+      {
+        "path": "evidence/oob_lane_runtime_inventory.json",
+        "matches": true
+      }
+    ],
+    "records_sha256": {
+      "evidence/oob_assurance_sources.json": "8efecfb3f5f1cf79e6c58bb3f666d07258bf1339b04ed78fb9ee9b97a6d8615d",
+      "evidence/oob_assurance_initial.json": "d6837e16a49a238bdcf9b1fca0c36e239e4d04a1397fd003f92b61ce9e53339d",
+      "evidence/oob_lane_before.xml": "590efda4e4d40886699c424be388c4032e483bcde7ee3998685a2f10f32b5392",
+      "evidence/oob_lane_before_sources.json": "930a7f9c0b61871508e7b5a0ad6118bec3c24b2f55c2378b997b583895beca5b",
+      "evidence/oob_lane_before_tests.json": "b67d6ea8f0dd64cdf30ca81ed04b3a8f5ca4f5170263098d0b87c5779eb80004",
+      "evidence/oob_lane_step1.json": "b1daca4557e035a3b93b7e44a4c0a682798e12d27e48173208c59a5b5c2fb353",
+      "evidence/oob_lane_step2.json": "c0fbda08cf7e0c08d7782695fc206dd4caf5d0a9e4b728498ee3d752502701f0",
+      "evidence/oob_lane_case05.json": "e4032b7a1e4d80f10a15dc9bd87bc1a40f519b8dbf09d9d507bb63c2e37f98ee",
+      "evidence/oob_lane_case06.json": "b2796f883789d875ab40e650f9a62b8d64d3e4941e0c8f566c1baba51d03e03d",
+      "evidence/oob_lane_oracle_correction.json": "749ecab2dc170530d6636b763fe9b0cd50d564c68323700c0ce4c374ff415c00",
+      "evidence/oob_supervisor_stage1.json": "368d48550273eae79e719c567ee22b0b70fb803e649cd419141bcf1aa88e7100",
+      "evidence/oob_supervisor_stage2.json": "b0c2496d62429e03348bbaaf8e4f246438782e80572bbbc0f967f8195d3b8eb7",
+      "evidence/oob_supervisor_results.json": "c13dba2b938b20bd33fae3c06645e305b5f9c5066bc3b378c8f88050bb48a880",
+      "evidence/oob_changed_coverage.json": "cdad533118c91c1ddb41274c3c241cb1cfc8af6c69a403ce49a57a88b47c4c2c",
+      "evidence/oob_supervisor_coverage.json": "ae3888581d5dfd250567f40456b34e942e9d889d4c6f5373dca819a64398c7ae",
+      "evidence/oob_case_register.json": "1c10294f73f02d5b0a6ff7b1b23dc4fae5c55742649b49db08656e304aa32dbf",
+      "evidence/oob_ledger_manifest.json": "da601c1b1baa1527ce50a62cfa4ca9d107126f7c2f0ac2ac356b080c141d27c1",
+      "contracts/CR-OOB-RECONCILIATION-005.json": "96dc21feffdf53c5db3e8ccc23b29b16d2edb439977db0c75d8bda847d9ea4c9"
+    },
+    "publication": {
+      "commit": "0892ba269597be15e49eb3310a76918f8ce77ff0",
+      "tree": "e6f63bf7fb3768ee35eb761002b7f6a50785b42a",
+      "nontruncated": true,
+      "commit_tree_match": true,
+      "file_count": 116,
+      "mismatches": []
+    }
+  },
+  "scope_limitations": [
+    "Actual gate evaluators, production identities, filesystem/egress isolation, hardware, numerical mission profiles and real external endpoint semantics remain outside this repair review.",
+    "Passed fixture observations are not full HMT-B07,F02,N07,N11 or Forge acceptance.",
+    "Runtime inventory has116files including pyproject.toml/uv.lock; executable src/tests/scripts subset114matches root isolated replay and published Git tree.",
+    "Unsigned worker/supervisor evidence and content hashes establish consistency/integrity, not producer authenticity or independently witnessed execution.",
+    "Original out-of-band supervisor review and release decision remain outstanding; no release is inferred from test count, coverage or this report."
+  ],
+  "sub_agent_task_attestation": {
+    "agent": "/root/assurance_reconciliation",
+    "target_execution": false,
+    "implementation_changes": false,
+    "authority": "Read-only evaluation and new owned report only",
+    "release_authority": false,
+    "unsigned": true
+  }
+}

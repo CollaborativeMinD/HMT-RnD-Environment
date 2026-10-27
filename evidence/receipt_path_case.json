@@ -1,0 +1,653 @@
+{
+  "case_id": "RC-RECEIPT-PATH-01",
+  "as_of": "2026-10-27T04:01:58.937823+00:00",
+  "owner": "/root",
+  "parent": "f0e671acd513be3bfdb72e546d422839fdfbbf2e",
+  "parent_acceptance": "evidence/acceptance_6433215377.json",
+  "review_source": {
+    "id": 4384864734,
+    "path": "src/hmt_rnd/lane_records.py",
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4384864734"
+  },
+  "status": "IMPLEMENTED_AND_PERSONALLY_VERIFIED_READY_FOR_REVIEW",
+  "integration": "BLOCKED",
+  "merge_deployment": "NOT_AUTHORIZED",
+  "whole_build_acceptance": "INSUFFICIENT_EVIDENCE",
+  "scope": "New receipt source-locator persistence in existing lifecycle path; no integration or new authority.",
+  "packages": [
+    "WP-01",
+    "WP-08",
+    "WP-10"
+  ],
+  "requirements": [
+    {
+      "id": "HMT-F02",
+      "revision": 1,
+      "owner": "Host",
+      "acceptance": "Intersect principal, role, lane, stage, task ownership, lease, epoch, policy, resource scope, and current evidence at the effect boundary. Hidden-tool direct invocation receives the same decision.",
+      "verification_method": "API boundary tests and concurrent authority-change experiments",
+      "required_evidence": [
+        "Authenticated identity",
+        "policy/epoch",
+        "admission event",
+        "endpoint effect journal"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-F03",
+      "revision": 1,
+      "owner": "IIEA",
+      "acceptance": "Reject unknown fields, coercions, excess depth/size, unsupported versions, and invalid outputs before downstream promotion; validate before invoking target where applicable. Versioned closed contracts preserve native semantics.",
+      "verification_method": "Schema boundary tests through both transports",
+      "required_evidence": [
+        "Input/output bytes or redacted digests",
+        "validation errors",
+        "zero-effect witness"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-F14",
+      "revision": 1,
+      "owner": "RRCA",
+      "acceptance": "Compile one incident history and repair budget; traverse evidence backward to the last supported edge, preserve unknown frontier, and route repair to its owning lane. RRCA cannot execute repair or promote.",
+      "verification_method": "Injected known faults; false-cause and duplicate-incident tests",
+      "required_evidence": [
+        "Incident identity",
+        "admitted causal edges",
+        "frontier",
+        "corrective task and regression links"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-N07",
+      "revision": 1,
+      "owner": "Host",
+      "acceptance": "Expiry is exclusive; full clock uncertainty interval must fit grant interval. Revoke and dispatch admission serialize within their authority domain. No admission after committed revoke; stale worker leases cannot commit. Unknown clock trust or rollback yields HOLD.",
+      "verification_method": "Exact-expiry, skew, rollback and revoke-race boundary tests",
+      "required_evidence": [
+        "Clock interval",
+        "ordered revoke/admission records",
+        "lease fence",
+        "endpoint grant check"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-N11",
+      "revision": 1,
+      "owner": "Quality",
+      "acceptance": "100% required applicable assertions have current witnesses; all critical gate mutants are killed; changed first-party executable code branch coverage >=90% with fixed denominator and no exclusions/suppressions. Every surviving noncritical mutant receives disposition; no aggregate score hides a critical survivor.",
+      "verification_method": "Coverage and mutation campaigns with immutable denominator",
+      "required_evidence": [
+        "Covered/total branches",
+        "mutant catalog",
+        "killed/survived results",
+        "critical gate effects"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-N12",
+      "revision": 1,
+      "owner": "DOKE",
+      "acceptance": "Every claim witness binds source/build/policy/schema/environment, UTC event time, monotonic duration where applicable, raw artifact digests, producer identity, and replay scope. No automatic evidence/tombstone deletion in baseline. Freshness evaluated at use under pinned profile.",
+      "verification_method": "Tampered/stale/mixed-build evidence and retention-capacity tests",
+      "required_evidence": [
+        "Hash manifest",
+        "authenticated producer records",
+        "freshness decision",
+        "retained failures",
+        "replay ranges"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-B07",
+      "revision": 1,
+      "owner": "Host",
+      "acceptance": "A changed predecessor/policy/schema invalidates affected descendants. Preserve denied/sealed artifacts immutable; create typed successor routed to earliest changed authority. Unaffected work may continue only with recorded dependency analysis.",
+      "verification_method": "Sequence S07; changed upstream hash and stale downstream receipt",
+      "required_evidence": [
+        "Dependency graph",
+        "invalidation set",
+        "predecessor/successor links",
+        "denied stale promotion"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-B10",
+      "revision": 1,
+      "owner": "Supervisor",
+      "acceptance": "A reproducible contradiction reopens exact requirements/assumptions and affected packages; retain original expectation and witness. Worker stops affected progression, files change request, and cannot relax success criteria. New baseline requires architecture-authority decision and regression closure.",
+      "verification_method": "Sequence S10 with intentionally false pinned assumption",
+      "required_evidence": [
+        "Contradiction",
+        "impact graph",
+        "change request",
+        "decision",
+        "old/new requirement revisions",
+        "rerun evidence"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-B11",
+      "revision": 1,
+      "owner": "Quality",
+      "acceptance": "Retain old failure/test identity. Superseding test must cover same requirement, failure mechanism, and boundaries, with matched reproduction and repair evidence; otherwise record changed contract and approved revision. New pass alone cannot close old failure.",
+      "verification_method": "Sequence S11; weaker replacement and changed-boundary controls",
+      "required_evidence": [
+        "Old/new test hashes",
+        "coverage equivalence",
+        "original fail",
+        "repaired rerun",
+        "approved contract delta"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-B12",
+      "revision": 1,
+      "owner": "RRCA",
+      "acceptance": "For every claimed dependency run intact baseline, edge deletion, restoration, matched/sham control, and alternate-path compensation enabled/disabled. Failure to affect output under redundancy cannot establish irrelevance; bound conclusion to observed paths.",
+      "verification_method": "Sequence S12 per named causal edge",
+      "required_evidence": [
+        "Edge-specific experiment plan",
+        "controlled states/seeds",
+        "all arm observations",
+        "alternative-path analysis"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    },
+    {
+      "id": "HMT-B15",
+      "revision": 1,
+      "owner": "Supervisor",
+      "acceptance": "Work packages pin requirement revisions, inputs, interfaces, owned files, expected observations, budgets, forbidden effects, and reopen route. Supervisor reconciles upstream/downstream attestations. Human retains architecture change and final closeout authority.",
+      "verification_method": "Cross-package contradiction and release rehearsal",
+      "required_evidence": [
+        "Package manifests",
+        "coupling checks",
+        "eight-column attestation ledger when delegated",
+        "exact-build acceptance packet"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "qualification_status": "NOT_EXECUTED"
+    }
+  ],
+  "requirement_assertion_receipt_trace": [
+    {
+      "requirements": [
+        "HMT-N12@1",
+        "HMT-F03@1"
+      ],
+      "test": "tests/test_receipt_path_restart.py::test_receipt_paths_survive_cwd_change_and_process_restart",
+      "expected": "Exact newly issued SEALED/DENIED receipt, original file snapshots and absolute artifact/evidence spellings survive cwd change; fresh-process and DB-object modes; original input/evaluator spelling unchanged.",
+      "receipts": [
+        {
+          "tests": 40,
+          "failures": 30,
+          "errors": 0,
+          "skips": 0,
+          "raw": "evidence/receipt_path_before.xml",
+          "sha256": "b50d8cfd3a4775d016e381d62f63bf4b0ab2fa7733e5c1c5d98f38f0afffbcf9"
+        },
+        {
+          "tests": 46,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "raw": "evidence/receipt_path_after.xml",
+          "sha256": "3dbdf9e303e8086420a7ca6d1c2c1cd58c3b9c6bac693b3c09c373623165685d"
+        }
+      ]
+    },
+    {
+      "requirements": [
+        "HMT-B07@1",
+        "HMT-F02@1"
+      ],
+      "test": "tests/test_receipt_path_restart.py::test_downstream_consumes_original_receipt_from_new_cwd; tests/test_receipt_path_drift.py",
+      "expected": "Current downstream consumes the original predecessor; changed/missing original artifact/evidence routes typed reopen and successor reseal, preserving historical receipt and snapshot.",
+      "receipts": [
+        {
+          "tests": 40,
+          "failures": 30,
+          "errors": 0,
+          "skips": 0,
+          "raw": "evidence/receipt_path_before.xml",
+          "sha256": "b50d8cfd3a4775d016e381d62f63bf4b0ab2fa7733e5c1c5d98f38f0afffbcf9"
+        },
+        {
+          "tests": 46,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "raw": "evidence/receipt_path_after.xml",
+          "sha256": "3dbdf9e303e8086420a7ca6d1c2c1cd58c3b9c6bac693b3c09c373623165685d"
+        }
+      ]
+    },
+    {
+      "requirements": [
+        "HMT-F03@1",
+        "HMT-F02@1"
+      ],
+      "test": "tests/test_receipt_path_guards.py",
+      "expected": "Relative live/dangling symlink or parent component denies before absolute persistence, with all table state unchanged and evaluator calls0/1 at the declared cut.",
+      "receipts": [
+        {
+          "tests": 46,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "raw": "evidence/receipt_path_after.xml",
+          "sha256": "3dbdf9e303e8086420a7ca6d1c2c1cd58c3b9c6bac693b3c09c373623165685d"
+        }
+      ]
+    },
+    {
+      "requirements": [
+        "HMT-N07@1",
+        "HMT-F02@1"
+      ],
+      "test": "tests/test_receipt_path_expiry.py",
+      "expected": "Clock advanced during artifact/evidence absolute conversion to exclusive grant/evidence expiry yields HOST_LEASE_OR_EVIDENCE_EXPIRED and no receipt, snapshots or host clock mutation.",
+      "receipts": [
+        {
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "raw": "evidence/receipt_path_expiry.xml",
+          "sha256": "a210cea7676b2749987fc32b9c877afe2ab0de3209ee76185e0eea56830c79cb"
+        },
+        {
+          "tests": 4,
+          "failures": 4,
+          "errors": 0,
+          "skips": 0,
+          "raw": "evidence/receipt_path_mutant_bind_after_final_admission.xml",
+          "sha256": "ee2fa4a98c18072c12868caa8163eae4f3999553eace4c2ba34f2adbe6f69038"
+        }
+      ]
+    },
+    {
+      "requirements": [
+        "HMT-B12@1",
+        "HMT-F14@1"
+      ],
+      "test": "tests/receipt_path_family_driver.py; evidence/receipt_path_causal_family.json",
+      "expected": "Intact/restore/sham preserve cwd-independent reads; deletion and alternate-off deny; restoring issuer cwd compensates read only, with the legacy-format receipt explicitly nonpromotable.",
+      "receipts": [
+        "evidence/receipt_path_causal_family.json"
+      ]
+    },
+    {
+      "requirements": [
+        "HMT-B10@1",
+        "HMT-B11@1",
+        "HMT-N11@1",
+        "HMT-B15@1"
+      ],
+      "test": "evidence/receipt_path_collection.json; evidence/receipt_path_mutations.json",
+      "expected": "Retain original30failures/10controls, all415previous IDs within465; delete binding kills30samecases, late binding kills4expirycases; no requirement relaxation.",
+      "receipts": [
+        {
+          "tests": 465,
+          "failures": 0,
+          "errors": 0,
+          "skips": 0,
+          "raw": "evidence/receipt_path_full.xml",
+          "sha256": "b1c2a202033cfeaf04627ae1b5393fd68fe974ca08fc26ce12e3c6742658a79a"
+        },
+        {
+          "tests": 40,
+          "failures": 30,
+          "errors": 0,
+          "skips": 0,
+          "raw": "evidence/receipt_path_mutant_delete_binding.xml",
+          "sha256": "5ace2d8ea726bfe3a887fc1eae75e3e29064e86c238c9bf2f1b1242cbf9d0a40"
+        },
+        {
+          "tests": 4,
+          "failures": 4,
+          "errors": 0,
+          "skips": 0,
+          "raw": "evidence/receipt_path_mutant_bind_after_final_admission.xml",
+          "sha256": "ee2fa4a98c18072c12868caa8163eae4f3999553eace4c2ba34f2adbe6f69038"
+        }
+      ]
+    }
+  ],
+  "governing_sources": [
+    {
+      "path": "/workspace/scratch/bc6d4e512874/deliverable/task_plan.md",
+      "sha256": "56630afcf2efb1a0ea2de0980adf7141d7bf68a9c83171000d7e16b553747d7b",
+      "version_or_basis": "0.1.0 revision 2",
+      "match_prior_inventory": true,
+      "note": "Prior source inventory inspected; active task contracts and relevant implementation/tests reread."
+    },
+    {
+      "path": "/workspace/scratch/bc6d4e512874/deliverable/implementation_laws.html",
+      "sha256": "c18310546c3368fccb4276b69a67d50dc65a9424e769b06182acf34d88176a94",
+      "version_or_basis": "0.1.0 revision 2",
+      "match_prior_inventory": true,
+      "note": "Prior source inventory inspected; active task contracts and relevant implementation/tests reread."
+    },
+    {
+      "path": "/workspace/scratch/bc6d4e512874/hmt-system-preview.html",
+      "sha256": "9a22479a8b9615b2be9254a994fe765cc0aa92ef59e9ee8f5f4fa69bee9b2874",
+      "version_or_basis": "available rendered source; no independent signed seal",
+      "match_prior_inventory": true,
+      "note": "Prior source inventory inspected; active task contracts and relevant implementation/tests reread."
+    },
+    {
+      "path": "/workspace/scratch/bc6d4e512874/HMT_Forge_Low_Level_Design_Review_v0.1.0.html",
+      "sha256": "e0284902ba9dd4e64044ec1be9424498478b406d17799ca3a69c21a769d4854c",
+      "version_or_basis": "0.1.0",
+      "match_prior_inventory": true,
+      "note": "Prior source inventory inspected; active task contracts and relevant implementation/tests reread."
+    },
+    {
+      "path": "/workspace/scratch/bc6d4e512874/project_sources/09-rrca_verification_and_validation_v4.md",
+      "sha256": "9e40b6b088a8196f959fba170403d0b6da8340a27ab1fe04a5843004e234076d",
+      "version_or_basis": "v4",
+      "match_prior_inventory": true,
+      "note": "Prior source inventory inspected; active task contracts and relevant implementation/tests reread."
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "36dcd2535a962235d9771d8b74b0747429482eb4f22a4a52d7790d874b573cd2",
+      "version_or_basis": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe",
+      "match_prior_inventory": true,
+      "note": "Prior source inventory inspected; active task contracts and relevant implementation/tests reread."
+    },
+    {
+      "path": "Runbook.md",
+      "sha256": "59c9cf27e5bc6ae72d577bbbe0249a851b7a115356c418789a2856cca772b038",
+      "version_or_basis": "published parent plus this scoped Runbook correction",
+      "match_prior_inventory": false,
+      "note": "Runbook has authorized subsequent updates; original design files are unchanged."
+    },
+    {
+      "path": "docs/build_plan.md",
+      "sha256": "0ab86038a4514aaf073d47499f13f09abacf84406812f2516de12a484b1b0928",
+      "version_or_basis": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe",
+      "match_prior_inventory": true,
+      "note": "Prior source inventory inspected; active task contracts and relevant implementation/tests reread."
+    },
+    {
+      "path": "contracts/build_baseline.json",
+      "sha256": "41713dfba5ad59b8e0d9d76cf6c9663aae6963dc82d115f7003dc7c0883b6ca3",
+      "version_or_basis": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe",
+      "match_prior_inventory": true,
+      "note": "Prior source inventory inspected; active task contracts and relevant implementation/tests reread."
+    },
+    {
+      "path": "contracts/requirements.json",
+      "sha256": "301592b8bf3a33c52318ab3ff37c47b072b12761385d8bc71bad7c07a7a97546",
+      "version_or_basis": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe",
+      "match_prior_inventory": true,
+      "note": "Prior source inventory inspected; active task contracts and relevant implementation/tests reread."
+    },
+    {
+      "path": "contracts/vv_methodology.json",
+      "sha256": "988f9974d3e048f0eb2327a322ffd7641c4d90c8d3ec2f2ca4ec5ad858d5699d",
+      "version_or_basis": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe",
+      "match_prior_inventory": true,
+      "note": "Prior source inventory inspected; active task contracts and relevant implementation/tests reread."
+    },
+    {
+      "path": "contracts/complexity_policy.json",
+      "sha256": "f17828f8ec44d2db444066ea89e0c8fece24b90a78ab3e637491f5482769c35d",
+      "version_or_basis": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe",
+      "match_prior_inventory": true,
+      "note": "Prior source inventory inspected; active task contracts and relevant implementation/tests reread."
+    },
+    {
+      "path": "contracts/binding.schema.json",
+      "sha256": "c672e380308976cb47cb0f438b2da61e7717b88c28124ff1123a32d31c5f8444",
+      "version_or_basis": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe",
+      "match_prior_inventory": true,
+      "note": "Prior source inventory inspected; active task contracts and relevant implementation/tests reread."
+    },
+    {
+      "path": "contracts/binding_register.json",
+      "sha256": "53b91df393d62c2a1974d37cc4d0495cf61a282c691b74343149a4c1fdc0e3c3",
+      "version_or_basis": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe",
+      "match_prior_inventory": true,
+      "note": "Prior source inventory inspected; active task contracts and relevant implementation/tests reread."
+    },
+    {
+      "path": "contracts/work_packages.json",
+      "sha256": "885c2cbf05be4b96ab5b55bec09101d129812c6df05ee09c35ab086774f1d98a",
+      "version_or_basis": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe",
+      "match_prior_inventory": true,
+      "note": "Prior source inventory inspected; active task contracts and relevant implementation/tests reread."
+    },
+    {
+      "path": "contracts/CR-REFERENCE-DERIVATION-003.json",
+      "sha256": "84b5983231c192cc6a263c47616da5254a6ac63690eb80c5016c89f6490969c8",
+      "version_or_basis": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe",
+      "match_prior_inventory": true,
+      "note": "Prior source inventory inspected; active task contracts and relevant implementation/tests reread."
+    }
+  ],
+  "causal_chain": [
+    "Valid artifact/evidence relative paths pass guarded reads and snapshot preservation in issuing cwd.",
+    "record serializes relative spellings unchanged and hashes that body; issuing cwd is not recorded.",
+    "A new cwd changes relative locator interpretation despite unchanged source bytes and intact receipt hash.",
+    "Actual receipt verification, downstream consumption and drift discovery fail scope checks.",
+    "Persist absolute spellings at the sole admitted record caller after all original guards/snapshots, before final clock and authority recheck.",
+    "New receipt paths remain stable while original input models/evaluator spelling and forbidden-path checks retain semantics."
+  ],
+  "causal_frontier": "Observed local path resolution/read/receipt behavior in declared cwd sequences. No arbitrary concurrent cwd or filesystem mutation claim.",
+  "source_diff": "--- parent/lane_submission.py\n+++ candidate/lane_submission.py\n@@ -69,6 +69,9 @@\n     verify_result(context, result, root)\n     check_parent(db, candidate, root, authority.policy, authority.epoch)\n     preserve(db, candidate, result, root)\n+    candidate = candidate.model_copy(update={\"artifact\": candidate.artifact.absolute()})\n+    result = result.model_copy(update={\"evidence\": tuple(\n+        item.model_copy(update={\"path\": item.path.absolute()}) for item in result.evidence)})\n     final_clock = clock()\n     authorize_and_checkpoint(db, identity, request, final_clock)\n     return record(db, identity, request, candidate, result, final_clock.now)\n",
+  "implementation_order": [
+    "canonical input/admission and predecessor checks",
+    "original-path evaluator and verification",
+    "bounded snapshot preservation",
+    "absolute spellings without resolve",
+    "final trusted clock and current authority",
+    "record hashed receipt/closure in existing host transaction"
+  ],
+  "definition_of_done": [
+    "Retain original failures with immutable source/test bytes.",
+    "Future receipts carry absolute guarded artifact/evidence spellings without changing caller inputs.",
+    "Verify SEALED/DENIED, current downstream consumption and typed drift/missing recovery across cwd/process boundary.",
+    "Do not weaken symlink/parent guards or put cwd I/O after final authority.",
+    "Preserve prior receipts, all cumulative IDs, source pins, RRCA and requirement revisions; record actual execution vs inspection."
+  ],
+  "source_candidate": {
+    "manifest": "evidence/receipt_path_candidate.json",
+    "sha256": "83329fd0b2da364be21605137170739caa26fb18b46d478d3ac5b180386270c2",
+    "runtime_config_pins": 152,
+    "pre_post_mismatches": 0,
+    "identity": "current commit containing this source inventory"
+  },
+  "results": {
+    "before": {
+      "tests": 40,
+      "failures": 30,
+      "errors": 0,
+      "skips": 0,
+      "raw": "evidence/receipt_path_before.xml",
+      "sha256": "b50d8cfd3a4775d016e381d62f63bf4b0ab2fa7733e5c1c5d98f38f0afffbcf9"
+    },
+    "focused": {
+      "tests": 46,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "raw": "evidence/receipt_path_after.xml",
+      "sha256": "3dbdf9e303e8086420a7ca6d1c2c1cd58c3b9c6bac693b3c09c373623165685d"
+    },
+    "expiry": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "raw": "evidence/receipt_path_expiry.xml",
+      "sha256": "a210cea7676b2749987fc32b9c877afe2ab0de3209ee76185e0eea56830c79cb"
+    },
+    "cumulative": {
+      "tests": 465,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "raw": "evidence/receipt_path_full.xml",
+      "sha256": "b1c2a202033cfeaf04627ae1b5393fd68fe974ca08fc26ce12e3c6742658a79a"
+    },
+    "delete_mutant": {
+      "tests": 40,
+      "failures": 30,
+      "errors": 0,
+      "skips": 0,
+      "raw": "evidence/receipt_path_mutant_delete_binding.xml",
+      "sha256": "5ace2d8ea726bfe3a887fc1eae75e3e29064e86c238c9bf2f1b1242cbf9d0a40"
+    },
+    "late_mutant": {
+      "tests": 4,
+      "failures": 4,
+      "errors": 0,
+      "skips": 0,
+      "raw": "evidence/receipt_path_mutant_bind_after_final_admission.xml",
+      "sha256": "ee2fa4a98c18072c12868caa8163eae4f3999553eace4c2ba34f2adbe6f69038"
+    }
+  },
+  "verification_unittest": {
+    "tests": 27,
+    "failures": 0,
+    "scope": "Existing verification entrypoint; new pytest path cases are not a separately independent unittest implementation."
+  },
+  "static": {
+    "ruff": 0,
+    "pyrefly_basic": 0,
+    "structure_suppression": 0
+  },
+  "coverage": {
+    "path": "evidence/receipt_path_changed_coverage.json",
+    "sha256": "2b6957fc1e59e69617023cf8e1547d2c0fb0f64c22671f2819f571ef86561e90",
+    "branches": [
+      245,
+      260
+    ],
+    "changed_files": 32,
+    "exclusions": 0,
+    "full_N11_qualified": false
+  },
+  "causal_family": "evidence/receipt_path_causal_family.json",
+  "mutations": "evidence/receipt_path_mutations.json",
+  "observations": "evidence/receipt_path_observations.json",
+  "archives": "evidence/receipt_path_archives.json",
+  "personal_verification": {
+    "inspected": [
+      "exact accepted head and acceptance scope",
+      "governing source identities, requirements and V&V protocol",
+      "unchanged record sink, guarded descriptor reader, drift and predecessor paths",
+      "sole admitted record caller and new conversion-before-final-admission order",
+      "source diff and all scoped positive/negative assertions",
+      "raw original failures, controls, subprocess observations, mutation and causal family results",
+      "source inventory, all415priorIDs, coverage denominator and no exclusions"
+    ],
+    "executed": [
+      "40-case original reproduction:30failures/10controls",
+      "46 focused path/scope cases and4expiry cases",
+      "6 separately declared causal arms on exact source overlays",
+      "isolated465-test cumulative run",
+      "27verification unittest cases",
+      "two critical mutants",
+      "Ruff/Pyrefly basic/structural gates"
+    ],
+    "new_workers": 0,
+    "independent_review": "Not claimed for this source change. Parent acceptance is exact-candidate only.",
+    "producer_identity": "Unsigned caller assertion; hashes establish byte consistency, not authenticity."
+  },
+  "commands": {
+    "before": "uv run --no-sync python -m pytest tests/test_receipt_path_restart.py tests/test_receipt_path_drift.py -q --basetemp=/tmp/hmt-receipt-path-before --junitxml=evidence/receipt_path_before.xml",
+    "focused": "uv run --no-sync python -m pytest tests/test_receipt_path_restart.py tests/test_receipt_path_drift.py tests/test_receipt_path_guards.py -q --basetemp=/tmp/hmt-receipt-path-after --junitxml=evidence/receipt_path_after.xml",
+    "expiry": "uv run --no-sync python -m pytest tests/test_receipt_path_expiry.py -q --basetemp=/tmp/hmt-receipt-path-expiry --junitxml=evidence/receipt_path_expiry.xml",
+    "cumulative": "PYTHONPATH=src COVERAGE_FILE=/tmp/hmt-receipt-path-final.coverage uv run --project /workspace/scratch/bc6d4e512874/HMT-RnD-Environment --no-sync coverage run --source=hmt_rnd,scripts -m pytest -q --junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/receipt_path_full.xml",
+    "replay_cwd": "/workspace/scratch/bc6d4e512874/supervisor_receipt_path_replay",
+    "static": [
+      "uv run --project /workspace/scratch/bc6d4e512874/HMT-RnD-Environment --no-sync ruff check src tests scripts",
+      "uv run --project /workspace/scratch/bc6d4e512874/HMT-RnD-Environment --no-sync pyrefly check src",
+      "PYTHONPATH=src uv run --no-sync python scripts/check_structure.py"
+    ],
+    "unittest": "PYTHONPATH=src uv run --project /workspace/scratch/bc6d4e512874/HMT-RnD-Environment --no-sync python -m unittest discover -s tests -p 'test_verification*.py' -v",
+    "causal_and_mutant_commands": "Per-arm source SHA-256, cwd, argv and results in causal_family/mutations JSON."
+  },
+  "retention": "No test supersession or historical receipt rewrite; same40baseline cases rerun. Expiry observation was strengthened to record denied/successful mutation before assertion; no old failure removed.",
+  "limitations": [
+    "Only newly issued receipts acquire absolute paths; legacy relative receipts retain original bytes and require independently established original context or remain HOLD. No guessed base or migration.",
+    "Stable host cwd within each admitted operation is assumed; arbitrary concurrent global-cwd/filesystem mutation is not qualified.",
+    "Absolute spelling and content hashes do not establish producer authenticity, filesystem immutability or a sandbox.",
+    "Fresh-process verification/consumption is not process-kill/power-loss/HA qualification.",
+    "Alternate-on compensates a read by controlled issuer cwd restoration; it does not satisfy new receipt persistence or grant authority.",
+    "Current request root, assignment, policy and lease checks remain independent; no portable current authority is inferred from a stored path.",
+    "No complete domain evaluator, provider, task-tool/skill, voice/UI, performance or whole-work-package acceptance."
+  ],
+  "environment": {
+    "python": "3.13.16 (main, Oct 14 2026, 01:04:01) [Clang 23.1.3 ]",
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39"
+  }
+}

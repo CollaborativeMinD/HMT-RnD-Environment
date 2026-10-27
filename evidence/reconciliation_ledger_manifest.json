@@ -1,0 +1,14 @@
+{
+  "columns": 8,
+  "cumulative_rows": 40,
+  "rrca_rows": 90,
+  "cases": 12,
+  "preserved_parent_cumulative_rows": 16,
+  "case_scope": "12bounded reconciliation cases, historical original rows retained",
+  "snapshot_sha256": {
+    "evidence/Cumulative_Gate_Ledger.csv": "766382d24405bf701b2b97008238647f845690fa2a809d3c6b14fe8a0d410fac",
+    "evidence/Reverse_RCA_Ledger.csv": "f9560b1b100f4b54408919d13194a389409b839162dfbd7581f75af5755673eb",
+    "evidence/build_ledgers.sqlite": "f0cbaef15f6ec7f41c729c7d5aed2171b5303dd30ec485ce47ffa11cc527dbd6",
+    "evidence/build_ledgers.sqlite.gz": "71e159c566da81ab939e99ccf2fdc6e633fc641da6a547a511d06c74b9189066"
+  }
+}

@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.7.0
+rootdir: /workspace/scratch/bc6d4e512874/HMT-RnD-Environment
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collected 6 items
+
+tests/test_oob_lane_reservation.py ..                                    [ 33%]
+tests/test_oob_lane_reservation_controls.py ....                         [100%]
+
+- generated xml file: /workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/oob_lane_reservation_formatted.xml -
+============================== 6 passed in 0.50s ===============================

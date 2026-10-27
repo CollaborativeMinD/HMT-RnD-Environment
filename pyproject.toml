@@ -2,7 +2,7 @@
 name = "hmt-rnd-environment"
 version = "0.1.0"
 requires-python = ">=3.13"
-dependencies = ["pydantic>=2.12,<3"]
+dependencies = ["pydantic>=2.12,<3", "mcp==2.3.0"]
 
 [dependency-groups]
 dev = ["pytest>=9,<10", "ruff", "pyrefly", "coverage"]
@@ -16,3 +16,10 @@ line-length = 100
 
 [tool.ruff.lint]
 select = ["E", "F", "I"]
+
+[tool.coverage.run]
+branch = true
+source = ["hmt_rnd"]
+parallel = true
+sigterm = true
+patch = ["subprocess"]

@@ -1,0 +1,46 @@
+"""VOICE-DESCENDANT-001 and VOICE-CLOSED-PIPE-001 process witnesses."""
+import os
+import signal
+import sys
+import time
+from pathlib import Path
+
+import pytest
+
+from hmt_rnd.voice_process import run_local
+
+
+def running(pid):
+    status = Path(f"/proc/{pid}/stat")
+    return status.exists() and status.read_text().split()[2] != "Z"
+
+
+def test_successful_parent_does_not_leave_running_descendant():
+    code = """import os, time
+pid = os.fork()
+if pid == 0:
+    os.close(1)
+    os.close(2)
+    time.sleep(30)
+    os._exit(0)
+print(pid, flush=True)
+"""
+    result = run_local([sys.executable, "-c", code], 2.0, 1024)
+    child = int(result.stdout)
+    try:
+        deadline = time.monotonic() + 0.5
+        while running(child) and time.monotonic() < deadline:
+            time.sleep(0.01)
+        assert not running(child), "VOICE_DESCENDANT_SURVIVED_SUCCESS"
+        assert result.returncode == 0
+    finally:
+        if running(child):
+            os.kill(child, signal.SIGKILL)
+
+
+def test_closed_pipes_preserve_typed_deadline_failure():
+    code = "import os,time; os.close(1); os.close(2); time.sleep(30)"
+    started = time.monotonic()
+    with pytest.raises(TimeoutError, match="VOICE_PROCESS_TIMEOUT"):
+        run_local([sys.executable, "-c", code], 0.1, 1024)
+    assert time.monotonic() - started < 2

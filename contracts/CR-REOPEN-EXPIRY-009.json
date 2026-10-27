@@ -1,0 +1,26 @@
+{
+  "id": "CR-REOPEN-EXPIRY-009",
+  "case": "RC-REOPEN-EXPIRY-01",
+  "parent": "3622a4b23faaeb9bfdd90e2018c99e19caac84fe",
+  "requirements": [
+    "HMT-F02",
+    "HMT-F14",
+    "HMT-B07",
+    "HMT-B10",
+    "HMT-B11",
+    "HMT-B15",
+    "HMT-N11",
+    "HMT-N12"
+  ],
+  "requirement_revisions_changed": false,
+  "contradicted_assumption": "An admission check before added parent I/O remains current at mutation.",
+  "approved_scope": "Restore existing effect-boundary admission contract by reordering existing calls.",
+  "forbidden_changes": [
+    "new authority",
+    "assignment migration",
+    "fallback on HOLD",
+    "new feature or integration progression"
+  ],
+  "evidence": "evidence/supervision_reconciliation.json",
+  "status": "SOLUTION_CANDIDATE_APPLIED; HOLD_PENDING_OUT_OF_BAND_REVIEW"
+}

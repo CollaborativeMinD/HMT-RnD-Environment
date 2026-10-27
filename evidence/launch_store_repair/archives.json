@@ -1,0 +1,80 @@
+[
+  {
+    "raw": "evidence/launch_store_repair/intact.xml",
+    "compressed": "evidence/launch_store_repair/intact.xml.gz",
+    "sha256": "635aba2d18f0c2afe28eeb65460161d49669a743c133e867998151a1d24a4479",
+    "compressed_sha256": "ffbf4680083bc4885f36a61276dafa82b0cb1c073fc5e923654a184c2e2c567b"
+  },
+  {
+    "raw": "evidence/launch_store_repair/restoration.xml",
+    "compressed": "evidence/launch_store_repair/restoration.xml.gz",
+    "sha256": "ad9c626c1c8fa7b7ea00cbcad591de01548ea737efdf71b09cf65fe15c66bae7",
+    "compressed_sha256": "3274b013082f88624a9b1fcab2fa2e507370cb119b60c096e0ee5a241878f4e4"
+  },
+  {
+    "raw": "evidence/launch_store_repair/before.xml",
+    "compressed": "evidence/launch_store_repair/before.xml.gz",
+    "sha256": "46d7825334df39b27545f157b6f21746247146b081136943665574a0d765f400",
+    "compressed_sha256": "2a58fd021a5b4228e2e8c78a5733aff16fca1c6dce78e9269b0ca8e0f9b471e3"
+  },
+  {
+    "raw": "evidence/launch_store_repair/focused.xml",
+    "compressed": "evidence/launch_store_repair/focused.xml.gz",
+    "sha256": "057adc4e0beaf1be099e06be04c62f6c4a7105f42bd47f4c474f8211681a2852",
+    "compressed_sha256": "e714268eab187abbdf290d7c900d9bd761fd91dfa968b9865039a78f7b98df70"
+  },
+  {
+    "raw": "evidence/launch_store_repair/alternate_on.xml",
+    "compressed": "evidence/launch_store_repair/alternate_on.xml.gz",
+    "sha256": "ff5e5d515c87e5f01419571a10621d92411b8d280710e533954184de9ccfe272",
+    "compressed_sha256": "b1ca66046228bc63705627fb233553ac820f30ac5b5e23f83530960b8dbc0a9d"
+  },
+  {
+    "raw": "evidence/launch_store_repair/deletion.xml",
+    "compressed": "evidence/launch_store_repair/deletion.xml.gz",
+    "sha256": "cb12fac430b0029e2b7d3d555c6b1e4057beeb093ef8facf5a957b94182df786",
+    "compressed_sha256": "84604a9815011bd5eda74990950c7cf9339f3082b5863086610a326c07fda5c3"
+  },
+  {
+    "raw": "evidence/launch_store_repair/cumulative.xml",
+    "compressed": "evidence/launch_store_repair/cumulative.xml.gz",
+    "sha256": "e9a3efcc349151d41854609fd07b538fa63822a082c74555133ab340077e7651",
+    "compressed_sha256": "69052f519d88dfa1b470ee5e850cb0399905927a2d4a46c043b842661bd375f4"
+  },
+  {
+    "raw": "evidence/launch_store_repair/sham.xml",
+    "compressed": "evidence/launch_store_repair/sham.xml.gz",
+    "sha256": "64f34b8b62c5d107f02461ac4fef993ed03373fed5b766784dae9edd0f8d8dfe",
+    "compressed_sha256": "282a39b4f0c8e204445fea53d189079f53fe18bfef7081059ccf47421e390c17"
+  },
+  {
+    "raw": "evidence/launch_store_repair/alternate_off.xml",
+    "compressed": "evidence/launch_store_repair/alternate_off.xml.gz",
+    "sha256": "e8baee9ee1f81d80e1d69a1cc7ef470fb7afb98f24f0a18001135f6b17e95bca",
+    "compressed_sha256": "6af28ca82b3b9b879f13bb32efb452a71071963439c8f216f8e7f3c628997e52"
+  },
+  {
+    "raw": "evidence/launch_store_repair/controls_before.xml",
+    "compressed": "evidence/launch_store_repair/controls_before.xml.gz",
+    "sha256": "5074b18c2d3f317db8bca6f20e6ae61f8b435c7c7c3fbcf449f61c6264dfb8d1",
+    "compressed_sha256": "0ab3a515287f42644dbcd4ecd2b64fca83ff50aa78dac3ffa9ad8ad4de597cba"
+  },
+  {
+    "raw": "evidence/launch_store_repair/mutant_root.xml",
+    "compressed": "evidence/launch_store_repair/mutant_root.xml.gz",
+    "sha256": "dd1db3203938dadd12cba9a09bdf77fad9cec86946b9fe53a91465fdce58046c",
+    "compressed_sha256": "e72f02d91e41d9e683d2dcd7c04ebfab6502b9dbdbd3174ac14e550783e84450"
+  },
+  {
+    "raw": "evidence/launch_store_repair/mutant_store.xml",
+    "compressed": "evidence/launch_store_repair/mutant_store.xml.gz",
+    "sha256": "0f459389c92c97abe5758a6974a7bd100cffa4ff227d0051639c1aaf2f3bd56a",
+    "compressed_sha256": "383dd1960174a15bfe51a17b985d40b378d96ef9fb356544858004d19122fda0"
+  },
+  {
+    "raw": "evidence/launch_store_repair/coverage.json",
+    "compressed": "evidence/launch_store_repair/coverage.json.gz",
+    "sha256": "c8ce10dec5d14de4d5231655f9971f910189136dc36e66f32fb710f0e1113b80",
+    "compressed_sha256": "d1e6ad0d4e59c8f90e9570c9ccd130663859c1aae514042ee1c7d6da5e67b0fd"
+  }
+]

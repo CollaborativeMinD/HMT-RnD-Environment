@@ -1,0 +1,10 @@
+.................................................                        [100%]
+=============================== warnings summary ===============================
+tests/test_launch_identity_contract.py::test_shared_boundary_rejects_relative[instance-store]
+tests/test_launch_identity_contract.py::test_shared_boundary_rejects_relative[instance-root]
+  /workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/pydantic/main.py:587: UserWarning: Pydantic serializer warnings:
+    PydanticSerializationUnexpectedValue(Expected `Identity` - serialized value may not be as expected [field_name='identity', input_value={'principal': 'worker-bui...'host-bound-credential'}, input_type=dict])
+    return self.__pydantic_serializer__.to_json(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+49 passed, 2 warnings in 40.61s

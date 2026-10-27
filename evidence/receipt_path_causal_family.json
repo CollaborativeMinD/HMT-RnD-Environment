@@ -1,0 +1,119 @@
+{
+  "scope": "Read-location dependence under deleted/restored persistence; alternate issuer cwd compensates read only and does not qualify its relative receipt.",
+  "arms": [
+    {
+      "arm": "intact",
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+        "--no-sync",
+        "python",
+        "/workspace/scratch/bc6d4e512874/receipt_path_arm_intact/tests/receipt_path_family_driver.py",
+        "/workspace/scratch/bc6d4e512874/receipt_path_arm_intact/fixture",
+        "intact"
+      ],
+      "cwd": "/workspace/scratch/bc6d4e512874/receipt_path_arm_intact",
+      "source_sha256": "2dad7c47b526d244e1b75f9cb9dd214b1bc4f9fe2d913726c95b8145938b475c",
+      "returncode": 0,
+      "seconds": 0.7012004940042971,
+      "output": "{\"arm\": \"intact\", \"actual\": {\"error\": null, \"receipt\": \"03b8d58204c664e21331192b31b1b0474d13376b6765cd4075cdadb5b0ef1c5e\", \"snapshots\": [\"247780967f77c124b4f3b57ad7efe3de7ddcbcde88286d96e1fed952d99a1a90\", \"668a07934edcef1010634df12b2d97235b00804413c2b0d4376bd8c43733e0f0\"]}, \"expected_error\": null, \"issuer_cwd_restored\": false, \"persisted_absolute\": true, \"tables_unchanged_by_verification\": true, \"receipt_immutable\": true, \"claim_limit\": \"Alternate-on compensates the read only; its relative receipt still violates the new persistence contract and is not promoted.\"}\n"
+    },
+    {
+      "arm": "delete",
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+        "--no-sync",
+        "python",
+        "/workspace/scratch/bc6d4e512874/receipt_path_arm_delete/tests/receipt_path_family_driver.py",
+        "/workspace/scratch/bc6d4e512874/receipt_path_arm_delete/fixture",
+        "delete"
+      ],
+      "cwd": "/workspace/scratch/bc6d4e512874/receipt_path_arm_delete",
+      "source_sha256": "6d8531a8663602fbc8d4db79ea6fcd3243f17c8d4e3b0dad9cbaf035126f0df3",
+      "returncode": 0,
+      "seconds": 0.6426131919943145,
+      "output": "{\"arm\": \"delete\", \"actual\": {\"error\": \"LANE_ARTIFACT_SCOPE\"}, \"expected_error\": \"LANE_ARTIFACT_SCOPE\", \"issuer_cwd_restored\": false, \"persisted_absolute\": false, \"tables_unchanged_by_verification\": true, \"receipt_immutable\": true, \"claim_limit\": \"Alternate-on compensates the read only; its relative receipt still violates the new persistence contract and is not promoted.\"}\n"
+    },
+    {
+      "arm": "restore",
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+        "--no-sync",
+        "python",
+        "/workspace/scratch/bc6d4e512874/receipt_path_arm_restore/tests/receipt_path_family_driver.py",
+        "/workspace/scratch/bc6d4e512874/receipt_path_arm_restore/fixture",
+        "restore"
+      ],
+      "cwd": "/workspace/scratch/bc6d4e512874/receipt_path_arm_restore",
+      "source_sha256": "2dad7c47b526d244e1b75f9cb9dd214b1bc4f9fe2d913726c95b8145938b475c",
+      "returncode": 0,
+      "seconds": 0.5929873999994015,
+      "output": "{\"arm\": \"restore\", \"actual\": {\"error\": null, \"receipt\": \"753122c71fb2329ba2dd3b8998fd81ba23bc37992abe0d71bb63f705da575a60\", \"snapshots\": [\"247780967f77c124b4f3b57ad7efe3de7ddcbcde88286d96e1fed952d99a1a90\", \"668a07934edcef1010634df12b2d97235b00804413c2b0d4376bd8c43733e0f0\"]}, \"expected_error\": null, \"issuer_cwd_restored\": false, \"persisted_absolute\": true, \"tables_unchanged_by_verification\": true, \"receipt_immutable\": true, \"claim_limit\": \"Alternate-on compensates the read only; its relative receipt still violates the new persistence contract and is not promoted.\"}\n"
+    },
+    {
+      "arm": "sham",
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+        "--no-sync",
+        "python",
+        "/workspace/scratch/bc6d4e512874/receipt_path_arm_sham/tests/receipt_path_family_driver.py",
+        "/workspace/scratch/bc6d4e512874/receipt_path_arm_sham/fixture",
+        "sham"
+      ],
+      "cwd": "/workspace/scratch/bc6d4e512874/receipt_path_arm_sham",
+      "source_sha256": "d98a66db3cdfbbe2d4e1778a46b719f1b0c2ff707ba511411ddbcb1a5b26e602",
+      "returncode": 0,
+      "seconds": 0.9696937549961149,
+      "output": "{\"arm\": \"sham\", \"actual\": {\"error\": null, \"receipt\": \"3714f7ddd4b6b982a6e219fe06f272ed04af0a188c12ff3067ba3e1c08d51f5f\", \"snapshots\": [\"247780967f77c124b4f3b57ad7efe3de7ddcbcde88286d96e1fed952d99a1a90\", \"668a07934edcef1010634df12b2d97235b00804413c2b0d4376bd8c43733e0f0\"]}, \"expected_error\": null, \"issuer_cwd_restored\": false, \"persisted_absolute\": true, \"tables_unchanged_by_verification\": true, \"receipt_immutable\": true, \"claim_limit\": \"Alternate-on compensates the read only; its relative receipt still violates the new persistence contract and is not promoted.\"}\n"
+    },
+    {
+      "arm": "alternate_on",
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+        "--no-sync",
+        "python",
+        "/workspace/scratch/bc6d4e512874/receipt_path_arm_alternate_on/tests/receipt_path_family_driver.py",
+        "/workspace/scratch/bc6d4e512874/receipt_path_arm_alternate_on/fixture",
+        "alternate_on"
+      ],
+      "cwd": "/workspace/scratch/bc6d4e512874/receipt_path_arm_alternate_on",
+      "source_sha256": "6d8531a8663602fbc8d4db79ea6fcd3243f17c8d4e3b0dad9cbaf035126f0df3",
+      "returncode": 0,
+      "seconds": 0.9522592379944399,
+      "output": "{\"arm\": \"alternate_on\", \"actual\": {\"error\": null, \"receipt\": \"8f29857543477c3ed3c6593ee56076ad350a4e78cfdd91522451d9f8714a2e37\", \"snapshots\": [\"247780967f77c124b4f3b57ad7efe3de7ddcbcde88286d96e1fed952d99a1a90\", \"668a07934edcef1010634df12b2d97235b00804413c2b0d4376bd8c43733e0f0\"]}, \"expected_error\": null, \"issuer_cwd_restored\": true, \"persisted_absolute\": false, \"tables_unchanged_by_verification\": true, \"receipt_immutable\": true, \"claim_limit\": \"Alternate-on compensates the read only; its relative receipt still violates the new persistence contract and is not promoted.\"}\n"
+    },
+    {
+      "arm": "alternate_off",
+      "command": [
+        "uv",
+        "run",
+        "--project",
+        "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment",
+        "--no-sync",
+        "python",
+        "/workspace/scratch/bc6d4e512874/receipt_path_arm_alternate_off/tests/receipt_path_family_driver.py",
+        "/workspace/scratch/bc6d4e512874/receipt_path_arm_alternate_off/fixture",
+        "alternate_off"
+      ],
+      "cwd": "/workspace/scratch/bc6d4e512874/receipt_path_arm_alternate_off",
+      "source_sha256": "6d8531a8663602fbc8d4db79ea6fcd3243f17c8d4e3b0dad9cbaf035126f0df3",
+      "returncode": 0,
+      "seconds": 1.314369343999715,
+      "output": "{\"arm\": \"alternate_off\", \"actual\": {\"error\": \"LANE_ARTIFACT_SCOPE\"}, \"expected_error\": \"LANE_ARTIFACT_SCOPE\", \"issuer_cwd_restored\": false, \"persisted_absolute\": false, \"tables_unchanged_by_verification\": true, \"receipt_immutable\": true, \"claim_limit\": \"Alternate-on compensates the read only; its relative receipt still violates the new persistence contract and is not promoted.\"}\n"
+    }
+  ]
+}

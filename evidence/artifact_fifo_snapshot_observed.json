@@ -1,0 +1,6 @@
+{
+  "returncode": 0,
+  "stdout": "{\"race\": \"regular-to-FIFO\", \"shared_host_locked\": true}\n{\"denial\": \"LANE_SNAPSHOT_SCOPE\", \"elapsed\": 0.003918917998817051, \"rollback\": true, \"revocation_proceeds\": true, \"restart_denied\": true}\n",
+  "stderr": "",
+  "budget_seconds": 3
+}

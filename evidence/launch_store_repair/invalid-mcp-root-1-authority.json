@@ -1,0 +1,86 @@
+{
+  "raw": {
+    "identity": {
+      "principal": "worker-build",
+      "role": "builder",
+      "lane": "Build",
+      "stage": "B3",
+      "credential": "host-bound-credential"
+    },
+    "store": "/tmp/pytest-of-root/pytest-175/test_invalid_identity_zero_sto7/authority/host.sqlite",
+    "task_id": "task-1",
+    "revision": 1,
+    "root": ".",
+    "destination": "local",
+    "policy": "policy-1"
+  },
+  "observed": {
+    "returncode": 1,
+    "stdout": "",
+    "stderr": "Traceback (most recent call last):\n  File \"/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/launch_identity_worker.py\", line 19, in <module>\n    runpy.run_path(str(Path(__file__).with_name(\"inspection_worker.py\")), run_name=\"__main__\")\n    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen runpy>\", line 294, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/inspection_worker.py\", line 32, in <module>\n    main()\n    ~~~~^^\n  File \"/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/inspection_worker.py\", line 16, in main\n    config = InspectionLaunch.model_validate_json(read_launch(Path(sys.argv[1])))\n  File \"/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/.venv/lib/python3.13/site-packages/pydantic/main.py\", line 845, in model_validate_json\n    return cls.__pydantic_validator__.validate_json(\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n        json_data, strict=strict, extra=extra, context=context, by_alias=by_alias, by_name=by_name\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\npydantic_core._pydantic_core.ValidationError: 1 validation error for InspectionLaunch\nbinding.root\n  Value error, MCP_BINDING_PATH_NOT_ABSOLUTE [type=value_error, input_value='.', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/value_error\n",
+    "stores": [],
+    "native": []
+  },
+  "before": [
+    [
+      "BEGIN TRANSACTION;",
+      "CREATE TABLE host_grants(\n principal TEXT NOT NULL,task_id TEXT NOT NULL,operation TEXT NOT NULL,\n body TEXT NOT NULL,revoked INTEGER NOT NULL DEFAULT 0,\n PRIMARY KEY(principal,task_id,operation));",
+      "INSERT INTO \"host_grants\" VALUES('worker-build','task-1','validate_handoff','{\"principal\":\"worker-build\",\"role\":\"builder\",\"lane\":\"Build\",\"stage\":\"B3\",\"credential\":\"host-bound-credential\",\"task_id\":\"task-1\",\"revision\":1,\"operation\":\"validate_handoff\",\"root\":\"/tmp/pytest-of-root/pytest-175/test_invalid_identity_zero_sto7/authority\",\"destination\":\"local\",\"policy\":\"policy-1\",\"epoch\":1,\"not_before\":1793078796.3861587,\"expires\":1793078891.3861597,\"evidence_expires\":1793078881.38616}',1);",
+      "INSERT INTO \"host_grants\" VALUES('worker-build','task-1','inspect_context','{\"principal\":\"worker-build\",\"role\":\"builder\",\"lane\":\"Build\",\"stage\":\"B3\",\"credential\":\"host-bound-credential\",\"task_id\":\"task-1\",\"revision\":1,\"operation\":\"inspect_context\",\"root\":\"/tmp/pytest-of-root/pytest-175/test_invalid_identity_zero_sto7/authority\",\"destination\":\"local\",\"policy\":\"policy-1\",\"epoch\":1,\"not_before\":1.0,\"expires\":100.0,\"evidence_expires\":90.0}',1);",
+      "CREATE TABLE host_inspection_receipts(id TEXT PRIMARY KEY,body TEXT NOT NULL,digest TEXT NOT NULL);",
+      "CREATE TABLE host_meta(\n id INTEGER PRIMARY KEY CHECK(id=1),policy TEXT NOT NULL,epoch INTEGER NOT NULL,\n last_clock REAL NOT NULL DEFAULT 0);",
+      "INSERT INTO \"host_meta\" VALUES(1,'policy-1',1,0.0);",
+      "CREATE TABLE host_tasks(\n task_id TEXT PRIMARY KEY,principal TEXT NOT NULL,revision INTEGER NOT NULL);",
+      "INSERT INTO \"host_tasks\" VALUES('task-1','worker-build',1);",
+      "CREATE TRIGGER inspection_no_UPDATE BEFORE UPDATE ON host_inspection_receipts BEGIN SELECT RAISE(ABORT,'INSPECTION_RECEIPT_IMMUTABLE'); END;",
+      "CREATE TRIGGER inspection_no_DELETE BEFORE DELETE ON host_inspection_receipts BEGIN SELECT RAISE(ABORT,'INSPECTION_RECEIPT_IMMUTABLE'); END;",
+      "COMMIT;"
+    ],
+    [
+      "BEGIN TRANSACTION;",
+      "CREATE TABLE host_grants(\n principal TEXT NOT NULL,task_id TEXT NOT NULL,operation TEXT NOT NULL,\n body TEXT NOT NULL,revoked INTEGER NOT NULL DEFAULT 0,\n PRIMARY KEY(principal,task_id,operation));",
+      "INSERT INTO \"host_grants\" VALUES('worker-build','task-1','validate_handoff','{\"principal\":\"worker-build\",\"role\":\"builder\",\"lane\":\"Build\",\"stage\":\"B3\",\"credential\":\"host-bound-credential\",\"task_id\":\"task-1\",\"revision\":1,\"operation\":\"validate_handoff\",\"root\":\"/tmp/pytest-of-root/pytest-175/test_invalid_identity_zero_sto7/authority\",\"destination\":\"local\",\"policy\":\"policy-1\",\"epoch\":1,\"not_before\":1793078796.3861587,\"expires\":1793078891.3861597,\"evidence_expires\":1793078881.38616}',0);",
+      "INSERT INTO \"host_grants\" VALUES('worker-build','task-1','inspect_context','{\"principal\":\"worker-build\",\"role\":\"builder\",\"lane\":\"Build\",\"stage\":\"B3\",\"credential\":\"host-bound-credential\",\"task_id\":\"task-1\",\"revision\":1,\"operation\":\"inspect_context\",\"root\":\"/tmp/pytest-of-root/pytest-175/test_invalid_identity_zero_sto7/authority\",\"destination\":\"local\",\"policy\":\"policy-1\",\"epoch\":1,\"not_before\":1.0,\"expires\":100.0,\"evidence_expires\":90.0}',0);",
+      "CREATE TABLE host_inspection_receipts(id TEXT PRIMARY KEY,body TEXT NOT NULL,digest TEXT NOT NULL);",
+      "CREATE TABLE host_meta(\n id INTEGER PRIMARY KEY CHECK(id=1),policy TEXT NOT NULL,epoch INTEGER NOT NULL,\n last_clock REAL NOT NULL DEFAULT 0);",
+      "INSERT INTO \"host_meta\" VALUES(1,'policy-1',1,0.0);",
+      "CREATE TABLE host_tasks(\n task_id TEXT PRIMARY KEY,principal TEXT NOT NULL,revision INTEGER NOT NULL);",
+      "INSERT INTO \"host_tasks\" VALUES('task-1','worker-build',1);",
+      "CREATE TRIGGER inspection_no_UPDATE BEFORE UPDATE ON host_inspection_receipts BEGIN SELECT RAISE(ABORT,'INSPECTION_RECEIPT_IMMUTABLE'); END;",
+      "CREATE TRIGGER inspection_no_DELETE BEFORE DELETE ON host_inspection_receipts BEGIN SELECT RAISE(ABORT,'INSPECTION_RECEIPT_IMMUTABLE'); END;",
+      "COMMIT;"
+    ]
+  ],
+  "after": [
+    [
+      "BEGIN TRANSACTION;",
+      "CREATE TABLE host_grants(\n principal TEXT NOT NULL,task_id TEXT NOT NULL,operation TEXT NOT NULL,\n body TEXT NOT NULL,revoked INTEGER NOT NULL DEFAULT 0,\n PRIMARY KEY(principal,task_id,operation));",
+      "INSERT INTO \"host_grants\" VALUES('worker-build','task-1','validate_handoff','{\"principal\":\"worker-build\",\"role\":\"builder\",\"lane\":\"Build\",\"stage\":\"B3\",\"credential\":\"host-bound-credential\",\"task_id\":\"task-1\",\"revision\":1,\"operation\":\"validate_handoff\",\"root\":\"/tmp/pytest-of-root/pytest-175/test_invalid_identity_zero_sto7/authority\",\"destination\":\"local\",\"policy\":\"policy-1\",\"epoch\":1,\"not_before\":1793078796.3861587,\"expires\":1793078891.3861597,\"evidence_expires\":1793078881.38616}',1);",
+      "INSERT INTO \"host_grants\" VALUES('worker-build','task-1','inspect_context','{\"principal\":\"worker-build\",\"role\":\"builder\",\"lane\":\"Build\",\"stage\":\"B3\",\"credential\":\"host-bound-credential\",\"task_id\":\"task-1\",\"revision\":1,\"operation\":\"inspect_context\",\"root\":\"/tmp/pytest-of-root/pytest-175/test_invalid_identity_zero_sto7/authority\",\"destination\":\"local\",\"policy\":\"policy-1\",\"epoch\":1,\"not_before\":1.0,\"expires\":100.0,\"evidence_expires\":90.0}',1);",
+      "CREATE TABLE host_inspection_receipts(id TEXT PRIMARY KEY,body TEXT NOT NULL,digest TEXT NOT NULL);",
+      "CREATE TABLE host_meta(\n id INTEGER PRIMARY KEY CHECK(id=1),policy TEXT NOT NULL,epoch INTEGER NOT NULL,\n last_clock REAL NOT NULL DEFAULT 0);",
+      "INSERT INTO \"host_meta\" VALUES(1,'policy-1',1,0.0);",
+      "CREATE TABLE host_tasks(\n task_id TEXT PRIMARY KEY,principal TEXT NOT NULL,revision INTEGER NOT NULL);",
+      "INSERT INTO \"host_tasks\" VALUES('task-1','worker-build',1);",
+      "CREATE TRIGGER inspection_no_UPDATE BEFORE UPDATE ON host_inspection_receipts BEGIN SELECT RAISE(ABORT,'INSPECTION_RECEIPT_IMMUTABLE'); END;",
+      "CREATE TRIGGER inspection_no_DELETE BEFORE DELETE ON host_inspection_receipts BEGIN SELECT RAISE(ABORT,'INSPECTION_RECEIPT_IMMUTABLE'); END;",
+      "COMMIT;"
+    ],
+    [
+      "BEGIN TRANSACTION;",
+      "CREATE TABLE host_grants(\n principal TEXT NOT NULL,task_id TEXT NOT NULL,operation TEXT NOT NULL,\n body TEXT NOT NULL,revoked INTEGER NOT NULL DEFAULT 0,\n PRIMARY KEY(principal,task_id,operation));",
+      "INSERT INTO \"host_grants\" VALUES('worker-build','task-1','validate_handoff','{\"principal\":\"worker-build\",\"role\":\"builder\",\"lane\":\"Build\",\"stage\":\"B3\",\"credential\":\"host-bound-credential\",\"task_id\":\"task-1\",\"revision\":1,\"operation\":\"validate_handoff\",\"root\":\"/tmp/pytest-of-root/pytest-175/test_invalid_identity_zero_sto7/authority\",\"destination\":\"local\",\"policy\":\"policy-1\",\"epoch\":1,\"not_before\":1793078796.3861587,\"expires\":1793078891.3861597,\"evidence_expires\":1793078881.38616}',0);",
+      "INSERT INTO \"host_grants\" VALUES('worker-build','task-1','inspect_context','{\"principal\":\"worker-build\",\"role\":\"builder\",\"lane\":\"Build\",\"stage\":\"B3\",\"credential\":\"host-bound-credential\",\"task_id\":\"task-1\",\"revision\":1,\"operation\":\"inspect_context\",\"root\":\"/tmp/pytest-of-root/pytest-175/test_invalid_identity_zero_sto7/authority\",\"destination\":\"local\",\"policy\":\"policy-1\",\"epoch\":1,\"not_before\":1.0,\"expires\":100.0,\"evidence_expires\":90.0}',0);",
+      "CREATE TABLE host_inspection_receipts(id TEXT PRIMARY KEY,body TEXT NOT NULL,digest TEXT NOT NULL);",
+      "CREATE TABLE host_meta(\n id INTEGER PRIMARY KEY CHECK(id=1),policy TEXT NOT NULL,epoch INTEGER NOT NULL,\n last_clock REAL NOT NULL DEFAULT 0);",
+      "INSERT INTO \"host_meta\" VALUES(1,'policy-1',1,0.0);",
+      "CREATE TABLE host_tasks(\n task_id TEXT PRIMARY KEY,principal TEXT NOT NULL,revision INTEGER NOT NULL);",
+      "INSERT INTO \"host_tasks\" VALUES('task-1','worker-build',1);",
+      "CREATE TRIGGER inspection_no_UPDATE BEFORE UPDATE ON host_inspection_receipts BEGIN SELECT RAISE(ABORT,'INSPECTION_RECEIPT_IMMUTABLE'); END;",
+      "CREATE TRIGGER inspection_no_DELETE BEFORE DELETE ON host_inspection_receipts BEGIN SELECT RAISE(ABORT,'INSPECTION_RECEIPT_IMMUTABLE'); END;",
+      "COMMIT;"
+    ]
+  ],
+  "config_sha256": "1792c130434df0cf442da95b46e89361381b674281e00cfad995f02115b6ad8e",
+  "cwd": "/tmp/pytest-of-root/pytest-175/test_invalid_identity_zero_sto7/authority"
+}

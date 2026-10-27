@@ -1,0 +1,143 @@
+{
+  "parent": "fbf14378e6c82a3deebea0d415a6a85151e0a382",
+  "mode": "legacy",
+  "scope": "Gap against new WP-01/F01/F20 binding slice; baseline native MCP contract did not claim runtime capability descriptors. This is not a reopened old bot defect.",
+  "files": {
+    "src/hmt_rnd/mcp_surface.py": {
+      "text": "\"\"\"One common derivative admission boundary for direct and MCP operations.\"\"\"\nimport json\nimport time\nfrom collections.abc import Callable\n\nfrom .host_admission import admit\nfrom .host_models import Clock, Decision, Request\nfrom .host_store import HostStore\nfrom .mcp_contracts import EmptyArguments, HandoffArguments, LaneBinding\nfrom .mcp_handoff import validate_handoff\n\nOPERATIONS = (\"inspect_context\", \"validate_handoff\")\n\n\nclass LaneSurface:\n    def __init__(self, binding: LaneBinding, clock: Callable[[], float] = time.time):\n        self.binding = LaneBinding.model_validate_json(binding.model_dump_json())\n        self.store = HostStore(self.binding.store)\n        self.clock = clock\n\n    def authorize(self, operation: str) -> Decision:\n        if operation not in OPERATIONS:\n            raise PermissionError(\"MCP_OPERATION_NOT_EXPOSED\")\n        b = self.binding\n        request = Request(task_id=b.task_id, revision=b.revision, operation=operation,\n                          root=str(b.root), destination=b.destination)\n        decision = admit(self.store, b.identity, request, Clock(now=self.clock()))\n        if decision.policy != b.policy:\n            raise PermissionError(\"MCP_POLICY_BINDING_STALE\")\n        return decision\n\n    def visible(self) -> tuple[str, ...]:\n        visible = []\n        for operation in OPERATIONS:\n            try:\n                self.authorize(operation)\n                visible.append(operation)\n            except PermissionError:\n                continue\n        return tuple(visible)\n\n    def invoke(self, operation: str, arguments: dict[str, object]) -> dict[str, object]:\n        decision = self.authorize(operation)\n        if len(json.dumps(arguments, ensure_ascii=False).encode()) > 65536:\n            raise ValueError(\"MCP_ARGUMENT_BOUND\")\n        if operation == \"inspect_context\":\n            EmptyArguments.model_validate(arguments)\n            return decision.model_dump()\n        payload = HandoffArguments.model_validate(arguments)\n        return validate_handoff(payload.handoff.model_dump(), self.binding.identity.role,\n                                self.binding.task_id)\n",
+      "sha256": "2dc15d903d69a3f376fb8b729ea926970d200e906ec591dc4683968355481c72"
+    },
+    "src/hmt_rnd/mcp_stdio.py": {
+      "text": "\"\"\"Host-launched stdio entrypoint; configuration never comes from MCP messages.\"\"\"\nimport asyncio\nimport os\nimport stat\nimport sys\nfrom pathlib import Path\n\nfrom .mcp_contracts import LaneBinding\nfrom .mcp_server import LaneMCP\nfrom .mcp_surface import LaneSurface\n\n\ndef load_binding(path: Path) -> LaneBinding:\n    flags = os.O_RDONLY | os.O_NOFOLLOW | os.O_CLOEXEC | os.O_NONBLOCK\n    with os.fdopen(os.open(path, flags), \"rb\") as source:\n        info = os.fstat(source.fileno())\n        if (not stat.S_ISREG(info.st_mode) or info.st_uid != os.geteuid()\n                or info.st_mode & (stat.S_IWGRP | stat.S_IWOTH)):\n            raise PermissionError(\"MCP_UNTRUSTED_LAUNCH_BINDING\")\n        content = source.read(65537)\n    if len(content) > 65536:\n        raise ValueError(\"MCP_BINDING_BOUND\")\n    return LaneBinding.model_validate_json(content)\n\n\ndef main() -> None:\n    if len(sys.argv) != 2:\n        raise PermissionError(\"MCP_HOST_BINDING_REQUIRED\")\n    binding = load_binding(Path(sys.argv[1]))\n    asyncio.run(LaneMCP(LaneSurface(binding)).run_stdio_async())\n\n\nif __name__ == \"__main__\":\n    main()\n",
+      "sha256": "215f82e2a68a842443c6b2fd5dee93359a92a84c42b62d47418fe35d1f74aa39"
+    }
+  },
+  "tests": {
+    "tests/test_inspection_support.py": {
+      "text": "\"\"\"Explicit legacy/qualified tracer backends; no runtime fallback is provided.\"\"\"\nimport hashlib\nimport json\nimport os\nfrom pathlib import Path\n\nfrom test_mcp_support import make_lane\n\nfrom hmt_rnd.host_models import Decision, Grant\nfrom hmt_rnd.lane_queries import receipt_digest\nfrom hmt_rnd.mcp_contracts import EmptyArguments\nfrom hmt_rnd.mcp_surface import LaneSurface\n\nSPINE = (\"host_admission.py\", \"host_checks.py\", \"host_models.py\", \"host_store.py\",\n         \"host_admin.py\", \"host_schema.py\", \"mcp_contracts.py\", \"mcp_handoff.py\", \"mcp_surface.py\")\n\n\ndef fixture(root):\n    store, binding = make_lane(root)\n    store.grant(Grant(**binding.identity.model_dump(), task_id=binding.task_id, revision=1,\n                      operation=\"inspect_context\", root=str(root), destination=\"local\",\n                      policy=\"policy-1\", epoch=1, not_before=1.0, expires=100.0,\n                      evidence_expires=90.0))\n    package = Path(__file__).parent.parent / \"src/hmt_rnd\"\n    cap = dict(operation_id=\"inspect_context\", owner=\"Host/IIEA\", effect_class=\"LOCAL_MUTATION\",\n               implementation=\"hmt_rnd.mcp_surface.inspect_context\",\n               binding_sha256=receipt_digest(binding.model_dump(mode=\"json\")), epoch=1,\n               source_pins={p: hashlib.sha256((package / p).read_bytes()).hexdigest() for p in SPINE},\n               input_schema_pin=receipt_digest(EmptyArguments.model_json_schema()),\n               output_schema_pin=receipt_digest(Decision.model_json_schema()),\n               credential_scope_and_data_egress={\"credential_ref\": binding.identity.credential,\n                                                \"destination\": \"local\", \"external_egress\": \"DENY\"},\n               retry_reconciliation_owner={\"owner\": \"Host\", \"maximum_attempts\": 1,\n                                            \"automatic_retry\": False, \"uncertain\": \"HOLD\"},\n               limits={\"input_bytes\": 65536, \"output_bytes\": 4096, \"source_file_bytes\": 65536,\n                       \"source_total_bytes\": 131072, \"deadline_seconds\": 30},\n               valid_from=1.0, valid_until=80.0, resource_profile=\"LOCAL-CTRL-1\",\n               evidence_contract=\"atomic clock checkpoint and immutable native-result receipt\")\n    return store, binding, cap\n\n\ndef surface(binding, entries):\n    mode = os.environ.get(\"HMT_INSPECTION_TRACER\", \"qualified\")\n    assert mode in {\"legacy\", \"qualified\"}\n    if mode == \"legacy\":\n        return LaneSurface(binding, lambda: 20.0)\n    from hmt_rnd.inspection_surface import InspectionSurface\n    return InspectionSurface(binding, entries, lambda: 20.0)\n\n\ndef changed(cap, fault):\n    cap = json.loads(json.dumps(cap))\n    if fault == \"scope\": cap[\"binding_sha256\"] = \"0\" * 64\n    elif fault == \"schema\": cap[\"input_schema_pin\"] = \"0\" * 64\n    elif fault == \"source\": cap[\"source_pins\"][\"mcp_surface.py\"] = \"0\" * 64\n    elif fault == \"epoch\": cap[\"epoch\"] = 2\n    elif fault == \"expiry\": cap[\"valid_until\"] = 20.0\n    elif fault == \"credential\": cap[\"credential_scope_and_data_egress\"][\"credential_ref\"] = \"wrong\"\n    elif fault == \"missing\": return ()\n    elif fault == \"conflict\": return (cap, cap)\n    return (cap,)\n",
+      "sha256": "65c243d99235d9d7749c3bf5391c34cde432a3bb7b34077fc827a3b06a1bc70b"
+    },
+    "tests/test_inspection_admission.py": {
+      "text": "\"\"\"WP-01/WP-08 falsifiers: metadata cannot substitute for bound execution.\"\"\"\nimport json\n\nimport pytest\nfrom test_inspection_support import changed, fixture, surface\nfrom test_revision_issuance_support import snapshot\n\n\n@pytest.mark.parametrize(\"fault\", [\"missing\", \"conflict\", \"scope\", \"schema\", \"source\",\n                                  \"epoch\", \"expiry\", \"credential\"])\ndef test_unresolved_binding_has_no_dispatch_or_committed_effect(tmp_path, fault):\n    store, binding, cap = fixture(tmp_path)\n    target = surface(binding, changed(cap, fault))\n    before = snapshot(store)\n    result, error = None, None\n    try:\n        result = target.invoke(\"inspect_context\", {})\n    except (PermissionError, ValueError) as failure:\n        error = str(failure)\n    observed = {\"fault\": fault, \"error\": error, \"native_result\": result,\n                \"tables_unchanged\": snapshot(store) == before}\n    (tmp_path / \"inspection_observation.json\").write_text(json.dumps(observed, indent=2))\n    assert error is not None and result is None\n    assert snapshot(store) == before\n\n\ndef test_native_positive_contract_is_retained(tmp_path):\n    store, binding, cap = fixture(tmp_path)\n    target = surface(binding, (cap,))\n    result = target.invoke(\"inspect_context\", {})\n    assert result == {\"principal\": binding.identity.principal, \"task_id\": binding.task_id,\n                      \"task_revision\": 1, \"operation\": \"inspect_context\", \"policy\": \"policy-1\",\n                      \"epoch\": 1, \"effect_authority\": \"NONE\"}\n",
+      "sha256": "9cbf47916ffaf9602073dce4b7488ae75d5cf05f4f7d01d30a9dd2c12a48f6a7"
+    }
+  },
+  "observations": [
+    {
+      "fault": "missing",
+      "error": null,
+      "native_result": {
+        "principal": "worker-build",
+        "task_id": "task-1",
+        "task_revision": 1,
+        "operation": "inspect_context",
+        "policy": "policy-1",
+        "epoch": 1,
+        "effect_authority": "NONE"
+      },
+      "tables_unchanged": false
+    },
+    {
+      "fault": "conflict",
+      "error": null,
+      "native_result": {
+        "principal": "worker-build",
+        "task_id": "task-1",
+        "task_revision": 1,
+        "operation": "inspect_context",
+        "policy": "policy-1",
+        "epoch": 1,
+        "effect_authority": "NONE"
+      },
+      "tables_unchanged": false
+    },
+    {
+      "fault": "scope",
+      "error": null,
+      "native_result": {
+        "principal": "worker-build",
+        "task_id": "task-1",
+        "task_revision": 1,
+        "operation": "inspect_context",
+        "policy": "policy-1",
+        "epoch": 1,
+        "effect_authority": "NONE"
+      },
+      "tables_unchanged": false
+    },
+    {
+      "fault": "schema",
+      "error": null,
+      "native_result": {
+        "principal": "worker-build",
+        "task_id": "task-1",
+        "task_revision": 1,
+        "operation": "inspect_context",
+        "policy": "policy-1",
+        "epoch": 1,
+        "effect_authority": "NONE"
+      },
+      "tables_unchanged": false
+    },
+    {
+      "fault": "source",
+      "error": null,
+      "native_result": {
+        "principal": "worker-build",
+        "task_id": "task-1",
+        "task_revision": 1,
+        "operation": "inspect_context",
+        "policy": "policy-1",
+        "epoch": 1,
+        "effect_authority": "NONE"
+      },
+      "tables_unchanged": false
+    },
+    {
+      "fault": "epoch",
+      "error": null,
+      "native_result": {
+        "principal": "worker-build",
+        "task_id": "task-1",
+        "task_revision": 1,
+        "operation": "inspect_context",
+        "policy": "policy-1",
+        "epoch": 1,
+        "effect_authority": "NONE"
+      },
+      "tables_unchanged": false
+    },
+    {
+      "fault": "expiry",
+      "error": null,
+      "native_result": {
+        "principal": "worker-build",
+        "task_id": "task-1",
+        "task_revision": 1,
+        "operation": "inspect_context",
+        "policy": "policy-1",
+        "epoch": 1,
+        "effect_authority": "NONE"
+      },
+      "tables_unchanged": false
+    },
+    {
+      "fault": "credential",
+      "error": null,
+      "native_result": {
+        "principal": "worker-build",
+        "task_id": "task-1",
+        "task_revision": 1,
+        "operation": "inspect_context",
+        "policy": "policy-1",
+        "epoch": 1,
+        "effect_authority": "NONE"
+      },
+      "tables_unchanged": false
+    }
+  ],
+  "result": {
+    "required_negative_failures": 8,
+    "native_positive_control_passes": 1
+  }
+}

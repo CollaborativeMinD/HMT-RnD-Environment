@@ -1,0 +1,79 @@
+[
+  {
+    "original": "evidence/custody_index_after.xml",
+    "stored": "evidence/custody_index_after.xml.gz",
+    "sha256": "cf01421e548271ecfda16a6f0a1b13cb51780cbc65ebc16920848a0c0de8b94b",
+    "compressed_sha256": "07cbe742352be1cb7e1303395be01e3b03cdbc4015d2cbd4c9ea1524f9268c5f",
+    "bytes": 4313
+  },
+  {
+    "original": "evidence/custody_index_before.xml",
+    "stored": "evidence/custody_index_before.xml.gz",
+    "sha256": "3cb2faaa7469c1db4a508b0209a74a1c3b7139a0af9a02d87f077aff801b0c17",
+    "compressed_sha256": "11cb6816e011251a80aae71de19f0a39d55b10e159cfe1b22dca7c6965544a15",
+    "bytes": 27768
+  },
+  {
+    "original": "evidence/custody_index_experiment_initial.xml",
+    "stored": "evidence/custody_index_experiment_initial.xml.gz",
+    "sha256": "2d342c0801b571b8d28ac4e35e1a517f64641058a831aab73534cf2ce6930905",
+    "compressed_sha256": "7ad74db54d6d682124f88a870e987ab8601e676e113a64f97191621303ea5612",
+    "bytes": 18400
+  },
+  {
+    "original": "evidence/custody_index_experiment_statement_scope.xml",
+    "stored": "evidence/custody_index_experiment_statement_scope.xml.gz",
+    "sha256": "03d70575a14604c28d515d81e04c8022593bd24f29352af055bde0b0da3d6293",
+    "compressed_sha256": "4a2382d4da19d5c44d606163432a1c23dc8994d2028039a33f26772c00f3facb",
+    "bytes": 18512
+  },
+  {
+    "original": "evidence/custody_index_full.xml",
+    "stored": "evidence/custody_index_full.xml.gz",
+    "sha256": "d33b9b5ce16a026372d4c65af35cf970281a78c6ce548a68d72cf2e0ac03f9d4",
+    "compressed_sha256": "4cc7e44ade195c92f952be254fd69ca813b51461916f4618e31df93e6c6dc9db",
+    "bytes": 127106
+  },
+  {
+    "original": "evidence/custody_index_mutant.xml",
+    "stored": "evidence/custody_index_mutant.xml.gz",
+    "sha256": "5c11d0618cd2a9005c0659ba4fc2fdd24a07674a74ad8c218267d937b971927b",
+    "compressed_sha256": "57d7a73d40fc13927e2aa99ce5a955275c51f6bcb57baeffd9515bc9001114fe",
+    "bytes": 28200
+  },
+  {
+    "original": "evidence/custody_index_coverage.json",
+    "stored": "evidence/custody_index_coverage.json.gz",
+    "sha256": "009441bb9705d39b50bebd9f5540c5b55e9b4f00a8d5b005ddfc4cbb2178c1d9",
+    "compressed_sha256": "a7d3f535ce37b74989c50a7cf98dcbd3364310d92f55fa569a6aa031d86937ea",
+    "bytes": 190922
+  },
+  {
+    "original": "evidence/custody_index_before.log",
+    "stored": "evidence/custody_index_before.log.gz",
+    "sha256": "0c749892da65564d7c6d35a87a5acd4d94a9274346efeec0ce6f552297044356",
+    "compressed_sha256": "d7ab8ba0fabdc7bf6452c48baa592ba5163ca72973740d791a965c03a9d4e924",
+    "bytes": 25904
+  },
+  {
+    "original": "evidence/custody_index_experiment_initial.log",
+    "stored": "evidence/custody_index_experiment_initial.log.gz",
+    "sha256": "ee10c2622b5bd7297590d19d044c65cd16b4f445b8ade6cbbd014d5de3db7e8c",
+    "compressed_sha256": "81ad47aba73ab1f17f9456c0d0ed5e4600c05e7fdf4cd8267af9ee54ff3a0541",
+    "bytes": 15388
+  },
+  {
+    "original": "evidence/custody_index_experiment_statement_scope.log",
+    "stored": "evidence/custody_index_experiment_statement_scope.log.gz",
+    "sha256": "26551d1a64d6afa3a6741707f4050c1b369f3355d0233a123ca9c1542bfcd898",
+    "compressed_sha256": "8407c9a11b18bcb9b9aa470ad76842cab3535151eb55cfce6bcf44405824a6f0",
+    "bytes": 15500
+  },
+  {
+    "original": "evidence/custody_index_mutant.log",
+    "stored": "evidence/custody_index_mutant.log.gz",
+    "sha256": "0f83230c710f2fa1df7b1817d7219381e35293b1b56a28a5eb803b21e3308191",
+    "compressed_sha256": "06bb31ff563b0e9da43374aa36b2b198e1fa613c1afe258b7354ef6fa27ca053",
+    "bytes": 26336
+  }
+]

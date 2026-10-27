@@ -1,0 +1,39 @@
+{
+  "case_id": "RC-LANE-05",
+  "requirements": [
+    "HMT-B07@1",
+    "HMT-B10@1"
+  ],
+  "baseline": "6619aee",
+  "as_of": "2026-10-26T23:24:32.322453+00:00",
+  "initiating_condition": "LineageA pending reopen reserves globally unique fixed ID; initialCMAD1 candidate lineageB omits reopen_id and consumes fixed.",
+  "observed_failure": "Crosslineage candidate accepted; intended successor then stranded by global candidateID collision.",
+  "causal_chain": [
+    "Global event reservation exists in lane_reopens.successor.",
+    "check_pending considers only candidate lineage/stage; candidateB sees no pendingevent.",
+    "No global reservation check before candidate insertion; same globallyuniqueID consumed."
+  ],
+  "duplicate_reservation_control": "Baseline already rolls back duplicate reservation via SQLite UNIQUE; correction adds explicit PermissionError reason before mutation. No overwrite failure claimed.",
+  "corrective_task": "Check every candidate ID against exact globallyreserved event,lineage,stage; reject new event whose successor alreadyreserved.",
+  "candidate_snapshot": "evidence/oob_lane_step1.json",
+  "candidate_sha256": "b1daca4557e035a3b93b7e44a4c0a682798e12d27e48173208c59a5b5c2fb353",
+  "evidence": {
+    "evidence/oob_lane_before.xml": "590efda4e4d40886699c424be388c4032e483bcde7ee3998685a2f10f32b5392",
+    "evidence/oob_lane_before_sources.json": "930a7f9c0b61871508e7b5a0ad6118bec3c24b2f55c2378b997b583895beca5b",
+    "evidence/oob_lane_before_tests.json": "b67d6ea8f0dd64cdf30ca81ed04b3a8f5ca4f5170263098d0b87c5779eb80004",
+    "evidence/oob_lane_reservation_regression.xml": "ed1c2384a3ea8063cb706f3fb8a305e893b82d740caf578e7852afbf7d1a6764",
+    "evidence/oob_lane_reservation_formatted.xml": "250d045e0ba2f2224299c7f5519b3ba2d076064b62d8dcccaada5b2546837ae3"
+  },
+  "results": {
+    "full_previous_tests": 201,
+    "focused_after_import_format": 6,
+    "failures": 0,
+    "skips": 0
+  },
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; HOLD pending owner outside review",
+  "sub_agent_task_attestation": {
+    "agent": "/root/lane_reconciliation",
+    "scope": "RC-LANE-05 derivative repair only; references read-only; no publication/merge authority",
+    "unsigned": true
+  }
+}

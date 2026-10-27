@@ -35,7 +35,10 @@ def drain(process: subprocess.Popen[bytes], timeout: float, limit: int) -> bytes
                     raise ValueError("VOICE_OUTPUT_LIMIT")
                 if key.data:
                     output.extend(chunk)
-        process.wait(timeout=max(0.001, deadline - time.monotonic()))
+        try:
+            process.wait(timeout=max(0.001, deadline - time.monotonic()))
+        except subprocess.TimeoutExpired as error:
+            raise TimeoutError("VOICE_PROCESS_TIMEOUT") from error
     return bytes(output)
 
 
@@ -47,8 +50,7 @@ def run_local(command: list[str], timeout: float, limit: int) -> ProcessResult:
                           env={"LANG": "C.UTF-8"}) as process:
         try:
             output = drain(process, timeout, limit)
-        except BaseException:
+        finally:
             terminate(process)
-            raise
         assert process.returncode is not None
         return ProcessResult(returncode=process.returncode, stdout=output)

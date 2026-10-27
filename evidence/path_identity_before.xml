@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="3" time="0.223" timestamp="2026-10-26T20:42:29.749238-04:00" hostname="812233b2011d"><testcase classname="tests.test_path_identity_tracer" name="test_parent_component_rejects_native_guarded_identity_split[digest]" time="0.004"><failure message="AssertionError: assert None == 'LANE_ARTIFACT_SCOPE'">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-118/test_parent_component_rejects_0')
+mode = 'digest'
+
+    @pytest.mark.parametrize("mode", ["digest", "snapshot"])
+    def test_parent_component_rejects_native_guarded_identity_split(tmp_path, mode):
+        root, alias = alias_fixture(tmp_path)
+        native = alias.read_bytes()
+        assert native == OUTSIDE
+        observed, denial = None, None
+        try:
+            observed = observe(mode, alias, root, INSIDE)
+        except PermissionError as error:
+            denial = str(error)
+        witness = {"mode": mode, "native_hex": native.hex(),
+                   "native_sha256": hashlib.sha256(native).hexdigest(),
+                   "normalized_hex": INSIDE.hex(), "guarded_sha256": observed, "denial": denial}
+        (tmp_path / "path_identity_observed.json").write_text(json.dumps(witness))
+        print(json.dumps(witness))
+        expected = "LANE_ARTIFACT_SCOPE" if mode == "digest" else "LANE_SNAPSHOT_SCOPE"
+&gt;       assert denial == expected
+E       AssertionError: assert None == 'LANE_ARTIFACT_SCOPE'
+
+tests/test_path_identity_tracer.py:30: AssertionError</failure></testcase><testcase classname="tests.test_path_identity_tracer" name="test_parent_component_rejects_native_guarded_identity_split[snapshot]" time="0.002"><failure message="AssertionError: assert None == 'LANE_SNAPSHOT_SCOPE'">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-118/test_parent_component_rejects_1')
+mode = 'snapshot'
+
+    @pytest.mark.parametrize("mode", ["digest", "snapshot"])
+    def test_parent_component_rejects_native_guarded_identity_split(tmp_path, mode):
+        root, alias = alias_fixture(tmp_path)
+        native = alias.read_bytes()
+        assert native == OUTSIDE
+        observed, denial = None, None
+        try:
+            observed = observe(mode, alias, root, INSIDE)
+        except PermissionError as error:
+            denial = str(error)
+        witness = {"mode": mode, "native_hex": native.hex(),
+                   "native_sha256": hashlib.sha256(native).hexdigest(),
+                   "normalized_hex": INSIDE.hex(), "guarded_sha256": observed, "denial": denial}
+        (tmp_path / "path_identity_observed.json").write_text(json.dumps(witness))
+        print(json.dumps(witness))
+        expected = "LANE_ARTIFACT_SCOPE" if mode == "digest" else "LANE_SNAPSHOT_SCOPE"
+&gt;       assert denial == expected
+E       AssertionError: assert None == 'LANE_SNAPSHOT_SCOPE'
+
+tests/test_path_identity_tracer.py:30: AssertionError</failure></testcase><testcase classname="tests.test_path_identity_tracer" name="test_submission_denies_alias_before_evaluator_and_rolls_back" time="0.050"><failure message="AssertionError: assert None == 'LANE_ARTIFACT_SCOPE'">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-118/test_submission_denies_alias_b0')
+
+    def test_submission_denies_alias_before_evaluator_and_rolls_back(tmp_path):
+        root, alias = alias_fixture(tmp_path)
+        host, identity, request = setup_host(root)
+        store, evaluated = LaneStore(host), []
+        before = state(host)
+        receipt, denial = None, None
+        try:
+            receipt = store.submit(identity, request, candidate_for(alias), lambda: Clock(now=10.0),
+                                   lambda context: gate_for(context, root, evaluated))
+        except PermissionError as error:
+            denial = str(error)
+        snapshot = None if receipt is None else store.snapshot(receipt.candidate.artifact_sha256).hex()
+        witness = {"evaluated_hex": evaluated, "snapshot_hex": snapshot, "denial": denial,
+                   "receipt_outcome": None if receipt is None else receipt.gate.outcome,
+                   "before": before, "after": state(host)}
+        (tmp_path / "path_identity_observed.json").write_text(json.dumps(witness))
+        print(json.dumps(witness))
+&gt;       assert denial == "LANE_ARTIFACT_SCOPE"
+E       AssertionError: assert None == 'LANE_ARTIFACT_SCOPE'
+
+tests/test_path_identity_tracer.py:50: AssertionError</failure></testcase></testsuite></testsuites>

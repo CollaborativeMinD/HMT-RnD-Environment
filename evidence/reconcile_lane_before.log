@@ -1,0 +1,274 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.7.0
+rootdir: /workspace/scratch/bc6d4e512874/HMT-RnD-Environment
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collected 10 items
+
+tests/test_reconcile_lane_drift.py FFFF.                                 [ 50%]
+tests/test_reconcile_lane_historical.py FF                               [ 70%]
+tests/test_reconcile_lane_authority.py FF                                [ 90%]
+tests/test_reconcile_lane_pending.py F                                   [100%]
+
+=================================== FAILURES ===================================
+_________________ test_drift_repair_reachable[evidence-False] __________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-60/test_drift_repair_reachable_ev0')
+source = 'evidence', missing = False
+
+    @pytest.mark.parametrize("source,missing", [("evidence", False), ("evidence", True),
+                                              ("artifact", True)])
+    def test_drift_repair_reachable(tmp_path, source, missing):
+        host, actor, request, store, receipt = fixture(tmp_path)
+        path = receipt.gate.evidence[0].path if source == "evidence" else receipt.candidate.artifact
+        original = store.snapshot(receipt.gate.evidence[0].sha256)
+        if missing:
+            path.unlink()
+        else:
+            path.write_text("changed evidence")
+>       result = store.reopen(actor, reopen_request(host, actor, request), event(),
+                              lambda: Clock(now=11.0))
+
+tests/test_reconcile_lane_drift.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/hmt_rnd/lane_store.py:31: in reopen
+    return reopen_candidate(db, identity, request, event, clock)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/hmt_rnd/lane_reopen.py:39: in reopen_candidate
+    rows = changed(db, event, Path(request.root), authority.policy, authority.epoch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+db = <sqlite3.Connection object at 0x7f1cc1fb34c0>
+event = Reopen(event_id='repair', lineage_id='mission-1', changed_candidates=('first',), successor_candidate_id='fixed', reason='ARTIFACT_DRIFT', termination_condition='Current exact-candidate gate receipt')
+root = PosixPath('/tmp/pytest-of-root/pytest-60/test_drift_repair_reachable_ev0')
+policy = 'policy-1', epoch = 1
+
+    def changed(db: sqlite3.Connection, event: Reopen, root: Path,
+                policy: str, epoch: int) -> list[Receipt]:
+        rows = [read_receipt(db, value) for value in event.changed_candidates]
+        if len(set(event.changed_candidates)) != len(rows):
+            raise PermissionError("LANE_DUPLICATE_CHANGE_REFERENCE")
+        for receipt in rows:
+            if receipt.candidate.lineage_id != event.lineage_id:
+                raise PermissionError("LANE_REOPEN_LINEAGE_MISMATCH")
+            if event.reason == "ARTIFACT_DRIFT":
+                if digest_file(receipt.candidate.artifact, root) == receipt.candidate.artifact_sha256:
+>                   raise PermissionError("LANE_REOPEN_WITHOUT_ARTIFACT_CHANGE")
+E                   PermissionError: LANE_REOPEN_WITHOUT_ARTIFACT_CHANGE
+
+src/hmt_rnd/lane_reopen.py:25: PermissionError
+__________________ test_drift_repair_reachable[evidence-True] __________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-60/test_drift_repair_reachable_ev1')
+source = 'evidence', missing = True
+
+    @pytest.mark.parametrize("source,missing", [("evidence", False), ("evidence", True),
+                                              ("artifact", True)])
+    def test_drift_repair_reachable(tmp_path, source, missing):
+        host, actor, request, store, receipt = fixture(tmp_path)
+        path = receipt.gate.evidence[0].path if source == "evidence" else receipt.candidate.artifact
+        original = store.snapshot(receipt.gate.evidence[0].sha256)
+        if missing:
+            path.unlink()
+        else:
+            path.write_text("changed evidence")
+>       result = store.reopen(actor, reopen_request(host, actor, request), event(),
+                              lambda: Clock(now=11.0))
+
+tests/test_reconcile_lane_drift.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/hmt_rnd/lane_store.py:31: in reopen
+    return reopen_candidate(db, identity, request, event, clock)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/hmt_rnd/lane_reopen.py:39: in reopen_candidate
+    rows = changed(db, event, Path(request.root), authority.policy, authority.epoch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+db = <sqlite3.Connection object at 0x7f1cc1f30040>
+event = Reopen(event_id='repair', lineage_id='mission-1', changed_candidates=('first',), successor_candidate_id='fixed', reason='ARTIFACT_DRIFT', termination_condition='Current exact-candidate gate receipt')
+root = PosixPath('/tmp/pytest-of-root/pytest-60/test_drift_repair_reachable_ev1')
+policy = 'policy-1', epoch = 1
+
+    def changed(db: sqlite3.Connection, event: Reopen, root: Path,
+                policy: str, epoch: int) -> list[Receipt]:
+        rows = [read_receipt(db, value) for value in event.changed_candidates]
+        if len(set(event.changed_candidates)) != len(rows):
+            raise PermissionError("LANE_DUPLICATE_CHANGE_REFERENCE")
+        for receipt in rows:
+            if receipt.candidate.lineage_id != event.lineage_id:
+                raise PermissionError("LANE_REOPEN_LINEAGE_MISMATCH")
+            if event.reason == "ARTIFACT_DRIFT":
+                if digest_file(receipt.candidate.artifact, root) == receipt.candidate.artifact_sha256:
+>                   raise PermissionError("LANE_REOPEN_WITHOUT_ARTIFACT_CHANGE")
+E                   PermissionError: LANE_REOPEN_WITHOUT_ARTIFACT_CHANGE
+
+src/hmt_rnd/lane_reopen.py:25: PermissionError
+__________________ test_drift_repair_reachable[artifact-True] __________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-60/test_drift_repair_reachable_ar0')
+source = 'artifact', missing = True
+
+    @pytest.mark.parametrize("source,missing", [("evidence", False), ("evidence", True),
+                                              ("artifact", True)])
+    def test_drift_repair_reachable(tmp_path, source, missing):
+        host, actor, request, store, receipt = fixture(tmp_path)
+        path = receipt.gate.evidence[0].path if source == "evidence" else receipt.candidate.artifact
+        original = store.snapshot(receipt.gate.evidence[0].sha256)
+        if missing:
+            path.unlink()
+        else:
+            path.write_text("changed evidence")
+>       result = store.reopen(actor, reopen_request(host, actor, request), event(),
+                              lambda: Clock(now=11.0))
+
+tests/test_reconcile_lane_drift.py:20: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+src/hmt_rnd/lane_store.py:31: in reopen
+    return reopen_candidate(db, identity, request, event, clock)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/hmt_rnd/lane_reopen.py:39: in reopen_candidate
+    rows = changed(db, event, Path(request.root), authority.policy, authority.epoch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src/hmt_rnd/lane_reopen.py:24: in changed
+    if digest_file(receipt.candidate.artifact, root) == receipt.candidate.artifact_sha256:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/tmp/pytest-of-root/pytest-60/test_drift_repair_reachable_ar0/first.txt')
+root = PosixPath('/tmp/pytest-of-root/pytest-60/test_drift_repair_reachable_ar0')
+
+    def digest_file(path: Path, root: Path) -> str:
+        path, root = path.resolve(), root.resolve()
+        if not path.is_relative_to(root) or not path.is_file():
+>           raise PermissionError("LANE_ARTIFACT_SCOPE")
+E           PermissionError: LANE_ARTIFACT_SCOPE
+
+src/hmt_rnd/lane_evidence.py:11: PermissionError
+___________________ test_discovery_includes_earlier_evidence ___________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-60/test_discovery_includes_earlie0')
+
+    def test_discovery_includes_earlier_evidence(tmp_path):
+        host, actor, request, store, first = fixture(tmp_path)
+        _, downstream, later = setup_host(tmp_path, "CMAD2")
+        second = make_candidate(tmp_path, "second", "CMAD2", "first")
+        store.submit(downstream, later, second, lambda: Clock(now=11.0), execute_gate)
+        first.gate.evidence[0].path.write_text("earlier drift")
+        second.artifact.write_text("declared drift")
+>       with pytest.raises(PermissionError, match="LANE_STAGE_OR_OPERATION_DENIED"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_reconcile_lane_drift.py:37: Failed
+___________ test_resolved_history_cannot_reopen_again[DENIED_REPAIR] ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-60/test_resolved_history_cannot_r0')
+reason = 'DENIED_REPAIR'
+
+    @pytest.mark.parametrize("reason", ["DENIED_REPAIR", "ARTIFACT_DRIFT"])
+    def test_resolved_history_cannot_reopen_again(tmp_path, reason):
+        host, actor, request, store, first = fixture(tmp_path, deny)
+        first.candidate.artifact.write_text("old changed artifact")
+        scoped = reopen_request(host, actor, request)
+        store.reopen(actor, scoped, event(reason=reason), lambda: Clock(now=11.0))
+        fixed = store.submit(actor, request, make_candidate(tmp_path, "fixed", reopen="repair"),
+                             lambda: Clock(now=12.0), execute_gate)
+>       with pytest.raises(PermissionError, match="LANE_REOPEN_NOT_CURRENT"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_reconcile_lane_historical.py:18: Failed
+__________ test_resolved_history_cannot_reopen_again[ARTIFACT_DRIFT] ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-60/test_resolved_history_cannot_r1')
+reason = 'ARTIFACT_DRIFT'
+
+    @pytest.mark.parametrize("reason", ["DENIED_REPAIR", "ARTIFACT_DRIFT"])
+    def test_resolved_history_cannot_reopen_again(tmp_path, reason):
+        host, actor, request, store, first = fixture(tmp_path, deny)
+        first.candidate.artifact.write_text("old changed artifact")
+        scoped = reopen_request(host, actor, request)
+        store.reopen(actor, scoped, event(reason=reason), lambda: Clock(now=11.0))
+        fixed = store.submit(actor, request, make_candidate(tmp_path, "fixed", reopen="repair"),
+                             lambda: Clock(now=12.0), execute_gate)
+>       with pytest.raises(PermissionError, match="LANE_REOPEN_NOT_CURRENT"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_reconcile_lane_historical.py:18: Failed
+_____________ test_artifact_reason_cannot_bypass_policy_authority ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-60/test_artifact_reason_cannot_by0')
+
+    def test_artifact_reason_cannot_bypass_policy_authority(tmp_path):
+        host, actor, request, store, receipt = fixture(tmp_path)
+        receipt.candidate.artifact.write_text("artifact changed")
+        host.set_policy("policy-2")
+        scoped = request.model_copy(update={"operation": "lane.reopen"})
+        for role in ("builder", "human_architect"):
+            current = actor.model_copy(update={"role": role})
+            host.grant(Grant(**current.model_dump(), task_id=request.task_id,
+                             operation="lane.reopen", root=request.root, destination="local",
+                             policy="policy-2", epoch=2, not_before=1.0, expires=100.0,
+                             evidence_expires=90.0))
+            if role == "builder":
+>               with pytest.raises(PermissionError, match="LANE_POLICY_REOPEN_REQUIRES_ARCHITECT"):
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E               Failed: DID NOT RAISE PermissionError
+
+tests/test_reconcile_lane_authority.py:22: Failed
+____________ test_denial_reason_cannot_hide_earlier_artifact_drift _____________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-60/test_denial_reason_cannot_hide0')
+
+    def test_denial_reason_cannot_hide_earlier_artifact_drift(tmp_path):
+        host, actor, request, store, first = fixture(tmp_path)
+        _, downstream, later = setup_host(tmp_path, "CMAD2")
+        store.submit(downstream, later, make_candidate(tmp_path, "second", "CMAD2", "first"),
+                     lambda: Clock(now=11.0), deny)
+        first.candidate.artifact.write_text("earlier drift")
+        change = event(changed="second", reason="DENIED_REPAIR")
+>       with pytest.raises(PermissionError, match="LANE_STAGE_OR_OPERATION_DENIED"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_reconcile_lane_authority.py:37: Failed
+__________ test_old_closed_ancestor_cannot_bypass_new_pending_reopen ___________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-60/test_old_closed_ancestor_canno0')
+
+    def test_old_closed_ancestor_cannot_bypass_new_pending_reopen(tmp_path):
+        host, actor, request, store, first = fixture(tmp_path)
+        _, downstream, later = setup_host(tmp_path, "CMAD2")
+        store.submit(downstream, later, make_candidate(tmp_path, "second", "CMAD2", "first"),
+                     lambda: Clock(now=11.0), execute_gate)
+        first.candidate.artifact.write_text("first changed")
+        store.reopen(actor, reopen_request(host, actor, request), event(), lambda: Clock(now=12.0))
+        store.submit(actor, request, make_candidate(tmp_path, "fixed", reopen="repair"),
+                     lambda: Clock(now=13.0), execute_gate)
+        second = store.submit(downstream, later,
+                               make_candidate(tmp_path, "second-fixed", "CMAD2", "fixed"),
+                               lambda: Clock(now=14.0), execute_gate)
+        second.candidate.artifact.write_text("second changed")
+        change = event(name="second-repair", changed="second-fixed", successor="second-final")
+        store.reopen(downstream, reopen_request(host, downstream, later), change,
+                     lambda: Clock(now=15.0))
+>       with pytest.raises(PermissionError, match="LANE_TYPED_SUCCESSOR_REQUIRED"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_reconcile_lane_pending.py:26: Failed
+- generated xml file: /workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/reconcile_lane_before.xml -
+=========================== short test summary info ============================
+FAILED tests/test_reconcile_lane_drift.py::test_drift_repair_reachable[evidence-False]
+FAILED tests/test_reconcile_lane_drift.py::test_drift_repair_reachable[evidence-True]
+FAILED tests/test_reconcile_lane_drift.py::test_drift_repair_reachable[artifact-True]
+FAILED tests/test_reconcile_lane_drift.py::test_discovery_includes_earlier_evidence
+FAILED tests/test_reconcile_lane_historical.py::test_resolved_history_cannot_reopen_again[DENIED_REPAIR]
+FAILED tests/test_reconcile_lane_historical.py::test_resolved_history_cannot_reopen_again[ARTIFACT_DRIFT]
+FAILED tests/test_reconcile_lane_authority.py::test_artifact_reason_cannot_bypass_policy_authority
+FAILED tests/test_reconcile_lane_authority.py::test_denial_reason_cannot_hide_earlier_artifact_drift
+FAILED tests/test_reconcile_lane_pending.py::test_old_closed_ancestor_cannot_bypass_new_pending_reopen
+========================= 9 failed, 1 passed in 0.68s ==========================

@@ -1,0 +1,67 @@
+{
+  "case_id": "RC-HOST-01",
+  "timestamp": "2026-10-26T22:49:31.933530+00:00",
+  "baseline_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+  "requirements": [
+    "HMT-F02",
+    "HMT-N04",
+    "HMT-F14",
+    "HMT-B10",
+    "HMT-B11",
+    "HMT-B15"
+  ],
+  "boundary": "A working-directory change cannot enlarge an existing grant root.",
+  "review_url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/2#discussion_r4383065731",
+  "initiating_condition": "Trusted provisioning accepted relative root; restart/admission occurred from parent directory.",
+  "causal_chain": [
+    "Grant root accepted unrestricted relative text.",
+    "Serialized grant preserved relative spelling.",
+    "authorize resolved that same grant anew against changed cwd.",
+    "Sibling request resolved within now enlarged grant and was admitted."
+  ],
+  "corrective_task": "Reject nonabsolute Grant.root at strict contract validation, including persisted grant reads. No migration guesses or automatic reprovisioning.",
+  "expected_before": "Relative provision and legacy stored relative-grant admission must reject; absolute grant remains scoped.",
+  "observed_before": {
+    "failed": 4,
+    "passed": 1,
+    "reason": "DID NOT RAISE ValidationError; legacy cwd expansion admitted sibling"
+  },
+  "observed_after": {
+    "passed": 28,
+    "failed": 0,
+    "skipped": 0,
+    "scope": "All existing host tracer/boundary/storage/transaction/custody seam cases plus five root regressions."
+  },
+  "validation_commands": [
+    "uv run pytest -q tests/test_reconcile_host_roots.py --junitxml=evidence/reconcile_host_before.xml",
+    "uv run pytest -q tests/test_host_tracer.py tests/test_host_storage_boundaries.py tests/test_host_boundaries.py tests/test_host_transaction.py tests/test_host_custody_seam.py tests/test_reconcile_host_roots.py --junitxml=evidence/reconcile_host_after.xml",
+    "uv run ruff check src/hmt_rnd/host_models.py tests/test_reconcile_host_roots.py",
+    "uv run pyrefly check src/hmt_rnd/host_models.py"
+  ],
+  "static_results": {
+    "ruff": 0,
+    "pyrefly_basic": 0
+  },
+  "reference_invariants_preserved": [
+    "Current identity/task/policy/epoch/lease/egress intersection",
+    "One authority store and fail-closed legacy grants",
+    "No reference runtime import or modification"
+  ],
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; independent review and cumulative closure pending",
+  "limitations": [
+    "Absolute-root requirement does not establish immutable filesystem/symlink topology or OS isolation.",
+    "Existing relative grants require explicit trusted reprovisioning; no silent compatibility expansion."
+  ],
+  "artifact_sha256": {
+    "src/hmt_rnd/host_models.py": "d6024f59bdb8da8bd95adee1aefb1dafacd426728b1f07576673368bebdb81b3",
+    "tests/test_reconcile_host_roots.py": "887c2d3328ea506ca2d74e92ec8ff617473c35d0eb631bb6ebfe709718d8061c",
+    "evidence/reconcile_host_before.xml": "12021b0e01261bdfc92197c4a88dd169ae75a9d862ff1687fd3b402101e0b4a7",
+    "evidence/reconcile_host_before_source.json": "963c058c42ea5bfbfede347578eaadd07dd96641e3ef1347818aef04e4e2cf89",
+    "evidence/reconcile_host_after.xml": "a062ab37bebb17ee41cdc2c6db9fa854323b24e3d4bce992f2ccbc9a219da3dd"
+  },
+  "sub_agent_task_attestation": {
+    "repair_owner": "/root",
+    "independent_reviewer": "/root/assurance_reconciliation",
+    "execution": "supervisor executed; independent reviewer read-only"
+  }
+}

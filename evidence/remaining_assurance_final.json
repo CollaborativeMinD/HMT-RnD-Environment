@@ -1,0 +1,283 @@
+{
+  "schema": "hmt.manual-assurance-review.v1",
+  "as_of": "2026-10-27T01:22:01.120Z",
+  "primary_disposition": "HOLD",
+  "scope": "RC-ANCESTOR-01 submission plus reopening-issuance coupling; RC-DRIFT-01 original-path and missing-source classification; exact candidate and evidence continuity.",
+  "baseline": "608e3bdf95e07ded956ef1b80a0d2e0376f8efbe",
+  "candidate": "3a875e8eaf29bb767b63bf02b41fbf1d138200f9",
+  "method": "Independent manual mission-assurance skill-guided read-only source, GitHub blob, JSON/XML/CSV/gzip and in-memory SQLite review. No target/test execution, repair, native assurance MCP invocation or release action.",
+  "release_condition": "Original outside reviewer must disposition the exact candidate and prior conditions. These findings now have bounded repair evidence; they are not still uninvestigated. Their current status remains REPAIR_VERIFIED_HOLD_PENDING_OUT_OF_BAND_REVIEW. User continuation HOLD remains; integration is explicitly unauthorized.",
+  "cases": [
+    {
+      "case_id": "RC-ANCESTOR-01",
+      "review_id": 4383956251,
+      "scoped_assessment": "Matching retained negative, positive and regression witnesses for declared submission and issuance boundaries; pending outside review.",
+      "requirements": [
+        "HMT-F02",
+        "HMT-B07",
+        "HMT-B10",
+        "HMT-N04",
+        "HMT-F14"
+      ],
+      "submission": {
+        "before": "22tests:18failures/4positive controls. Eight retained direct traces show stale immediate/nonimmediate revision, reassigned, missing and principal-only assignments still SEALED downstream and invoked evaluator.",
+        "cause": "Existing chain walk checked policy, stage, outcome, source bytes and invalidations but omitted current task assignment for each ancestor.",
+        "repair": "Current host_tasks principal/revision are compared against immutable receipt principal/task_revision on every existing check_parent iteration, within shared host transaction. Existing pre/post-evaluator calls reuse the same validation.",
+        "after": "22focused pass. Immediate/nonimmediate x revision/reassigned/missing/principal-only x restart deny before evaluator. Complete database snapshots and immutable receipts remain. Unchanged/unrelated-assignment controls progress. Same-connection evaluator assignment mutation is rejected by post-evaluator recheck and rolls back."
+      },
+      "issuance_coupling": {
+        "status": "Reproduced and repaired within the same canonical case, not silently excluded.",
+        "before": "20tests:16failures/4controls. Two traces show reopening event and invalidation issued at CMAD2/CMAD3, then successor denied LANE_PREDECESSOR_ASSIGNMENT_STALE with no closure.",
+        "causal_continuity": "remaining_assurance_coupling.json recorded source-inferred seam before review of its execution witness.",
+        "repair": "Reopen issuance invokes canonical check_parent on selected earliest origin after final host admission and immediately before event/invalidation inserts.",
+        "after": "20focused pass; stale dependency causes typed denial with entire database unchanged. Unchanged/unrelated assignment reopening produces persisted usable successor and preserves prior receipts."
+      },
+      "authority_limit": "No assignment migration, assignment API revision policy, implicit rerouting or recovery authority added. Stale immutable ancestry remains fail-closed until separately authorized resolution.",
+      "commits": [
+        "cdef1fd1dafd1cc8e8e08c1bf8e25408ca57ff7d",
+        "3a875e8eaf29bb767b63bf02b41fbf1d138200f9"
+      ]
+    },
+    {
+      "case_id": "RC-DRIFT-01",
+      "review_id": 4383956285,
+      "scoped_assessment": "Matching retained negative, positive and regression witnesses for original-path classification and declared reopening/discovery sequences; pending outside review.",
+      "requirements": [
+        "HMT-F02",
+        "HMT-F03",
+        "HMT-B07",
+        "HMT-B14",
+        "HMT-N04",
+        "HMT-F14"
+      ],
+      "before": "11 failures retained:4 explicit artifact/evidence live/dangling symlink cases,6 earlier/later/same-receipt discovery/masking cases and1missing-root case. Two genuine-missing controls passed.",
+      "cause": "source_changed resolved original pathname before guarded read, removing forbidden symlink components; its existence shortcut classified dangling links or unavailable roots as legitimate drift.",
+      "repair": "source_changed passes original path/root directly to digest_file and recognizes drift only when the direct cause of PermissionError is FileNotFoundError. Existing descriptor walk converts missing root-prefix components and unavailable normalization context to non-missing scope errors; missing descendants strictly below a traversed valid root retain FileNotFoundError. No new resolve/stat precheck.",
+      "after": "27focused pass. Ten observed explicit/discovery denied reopenings preserve exact full database dump hash. Regular unchanged=false and changed=true; genuine missing artifact/evidence still route to earliest owner, deny wrong downstream owner atomically, preserve old bytes/receipt and complete successor/descendant recovery across store reinstantiation.",
+      "controls": [
+        "Live/dangling final links, parent links, outside links, literal parent components in path/root, symlink/file/missing root, directory and FIFO deny.",
+        "Missing nested descendant under ordinary root and filesystem '/' root remains legitimate drift.",
+        "Earlier changed source does not mask forbidden later source; omitted earlier change still controls authority.",
+        "Revocation remains available after explicit denied reopening."
+      ],
+      "commit": "b7b02089f85607ce2654659d14ff709634cbcf4e"
+    }
+  ],
+  "ordered_candidate_audit": [
+    {
+      "step": "ancestor_freshness_snapshot",
+      "snapshot_hash_errors": [],
+      "keys": [
+        "baseline",
+        "step",
+        "cwd",
+        "command",
+        "exit_code",
+        "candidate_sha256",
+        "unchanged_after",
+        "junit_sha256"
+      ],
+      "reconstructed_matches": true,
+      "unchanged_after": true,
+      "junit_hash_matches": true,
+      "suite": [
+        {
+          "name": "pytest",
+          "errors": "0",
+          "failures": "0",
+          "skipped": "0",
+          "tests": "292",
+          "time": "28.401",
+          "timestamp": "2026-10-26T21:06:39.709471-04:00",
+          "hostname": "812233b2011d"
+        }
+      ]
+    },
+    {
+      "step": "drift_symlink_snapshot",
+      "snapshot_hash_errors": [],
+      "keys": [
+        "baseline",
+        "step",
+        "cwd",
+        "command",
+        "exit_code",
+        "candidate_sha256",
+        "unchanged_after",
+        "junit_sha256"
+      ],
+      "reconstructed_matches": true,
+      "unchanged_after": true,
+      "junit_hash_matches": true,
+      "suite": [
+        {
+          "name": "pytest",
+          "errors": "0",
+          "failures": "0",
+          "skipped": "0",
+          "tests": "319",
+          "time": "32.398",
+          "timestamp": "2026-10-26T21:11:09.729042-04:00",
+          "hostname": "812233b2011d"
+        }
+      ]
+    },
+    {
+      "step": "ancestor_freshness_issuance_snapshot",
+      "snapshot_hash_errors": [],
+      "keys": [
+        "baseline",
+        "step",
+        "cwd",
+        "command",
+        "exit_code",
+        "candidate_sha256",
+        "unchanged_after",
+        "junit_sha256"
+      ],
+      "reconstructed_matches": true,
+      "unchanged_after": true,
+      "junit_hash_matches": true,
+      "suite": [
+        {
+          "name": "pytest",
+          "errors": "0",
+          "failures": "0",
+          "skipped": "0",
+          "tests": "339",
+          "time": "42.067",
+          "timestamp": "2026-10-26T21:14:04.554244-04:00",
+          "hostname": "812233b2011d"
+        }
+      ]
+    }
+  ],
+  "published_candidate_audit": {
+    "files_including_config_lock": 139,
+    "executable_files": 137,
+    "baseline_plus_ABC_matches_current": true,
+    "published_mismatches": [],
+    "runtime_mismatches": [],
+    "results_match_runtime": true,
+    "coverage": {
+      "changed_set_exact": true,
+      "files": 31,
+      "covered": 243,
+      "total": 258,
+      "excluded": 0,
+      "raw_hash_matches": true,
+      "summary_mismatches": [],
+      "source_hash_mismatches": []
+    }
+  },
+  "ledger_audit": {
+    "hash_mismatches": [],
+    "tables": {
+      "Cumulative_Gate_Ledger": {
+        "rows": 67,
+        "eight_columns": true,
+        "blank_attestations": 0,
+        "sqlite_parity": true,
+        "historical_prefix": true,
+        "historical_rows": 60,
+        "worker_rows": 3,
+        "missing_worker_rows": [],
+        "hash_ref_mismatches": []
+      },
+      "Reverse_RCA_Ledger": {
+        "rows": 136,
+        "eight_columns": true,
+        "blank_attestations": 0,
+        "sqlite_parity": true,
+        "historical_prefix": true,
+        "historical_rows": 124,
+        "worker_rows": 4,
+        "missing_worker_rows": [],
+        "hash_ref_mismatches": []
+      }
+    },
+    "sqlite_integrity": "ok",
+    "register": {
+      "historical_exact": true,
+      "prior_pending_exact": true,
+      "prior_source_only_exact": true,
+      "active_statuses": {
+        "RC-ANCESTOR-01": "REPAIR_VERIFIED_HOLD_PENDING_OUT_OF_BAND_REVIEW",
+        "RC-DRIFT-01": "REPAIR_VERIFIED_HOLD_PENDING_OUT_OF_BAND_REVIEW"
+      },
+      "requirement_trace_omissions": {
+        "RC-ANCESTOR-01": [],
+        "RC-DRIFT-01": []
+      },
+      "case_hash_mismatches": []
+    },
+    "cr_case_requirement_omissions": [],
+    "archive_mismatches": []
+  },
+  "baseline_archive_identity": "Prior CSV, compressed SQLite and archive-index bytes independently match their Git blobs at published608e3bdf baseline. Current ledgers preserve those60/124row prefixes.",
+  "metadata_reconciliation": "Read-only review found missing worker-declared HMT-B10, HMT-F03 and HMT-B14 links in draft canonical/CR metadata. Supervisor added those links and exact worker revision references, regenerated ledgers/index hashes, and retained all historical/worker rows. No acceptance criteria, target source or execution result changed; final requirement-trace audit has no omissions.",
+  "static_gates": "Supervisor records Ruff/Pyrefly basic/structure exit0 on exact final candidate; no gate was executed by assurance.",
+  "coverage": "Changed31 first-party executable files independently recomputed from9a5eb22 tree:243/258branches=94.18604651162791%, zero excluded lines. Per-file summaries and source hashes match raw coverage; full N11 remains NOT_EXECUTED.",
+  "continuity": "Prior270test evidence retained. A292 and B319 are valid exact intermediate observations; C339 is the final combined candidate. Submission, drift and newly exposed issuance failures remain retained. Historical source-only OPEN_REVIEW_HOLD records are preserved and explicitly mapped to current canonical repaired/pending cases; no silent history rewrite.",
+  "limitations": [
+    "Runtime observations are retained worker/supervisor execution records independently inspected here, not executions performed by assurance. Hashes establish byte integrity, not producer authenticity.",
+    "Missing/principal-only ancestor assignments and same-connection evaluator mutation are controlled trusted-store fixtures. Normal revision/reassignment variants use host assignment API. No change to assignment authority semantics is claimed.",
+    "Database rollback evidence does not imply rollback of evaluator-created files outside SQLite.",
+    "Restart controls reopen stored database/host/lane objects; no process-kill, power-loss or arbitrary crash-cut-point durability claim.",
+    "Path classification is evaluated on local POSIX fixtures. Arbitrary mount, hard-link, filesystem races or blocking-filesystem latency remain outside qualification.",
+    "Root validity is established through descriptor traversal for the tested operation; no general proof of persistent pathname-to-inode identity across unrelated operations is made.",
+    "Prior direct absent-lane.reauthorize-grant fixture remains absent; prior source-composition inference is not upgraded by these tests.",
+    "Full N11 complete assertion/critical mutation obligations, whole Forge acceptance, all operational requirements and integration/deployment remain unqualified."
+  ],
+  "failure_disposition": "A contradictory tracer must reopen the affected requirement and canonical case explicitly, retaining original witnesses and unchanged acceptance criteria. Neither a scoped pass nor later test may erase an unresolved boundary.",
+  "evidence_sha256": {
+    "contracts/CR-REMAINING-HOLDS-008.json": "fca3783bfc2f45bec092257e88deeb8ca60c13d88178feeddf0cb81a84866047",
+    "evidence/Cumulative_Gate_Ledger.csv": "e7b9d68349b6dcac7b1158433b568f75a0e724a9b4b1954c1094a35876161c46",
+    "evidence/Reverse_RCA_Ledger.csv": "3375878c45de4c56d87c1ebd8ab2cacd8d7dd5422a1069c415be50524487f7ef",
+    "evidence/ancestor_freshness_after.xml": "1748f53139e4a943b115f9189f139391f16f344ab16841416805c97c243090f3",
+    "evidence/ancestor_freshness_before.xml": "539ea7b358d12650af404a8556df56c564ba58b98ae7cfc8741175c3a6cd4a6d",
+    "evidence/ancestor_freshness_before_sources.json": "f91d5682e712e3ed21544fd6f9c52f7d70e8471bdb177cf761afe157a05d0d56",
+    "evidence/ancestor_freshness_before_tests.json": "40dff2848012b59ed370d7bb36eddcd195e11ca53f471a91c9f615fde2d89ec2",
+    "evidence/ancestor_freshness_case.json": "a291bd5c18d5b9d584e4a33ad9127e3286a968d7ca771dcac16193991f908215",
+    "evidence/ancestor_freshness_issuance_after.xml": "6552e40aac851be55b7d4c214358c022a075c91b7ddfcd0063e72f6c923b9d02",
+    "evidence/ancestor_freshness_issuance_before.xml": "ee410918cdf2546e512a432321e83f4b6206a18125e7b9fa377f5bd22538ed54",
+    "evidence/ancestor_freshness_issuance_before_sources.json": "7062b502d4312746282408aa4cf2129745501ceef87df0dfc1246d9525ba11e4",
+    "evidence/ancestor_freshness_issuance_before_tests.json": "ba3c668053949cb4c7efa3b0a95e112308455cf12ecac757985fb89cff0e5d87",
+    "evidence/ancestor_freshness_issuance_case.json": "595b8e3b30f7206dd813214dd94b74869998c0988089997304bb5cb13bac6e9a",
+    "evidence/ancestor_freshness_issuance_runtime_changes.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "evidence/ancestor_freshness_issuance_runtime_inventory.json": "6292b236b8bb9ffcf45f1730d0ef4428decf403f90dbda30f256977bc8080e44",
+    "evidence/ancestor_freshness_issuance_snapshot.json": "dbde9ef7ed3127c8827852d85d8d7206df625aaacadb103027b70e217d1d6056",
+    "evidence/ancestor_freshness_issuance_trace.json": "5193696b2783a99824a6f12b31d89f59a71360266ea176f1a9f88339977430f8",
+    "evidence/ancestor_freshness_runtime_changes.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "evidence/ancestor_freshness_runtime_inventory.json": "f573c778c4a982625eb94602d7b969db856e0816b14043cb61da3ea9540869f4",
+    "evidence/ancestor_freshness_snapshot.json": "b82c4049916b44960ae0e925961f26bff59ba99131bca122bbaefdfba1f5126b",
+    "evidence/ancestor_freshness_trace.json": "9fe1ebc82cb1b1159ff4e32ece6d00e70b39b06a260fe206deec41c39ecee626",
+    "evidence/archive_index.json": "c0fda719733a505751d9ec48e25054e7108fa8efb787a480dca13bfe3f71546d",
+    "evidence/build_ledgers.sqlite.gz": "aafaaf703bd433a394927bff3f9fdb4bf69e33d5dfc5fdd7fa6e858cc74b53fc",
+    "evidence/drift_symlink_after.xml": "81225a4220860c9d9c21828f139d366018c5a72fe9827742d93f84bcad8d4522",
+    "evidence/drift_symlink_baseline.json": "ef8e9157c3d7994cad8422ba574d22140dc9ee627dd737344534ecd30161b303",
+    "evidence/drift_symlink_before.xml": "be9468455cf2b595e7cd3ffebe47796ad4ce8e7f210a327e552f01ff26949086",
+    "evidence/drift_symlink_case.json": "7f493efde3e5278475891b424d2662b1a615f36197f24ec72e60b13c5a9dc0a6",
+    "evidence/drift_symlink_discovery_before.xml": "610b8be89c1a209cb3041964e84a90fc18119962452d1e1df3b9269c41d1126d",
+    "evidence/drift_symlink_inventory_after.json": "1a54c4a27e2e1c9ac147d943dddb74902aabda8e3aaff7355b8f2db12a8095ba",
+    "evidence/drift_symlink_inventory_before.json": "4ec7c6ff756d2e1ed8eaa6e782d4e517d08971e10ed341cbcb994671521d5582",
+    "evidence/drift_symlink_observed.json": "4834fcf9abd42d28de4c2f90776539332637e9f1d78668b42b12388294890164",
+    "evidence/drift_symlink_snapshot.json": "380f1a1c6d638f741327d7cf7033ed14a5dfa68e837631381b56356f017c6dc9",
+    "evidence/drift_symlink_worker_case.json": "d70a4690b8ed4b852cd0cb967b9fbaf503cb89b9b83c8faeef8562d11893d408",
+    "evidence/remaining_assurance_coupling.json": "64e1c0b603d22151e8bf52d8d990a6542c9891447c9b0a64eb12491b06df7ac4",
+    "evidence/remaining_assurance_initial.json": "2df0ceebc71343ec7e46f2187d51ca9d3a22faa2e2ab6fb8d75d53423ef89af0",
+    "evidence/remaining_holds_archives.json": "14c8b084366a7ea2110cdf7e7682e62b9cfe67f4d1131716e61f18330de26bca",
+    "evidence/remaining_holds_case_register.json": "a5bb8e019620c6ea24a1f4b857a39f3a931aa4120241ba0dc0333fc78b2e5950",
+    "evidence/remaining_holds_changed_coverage.json": "97a46781e33806d63102f3386b6d0110b585f0ec32e80ab5ebd288d31be3c550",
+    "evidence/remaining_holds_commit_register.json": "cf01115178462c35751f8cbb3e540f31a2e85a7c7992531faf32fa352f5ba683",
+    "evidence/remaining_holds_coverage.json": "8156a30c1e66be668f4d1478b7e26ec406e9a15584c561bd3dbd97fdd0a64e66",
+    "evidence/remaining_holds_handoff.json": "7f064da0162430997d32d402396338e8db07a43e898e1fd09ab1dd6a8c0038c2",
+    "evidence/remaining_holds_ledger_manifest.json": "a4c78d5addb9a89571ace1da1cdabe0e169285b4a0734c9592ab056b00f6f4f8",
+    "evidence/remaining_holds_supervisor_results.json": "6582e3ab3e68c6d3a05c4d052b34635f1a79b8bef48821403888a14af8a853ff",
+    "evidence/remaining_holds_worker_archives.json": "387f105f31fd1b8ed650907499bb39ac6bbe1c1e5d18e44448b55c8be8a02aac",
+    "evidence/remaining_supervisor_ancestor_freshness_issuance_snapshot.json": "a1f5874b44c9cbadaa0f4d9e834c09bb0556d5153bb00cb7bc42a0c479b9521d",
+    "evidence/remaining_supervisor_ancestor_freshness_issuance_snapshot.xml": "493c873a3298e7fe1bf64943ff772515fae32d753077b8f142c934e4acb76cb2",
+    "evidence/remaining_supervisor_ancestor_freshness_snapshot.json": "3c5f7a2b59f9762d846d219864fe53d5a749b2ce5d6b1e683af9684b46c16990",
+    "evidence/remaining_supervisor_drift_symlink_snapshot.json": "52daf6d29ad054c03cc182964dffa8196ca6adf0037ff921a572a4960e0e6b7f"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "case_id": "RC-ANCESTOR-01",
+  "subcase": "reopen_issuance_writer_reader_coupling",
+  "requirements": [
+    "HMT-F02@1",
+    "HMT-B07@1",
+    "HMT-B10@1"
+  ],
+  "as_of": "2026-10-27T01:15:25.426590+00:00",
+  "relation_to_original_fix": "Original submission ancestor freshness repair remains as published cdef1fd; this additive correction makes reopening issuance obey that same predecessor contract. Original source/test snapshots and evidence unchanged.",
+  "initiating_condition": "CMAD1currentassignment advances after sealing; fresh CMAD2/CMAD3 authority reopens its own artifact-changed receipt.",
+  "retained_observations": [
+    {
+      "ancestor_depth": 1,
+      "event_issued": true,
+      "required_stage": "CMAD2",
+      "persisted_events": 1,
+      "persisted_invalidations": 1,
+      "successor_denial": "LANE_PREDECESSOR_ASSIGNMENT_STALE",
+      "closures": 0
+    },
+    {
+      "ancestor_depth": 2,
+      "event_issued": true,
+      "required_stage": "CMAD3",
+      "persisted_events": 1,
+      "persisted_invalidations": 1,
+      "successor_denial": "LANE_PREDECESSOR_ASSIGNMENT_STALE",
+      "closures": 0
+    }
+  ],
+  "causal_chain": [
+    "Admission correctly validates fresh downstream grant/task.",
+    "Reopen discovery observes artifact/policy/outcome changes but does not treat upstream assignment changes as repair-routing authority.",
+    "Writer formerly inserts downstream event+invalidation without checking current ancestor contract.",
+    "Designated successor reader now correctly rejects staleancestor assignment, leaving accepted event unusable."
+  ],
+  "corrective_task": "Reuse canonical check_parent for earliest changed candidate under same SQLite transaction, after finalhostadmission and immediately before eventINSERT. Any stale/missing upstream assignment denies issuance and rolls back currentclock checkpoint; no new routing/migration policy.",
+  "source_delta": "lane_reopen.py imports existing check_parent and calls it once; no reader/discovery/drift changes.",
+  "candidate_snapshot": {
+    "path": "evidence/ancestor_freshness_issuance_snapshot.json",
+    "sha256": "dbde9ef7ed3127c8827852d85d8d7206df625aaacadb103027b70e217d1d6056"
+  },
+  "results": {
+    "before": {
+      "tests": 20,
+      "failed": 16,
+      "passed": 4
+    },
+    "after": {
+      "tests": 20,
+      "failed": 0,
+      "skipped": 0
+    },
+    "full_local": {
+      "tests": 339,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 32.29,
+      "runtime_inventory_paths": 139,
+      "runtime_changes": 0
+    }
+  },
+  "negative_controls": [
+    "Immediate CMAD1\u2192CMAD2 and nonimmediate CMAD1\u2192CMAD3 ancestor drift.",
+    "Assignment revisionadvance, APIreassignment bob/revision2, missingassignment, controlledprincipalonly fixture.",
+    "Fresh downstreamgrant, with/without databaseobject restart.",
+    "Every SQLite table logicalcontents including hostclock unchanged on denial; originalorigin and ancestorreceipts unchanged."
+  ],
+  "positive_controls": [
+    "Unchanged ancestry reopens and exact successor seals after DBreopen.",
+    "Unrelated task assignmentadvance/reassignment does not block unaffected repair."
+  ],
+  "limitations": [
+    "DBobject reconstruction and persistent SQLite checks, not processkill/powerloss.",
+    "Missing/principalonly assignment states are trustedfixtures, not newpublicassignment behavior.",
+    "No automatic assignment rerouting, crossrevision migration or historicalreceipt rewriting.",
+    "Local fullsuite includes separatelyscoped driftworker code; supervisor isolated ordered replay and outside review remain required."
+  ],
+  "static_gates": {
+    "ruff": "PASS",
+    "pyrefly": "PASS basic",
+    "structure": "PASS"
+  },
+  "evidence": {
+    "evidence/ancestor_freshness_issuance_before_sources.json": "7062b502d4312746282408aa4cf2129745501ceef87df0dfc1246d9525ba11e4",
+    "evidence/ancestor_freshness_issuance_before_tests.json": "ba3c668053949cb4c7efa3b0a95e112308455cf12ecac757985fb89cff0e5d87",
+    "evidence/ancestor_freshness_issuance_before.xml": "ee410918cdf2546e512a432321e83f4b6206a18125e7b9fa377f5bd22538ed54",
+    "evidence/ancestor_freshness_issuance_before.log": "1e19dc6938c37e4bbdae7b719900db4e0dd41b39db158be961f21a7551bd593b",
+    "evidence/ancestor_freshness_issuance_trace.py": "41ca4199ecbef60a6f9395c04476498fc46fec78f5c04e3411779019127641f5",
+    "evidence/ancestor_freshness_issuance_trace.json": "5193696b2783a99824a6f12b31d89f59a71360266ea176f1a9f88339977430f8",
+    "evidence/ancestor_freshness_issuance_after.xml": "6552e40aac851be55b7d4c214358c022a075c91b7ddfcd0063e72f6c923b9d02",
+    "evidence/ancestor_freshness_issuance_after.log": "951e64ad8c743e92de97fd3a2b25b60df3ef13609c5f8a360398b4705064de98",
+    "evidence/ancestor_freshness_issuance_full_regression.xml": "94a25be26c805f9c6382e5f6251e1792c2b5a06a38c781abdde3cf2642df476f",
+    "evidence/ancestor_freshness_issuance_full_regression.log": "b08a18f60a3a4d6253c03cd1602dee938927dfe3913bfd63f56048c020e5f166",
+    "evidence/ancestor_freshness_issuance_runtime_inventory.json": "6292b236b8bb9ffcf45f1730d0ef4428decf403f90dbda30f256977bc8080e44",
+    "evidence/ancestor_freshness_issuance_runtime_changes.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+  },
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; HOLD pending supervisor reconciliation and outside review; no integrationprogression",
+  "sub_agent_task_attestation": {
+    "agent": "/root/lane_reconciliation",
+    "task": "RC-ANCESTOR-01 issuance coupling",
+    "unsigned": true,
+    "owned_source": [
+      "src/hmt_rnd/lane_reopen.py",
+      "tests/test_ancestor_freshness_issuance.py",
+      "tests/test_ancestor_freshness_issuance_support.py"
+    ],
+    "no_reference_or_sharedconfig_changes": true,
+    "no_commit_push_or_promotion": true
+  }
+}

@@ -1,0 +1,87 @@
+[
+  {
+    "sha": "e8f1678ad94759a433af19e161e8c18551ebeb97",
+    "cases": [
+      "RC-LANE-07",
+      "RC-ARTIFACT-01",
+      "RC-ARTIFACT-02"
+    ],
+    "paths": [
+      "evidence/final_review_handoff.json"
+    ]
+  },
+  {
+    "sha": "6f5961c60c54caa2d4a92eefd1bfa672e2304c91",
+    "cases": [
+      "RC-LANE-07"
+    ],
+    "paths": [
+      "src/hmt_rnd/lane_reopen.py",
+      "tests/test_revision_issuance_support.py",
+      "tests/test_revision_issuance_guards.py",
+      "evidence/revision_issuance_snapshot.json",
+      "evidence/revision_issuance_before_sources.json",
+      "evidence/revision_issuance_before_tests.json",
+      "evidence/revision_issuance_before.xml",
+      "evidence/revision_issuance_before.log",
+      "evidence/revision_issuance_trace.py",
+      "evidence/revision_issuance_trace.json",
+      "evidence/latest_supervisor_revision_issuance_snapshot.json",
+      "evidence/latest_supervisor_revision_issuance_snapshot.xml.gz",
+      "evidence/latest_supervisor_revision_issuance_snapshot.log",
+      "evidence/latest_review_archives.json"
+    ]
+  },
+  {
+    "sha": "95649e428d4cbdbe7b1706f1cfb6c3983ed0456a",
+    "cases": [
+      "RC-ARTIFACT-01"
+    ],
+    "paths": [
+      "src/hmt_rnd/lane_reader.py",
+      "src/hmt_rnd/lane_evidence.py",
+      "tests/test_artifact_fifo_boundaries.py",
+      "tests/test_artifact_fifo_hooks.py",
+      "tests/test_artifact_fifo_race.py",
+      "tests/test_artifact_fifo_support.py",
+      "tests/test_artifact_fifo_worker.py",
+      "evidence/artifact_fifo_baseline.json",
+      "evidence/artifact_fifo_before.xml",
+      "evidence/artifact_fifo_before.log",
+      "evidence/artifact_fifo_step1_tests.xml",
+      "evidence/artifact_fifo_step1_tests.log",
+      "evidence/artifact_fifo_digest_observed.json",
+      "evidence/artifact_fifo_step1_case.json",
+      "evidence/artifact_fifo_step1.json",
+      "evidence/latest_supervisor_artifact_fifo_step1.json",
+      "evidence/latest_supervisor_artifact_fifo_step1.xml.gz",
+      "evidence/latest_supervisor_artifact_fifo_step1.log",
+      "evidence/latest_review_archives.json"
+    ]
+  },
+  {
+    "sha": "b8f8fac8a9ac55fed6e77f4363c39cd113555091",
+    "cases": [
+      "RC-ARTIFACT-02"
+    ],
+    "paths": [
+      "src/hmt_rnd/lane_artifacts.py",
+      "tests/test_artifact_fifo_race.py",
+      "tests/test_artifact_fifo_boundaries.py",
+      "tests/test_artifact_fifo_symlink_race.py",
+      "evidence/artifact_fifo_step2_tests.xml",
+      "evidence/artifact_fifo_step2_tests.log",
+      "evidence/artifact_fifo_snapshot_observed.json",
+      "evidence/artifact_fifo_step2_case.json",
+      "evidence/artifact_fifo_step2.json",
+      "evidence/latest_supervisor_artifact_fifo_step2.json",
+      "evidence/latest_supervisor_artifact_fifo_step2.xml.gz",
+      "evidence/latest_supervisor_artifact_fifo_step2.log",
+      "evidence/latest_review_coverage.json.gz",
+      "evidence/latest_review_coverage_tests.xml.gz",
+      "evidence/latest_review_changed_coverage.json",
+      "evidence/latest_review_supervisor_results.json",
+      "evidence/latest_review_archives.json"
+    ]
+  }
+]

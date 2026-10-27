@@ -1,0 +1,985 @@
+FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF                                         [100%]
+=================================== FAILURES ===================================
+________ test_invalid_identity_zero_store_open[authority--store-direct] ________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe098181e00>
+transport = 'direct', field = 'store', spelling = '', cwd_name = 'authority'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+E           AssertionError: assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'HOST_STORE_UNBOUND'
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_launch_identity_invalid.py:27: AssertionError
+_________ test_invalid_identity_zero_store_open[authority--store-mcp] __________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe098181cd0>
+transport = 'mcp', field = 'store', spelling = '', cwd_name = 'authority'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+            assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+        else:
+            assert observed["returncode"] != 0
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["stderr"]
+E           assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'Traceback (most recent call last):\n  File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/launch_identity...tore.py", line 16, in __init__\n    raise PermissionError("HOST_STORE_UNBOUND")\nPermissionError: HOST_STORE_UNBOUND\n'
+
+tests/test_launch_identity_invalid.py:30: AssertionError
+________ test_invalid_identity_zero_store_open[authority--root-direct] _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto2')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe0980e4a70>
+transport = 'direct', field = 'root', spelling = '', cwd_name = 'authority'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+E           AssertionError: assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'CAP_SCOPE_STALE'
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_launch_identity_invalid.py:27: AssertionError
+__________ test_invalid_identity_zero_store_open[authority--root-mcp] __________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto3')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe0980b4490>
+transport = 'mcp', field = 'root', spelling = '', cwd_name = 'authority'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+            assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+        else:
+>           assert observed["returncode"] != 0
+E           assert 0 != 0
+
+tests/test_launch_identity_invalid.py:29: AssertionError
+_______ test_invalid_identity_zero_store_open[authority-.-store-direct] ________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto4')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe0980b4160>
+transport = 'direct', field = 'store', spelling = '.', cwd_name = 'authority'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+E           AssertionError: assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'HOST_STORE_UNBOUND'
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_launch_identity_invalid.py:27: AssertionError
+_________ test_invalid_identity_zero_store_open[authority-.-store-mcp] _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto5')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe09803da50>
+transport = 'mcp', field = 'store', spelling = '.', cwd_name = 'authority'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+            assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+        else:
+            assert observed["returncode"] != 0
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["stderr"]
+E           assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'Traceback (most recent call last):\n  File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/launch_identity...tore.py", line 16, in __init__\n    raise PermissionError("HOST_STORE_UNBOUND")\nPermissionError: HOST_STORE_UNBOUND\n'
+
+tests/test_launch_identity_invalid.py:30: AssertionError
+________ test_invalid_identity_zero_store_open[authority-.-root-direct] ________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto6')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe09803dd50>
+transport = 'direct', field = 'root', spelling = '.', cwd_name = 'authority'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+E           AssertionError: assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'HOST_GRANT_DENIED'
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_launch_identity_invalid.py:27: AssertionError
+_________ test_invalid_identity_zero_store_open[authority-.-root-mcp] __________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto7')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe09819a300>
+transport = 'mcp', field = 'root', spelling = '.', cwd_name = 'authority'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+            assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+        else:
+>           assert observed["returncode"] != 0
+E           assert 0 != 0
+
+tests/test_launch_identity_invalid.py:29: AssertionError
+__ test_invalid_identity_zero_store_open[authority-host.sqlite-store-direct] ___
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto8')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe09819b200>
+transport = 'direct', field = 'store', spelling = 'host.sqlite'
+cwd_name = 'authority'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+E           AssertionError: assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'HOST_GRANT_DENIED'
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_launch_identity_invalid.py:27: AssertionError
+____ test_invalid_identity_zero_store_open[authority-host.sqlite-store-mcp] ____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto9')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe0980ed550>
+transport = 'mcp', field = 'store', spelling = 'host.sqlite'
+cwd_name = 'authority'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+            assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+        else:
+>           assert observed["returncode"] != 0
+E           assert 0 != 0
+
+tests/test_launch_identity_invalid.py:29: AssertionError
+___ test_invalid_identity_zero_store_open[authority-host.sqlite-root-direct] ___
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto10')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe0980efa10>
+transport = 'direct', field = 'root', spelling = 'host.sqlite'
+cwd_name = 'authority'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+E           AssertionError: assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'HOST_GRANT_DENIED'
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_launch_identity_invalid.py:27: AssertionError
+____ test_invalid_identity_zero_store_open[authority-host.sqlite-root-mcp] _____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto11')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe0981a3a00>
+transport = 'mcp', field = 'root', spelling = 'host.sqlite'
+cwd_name = 'authority'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+            assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+        else:
+>           assert observed["returncode"] != 0
+E           assert 0 != 0
+
+tests/test_launch_identity_invalid.py:29: AssertionError
+_ test_invalid_identity_zero_store_open[authority-../host.sqlite-store-direct] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto12')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe09824f950>
+transport = 'direct', field = 'store', spelling = '../host.sqlite'
+cwd_name = 'authority'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+E           AssertionError: assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'HOST_STORE_UNBOUND'
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_launch_identity_invalid.py:27: AssertionError
+__ test_invalid_identity_zero_store_open[authority-../host.sqlite-store-mcp] ___
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto13')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe0980b1b50>
+transport = 'mcp', field = 'store', spelling = '../host.sqlite'
+cwd_name = 'authority'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+            assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+        else:
+            assert observed["returncode"] != 0
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["stderr"]
+E           assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'Traceback (most recent call last):\n  File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/launch_identity...tore.py", line 16, in __init__\n    raise PermissionError("HOST_STORE_UNBOUND")\nPermissionError: HOST_STORE_UNBOUND\n'
+
+tests/test_launch_identity_invalid.py:30: AssertionError
+_ test_invalid_identity_zero_store_open[authority-../host.sqlite-root-direct] __
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto14')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe098130cb0>
+transport = 'direct', field = 'root', spelling = '../host.sqlite'
+cwd_name = 'authority'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+E           AssertionError: assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'HOST_GRANT_DENIED'
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_launch_identity_invalid.py:27: AssertionError
+___ test_invalid_identity_zero_store_open[authority-../host.sqlite-root-mcp] ___
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto15')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe0980cde90>
+transport = 'mcp', field = 'root', spelling = '../host.sqlite'
+cwd_name = 'authority'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+            assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+        else:
+>           assert observed["returncode"] != 0
+E           assert 0 != 0
+
+tests/test_launch_identity_invalid.py:29: AssertionError
+________ test_invalid_identity_zero_store_open[alternate--store-direct] ________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto16')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe0980e0190>
+transport = 'direct', field = 'store', spelling = '', cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+E           AssertionError: assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'HOST_STORE_UNBOUND'
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_launch_identity_invalid.py:27: AssertionError
+_________ test_invalid_identity_zero_store_open[alternate--store-mcp] __________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto17')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe0980e3070>
+transport = 'mcp', field = 'store', spelling = '', cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+            assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+        else:
+            assert observed["returncode"] != 0
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["stderr"]
+E           assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'Traceback (most recent call last):\n  File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/launch_identity...tore.py", line 16, in __init__\n    raise PermissionError("HOST_STORE_UNBOUND")\nPermissionError: HOST_STORE_UNBOUND\n'
+
+tests/test_launch_identity_invalid.py:30: AssertionError
+________ test_invalid_identity_zero_store_open[alternate--root-direct] _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto18')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe0980d11c0>
+transport = 'direct', field = 'root', spelling = '', cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+E           AssertionError: assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'CAP_SCOPE_STALE'
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_launch_identity_invalid.py:27: AssertionError
+__________ test_invalid_identity_zero_store_open[alternate--root-mcp] __________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto19')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe09812ae50>
+transport = 'mcp', field = 'root', spelling = '', cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+            assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+        else:
+>           assert observed["returncode"] != 0
+E           assert 0 != 0
+
+tests/test_launch_identity_invalid.py:29: AssertionError
+_______ test_invalid_identity_zero_store_open[alternate-.-store-direct] ________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto20')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe097f49150>
+transport = 'direct', field = 'store', spelling = '.', cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+E           AssertionError: assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'HOST_STORE_UNBOUND'
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_launch_identity_invalid.py:27: AssertionError
+_________ test_invalid_identity_zero_store_open[alternate-.-store-mcp] _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto21')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe0980f1470>
+transport = 'mcp', field = 'store', spelling = '.', cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+            assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+        else:
+            assert observed["returncode"] != 0
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["stderr"]
+E           assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'Traceback (most recent call last):\n  File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/launch_identity...tore.py", line 16, in __init__\n    raise PermissionError("HOST_STORE_UNBOUND")\nPermissionError: HOST_STORE_UNBOUND\n'
+
+tests/test_launch_identity_invalid.py:30: AssertionError
+________ test_invalid_identity_zero_store_open[alternate-.-root-direct] ________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto22')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe097f3d2b0>
+transport = 'direct', field = 'root', spelling = '.', cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+E           AssertionError: assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'HOST_GRANT_DENIED'
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_launch_identity_invalid.py:27: AssertionError
+_________ test_invalid_identity_zero_store_open[alternate-.-root-mcp] __________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto23')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe098135390>
+transport = 'mcp', field = 'root', spelling = '.', cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+            assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+        else:
+>           assert observed["returncode"] != 0
+E           assert 0 != 0
+
+tests/test_launch_identity_invalid.py:29: AssertionError
+__ test_invalid_identity_zero_store_open[alternate-host.sqlite-store-direct] ___
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto24')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe097f3dbe0>
+transport = 'direct', field = 'store', spelling = 'host.sqlite'
+cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+>           assert observed["denied"]
+E           assert False
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_launch_identity_invalid.py:26: AssertionError
+____ test_invalid_identity_zero_store_open[alternate-host.sqlite-store-mcp] ____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto25')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe098136580>
+transport = 'mcp', field = 'store', spelling = 'host.sqlite'
+cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+            assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+        else:
+>           assert observed["returncode"] != 0
+E           assert 0 != 0
+
+tests/test_launch_identity_invalid.py:29: AssertionError
+___ test_invalid_identity_zero_store_open[alternate-host.sqlite-root-direct] ___
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto26')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe097f3f380>
+transport = 'direct', field = 'root', spelling = 'host.sqlite'
+cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+E           AssertionError: assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'HOST_GRANT_DENIED'
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_launch_identity_invalid.py:27: AssertionError
+____ test_invalid_identity_zero_store_open[alternate-host.sqlite-root-mcp] _____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto27')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe097f3e2e0>
+transport = 'mcp', field = 'root', spelling = 'host.sqlite'
+cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+            assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+        else:
+>           assert observed["returncode"] != 0
+E           assert 0 != 0
+
+tests/test_launch_identity_invalid.py:29: AssertionError
+_ test_invalid_identity_zero_store_open[alternate-../host.sqlite-store-direct] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto28')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe097f3e970>
+transport = 'direct', field = 'store', spelling = '../host.sqlite'
+cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+E           AssertionError: assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'HOST_STORE_UNBOUND'
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_launch_identity_invalid.py:27: AssertionError
+__ test_invalid_identity_zero_store_open[alternate-../host.sqlite-store-mcp] ___
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto29')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe097f3ca60>
+transport = 'mcp', field = 'store', spelling = '../host.sqlite'
+cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+            assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+        else:
+            assert observed["returncode"] != 0
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["stderr"]
+E           assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'Traceback (most recent call last):\n  File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/launch_identity...tore.py", line 16, in __init__\n    raise PermissionError("HOST_STORE_UNBOUND")\nPermissionError: HOST_STORE_UNBOUND\n'
+
+tests/test_launch_identity_invalid.py:30: AssertionError
+_ test_invalid_identity_zero_store_open[alternate-../host.sqlite-root-direct] __
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto30')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe097f3dfd0>
+transport = 'direct', field = 'root', spelling = '../host.sqlite'
+cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+>           assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+E           AssertionError: assert 'MCP_BINDING_PATH_NOT_ABSOLUTE' in 'HOST_GRANT_DENIED'
+
+/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/tests/test_launch_identity_invalid.py:27: AssertionError
+___ test_invalid_identity_zero_store_open[alternate-../host.sqlite-root-mcp] ___
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-168/test_invalid_identity_zero_sto31')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fe097f3da20>
+transport = 'mcp', field = 'root', spelling = '../host.sqlite'
+cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+            assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+        else:
+>           assert observed["returncode"] != 0
+E           assert 0 != 0
+
+tests/test_launch_identity_invalid.py:29: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[authority--store-direct]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[authority--store-mcp]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[authority--root-direct]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[authority--root-mcp]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[authority-.-store-direct]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[authority-.-store-mcp]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[authority-.-root-direct]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[authority-.-root-mcp]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[authority-host.sqlite-store-direct]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[authority-host.sqlite-store-mcp]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[authority-host.sqlite-root-direct]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[authority-host.sqlite-root-mcp]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[authority-../host.sqlite-store-direct]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[authority-../host.sqlite-store-mcp]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[authority-../host.sqlite-root-direct]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[authority-../host.sqlite-root-mcp]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate--store-direct]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate--store-mcp]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate--root-direct]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate--root-mcp]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate-.-store-direct]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate-.-store-mcp]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate-.-root-direct]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate-.-root-mcp]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate-host.sqlite-store-direct]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate-host.sqlite-store-mcp]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate-host.sqlite-root-direct]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate-host.sqlite-root-mcp]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate-../host.sqlite-store-direct]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate-../host.sqlite-store-mcp]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate-../host.sqlite-root-direct]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate-../host.sqlite-root-mcp]
+32 failed in 34.12s

@@ -1,0 +1,130 @@
+{
+  "task_id": "P1-MCP-DIRECT-BOUNDARIES",
+  "new_tests_passed": 9,
+  "cumulative_tests_passed": 27,
+  "command": [
+    "uv",
+    "run",
+    "--with",
+    "mcp==2.3.0",
+    "--with",
+    "pytest",
+    "python",
+    "-m",
+    "pytest",
+    "tests/test_mcp_binding_boundaries.py",
+    "tests/test_mcp_direct.py",
+    "tests/test_mcp_launch.py",
+    "tests/test_mcp_protocol.py",
+    "tests/test_mcp_scope.py",
+    "tests/test_mcp_support.py",
+    "tests/test_mcp_validation.py",
+    "-q"
+  ],
+  "exit_code": 0,
+  "stdout": "...........................                                              [100%]\n27 passed in 16.47s\n",
+  "stderr": "",
+  "prior_18_case_evidence": {
+    "path": "evidence/mcp_stdio.json",
+    "sha256": "4d394e39a812025b92aba79ebd6fbdf68d445bcc75a3da6861e306f48750892a",
+    "preserved": true
+  },
+  "test_purpose": [
+    "Registered callable wrapper/direct dispatch semantic and admission parity",
+    "Revoked wrapper and fresh discovery deny",
+    "Unknown admin operation denied",
+    "Launch policy cannot silently follow host grant policy",
+    "Bound handoff text/list before evaluation",
+    "Bound launch config before JSON parsing",
+    "Reject named-pipe and different-owner launch binding",
+    "Do not rewrite malformed UTF8 input"
+  ],
+  "new_tests": [
+    "tests/test_mcp_direct.py",
+    "tests/test_mcp_binding_boundaries.py"
+  ],
+  "file_hashes": {
+    "src/hmt_rnd/mcp_contracts.py": "728521617e0c48c3bafa3bdf9ee719de3a357055f05485cb62ee5dc97cc667e6",
+    "src/hmt_rnd/mcp_framing.py": "b371dc0a3c01316f4b8659926e8bd1d024662b4c9608758b3f9f6b691b1e2692",
+    "src/hmt_rnd/mcp_handoff.py": "8766cce44f243ada83f6da97b6c4bbd6e086365d61ccd3cda1acb7225cd1f022",
+    "src/hmt_rnd/mcp_server.py": "61d33eccd521a20717b3010fcf3baf21fb4853643bf178074c6282eca4d80e09",
+    "src/hmt_rnd/mcp_stdio.py": "215f82e2a68a842443c6b2fd5dee93359a92a84c42b62d47418fe35d1f74aa39",
+    "src/hmt_rnd/mcp_surface.py": "2dc15d903d69a3f376fb8b729ea926970d200e906ec591dc4683968355481c72",
+    "tests/test_mcp_binding_boundaries.py": "2363ac7f991dca7f97f67dea45fb257ae2fee13a5be9258651cb1b7270d2af9f",
+    "tests/test_mcp_direct.py": "4325ad9fd6d48ccd78267aa885654e9e52be8d8b7a2d2463e4370ffdce128605",
+    "tests/test_mcp_launch.py": "9b55d6847b9c06747d5c34bea7841ae4a6879a567f5541a0d76cb3fc4a0109bc",
+    "tests/test_mcp_protocol.py": "c723ddc76e2021de877d1b48d82304482a74be929915eb5a0e668b1867227d70",
+    "tests/test_mcp_scope.py": "9b710bb596b741477c292f4de6bda89439a64af4df6c310405660fdca59288a6",
+    "tests/test_mcp_support.py": "320fd348ddb4c41a8dccfa7853c0023e0343137964b034eda67276a783867585",
+    "tests/test_mcp_validation.py": "4b58c96d5d34a34f04463c0dfddad020e857b37d56aa165bcdef39d764f3f5c5"
+  },
+  "complexity": [
+    {
+      "path": "src/hmt_rnd/mcp_contracts.py",
+      "module_loc": 26,
+      "maximum_function_loc": 0
+    },
+    {
+      "path": "src/hmt_rnd/mcp_framing.py",
+      "module_loc": 18,
+      "maximum_function_loc": 6
+    },
+    {
+      "path": "src/hmt_rnd/mcp_handoff.py",
+      "module_loc": 33,
+      "maximum_function_loc": 6
+    },
+    {
+      "path": "src/hmt_rnd/mcp_server.py",
+      "module_loc": 48,
+      "maximum_function_loc": 8
+    },
+    {
+      "path": "src/hmt_rnd/mcp_stdio.py",
+      "module_loc": 34,
+      "maximum_function_loc": 11
+    },
+    {
+      "path": "src/hmt_rnd/mcp_surface.py",
+      "module_loc": 51,
+      "maximum_function_loc": 10
+    },
+    {
+      "path": "tests/test_mcp_binding_boundaries.py",
+      "module_loc": 41,
+      "maximum_function_loc": 8
+    },
+    {
+      "path": "tests/test_mcp_direct.py",
+      "module_loc": 53,
+      "maximum_function_loc": 20
+    },
+    {
+      "path": "tests/test_mcp_launch.py",
+      "module_loc": 64,
+      "maximum_function_loc": 13
+    },
+    {
+      "path": "tests/test_mcp_protocol.py",
+      "module_loc": 49,
+      "maximum_function_loc": 16
+    },
+    {
+      "path": "tests/test_mcp_scope.py",
+      "module_loc": 36,
+      "maximum_function_loc": 14
+    },
+    {
+      "path": "tests/test_mcp_support.py",
+      "module_loc": 43,
+      "maximum_function_loc": 13
+    },
+    {
+      "path": "tests/test_mcp_validation.py",
+      "module_loc": 38,
+      "maximum_function_loc": 13
+    }
+  ],
+  "ruff": "All checks passed",
+  "coverage_scope": "mcp_direct_coverage.json records additional direct cases only. Root combines actual protocol subprocess coverage with SIGTERM tracing; do not treat partial campaign total as full-project coverage."
+}

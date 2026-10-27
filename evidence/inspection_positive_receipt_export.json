@@ -1,0 +1,155 @@
+{
+  "data_classification": "SYNTHETIC PUBLIC TEST FIXTURE; inert credential reference, no real credential or vendor account",
+  "producer": "/root; unsigned",
+  "as_of": "2026-10-27T04:48:41.671501+00:00",
+  "monotonic_seconds": 1.0861514790012734,
+  "logical_host_clock": 20.0,
+  "clock_limit": "Trusted fixture clock; not production clock authentication",
+  "fixture_launch_config": {
+    "binding": {
+      "identity": {
+        "principal": "worker-build",
+        "role": "builder",
+        "lane": "Build",
+        "stage": "B3",
+        "credential": "host-bound-credential"
+      },
+      "store": "/tmp/hmt-inspection-positive-export/host.sqlite",
+      "task_id": "task-1",
+      "revision": 1,
+      "root": "/tmp/hmt-inspection-positive-export",
+      "destination": "local",
+      "policy": "policy-1"
+    },
+    "capabilities": [
+      {
+        "operation_id": "inspect_context",
+        "owner": "Host/IIEA",
+        "effect_class": "LOCAL_MUTATION",
+        "implementation": "hmt_rnd.mcp_surface.inspect_context",
+        "binding_sha256": "c732c7c595b81557df60676e1fa93408d349432ca45cb24a416517aac6013497",
+        "epoch": 1,
+        "source_pins": {
+          "host_admission.py": "5b675de7eb0f0a84886c30d6092d3152b6d4224af552f8b3840e7e9e8d8ce1a5",
+          "host_checks.py": "7198c769641bebd17648040cd402001768c3df3fc7a26fce55e5c826274ee07a",
+          "host_models.py": "d6024f59bdb8da8bd95adee1aefb1dafacd426728b1f07576673368bebdb81b3",
+          "host_store.py": "dc5bc1ba541e5647093016b1ca9c9243be6d4e44a01597f4b84d7d5625867e84",
+          "host_admin.py": "3ef443d33cd5735deefb1f9435c334ac744fe5b89858009493af14172a0e7910",
+          "host_schema.py": "94fc1948231e40f1b7c00c3970931bc36b4f1dc5df23d862a72db2bc867924a1",
+          "mcp_contracts.py": "728521617e0c48c3bafa3bdf9ee719de3a357055f05485cb62ee5dc97cc667e6",
+          "mcp_handoff.py": "8766cce44f243ada83f6da97b6c4bbd6e086365d61ccd3cda1acb7225cd1f022",
+          "mcp_surface.py": "6667fb59781e7e981851a7abe334cb8ea1027c15a16277cb701d59ce12381478"
+        },
+        "input_schema_pin": "4757414b28c839a41f2541d9f5854fa0e32f88990afb5194d5ecdaae880a8250",
+        "output_schema_pin": "6ca6b6c1f2cc102a9f601c5718665517b4dc21f97d5335b150ba0962aff3a94f",
+        "credential_scope_and_data_egress": {
+          "credential_ref": "host-bound-credential",
+          "destination": "local",
+          "external_egress": "DENY"
+        },
+        "retry_reconciliation_owner": {
+          "owner": "Host",
+          "maximum_attempts": 1,
+          "automatic_retry": false,
+          "uncertain": "HOLD"
+        },
+        "limits": {
+          "input_bytes": 65536,
+          "output_bytes": 4096,
+          "source_file_bytes": 65536,
+          "source_total_bytes": 131072,
+          "deadline_seconds": 30
+        },
+        "valid_from": 1.0,
+        "valid_until": 80.0,
+        "resource_profile": "LOCAL-CTRL-1",
+        "evidence_contract": "atomic clock checkpoint and immutable native-result receipt"
+      }
+    ]
+  },
+  "actual_assignment_rows": [
+    [
+      "task-1",
+      "worker-build",
+      1
+    ]
+  ],
+  "actual_grant_rows": [
+    [
+      "{\"principal\":\"worker-build\",\"role\":\"builder\",\"lane\":\"Build\",\"stage\":\"B3\",\"credential\":\"host-bound-credential\",\"task_id\":\"task-1\",\"revision\":1,\"operation\":\"inspect_context\",\"root\":\"/tmp/hmt-inspection-positive-export\",\"destination\":\"local\",\"policy\":\"policy-1\",\"epoch\":1,\"not_before\":1.0,\"expires\":100.0,\"evidence_expires\":90.0}",
+      0
+    ]
+  ],
+  "direct_native_result": {
+    "principal": "worker-build",
+    "task_id": "task-1",
+    "task_revision": 1,
+    "operation": "inspect_context",
+    "policy": "policy-1",
+    "epoch": 1,
+    "effect_authority": "NONE"
+  },
+  "actual_MCP_reply": {
+    "is_error": false,
+    "structured_content": {
+      "principal": "worker-build",
+      "task_id": "task-1",
+      "task_revision": 1,
+      "operation": "inspect_context",
+      "policy": "policy-1",
+      "epoch": 1,
+      "effect_authority": "NONE"
+    },
+    "projection": [
+      "inspect_context"
+    ]
+  },
+  "independent_native_dispatch_markers": {
+    "direct": [
+      {
+        "result_sha256": "b87c60a42709887bb2f30dc6c9f1029d5835e737d68315d04f551b7361a99a4c"
+      }
+    ],
+    "MCP": [
+      {
+        "result_sha256": "b87c60a42709887bb2f30dc6c9f1029d5835e737d68315d04f551b7361a99a4c"
+      }
+    ]
+  },
+  "raw_receipt_table_columns": [
+    "id",
+    "body",
+    "digest"
+  ],
+  "raw_receipt_table_rows": [
+    [
+      "3e6f4e27-9968-4685-b593-f04511746ee5",
+      "{\"call_id\": \"3e6f4e27-9968-4685-b593-f04511746ee5\", \"capability_sha256\": \"47df55722fa356c8510915f74451ddf907f2c839a4315b0b072ed1824b2299ef\", \"source_manifest_sha256\": \"f5bb7ca029770fd9f4fe3d75c397307be2a2c3d7aa2ab3d8230987bd851a2c33\", \"input_schema_sha256\": \"4757414b28c839a41f2541d9f5854fa0e32f88990afb5194d5ecdaae880a8250\", \"output_schema_sha256\": \"6ca6b6c1f2cc102a9f601c5718665517b4dc21f97d5335b150ba0962aff3a94f\", \"arguments_sha256\": \"44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a\", \"result\": {\"principal\": \"worker-build\", \"task_id\": \"task-1\", \"task_revision\": 1, \"operation\": \"inspect_context\", \"policy\": \"policy-1\", \"epoch\": 1, \"effect_authority\": \"NONE\"}, \"result_sha256\": \"b87c60a42709887bb2f30dc6c9f1029d5835e737d68315d04f551b7361a99a4c\", \"clock_checkpoint\": 20.0, \"effect_class\": \"LOCAL_MUTATION\", \"external_effects\": 0}",
+      "0749df1c281c319fcec70c4a6393028dac52339279fd53b220f29d995ed7302f"
+    ],
+    [
+      "b45eb377-05a9-4405-a3c3-97913c0f1476",
+      "{\"call_id\": \"b45eb377-05a9-4405-a3c3-97913c0f1476\", \"capability_sha256\": \"47df55722fa356c8510915f74451ddf907f2c839a4315b0b072ed1824b2299ef\", \"source_manifest_sha256\": \"f5bb7ca029770fd9f4fe3d75c397307be2a2c3d7aa2ab3d8230987bd851a2c33\", \"input_schema_sha256\": \"4757414b28c839a41f2541d9f5854fa0e32f88990afb5194d5ecdaae880a8250\", \"output_schema_sha256\": \"6ca6b6c1f2cc102a9f601c5718665517b4dc21f97d5335b150ba0962aff3a94f\", \"arguments_sha256\": \"44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a\", \"result\": {\"principal\": \"worker-build\", \"task_id\": \"task-1\", \"task_revision\": 1, \"operation\": \"inspect_context\", \"policy\": \"policy-1\", \"epoch\": 1, \"effect_authority\": \"NONE\"}, \"result_sha256\": \"b87c60a42709887bb2f30dc6c9f1029d5835e737d68315d04f551b7361a99a4c\", \"clock_checkpoint\": 20.0, \"effect_class\": \"LOCAL_MUTATION\", \"external_effects\": 0}",
+      "d9d3dc941d92ab40aae8074f8fb882b20f9255257875e8a43815ce5f51185340"
+    ]
+  ],
+  "before_host_meta": [
+    [
+      1,
+      "policy-1",
+      1,
+      0.0
+    ]
+  ],
+  "after_host_meta": [
+    [
+      1,
+      "policy-1",
+      1,
+      20.0
+    ]
+  ],
+  "other_tables_unchanged": true,
+  "source_manifest": "evidence/inspection_candidate.json",
+  "scope": "Actual configured adapter over original native operation and owning admission; test-only launcher, no default activation or external effects."
+}

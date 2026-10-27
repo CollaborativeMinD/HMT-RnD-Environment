@@ -1,0 +1,176 @@
+FFFFF..                                                                  [100%]
+=================================== FAILURES ===================================
+________ test_declared_symlink_drift_denies_atomically[False-artifact] _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-131/test_declared_symlink_drift_de0')
+source = 'artifact', dangling = False
+
+    @pytest.mark.parametrize("source", ["artifact", "evidence"])
+    @pytest.mark.parametrize("dangling", [False, True])
+    def test_declared_symlink_drift_denies_atomically(tmp_path, source, dangling):
+        host, owner, request, store, receipt = fixture(tmp_path)
+        path = receipt.candidate.artifact if source == "artifact" else receipt.gate.evidence[0].path
+        expected = (receipt.candidate.artifact_sha256 if source == "artifact"
+                    else receipt.gate.evidence[0].sha256)
+        scoped = reopen_request(host, owner, request)
+        replace_with_link(path, tmp_path, dangling)
+        with pytest.raises(PermissionError, match="LANE_ARTIFACT_SCOPE"):
+            digest_file(path, tmp_path)
+        drift, drift_denial = None, None
+        try:
+            drift = source_changed(path, expected, tmp_path)
+        except PermissionError as error:
+            drift_denial = str(error)
+        before = state(host)
+        reopened, reopen_denial = None, None
+        try:
+            reopened = store.reopen(owner, scoped, event(), lambda: Clock(now=12.0))
+        except PermissionError as error:
+            reopen_denial = str(error)
+        witness = {"source": source, "dangling": dangling, "drift": drift,
+                   "drift_denial": drift_denial, "reopen_denial": reopen_denial,
+                   "invalidated": None if reopened is None else list(reopened.invalidated_candidates),
+                   "before": before, "after": state(host)}
+        (tmp_path / "drift_symlink_observed.json").write_text(json.dumps(witness))
+        print(json.dumps(witness))
+>       assert drift_denial == reopen_denial == "LANE_ARTIFACT_SCOPE"
+E       AssertionError: assert None == 'LANE_ARTIFACT_SCOPE'
+
+tests/test_drift_symlink_tracer.py:42: AssertionError
+----------------------------- Captured stdout call -----------------------------
+{"source": "artifact", "dangling": false, "drift": true, "drift_denial": null, "reopen_denial": null, "invalidated": ["first"], "before": {"sha256": "bc241843b7c6755531db8ab9cd8f6ab40687e5c4e12e624d5601317e61eb7f20", "counts": {"lane_candidates": 1, "lane_artifacts": 2, "lane_reopens": 0, "lane_invalidations": 0, "lane_closures": 0, "lane_reauthorizations": 0, "last_clock": 10.0}}, "after": {"sha256": "a42769cb71265c6421f661a068e4a3c36abdbd9ce3b5092a937a16f9a5ca01aa", "counts": {"lane_candidates": 1, "lane_artifacts": 2, "lane_reopens": 1, "lane_invalidations": 1, "lane_closures": 0, "lane_reauthorizations": 0, "last_clock": 12.0}}}
+________ test_declared_symlink_drift_denies_atomically[False-evidence] _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-131/test_declared_symlink_drift_de1')
+source = 'evidence', dangling = False
+
+    @pytest.mark.parametrize("source", ["artifact", "evidence"])
+    @pytest.mark.parametrize("dangling", [False, True])
+    def test_declared_symlink_drift_denies_atomically(tmp_path, source, dangling):
+        host, owner, request, store, receipt = fixture(tmp_path)
+        path = receipt.candidate.artifact if source == "artifact" else receipt.gate.evidence[0].path
+        expected = (receipt.candidate.artifact_sha256 if source == "artifact"
+                    else receipt.gate.evidence[0].sha256)
+        scoped = reopen_request(host, owner, request)
+        replace_with_link(path, tmp_path, dangling)
+        with pytest.raises(PermissionError, match="LANE_ARTIFACT_SCOPE"):
+            digest_file(path, tmp_path)
+        drift, drift_denial = None, None
+        try:
+            drift = source_changed(path, expected, tmp_path)
+        except PermissionError as error:
+            drift_denial = str(error)
+        before = state(host)
+        reopened, reopen_denial = None, None
+        try:
+            reopened = store.reopen(owner, scoped, event(), lambda: Clock(now=12.0))
+        except PermissionError as error:
+            reopen_denial = str(error)
+        witness = {"source": source, "dangling": dangling, "drift": drift,
+                   "drift_denial": drift_denial, "reopen_denial": reopen_denial,
+                   "invalidated": None if reopened is None else list(reopened.invalidated_candidates),
+                   "before": before, "after": state(host)}
+        (tmp_path / "drift_symlink_observed.json").write_text(json.dumps(witness))
+        print(json.dumps(witness))
+>       assert drift_denial == reopen_denial == "LANE_ARTIFACT_SCOPE"
+E       AssertionError: assert None == 'LANE_ARTIFACT_SCOPE'
+
+tests/test_drift_symlink_tracer.py:42: AssertionError
+----------------------------- Captured stdout call -----------------------------
+{"source": "evidence", "dangling": false, "drift": true, "drift_denial": null, "reopen_denial": null, "invalidated": ["first"], "before": {"sha256": "6f43951761ba33c77689930d290f3bba8ba2394490aacf60b801220c80fc3ae9", "counts": {"lane_candidates": 1, "lane_artifacts": 2, "lane_reopens": 0, "lane_invalidations": 0, "lane_closures": 0, "lane_reauthorizations": 0, "last_clock": 10.0}}, "after": {"sha256": "19f30b4c645dfc58a97c8487ee9d97ea706f11cb0166453fd663fe04ad12a2e7", "counts": {"lane_candidates": 1, "lane_artifacts": 2, "lane_reopens": 1, "lane_invalidations": 1, "lane_closures": 0, "lane_reauthorizations": 0, "last_clock": 12.0}}}
+_________ test_declared_symlink_drift_denies_atomically[True-artifact] _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-131/test_declared_symlink_drift_de2')
+source = 'artifact', dangling = True
+
+    @pytest.mark.parametrize("source", ["artifact", "evidence"])
+    @pytest.mark.parametrize("dangling", [False, True])
+    def test_declared_symlink_drift_denies_atomically(tmp_path, source, dangling):
+        host, owner, request, store, receipt = fixture(tmp_path)
+        path = receipt.candidate.artifact if source == "artifact" else receipt.gate.evidence[0].path
+        expected = (receipt.candidate.artifact_sha256 if source == "artifact"
+                    else receipt.gate.evidence[0].sha256)
+        scoped = reopen_request(host, owner, request)
+        replace_with_link(path, tmp_path, dangling)
+        with pytest.raises(PermissionError, match="LANE_ARTIFACT_SCOPE"):
+            digest_file(path, tmp_path)
+        drift, drift_denial = None, None
+        try:
+            drift = source_changed(path, expected, tmp_path)
+        except PermissionError as error:
+            drift_denial = str(error)
+        before = state(host)
+        reopened, reopen_denial = None, None
+        try:
+            reopened = store.reopen(owner, scoped, event(), lambda: Clock(now=12.0))
+        except PermissionError as error:
+            reopen_denial = str(error)
+        witness = {"source": source, "dangling": dangling, "drift": drift,
+                   "drift_denial": drift_denial, "reopen_denial": reopen_denial,
+                   "invalidated": None if reopened is None else list(reopened.invalidated_candidates),
+                   "before": before, "after": state(host)}
+        (tmp_path / "drift_symlink_observed.json").write_text(json.dumps(witness))
+        print(json.dumps(witness))
+>       assert drift_denial == reopen_denial == "LANE_ARTIFACT_SCOPE"
+E       AssertionError: assert None == 'LANE_ARTIFACT_SCOPE'
+
+tests/test_drift_symlink_tracer.py:42: AssertionError
+----------------------------- Captured stdout call -----------------------------
+{"source": "artifact", "dangling": true, "drift": true, "drift_denial": null, "reopen_denial": null, "invalidated": ["first"], "before": {"sha256": "e9795e1995b58c8444a64d11a491aaa7e48e1167af10200f324cf5759753ee9d", "counts": {"lane_candidates": 1, "lane_artifacts": 2, "lane_reopens": 0, "lane_invalidations": 0, "lane_closures": 0, "lane_reauthorizations": 0, "last_clock": 10.0}}, "after": {"sha256": "88267ff3f82b927df380fc46c5bbe46e53466b0cdac44182c775bff7700ece80", "counts": {"lane_candidates": 1, "lane_artifacts": 2, "lane_reopens": 1, "lane_invalidations": 1, "lane_closures": 0, "lane_reauthorizations": 0, "last_clock": 12.0}}}
+_________ test_declared_symlink_drift_denies_atomically[True-evidence] _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-131/test_declared_symlink_drift_de3')
+source = 'evidence', dangling = True
+
+    @pytest.mark.parametrize("source", ["artifact", "evidence"])
+    @pytest.mark.parametrize("dangling", [False, True])
+    def test_declared_symlink_drift_denies_atomically(tmp_path, source, dangling):
+        host, owner, request, store, receipt = fixture(tmp_path)
+        path = receipt.candidate.artifact if source == "artifact" else receipt.gate.evidence[0].path
+        expected = (receipt.candidate.artifact_sha256 if source == "artifact"
+                    else receipt.gate.evidence[0].sha256)
+        scoped = reopen_request(host, owner, request)
+        replace_with_link(path, tmp_path, dangling)
+        with pytest.raises(PermissionError, match="LANE_ARTIFACT_SCOPE"):
+            digest_file(path, tmp_path)
+        drift, drift_denial = None, None
+        try:
+            drift = source_changed(path, expected, tmp_path)
+        except PermissionError as error:
+            drift_denial = str(error)
+        before = state(host)
+        reopened, reopen_denial = None, None
+        try:
+            reopened = store.reopen(owner, scoped, event(), lambda: Clock(now=12.0))
+        except PermissionError as error:
+            reopen_denial = str(error)
+        witness = {"source": source, "dangling": dangling, "drift": drift,
+                   "drift_denial": drift_denial, "reopen_denial": reopen_denial,
+                   "invalidated": None if reopened is None else list(reopened.invalidated_candidates),
+                   "before": before, "after": state(host)}
+        (tmp_path / "drift_symlink_observed.json").write_text(json.dumps(witness))
+        print(json.dumps(witness))
+>       assert drift_denial == reopen_denial == "LANE_ARTIFACT_SCOPE"
+E       AssertionError: assert None == 'LANE_ARTIFACT_SCOPE'
+
+tests/test_drift_symlink_tracer.py:42: AssertionError
+----------------------------- Captured stdout call -----------------------------
+{"source": "evidence", "dangling": true, "drift": true, "drift_denial": null, "reopen_denial": null, "invalidated": ["first"], "before": {"sha256": "3f7b5995c38b7b24748a39868898719f3e5984b0efb2e572714e04e5c5676627", "counts": {"lane_candidates": 1, "lane_artifacts": 2, "lane_reopens": 0, "lane_invalidations": 0, "lane_closures": 0, "lane_reauthorizations": 0, "last_clock": 10.0}}, "after": {"sha256": "d5a46f19ad94670d926807f0ce9c0e5f89fe818727afeaa6cfe700b0dd5bbe39", "counts": {"lane_candidates": 1, "lane_artifacts": 2, "lane_reopens": 1, "lane_invalidations": 1, "lane_closures": 0, "lane_reauthorizations": 0, "last_clock": 12.0}}}
+________________ test_missing_root_is_not_missing_source_drift _________________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-131/test_missing_root_is_not_missi0')
+
+    def test_missing_root_is_not_missing_source_drift(tmp_path):
+        root = tmp_path / "missing-root"
+>       with pytest.raises(PermissionError, match="LANE_ARTIFACT_SCOPE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_drift_symlink_root.py:11: Failed
+=========================== short test summary info ============================
+FAILED tests/test_drift_symlink_tracer.py::test_declared_symlink_drift_denies_atomically[False-artifact]
+FAILED tests/test_drift_symlink_tracer.py::test_declared_symlink_drift_denies_atomically[False-evidence]
+FAILED tests/test_drift_symlink_tracer.py::test_declared_symlink_drift_denies_atomically[True-artifact]
+FAILED tests/test_drift_symlink_tracer.py::test_declared_symlink_drift_denies_atomically[True-evidence]
+FAILED tests/test_drift_symlink_root.py::test_missing_root_is_not_missing_source_drift
+5 failed, 2 passed in 0.75s

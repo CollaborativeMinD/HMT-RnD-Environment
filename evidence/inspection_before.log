@@ -1,0 +1,196 @@
+FFFFFFFF.                                                                [100%]
+=================================== FAILURES ===================================
+_____ test_unresolved_binding_has_no_dispatch_or_committed_effect[missing] _____
+
+tmp_path = PosixPath('/tmp/hmt-inspection-before/test_unresolved_binding_has_no0')
+fault = 'missing'
+
+    @pytest.mark.parametrize("fault", ["missing", "conflict", "scope", "schema", "source",
+                                      "epoch", "expiry", "credential"])
+    def test_unresolved_binding_has_no_dispatch_or_committed_effect(tmp_path, fault):
+        store, binding, cap = fixture(tmp_path)
+        target = surface(binding, changed(cap, fault))
+        before = snapshot(store)
+        result, error = None, None
+        try:
+            result = target.invoke("inspect_context", {})
+        except (PermissionError, ValueError) as failure:
+            error = str(failure)
+        observed = {"fault": fault, "error": error, "native_result": result,
+                    "tables_unchanged": snapshot(store) == before}
+        (tmp_path / "inspection_observation.json").write_text(json.dumps(observed, indent=2))
+>       assert error is not None and result is None
+E       assert (None is not None)
+
+tests/test_inspection_admission.py:23: AssertionError
+____ test_unresolved_binding_has_no_dispatch_or_committed_effect[conflict] _____
+
+tmp_path = PosixPath('/tmp/hmt-inspection-before/test_unresolved_binding_has_no1')
+fault = 'conflict'
+
+    @pytest.mark.parametrize("fault", ["missing", "conflict", "scope", "schema", "source",
+                                      "epoch", "expiry", "credential"])
+    def test_unresolved_binding_has_no_dispatch_or_committed_effect(tmp_path, fault):
+        store, binding, cap = fixture(tmp_path)
+        target = surface(binding, changed(cap, fault))
+        before = snapshot(store)
+        result, error = None, None
+        try:
+            result = target.invoke("inspect_context", {})
+        except (PermissionError, ValueError) as failure:
+            error = str(failure)
+        observed = {"fault": fault, "error": error, "native_result": result,
+                    "tables_unchanged": snapshot(store) == before}
+        (tmp_path / "inspection_observation.json").write_text(json.dumps(observed, indent=2))
+>       assert error is not None and result is None
+E       assert (None is not None)
+
+tests/test_inspection_admission.py:23: AssertionError
+______ test_unresolved_binding_has_no_dispatch_or_committed_effect[scope] ______
+
+tmp_path = PosixPath('/tmp/hmt-inspection-before/test_unresolved_binding_has_no2')
+fault = 'scope'
+
+    @pytest.mark.parametrize("fault", ["missing", "conflict", "scope", "schema", "source",
+                                      "epoch", "expiry", "credential"])
+    def test_unresolved_binding_has_no_dispatch_or_committed_effect(tmp_path, fault):
+        store, binding, cap = fixture(tmp_path)
+        target = surface(binding, changed(cap, fault))
+        before = snapshot(store)
+        result, error = None, None
+        try:
+            result = target.invoke("inspect_context", {})
+        except (PermissionError, ValueError) as failure:
+            error = str(failure)
+        observed = {"fault": fault, "error": error, "native_result": result,
+                    "tables_unchanged": snapshot(store) == before}
+        (tmp_path / "inspection_observation.json").write_text(json.dumps(observed, indent=2))
+>       assert error is not None and result is None
+E       assert (None is not None)
+
+tests/test_inspection_admission.py:23: AssertionError
+_____ test_unresolved_binding_has_no_dispatch_or_committed_effect[schema] ______
+
+tmp_path = PosixPath('/tmp/hmt-inspection-before/test_unresolved_binding_has_no3')
+fault = 'schema'
+
+    @pytest.mark.parametrize("fault", ["missing", "conflict", "scope", "schema", "source",
+                                      "epoch", "expiry", "credential"])
+    def test_unresolved_binding_has_no_dispatch_or_committed_effect(tmp_path, fault):
+        store, binding, cap = fixture(tmp_path)
+        target = surface(binding, changed(cap, fault))
+        before = snapshot(store)
+        result, error = None, None
+        try:
+            result = target.invoke("inspect_context", {})
+        except (PermissionError, ValueError) as failure:
+            error = str(failure)
+        observed = {"fault": fault, "error": error, "native_result": result,
+                    "tables_unchanged": snapshot(store) == before}
+        (tmp_path / "inspection_observation.json").write_text(json.dumps(observed, indent=2))
+>       assert error is not None and result is None
+E       assert (None is not None)
+
+tests/test_inspection_admission.py:23: AssertionError
+_____ test_unresolved_binding_has_no_dispatch_or_committed_effect[source] ______
+
+tmp_path = PosixPath('/tmp/hmt-inspection-before/test_unresolved_binding_has_no4')
+fault = 'source'
+
+    @pytest.mark.parametrize("fault", ["missing", "conflict", "scope", "schema", "source",
+                                      "epoch", "expiry", "credential"])
+    def test_unresolved_binding_has_no_dispatch_or_committed_effect(tmp_path, fault):
+        store, binding, cap = fixture(tmp_path)
+        target = surface(binding, changed(cap, fault))
+        before = snapshot(store)
+        result, error = None, None
+        try:
+            result = target.invoke("inspect_context", {})
+        except (PermissionError, ValueError) as failure:
+            error = str(failure)
+        observed = {"fault": fault, "error": error, "native_result": result,
+                    "tables_unchanged": snapshot(store) == before}
+        (tmp_path / "inspection_observation.json").write_text(json.dumps(observed, indent=2))
+>       assert error is not None and result is None
+E       assert (None is not None)
+
+tests/test_inspection_admission.py:23: AssertionError
+______ test_unresolved_binding_has_no_dispatch_or_committed_effect[epoch] ______
+
+tmp_path = PosixPath('/tmp/hmt-inspection-before/test_unresolved_binding_has_no5')
+fault = 'epoch'
+
+    @pytest.mark.parametrize("fault", ["missing", "conflict", "scope", "schema", "source",
+                                      "epoch", "expiry", "credential"])
+    def test_unresolved_binding_has_no_dispatch_or_committed_effect(tmp_path, fault):
+        store, binding, cap = fixture(tmp_path)
+        target = surface(binding, changed(cap, fault))
+        before = snapshot(store)
+        result, error = None, None
+        try:
+            result = target.invoke("inspect_context", {})
+        except (PermissionError, ValueError) as failure:
+            error = str(failure)
+        observed = {"fault": fault, "error": error, "native_result": result,
+                    "tables_unchanged": snapshot(store) == before}
+        (tmp_path / "inspection_observation.json").write_text(json.dumps(observed, indent=2))
+>       assert error is not None and result is None
+E       assert (None is not None)
+
+tests/test_inspection_admission.py:23: AssertionError
+_____ test_unresolved_binding_has_no_dispatch_or_committed_effect[expiry] ______
+
+tmp_path = PosixPath('/tmp/hmt-inspection-before/test_unresolved_binding_has_no6')
+fault = 'expiry'
+
+    @pytest.mark.parametrize("fault", ["missing", "conflict", "scope", "schema", "source",
+                                      "epoch", "expiry", "credential"])
+    def test_unresolved_binding_has_no_dispatch_or_committed_effect(tmp_path, fault):
+        store, binding, cap = fixture(tmp_path)
+        target = surface(binding, changed(cap, fault))
+        before = snapshot(store)
+        result, error = None, None
+        try:
+            result = target.invoke("inspect_context", {})
+        except (PermissionError, ValueError) as failure:
+            error = str(failure)
+        observed = {"fault": fault, "error": error, "native_result": result,
+                    "tables_unchanged": snapshot(store) == before}
+        (tmp_path / "inspection_observation.json").write_text(json.dumps(observed, indent=2))
+>       assert error is not None and result is None
+E       assert (None is not None)
+
+tests/test_inspection_admission.py:23: AssertionError
+___ test_unresolved_binding_has_no_dispatch_or_committed_effect[credential] ____
+
+tmp_path = PosixPath('/tmp/hmt-inspection-before/test_unresolved_binding_has_no7')
+fault = 'credential'
+
+    @pytest.mark.parametrize("fault", ["missing", "conflict", "scope", "schema", "source",
+                                      "epoch", "expiry", "credential"])
+    def test_unresolved_binding_has_no_dispatch_or_committed_effect(tmp_path, fault):
+        store, binding, cap = fixture(tmp_path)
+        target = surface(binding, changed(cap, fault))
+        before = snapshot(store)
+        result, error = None, None
+        try:
+            result = target.invoke("inspect_context", {})
+        except (PermissionError, ValueError) as failure:
+            error = str(failure)
+        observed = {"fault": fault, "error": error, "native_result": result,
+                    "tables_unchanged": snapshot(store) == before}
+        (tmp_path / "inspection_observation.json").write_text(json.dumps(observed, indent=2))
+>       assert error is not None and result is None
+E       assert (None is not None)
+
+tests/test_inspection_admission.py:23: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_inspection_admission.py::test_unresolved_binding_has_no_dispatch_or_committed_effect[missing]
+FAILED tests/test_inspection_admission.py::test_unresolved_binding_has_no_dispatch_or_committed_effect[conflict]
+FAILED tests/test_inspection_admission.py::test_unresolved_binding_has_no_dispatch_or_committed_effect[scope]
+FAILED tests/test_inspection_admission.py::test_unresolved_binding_has_no_dispatch_or_committed_effect[schema]
+FAILED tests/test_inspection_admission.py::test_unresolved_binding_has_no_dispatch_or_committed_effect[source]
+FAILED tests/test_inspection_admission.py::test_unresolved_binding_has_no_dispatch_or_committed_effect[epoch]
+FAILED tests/test_inspection_admission.py::test_unresolved_binding_has_no_dispatch_or_committed_effect[expiry]
+FAILED tests/test_inspection_admission.py::test_unresolved_binding_has_no_dispatch_or_committed_effect[credential]
+8 failed, 1 passed in 0.98s

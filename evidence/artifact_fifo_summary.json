@@ -1,0 +1,95 @@
+{
+  "as_of": "2026-10-27T00:18:08.528146+00:00",
+  "baseline_commit": "c922345c520db598f4b1f6afff2598c0770f0bba",
+  "cases": [
+    "RC-ARTIFACT-01",
+    "RC-ARTIFACT-02"
+  ],
+  "status": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; HOLD_PENDING_OUT_OF_BAND_REVIEW",
+  "requirement_boundary_links": {
+    "HMT-N02": "Finite artifact-byte cap and no unbounded FIFO wait",
+    "HMT-N03": "FIFO open cannot evade bounded local operation by waiting for writer",
+    "HMT-N04": "No-follow descriptor traversal retains declared root boundary",
+    "HMT-N05": "Rejected reader rolls back transaction and leaves snapshots/candidates unchanged",
+    "HMT-B01": "Current revoked restart denies after stalled-operation repair",
+    "HMT-B14": "Shared host writer/revoke proceed following typed denial"
+  },
+  "full_requirement_satisfaction": false,
+  "step1": {
+    "focused_pass": 10,
+    "full_pass": 241
+  },
+  "step2": {
+    "focused_pass": 27,
+    "full_pass": 255
+  },
+  "before": {
+    "failed": 2,
+    "retained": "evidence/artifact_fifo_before.xml",
+    "observation": "Independent regular\u2192FIFO replacement exceeds3second watchdog in each path, competing SQLite writer observed locked."
+  },
+  "candidate_source_sha256": {
+    "src/hmt_rnd/lane_reader.py": "84662b10f87eb60e18e0d31aacd27472f2e3f77fe4395e7ab88eb343d280a2d9",
+    "src/hmt_rnd/lane_evidence.py": "24711874ac9de8109a860179698c8ce55418cb0f3380832ba84d25561464a9e7",
+    "src/hmt_rnd/lane_artifacts.py": "103f103eddf47e06589fb8f33774b85c0a8a467670d7437a7ccdeeac678badb7",
+    "tests/test_artifact_fifo_boundaries.py": "fec6e88d52eb1f0818b6e85768bf4cb0d960eead607eb20e2197ac8c1ea4377a",
+    "tests/test_artifact_fifo_hooks.py": "fbc11e2bd4423773d55895e6b377dd140d47c9813b1e340ba063b6df315b847b",
+    "tests/test_artifact_fifo_race.py": "cebef17fbda9df9e078de142819fe1efa7ba99c882cc9415ed57c4dab44a689a",
+    "tests/test_artifact_fifo_support.py": "800aa73261a53bdc87088b7b5ff891d9cdc21b214f6db65c402b1336634f919e",
+    "tests/test_artifact_fifo_symlink_race.py": "ab5f983dee93f10964d34a77f7c0f64b63c8d94ce57d03d310607e46975bf6ed",
+    "tests/test_artifact_fifo_worker.py": "52c9690025b68be484d450e1cc6fc5e7a518eb69c876df2296eecdfbe8284f88"
+  },
+  "evidence_sha256": {
+    "evidence/artifact_fifo_baseline.json": "134162a46c3e1bacb5f158b17a144edcc2508d4545be132da41e0ba808e9bdaa",
+    "evidence/artifact_fifo_before.xml": "85eadd4b1dda1f371379d377f100a6538d3fdcc8bd0e8e305421d61be890dae0",
+    "evidence/artifact_fifo_before.log": "74c0677f0c97ffe8cfb8c729d03d96dc80c5eccaadf2c5fb2c25159a5b0102bb",
+    "evidence/artifact_fifo_step1.json": "8e17f014b2d123093fc4bdb1d1d32cde1635301027a08a41f0966718c92a4f2e",
+    "evidence/artifact_fifo_step2.json": "7dd4edff3915770e904acecf0b1b1ef8073391ef201142073ad59e11066793bc",
+    "evidence/artifact_fifo_step1_full.xml": "10625ea61c85739e4b59958637362a79f596920d3ab7d18440ba03164d6b3329",
+    "evidence/artifact_fifo_step1_full.log": "340f4866eb5758ba8b049b62289910ef90c1bc4d27aac0d541353957ea4435c8",
+    "evidence/artifact_fifo_step2_full.xml": "a4ca9fb663dec23939ebeca7e81bbba23abe3dd07db83a57c34fa442a7773242",
+    "evidence/artifact_fifo_step2_full.log": "5ee36b8dfed9bcdfacd1173a2950eaa4afc36696554244c694495a57850a3a69",
+    "evidence/artifact_fifo_step1_tests.xml": "61e36d19939df238a96aa9da2241d7f9294a5bda1c685372e0ce6a62add4e663",
+    "evidence/artifact_fifo_step2_tests.xml": "c947a60fdda30e4412a2a250649c5e7ebffabbc3f76fe640144e4b6b6d3999d7",
+    "evidence/artifact_fifo_digest_observed.json": "57271a80cc9a3f09b482e419d2eab071fefb73f8a290cd8cb26a19b4f1dc9d38",
+    "evidence/artifact_fifo_snapshot_observed.json": "2a8d4e61f6812fda04dc8827ebf320b22c90e47f2608913fa7a5a9e185483df2"
+  },
+  "checks": [
+    {
+      "command": "uv run ruff check src/hmt_rnd/lane_reader.py src/hmt_rnd/lane_evidence.py src/hmt_rnd/lane_artifacts.py tests/test_artifact_fifo*.py",
+      "exit_code": 0
+    },
+    {
+      "command": "uv run pyrefly check src/hmt_rnd/lane_reader.py src/hmt_rnd/lane_evidence.py src/hmt_rnd/lane_artifacts.py",
+      "exit_code": 0,
+      "profile": "basic"
+    },
+    {
+      "command": "PYTHONPATH=src uv run python scripts/check_structure.py",
+      "exit_code": 0
+    }
+  ],
+  "semantic_delta": "All symlink components now reject, including in-scope symlinks; regular-file content and cap oracles retained.",
+  "limits": [
+    "POSIX/Linux local filesystem only; no blanket arbitrary-filesystem latency assurance.",
+    "No global/HMT requirement or owner-HOLD release.",
+    "No erased failure or superseded oracle."
+  ],
+  "sub_agent_task_attestation": {
+    "task_id": "WP-ARTIFACT-FIFO-RECONCILIATION",
+    "worker": "/root/custody_reconciliation",
+    "owned_paths": [
+      "src/hmt_rnd/lane_reader.py",
+      "src/hmt_rnd/lane_evidence.py",
+      "src/hmt_rnd/lane_artifacts.py",
+      "tests/test_artifact_fifo_boundaries.py",
+      "tests/test_artifact_fifo_hooks.py",
+      "tests/test_artifact_fifo_race.py",
+      "tests/test_artifact_fifo_support.py",
+      "tests/test_artifact_fifo_symlink_race.py",
+      "tests/test_artifact_fifo_worker.py"
+    ],
+    "scope": "Read-only references; bounded two-path derivative repair; no release/merge/deployment authority",
+    "integrity": "Unsigned task attestation; SHA256 proves byte identity only"
+  }
+}

@@ -1,0 +1,381 @@
+{
+  "parent_commit": "9a5eb22bb0f430449c5465a229b5c0205eabfd93",
+  "candidate_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+  "parent_tree_truncated": false,
+  "candidate_tree_truncated": false,
+  "selection": "All changed first-party .py blobs outside tests/evidence; entire changed-file branch denominator, no exclusions.",
+  "parent_executable_sources": [
+    {
+      "path": "scripts/check_structure.py",
+      "git_blob_sha": "48b958b8cbab94cefbe7e7fb372ecc465482ff96"
+    },
+    {
+      "path": "src/hmt_rnd/__init__.py",
+      "git_blob_sha": "c2d2208e204435739fbcf5a2abc120a93a4e5ac4"
+    },
+    {
+      "path": "src/hmt_rnd/custody_adapter.py",
+      "git_blob_sha": "9db3d61d6234096f174cb8d11784f4f8e21f6126"
+    },
+    {
+      "path": "src/hmt_rnd/custody_database.py",
+      "git_blob_sha": "da59e14b34892a591bcb9cbeb61721a48c3c57ba"
+    },
+    {
+      "path": "src/hmt_rnd/custody_endpoint.py",
+      "git_blob_sha": "d4e68fcc37cdae1701c75c9a8e66cf164064dc58"
+    },
+    {
+      "path": "src/hmt_rnd/custody_models.py",
+      "git_blob_sha": "17bed3adde70944a614e6f3866042746f16d8939"
+    },
+    {
+      "path": "src/hmt_rnd/custody_operations.py",
+      "git_blob_sha": "043b9c6e922f7d780a562d0ea9d353301502f32a"
+    },
+    {
+      "path": "src/hmt_rnd/custody_reconcile.py",
+      "git_blob_sha": "e24324ed406c031b44abd34835eae1e860de17e8"
+    },
+    {
+      "path": "src/hmt_rnd/custody_signing.py",
+      "git_blob_sha": "d32b276604f430924e777e38c0be88aa06e200b2"
+    },
+    {
+      "path": "src/hmt_rnd/host_admin.py",
+      "git_blob_sha": "50e9a0b137f58b91985f62896f927cb439e32032"
+    },
+    {
+      "path": "src/hmt_rnd/host_admission.py",
+      "git_blob_sha": "d454078a2abf6ca6bcf11fae87e649b1f3777e92"
+    },
+    {
+      "path": "src/hmt_rnd/host_checks.py",
+      "git_blob_sha": "73ea2e8015ce2032dcb2a6ce9bb57b21b4b23adf"
+    },
+    {
+      "path": "src/hmt_rnd/host_models.py",
+      "git_blob_sha": "c1b47880ee5190246e686807089d343f6ba5c5d5"
+    },
+    {
+      "path": "src/hmt_rnd/host_schema.py",
+      "git_blob_sha": "bd7f778a2e0400302102ef87c1ed3cc7dc35aa16"
+    },
+    {
+      "path": "src/hmt_rnd/host_store.py",
+      "git_blob_sha": "571538b715be407eb3d61c059e5da46342a9a923"
+    },
+    {
+      "path": "src/hmt_rnd/verification_complexity.py",
+      "git_blob_sha": "83483cbfe4b9e7b3691325912cfca29c3618fa71"
+    },
+    {
+      "path": "src/hmt_rnd/verification_ledger.py",
+      "git_blob_sha": "6885716277bf7ce2bc44a08a0adc3db5b21cf261"
+    },
+    {
+      "path": "src/hmt_rnd/verification_models.py",
+      "git_blob_sha": "e07003cea4d977ea82940df6ea64a8af597f3211"
+    },
+    {
+      "path": "src/hmt_rnd/verification_sql.py",
+      "git_blob_sha": "0a5cf855f00b70aa9a7ddf6c6794e8a67b7de7ba"
+    },
+    {
+      "path": "src/hmt_rnd/verification_suppression.py",
+      "git_blob_sha": "5ea65710c5198d36d5cc24de6e5a422b2fe85910"
+    },
+    {
+      "path": "src/hmt_rnd/voice_adapter.py",
+      "git_blob_sha": "c0982e78adfc4d180fd9b2c2167c12373d1e39ff"
+    },
+    {
+      "path": "src/hmt_rnd/voice_assets.py",
+      "git_blob_sha": "c56652312ed455e748888458f6802137043f0929"
+    },
+    {
+      "path": "src/hmt_rnd/voice_models.py",
+      "git_blob_sha": "a519f91a1a2d82d22ba4ffa83f1ad536c4e138ac"
+    },
+    {
+      "path": "src/hmt_rnd/voice_process.py",
+      "git_blob_sha": "4f96b556bd5a86ed9f0adf92c8e14d699bd5f346"
+    }
+  ],
+  "candidate_executable_sources": [
+    {
+      "path": "scripts/check_structure.py",
+      "git_blob_sha": "b16aac27794995a99af927df958801462427312c"
+    },
+    {
+      "path": "src/hmt_rnd/__init__.py",
+      "git_blob_sha": "c2d2208e204435739fbcf5a2abc120a93a4e5ac4"
+    },
+    {
+      "path": "src/hmt_rnd/custody_adapter.py",
+      "git_blob_sha": "9db3d61d6234096f174cb8d11784f4f8e21f6126"
+    },
+    {
+      "path": "src/hmt_rnd/custody_database.py",
+      "git_blob_sha": "da59e14b34892a591bcb9cbeb61721a48c3c57ba"
+    },
+    {
+      "path": "src/hmt_rnd/custody_endpoint.py",
+      "git_blob_sha": "d4e68fcc37cdae1701c75c9a8e66cf164064dc58"
+    },
+    {
+      "path": "src/hmt_rnd/custody_models.py",
+      "git_blob_sha": "17bed3adde70944a614e6f3866042746f16d8939"
+    },
+    {
+      "path": "src/hmt_rnd/custody_operations.py",
+      "git_blob_sha": "043b9c6e922f7d780a562d0ea9d353301502f32a"
+    },
+    {
+      "path": "src/hmt_rnd/custody_reconcile.py",
+      "git_blob_sha": "e24324ed406c031b44abd34835eae1e860de17e8"
+    },
+    {
+      "path": "src/hmt_rnd/custody_signing.py",
+      "git_blob_sha": "d32b276604f430924e777e38c0be88aa06e200b2"
+    },
+    {
+      "path": "src/hmt_rnd/host_admin.py",
+      "git_blob_sha": "50e9a0b137f58b91985f62896f927cb439e32032"
+    },
+    {
+      "path": "src/hmt_rnd/host_admission.py",
+      "git_blob_sha": "d454078a2abf6ca6bcf11fae87e649b1f3777e92"
+    },
+    {
+      "path": "src/hmt_rnd/host_checks.py",
+      "git_blob_sha": "73ea2e8015ce2032dcb2a6ce9bb57b21b4b23adf"
+    },
+    {
+      "path": "src/hmt_rnd/host_models.py",
+      "git_blob_sha": "c1b47880ee5190246e686807089d343f6ba5c5d5"
+    },
+    {
+      "path": "src/hmt_rnd/host_schema.py",
+      "git_blob_sha": "bd7f778a2e0400302102ef87c1ed3cc7dc35aa16"
+    },
+    {
+      "path": "src/hmt_rnd/host_store.py",
+      "git_blob_sha": "571538b715be407eb3d61c059e5da46342a9a923"
+    },
+    {
+      "path": "src/hmt_rnd/lane_artifacts.py",
+      "git_blob_sha": "7856c57c10bbf7eea0092ac6cedea2e5f295e4a9"
+    },
+    {
+      "path": "src/hmt_rnd/lane_discovery.py",
+      "git_blob_sha": "2f0580d0a31d0ac60bde48e3318eb799dd4fbacd"
+    },
+    {
+      "path": "src/hmt_rnd/lane_evidence.py",
+      "git_blob_sha": "28e0d37721d4aa21ed77f6a8d30659e0bf4ba4ea"
+    },
+    {
+      "path": "src/hmt_rnd/lane_handoff.py",
+      "git_blob_sha": "1a1075ddc6d5a5d0caad71958a9aa0ee9960ee9a"
+    },
+    {
+      "path": "src/hmt_rnd/lane_models.py",
+      "git_blob_sha": "13e957a4f9d7e43e4cd9e84755cfab713303c716"
+    },
+    {
+      "path": "src/hmt_rnd/lane_queries.py",
+      "git_blob_sha": "c9ac2b04e58db12b8be7dd4612e07de2cfa99bf6"
+    },
+    {
+      "path": "src/hmt_rnd/lane_records.py",
+      "git_blob_sha": "600dec520272877e77aaefa00858b56af38cffd1"
+    },
+    {
+      "path": "src/hmt_rnd/lane_reopen.py",
+      "git_blob_sha": "1bf5ec0cdf1e803a2f205977eb0e416ac5e59038"
+    },
+    {
+      "path": "src/hmt_rnd/lane_schema.py",
+      "git_blob_sha": "70ac4c81eba6e219eca729c1a745afd2110a02e2"
+    },
+    {
+      "path": "src/hmt_rnd/lane_stages.py",
+      "git_blob_sha": "a609be0541a70c92eaf357f32dd5ffc70f1b92cd"
+    },
+    {
+      "path": "src/hmt_rnd/lane_store.py",
+      "git_blob_sha": "1c665e61bf79391064bd4536204a16fed9482e9d"
+    },
+    {
+      "path": "src/hmt_rnd/lane_submission.py",
+      "git_blob_sha": "a06a17016e9491f44399d56e105ae71fb6a44cf8"
+    },
+    {
+      "path": "src/hmt_rnd/lane_successor.py",
+      "git_blob_sha": "233940da68ac37f3eedfc08885178833ed809b9c"
+    },
+    {
+      "path": "src/hmt_rnd/mcp_contracts.py",
+      "git_blob_sha": "ba4f6c47f6d3448be35e63bd9ecbe3090de44446"
+    },
+    {
+      "path": "src/hmt_rnd/mcp_framing.py",
+      "git_blob_sha": "b978511a2390b16447430436a25fafc83d7d605c"
+    },
+    {
+      "path": "src/hmt_rnd/mcp_handoff.py",
+      "git_blob_sha": "1cf3067abdb85579d56a37b42090e83337486970"
+    },
+    {
+      "path": "src/hmt_rnd/mcp_server.py",
+      "git_blob_sha": "dbe5a7869d636f1d9d1a0aead8fa90bde7f63da8"
+    },
+    {
+      "path": "src/hmt_rnd/mcp_stdio.py",
+      "git_blob_sha": "9ae133cecc9518503b044b1848f61c696c6a0d09"
+    },
+    {
+      "path": "src/hmt_rnd/mcp_surface.py",
+      "git_blob_sha": "fdf9627d7c0ab55fc231bae5275ed7f63e8f156d"
+    },
+    {
+      "path": "src/hmt_rnd/verification_complexity.py",
+      "git_blob_sha": "83483cbfe4b9e7b3691325912cfca29c3618fa71"
+    },
+    {
+      "path": "src/hmt_rnd/verification_ledger.py",
+      "git_blob_sha": "6885716277bf7ce2bc44a08a0adc3db5b21cf261"
+    },
+    {
+      "path": "src/hmt_rnd/verification_models.py",
+      "git_blob_sha": "e07003cea4d977ea82940df6ea64a8af597f3211"
+    },
+    {
+      "path": "src/hmt_rnd/verification_sql.py",
+      "git_blob_sha": "0a5cf855f00b70aa9a7ddf6c6794e8a67b7de7ba"
+    },
+    {
+      "path": "src/hmt_rnd/verification_suppression.py",
+      "git_blob_sha": "5ea65710c5198d36d5cc24de6e5a422b2fe85910"
+    },
+    {
+      "path": "src/hmt_rnd/voice_adapter.py",
+      "git_blob_sha": "c0982e78adfc4d180fd9b2c2167c12373d1e39ff"
+    },
+    {
+      "path": "src/hmt_rnd/voice_assets.py",
+      "git_blob_sha": "c56652312ed455e748888458f6802137043f0929"
+    },
+    {
+      "path": "src/hmt_rnd/voice_models.py",
+      "git_blob_sha": "a519f91a1a2d82d22ba4ffa83f1ad536c4e138ac"
+    },
+    {
+      "path": "src/hmt_rnd/voice_process.py",
+      "git_blob_sha": "4f96b556bd5a86ed9f0adf92c8e14d699bd5f346"
+    }
+  ],
+  "changed": [
+    {
+      "path": "scripts/check_structure.py",
+      "parent_git_blob_sha": "48b958b8cbab94cefbe7e7fb372ecc465482ff96",
+      "candidate_git_blob_sha": "b16aac27794995a99af927df958801462427312c"
+    },
+    {
+      "path": "src/hmt_rnd/lane_artifacts.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "7856c57c10bbf7eea0092ac6cedea2e5f295e4a9"
+    },
+    {
+      "path": "src/hmt_rnd/lane_discovery.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "2f0580d0a31d0ac60bde48e3318eb799dd4fbacd"
+    },
+    {
+      "path": "src/hmt_rnd/lane_evidence.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "28e0d37721d4aa21ed77f6a8d30659e0bf4ba4ea"
+    },
+    {
+      "path": "src/hmt_rnd/lane_handoff.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "1a1075ddc6d5a5d0caad71958a9aa0ee9960ee9a"
+    },
+    {
+      "path": "src/hmt_rnd/lane_models.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "13e957a4f9d7e43e4cd9e84755cfab713303c716"
+    },
+    {
+      "path": "src/hmt_rnd/lane_queries.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "c9ac2b04e58db12b8be7dd4612e07de2cfa99bf6"
+    },
+    {
+      "path": "src/hmt_rnd/lane_records.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "600dec520272877e77aaefa00858b56af38cffd1"
+    },
+    {
+      "path": "src/hmt_rnd/lane_reopen.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "1bf5ec0cdf1e803a2f205977eb0e416ac5e59038"
+    },
+    {
+      "path": "src/hmt_rnd/lane_schema.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "70ac4c81eba6e219eca729c1a745afd2110a02e2"
+    },
+    {
+      "path": "src/hmt_rnd/lane_stages.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "a609be0541a70c92eaf357f32dd5ffc70f1b92cd"
+    },
+    {
+      "path": "src/hmt_rnd/lane_store.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "1c665e61bf79391064bd4536204a16fed9482e9d"
+    },
+    {
+      "path": "src/hmt_rnd/lane_submission.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "a06a17016e9491f44399d56e105ae71fb6a44cf8"
+    },
+    {
+      "path": "src/hmt_rnd/lane_successor.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "233940da68ac37f3eedfc08885178833ed809b9c"
+    },
+    {
+      "path": "src/hmt_rnd/mcp_contracts.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "ba4f6c47f6d3448be35e63bd9ecbe3090de44446"
+    },
+    {
+      "path": "src/hmt_rnd/mcp_framing.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "b978511a2390b16447430436a25fafc83d7d605c"
+    },
+    {
+      "path": "src/hmt_rnd/mcp_handoff.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "1cf3067abdb85579d56a37b42090e83337486970"
+    },
+    {
+      "path": "src/hmt_rnd/mcp_server.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "dbe5a7869d636f1d9d1a0aead8fa90bde7f63da8"
+    },
+    {
+      "path": "src/hmt_rnd/mcp_stdio.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "9ae133cecc9518503b044b1848f61c696c6a0d09"
+    },
+    {
+      "path": "src/hmt_rnd/mcp_surface.py",
+      "parent_git_blob_sha": null,
+      "candidate_git_blob_sha": "fdf9627d7c0ab55fc231bae5275ed7f63e8f156d"
+    }
+  ]
+}

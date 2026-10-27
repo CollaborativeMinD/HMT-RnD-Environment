@@ -1,0 +1,26 @@
+{
+  "parent": "f0f6115b745a26071650c5a8b6c54c65c39aa5bd",
+  "git_blob_sha1": {
+    "evidence/launch_store/initial.xml": "01fc9b7bbc46ef6c46ab8f884a57422ce5081e14",
+    "evidence/launch_store/mcp-False-alternate.json": "c56dbc130f52ff26690017ed80b0418f5792af31",
+    "evidence/launch_store/cumulative.log": "9dd54585b8df784ae250211f4b66c1d7b5304f59",
+    "evidence/launch_store/ruff_final.log": "1f5f344d054fae10f39140fb7199c99321d9190a",
+    "evidence/launch_store/case.json": "970b0293705a50da4b9b6665f5c6c47bc8d4e1b4",
+    "evidence/launch_store/direct-False-alternate.json": "c83f059d10e132a9ffb208036fe1024a7b02c2f7",
+    "evidence/launch_store/direct-True-authority.json": "1822074d888b7164e144d7fc5d22ce5070293b70",
+    "evidence/launch_store/direct-False-authority.json": "9875aca432e819b2e9f0c61eddf523e666ac9239",
+    "evidence/launch_store/cumulative.xml": "19d3f0bf11ffe5f1f2acd1689586044bfab4bd54",
+    "evidence/launch_store/direct-True-alternate.json": "0dbb6a340b436f189692550c7919609dc4677aa0",
+    "evidence/launch_store/ruff.log": "f2ea23eee390cd1f3f594c692cd55cfe47e4ba6d",
+    "evidence/launch_store/baseline.xml": "fc40f4eb31ff3ff67dc115fe8f8c92c9c3d567bd",
+    "evidence/launch_store/mcp-True-authority.json": "e74c98f571383ba7493d7e657a8099c499fc5bd0",
+    "evidence/launch_store/mcp-False-authority.json": "c68263aecf7184a8330472a07bdc67f1e2934317",
+    "evidence/launch_store/initial.log": "d1fe9abe5c87247c509454d065b9422d1b33179a",
+    "evidence/launch_store/mcp-True-alternate.json": "9a6c7583c1b2146e3b2e23fa3c73b566d650c84d",
+    "evidence/launch_store/cases.py": "0a41bbfd024ef91e624f319c6749fc9259e1ce86",
+    "evidence/launch_store/support.py": "0b974a6c86e694c9eb91d03ffeb7843e22b56ac0",
+    "evidence/launch_store/baseline.log": "b86b59e461b840b219cd65bb7644ba302ef751e3",
+    "docs/launch_store_binding_review.md": "12560faaf5b6fcd86d55e2657d46f9dfd2dbd824"
+  },
+  "verified_against_parent_tree": true
+}

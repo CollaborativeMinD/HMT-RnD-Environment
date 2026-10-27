@@ -1,0 +1,324 @@
+{
+  "review_id": "HMT-RECONCILIATION-MA-INITIAL-001",
+  "as_of": "2026-10-26T22:48:59.504126+00:00",
+  "baseline_commit": "9f2d3bf7db042cd400b57ee78c288ca32342d9f3",
+  "primary_disposition": "HOLD",
+  "method": "Read-only source, records, review comments, and arithmetic over existing coverage JSON; no target imports or target/test execution. Manual skill-guided review, not an execution of the four mission-assurance MCP tools.",
+  "authority_boundary": "Owner directed HOLD bars feature/lifecycle progression and promotion; only reproduction, diagnosis, derivative repair, regression and evidence reconciliation are permitted. Independent reviewer cannot release HOLD or admit operation.",
+  "integration_boundary": "Owner has withheld remaining integration instructions; reconciliation closure cannot imply authorization or qualification for that stage.",
+  "confirmed_evidence_contradiction": {
+    "case_id": "RC-COVERAGE-01",
+    "historical_lane_mcp_branches": {
+      "covered": 118,
+      "total": 136,
+      "percent": 86.76470588235294
+    },
+    "historical_package_branches": {
+      "covered": 290,
+      "total": 308,
+      "percent": 94.15584415584415
+    },
+    "prior_claim": "p1_assurance_final assessment said package branch metric meets changed-code90percent threshold",
+    "observation": "Package denominator does not establish changed-code denominator; lane/MCP subset is below90percent. Exact parent-tree executable mapping pending verification worker.",
+    "disposition": "Retain old report and append explicit correction; no retrospective relabeling as passing."
+  },
+  "cases": [
+    {
+      "case_id": "RC-CUSTODY-01",
+      "owner": "custody_reconciliation",
+      "requirements": [
+        "HMT-F18",
+        "HMT-B04"
+      ],
+      "title": "Cancelled reservation changes payload under same effect identity",
+      "expected_observation": "Cancel original reservation, then submit changed digest/new reservation: reject collision with no new effect; identical retry uses fresh authority and original binding.",
+      "review_comment_ids": [
+        "4383065610"
+      ],
+      "status": "OPEN_RECONCILIATION",
+      "before_evidence": "PENDING_WORKER_REPRODUCTION_OR_REFUTATION",
+      "closure_requires": [
+        "retained failing or refuting witness bound to original source",
+        "causal investigation to last evidenced edge",
+        "explicit bounded corrective task or supported refutation",
+        "candidate-bound targeted negative and regression results",
+        "source/evidence digests and worker attestation",
+        "supervisor cumulative gates and independent read-only reconciliation"
+      ],
+      "failure_disposition": "HOLD affected progression; preserve history; no integration or promotion"
+    },
+    {
+      "case_id": "RC-HOST-01",
+      "owner": "supervisor",
+      "requirements": [
+        "HMT-F02",
+        "HMT-N04"
+      ],
+      "title": "Relative grant roots expand after cwd change",
+      "expected_observation": "Reject relative grant or canonically freeze scope at trusted provisioning; after cwd change sibling root remains denied.",
+      "review_comment_ids": [
+        "4383065731"
+      ],
+      "status": "OPEN_RECONCILIATION",
+      "before_evidence": "PENDING_WORKER_REPRODUCTION_OR_REFUTATION",
+      "closure_requires": [
+        "retained failing or refuting witness bound to original source",
+        "causal investigation to last evidenced edge",
+        "explicit bounded corrective task or supported refutation",
+        "candidate-bound targeted negative and regression results",
+        "source/evidence digests and worker attestation",
+        "supervisor cumulative gates and independent read-only reconciliation"
+      ],
+      "failure_disposition": "HOLD affected progression; preserve history; no integration or promotion"
+    },
+    {
+      "case_id": "RC-VOICE-01",
+      "owner": "voice_reconciliation",
+      "requirements": [
+        "HMT-N02",
+        "HMT-N03",
+        "HMT-V09"
+      ],
+      "title": "FIFO blocks before process timeout",
+      "expected_observation": "FIFO and replacement-race input are rejected boundedly using opened descriptor; valid regular WAV still produces same draft.",
+      "review_comment_ids": [
+        "4383065789"
+      ],
+      "status": "OPEN_RECONCILIATION",
+      "before_evidence": "PENDING_WORKER_REPRODUCTION_OR_REFUTATION",
+      "closure_requires": [
+        "retained failing or refuting witness bound to original source",
+        "causal investigation to last evidenced edge",
+        "explicit bounded corrective task or supported refutation",
+        "candidate-bound targeted negative and regression results",
+        "source/evidence digests and worker attestation",
+        "supervisor cumulative gates and independent read-only reconciliation"
+      ],
+      "failure_disposition": "HOLD affected progression; preserve history; no integration or promotion"
+    },
+    {
+      "case_id": "RC-VOICE-02",
+      "owner": "voice_reconciliation",
+      "requirements": [
+        "HMT-N03",
+        "HMT-B14",
+        "HMT-V09"
+      ],
+      "title": "Successful parent leaves descendants",
+      "expected_observation": "After parent success descendants in admitted process group cannot continue work; cleanup failure is explicit and bounded; normal output preserved.",
+      "review_comment_ids": [
+        "4383065848"
+      ],
+      "status": "OPEN_RECONCILIATION",
+      "before_evidence": "PENDING_WORKER_REPRODUCTION_OR_REFUTATION",
+      "closure_requires": [
+        "retained failing or refuting witness bound to original source",
+        "causal investigation to last evidenced edge",
+        "explicit bounded corrective task or supported refutation",
+        "candidate-bound targeted negative and regression results",
+        "source/evidence digests and worker attestation",
+        "supervisor cumulative gates and independent read-only reconciliation"
+      ],
+      "failure_disposition": "HOLD affected progression; preserve history; no integration or promotion"
+    },
+    {
+      "case_id": "RC-VOICE-03",
+      "owner": "voice_reconciliation",
+      "requirements": [
+        "HMT-F03",
+        "HMT-N03",
+        "HMT-V09"
+      ],
+      "title": "Closed pipes change timeout contract",
+      "expected_observation": "Child closes stdout/stderr and keeps running: same TimeoutError/VOICE_PROCESS_TIMEOUT as open-pipe deadline, bounded cleanup.",
+      "review_comment_ids": [
+        "4383065960"
+      ],
+      "status": "OPEN_RECONCILIATION",
+      "before_evidence": "PENDING_WORKER_REPRODUCTION_OR_REFUTATION",
+      "closure_requires": [
+        "retained failing or refuting witness bound to original source",
+        "causal investigation to last evidenced edge",
+        "explicit bounded corrective task or supported refutation",
+        "candidate-bound targeted negative and regression results",
+        "source/evidence digests and worker attestation",
+        "supervisor cumulative gates and independent read-only reconciliation"
+      ],
+      "failure_disposition": "HOLD affected progression; preserve history; no integration or promotion"
+    },
+    {
+      "case_id": "RC-LEDGER-01",
+      "owner": "verification_reconciliation",
+      "requirements": [
+        "HMT-F03",
+        "HMT-N10",
+        "HMT-N12"
+      ],
+      "title": "Normalized invariant IDs collide",
+      "expected_observation": "HMT-F01 and I-F01 collision rejects before destination creation; distinct IDs preserve full CROSS JOIN cardinality and NA tuples.",
+      "review_comment_ids": [
+        "4383065912"
+      ],
+      "status": "OPEN_RECONCILIATION",
+      "before_evidence": "PENDING_WORKER_REPRODUCTION_OR_REFUTATION",
+      "closure_requires": [
+        "retained failing or refuting witness bound to original source",
+        "causal investigation to last evidenced edge",
+        "explicit bounded corrective task or supported refutation",
+        "candidate-bound targeted negative and regression results",
+        "source/evidence digests and worker attestation",
+        "supervisor cumulative gates and independent read-only reconciliation"
+      ],
+      "failure_disposition": "HOLD affected progression; preserve history; no integration or promotion"
+    },
+    {
+      "case_id": "RC-LANE-01",
+      "owner": "lane_reconciliation",
+      "requirements": [
+        "HMT-B07"
+      ],
+      "title": "Gate evidence or missing source cannot reopen",
+      "expected_observation": "Evidence-only change and missing in-scope artifact/evidence route typed reopen to earliest affected owner while unchanged sources do not reopen and unsafe roots remain denied.",
+      "review_comment_ids": [
+        "4383190537",
+        "4383222061"
+      ],
+      "status": "OPEN_RECONCILIATION",
+      "before_evidence": "PENDING_WORKER_REPRODUCTION_OR_REFUTATION",
+      "closure_requires": [
+        "retained failing or refuting witness bound to original source",
+        "causal investigation to last evidenced edge",
+        "explicit bounded corrective task or supported refutation",
+        "candidate-bound targeted negative and regression results",
+        "source/evidence digests and worker attestation",
+        "supervisor cumulative gates and independent read-only reconciliation"
+      ],
+      "failure_disposition": "HOLD affected progression; preserve history; no integration or promotion"
+    },
+    {
+      "case_id": "RC-LANE-02",
+      "owner": "lane_reconciliation",
+      "requirements": [
+        "HMT-B07"
+      ],
+      "title": "Invalidated historical references invalidate healthy successor",
+      "expected_observation": "Repeat old DENIED_REPAIR or old artifact drift reference rejects without invalidating healthy replacement/descendants; current genuine repair remains possible.",
+      "review_comment_ids": [
+        "4383190541",
+        "4383221895"
+      ],
+      "status": "OPEN_RECONCILIATION",
+      "before_evidence": "PENDING_WORKER_REPRODUCTION_OR_REFUTATION",
+      "closure_requires": [
+        "retained failing or refuting witness bound to original source",
+        "causal investigation to last evidenced edge",
+        "explicit bounded corrective task or supported refutation",
+        "candidate-bound targeted negative and regression results",
+        "source/evidence digests and worker attestation",
+        "supervisor cumulative gates and independent read-only reconciliation"
+      ],
+      "failure_disposition": "HOLD affected progression; preserve history; no integration or promotion"
+    },
+    {
+      "case_id": "RC-LANE-03",
+      "owner": "lane_reconciliation",
+      "requirements": [
+        "HMT-B07",
+        "HMT-F02"
+      ],
+      "title": "Mixed drift bypasses architect or earliest owner",
+      "expected_observation": "Detect supported changes independently of caller reason; any policy/epoch drift requires human_architect and earliest changed owner governs even across mixed denial/artifact reasons.",
+      "review_comment_ids": [
+        "4383221947"
+      ],
+      "status": "OPEN_RECONCILIATION",
+      "before_evidence": "PENDING_WORKER_REPRODUCTION_OR_REFUTATION",
+      "closure_requires": [
+        "retained failing or refuting witness bound to original source",
+        "causal investigation to last evidenced edge",
+        "explicit bounded corrective task or supported refutation",
+        "candidate-bound targeted negative and regression results",
+        "source/evidence digests and worker attestation",
+        "supervisor cumulative gates and independent read-only reconciliation"
+      ],
+      "failure_disposition": "HOLD affected progression; preserve history; no integration or promotion"
+    },
+    {
+      "case_id": "RC-LANE-04",
+      "owner": "lane_reconciliation",
+      "requirements": [
+        "HMT-B07"
+      ],
+      "title": "Pending stage successor bypass via older parent closure",
+      "expected_observation": "A pending reopen rooted at this stage requires exact designated successor/event; old ancestor closure cannot admit unrelated candidate or strand the event.",
+      "review_comment_ids": [
+        "4383221994"
+      ],
+      "status": "OPEN_RECONCILIATION",
+      "before_evidence": "PENDING_WORKER_REPRODUCTION_OR_REFUTATION",
+      "closure_requires": [
+        "retained failing or refuting witness bound to original source",
+        "causal investigation to last evidenced edge",
+        "explicit bounded corrective task or supported refutation",
+        "candidate-bound targeted negative and regression results",
+        "source/evidence digests and worker attestation",
+        "supervisor cumulative gates and independent read-only reconciliation"
+      ],
+      "failure_disposition": "HOLD affected progression; preserve history; no integration or promotion"
+    },
+    {
+      "case_id": "RC-COVERAGE-01",
+      "owner": "verification_reconciliation",
+      "requirements": [
+        "HMT-N11",
+        "HMT-N12",
+        "HMT-B10"
+      ],
+      "title": "Aggregate coverage mistaken for changed-code gate",
+      "expected_observation": "Pin exact changed-first-party executable set and branch denominator; report coverage >=90% with zero exclusions only when observed; full assertion/mutation clauses remain separately open.",
+      "review_comment_ids": [
+        "4383222102"
+      ],
+      "status": "OPEN_RECONCILIATION",
+      "before_evidence": "PENDING_WORKER_REPRODUCTION_OR_REFUTATION",
+      "closure_requires": [
+        "retained failing or refuting witness bound to original source",
+        "causal investigation to last evidenced edge",
+        "explicit bounded corrective task or supported refutation",
+        "candidate-bound targeted negative and regression results",
+        "source/evidence digests and worker attestation",
+        "supervisor cumulative gates and independent read-only reconciliation"
+      ],
+      "failure_disposition": "HOLD affected progression; preserve history; no integration or promotion"
+    }
+  ],
+  "global_requirements": [
+    "HMT-F14",
+    "HMT-F15",
+    "HMT-B10",
+    "HMT-B11",
+    "HMT-B15"
+  ],
+  "historical_qualification_holds": {
+    "H01": "Host/source namespace reconciliation; derivative override may alter release basis, explicit disposition needed",
+    "H02": "Production principal/credential/egress witnesses absent",
+    "H03": "Actual external endpoint custody capabilities absent",
+    "H04": "Full requirement-specific target-oracle mapping absent",
+    "H05": "Host/mission numerical and performance profiles absent",
+    "H06": "Cleared export/provenance qualification incomplete",
+    "H07": "Actual Wispr device/UI/cloud/steering qualification absent"
+  },
+  "limitations": [
+    "Narrative reviewer findings are not executed reproductions.",
+    "Concurrent workers may modify owned source; source inspections are not frozen runtime observations.",
+    "The11reconciliation groups are not the full58requirement or189applicable-case qualification denominator.",
+    "All supplied HMT source implementations remain read-only references; no source or reference repair performed."
+  ],
+  "snapshots_sha256": {
+    "contracts/requirements.json": "301592b8bf3a33c52318ab3ff37c47b072b12761385d8bc71bad7c07a7a97546",
+    "AGENTS.md": "36dcd2535a962235d9771d8b74b0747429482eb4f22a4a52d7790d874b573cd2",
+    "evidence/p1_coverage.json": "9f17167840fd64344fac4eefe128af1243fcd060f29c5e5778b163ced8c904c2",
+    "evidence/p1_assurance_final.json": "9b4e038241c04e0dc95b27b0a7e8fb2617e2ea74c24d29b4ee359d03e5aa1e39",
+    "evidence/reconciliation_assurance_review_sources.json": "246c71c9172508753a4cb04157459d128b23e9103af487139d383bdb5b7f8aee"
+  }
+}
