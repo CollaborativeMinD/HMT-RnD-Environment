@@ -1,0 +1,67 @@
+FF..                                                                     [100%]
+=================================== FAILURES ===================================
+__ test_invalid_identity_zero_store_open[alternate-host.sqlite-store-direct] ___
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-179/test_invalid_identity_zero_sto0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f55b426e190>
+transport = 'direct', field = 'store', spelling = 'host.sqlite'
+cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        index = ["", ".", "host.sqlite", "../host.sqlite"].index(spelling)
+        name = f"invalid-{transport}-{field}-{index}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+>           assert observed["denied"]
+E           assert False
+
+/workspace/scratch/bc6d4e512874/launch_store_arms/mutant_store/tests/test_launch_identity_invalid.py:27: AssertionError
+____ test_invalid_identity_zero_store_open[alternate-host.sqlite-store-mcp] ____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-179/test_invalid_identity_zero_sto1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f55b426e060>
+transport = 'mcp', field = 'store', spelling = 'host.sqlite'
+cwd_name = 'alternate'
+
+    @pytest.mark.parametrize("transport", ["direct", "mcp"])
+    @pytest.mark.parametrize("field", ["store", "root"])
+    @pytest.mark.parametrize("spelling", ["", ".", "host.sqlite", "../host.sqlite"])
+    @pytest.mark.parametrize("cwd_name", ["authority", "alternate"])
+    def test_invalid_identity_zero_store_open(tmp_path, monkeypatch, transport, field,
+                                             spelling, cwd_name):
+        raw, _, config, authority, alternate = setup(tmp_path, field, spelling)
+        paths = [authority / "host.sqlite", alternate / "host.sqlite"]
+        before, encoded = [snapshot(p) for p in paths], config.read_bytes()
+        cwd = authority if cwd_name == "authority" else alternate
+        observed = (direct(monkeypatch, config, tmp_path, cwd) if transport == "direct"
+                    else startup(config, tmp_path, cwd))
+        after = [snapshot(p) for p in paths]
+        index = ["", ".", "host.sqlite", "../host.sqlite"].index(spelling)
+        name = f"invalid-{transport}-{field}-{index}-{cwd_name}"
+        export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+            config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+        if transport == "direct":
+            assert observed["denied"]
+            assert "MCP_BINDING_PATH_NOT_ABSOLUTE" in observed["error"]
+        else:
+>           assert observed["returncode"] != 0
+E           assert 0 != 0
+
+tests/test_launch_identity_invalid.py:30: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate-host.sqlite-store-direct]
+FAILED tests/test_launch_identity_invalid.py::test_invalid_identity_zero_store_open[alternate-host.sqlite-store-mcp]
+2 failed, 2 passed, 28 deselected in 3.57s

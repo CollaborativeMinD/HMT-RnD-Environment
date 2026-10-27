@@ -1,0 +1,128 @@
+{
+  "id": "RC-LAUNCH-STORE-01-REPAIR",
+  "parent": "f0f6115b745a26071650c5a8b6c54c65c39aa5bd",
+  "as_of": "2026-10-27T05:29:26.490619+00:00",
+  "status": "SOLUTION_CANDIDATE_APPLIED; OPEN_REVIEW_HOLD pending outside acceptance",
+  "authority": "Current user instruction to repair within existing identity-binding requirements; no integration",
+  "implementation_owner": "Host/IIEA / root",
+  "verification_owner": "root / WP-08",
+  "delegation": "none",
+  "source_change": "Only src/hmt_rnd/mcp_contracts.py: shared field validator requires absolute store and root, returns values unchanged, performs no lookup or cwd normalization; canonical authority and store implementations unchanged",
+  "requirements": [
+    {
+      "requirement": "HMT-F01@1; HMT-F20@1",
+      "owner": "Host/IIEA",
+      "verification": "shared launch model Python/JSON/instance/loader validation and actual stdio startup",
+      "assertions": [
+        "test_invalid_identity_zero_store_open",
+        "test_shared_boundary_rejects_relative",
+        "test_default_entrypoint_rejects_before_protocol"
+      ],
+      "evidence": [
+        "before.xml",
+        "cumulative.xml",
+        "invalid-*.json"
+      ],
+      "failure": "HOLD operation; no store construction/native dispatch; unchanged SQL snapshots"
+    },
+    {
+      "requirement": "HMT-F02@1; HMT-B01@1",
+      "owner": "Host",
+      "verification": "reconstruct direct surface and real SDK process under changed cwd with unchanged absolute configuration",
+      "assertions": [
+        "test_absolute_restart_control",
+        "test_absolute_serialization_does_not_consult_cwd"
+      ],
+      "evidence": [
+        "absolute-*.json",
+        "controls_before.xml",
+        "cumulative.xml"
+      ],
+      "failure": "HOLD; current canonical authority required; no stale-store retry"
+    },
+    {
+      "requirement": "HMT-B10@1; HMT-B11@1",
+      "owner": "Host + architecture authority",
+      "verification": "retain original failure identities and original packet; matched store-relative stale-copy cases",
+      "assertions": [
+        "alternate-host.sqlite-store-direct",
+        "alternate-host.sqlite-store-mcp"
+      ],
+      "evidence": [
+        "../launch_store/baseline.xml",
+        "before_exports.json.gz",
+        "before.xml",
+        "cumulative.xml"
+      ],
+      "failure": "retain OPEN_REVIEW_HOLD until out-of-band review; no requirement relaxation"
+    },
+    {
+      "requirement": "HMT-B12@1; HMT-N11@1; HMT-N12@1",
+      "owner": "Quality / root",
+      "verification": "two targeted critical mutants; six causal arms; cumulative coverage with fixed38file denominator; source and evidence pinning",
+      "assertions": [
+        "intact/deletion/restoration/sham/alternate_on/alternate_off",
+        "mutant_store",
+        "mutant_root"
+      ],
+      "evidence": [
+        "causal_family.json",
+        "changed_coverage.json",
+        "collection.json",
+        "candidate.json",
+        "archives.json"
+      ],
+      "failure": "HOLD if unaccounted critical survivor, drift, missing lineage or regression"
+    }
+  ],
+  "baseline": {
+    "historical_packet": "evidence/launch_store; 20 packet/documentation file Git blob identities checked unchanged against parent",
+    "original": "2 denial failures and6 controls; not relabeled",
+    "new_pre_open_falsifiers": "32 failed before repair; not32 successful exploits",
+    "before_controls": "4 pass before repair; each reconstructs twice"
+  },
+  "results": {
+    "cumulative_pytest": 594,
+    "prior_ids_retained": 545,
+    "new_cases": 49,
+    "errors": 0,
+    "skipped": 0,
+    "verification_unittest": 27,
+    "unittest_limit": "existing verification family only; not an independent unittest implementation of49new assertions",
+    "ruff": "zero findings final",
+    "pyrefly": "zero errors, existing basic preset",
+    "structure": "no refactor/block or suppression findings",
+    "changed_branches": "298/316=94.303797%;38changed production/scriptfiles vs9a5eb22;zero exclusions",
+    "source_runtime_config_pins": 170,
+    "post_replay_mismatches": 0,
+    "targeted_mutants": "store and root guard deletion each2fail2pass on4matchedcases; both killed",
+    "six_arm_family": "intact/restoration/sham/alternate_on4pass;deletion/alternate_off4fail;28deselected under pinned4case experimental scope"
+  },
+  "personal_verification": [
+    "read scoped source, active requirement acceptance and launch/inspection package definitions",
+    "inspected raw baseline and causal XML failure identities; checked observations against assertions",
+    "executed direct and actual SDK process controls; inspected native markers and intended/alternate receipt rows",
+    "recomputed all prior545test IDs retained and fixed coverage denominator",
+    "recomputed170runtime/config and6test module pins unchanged before/after cumulative replay",
+    "compared20original packet/document files against published parent Git tree with zero changes"
+  ],
+  "development_errors_retained": [
+    "initial Ruff test filename expression113columns; wrapped without assertion change",
+    "initial focused49pass had2Pydantic serialization warnings from forged test identity dict; corrected fixture to retain actual Identity model, no warning suppression",
+    "initial family driver failed copying nonexistent .python-version; removed nonexistent copy precondition and reran fullfamily",
+    "initial unittest invocation omitted src PYTHONPATH and produced6import errors; corrected explicit src:tests;27pass"
+  ],
+  "nonclaims": [
+    "no acceptance or integration",
+    "no symlink/file replacement or authenticated database provenance qualification",
+    "no relative launch migration/base inference or receipt rewrite",
+    "no production identity/clock/network isolation or hardware budget claim",
+    "no full work-package, F01/F20, N11 or mission promotion"
+  ],
+  "replay": {
+    "falsifiers": "uv run pytest tests/test_launch_identity*.py -q",
+    "cumulative": "COVERAGE_FILE=evidence/launch_store_repair/.coverage PYTHONPATH=src uv run coverage run --source=hmt_rnd,scripts -m pytest -q --junitxml=evidence/launch_store_repair/cumulative.xml",
+    "unittest": "PYTHONPATH=src:tests uv run python -m unittest discover -s tests -p test_verification*.py -v",
+    "causal": "family_driver.py.txt exact executed producer harness; source_overlays/argv in causal_family.json; absolute producer paths require deliberate adaptation for another workstation"
+  }
+}

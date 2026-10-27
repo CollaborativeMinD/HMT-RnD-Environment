@@ -1,0 +1,204 @@
+[
+  {
+    "arm": "intact",
+    "argv": [
+      "uv",
+      "run",
+      "--project",
+      "/workspace/scratch/bc6d4e512874/launch_store_arms/intact",
+      "pytest",
+      "tests/test_launch_identity_invalid.py",
+      "-q",
+      "-k",
+      "alternate and host.sqlite and not ..",
+      "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/launch_store_repair/intact.xml"
+    ],
+    "cwd": "/workspace/scratch/bc6d4e512874/launch_store_arms/intact",
+    "exit_code": 0,
+    "duration": 4.614092067000456,
+    "source_overlays": {
+      "src/hmt_rnd/mcp_contracts.py": "\"\"\"Immutable host launch binding; no protocol argument selects identity or scope.\"\"\"\nfrom pathlib import Path\nfrom typing import Annotated\n\nfrom pydantic import Field, field_validator\n\nfrom .host_models import Identity, Strict, Text\nfrom .mcp_handoff import Handoff\n\n\nclass LaneBinding(Strict):\n    identity: Identity\n    store: Path\n    task_id: Text\n    revision: Annotated[int, Field(ge=1)]\n    root: Path\n    destination: Text\n    policy: Text\n\n    @field_validator(\"store\", \"root\")\n    @classmethod\n    def absolute_identity(cls, value: Path) -> Path:\n        if not value.is_absolute():\n            raise ValueError(\"MCP_BINDING_PATH_NOT_ABSOLUTE\")\n        return value\n\n\nclass EmptyArguments(Strict):\n    pass\n\n\nclass HandoffArguments(Strict):\n    handoff: Handoff\n"
+    },
+    "source_sha256": {
+      "src/hmt_rnd/mcp_contracts.py": "8e472e256fd920938338e747503f84931d4cdcbeb332b552e2fbce63c591b784"
+    },
+    "log": "evidence/launch_store_repair/intact.log"
+  },
+  {
+    "arm": "deletion",
+    "argv": [
+      "uv",
+      "run",
+      "--project",
+      "/workspace/scratch/bc6d4e512874/launch_store_arms/deletion",
+      "pytest",
+      "tests/test_launch_identity_invalid.py",
+      "-q",
+      "-k",
+      "alternate and host.sqlite and not ..",
+      "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/launch_store_repair/deletion.xml"
+    ],
+    "cwd": "/workspace/scratch/bc6d4e512874/launch_store_arms/deletion",
+    "exit_code": 1,
+    "duration": 4.4887873269981355,
+    "source_overlays": {
+      "src/hmt_rnd/mcp_contracts.py": "\"\"\"Immutable host launch binding; no protocol argument selects identity or scope.\"\"\"\nfrom pathlib import Path\nfrom typing import Annotated\n\nfrom pydantic import Field, field_validator\n\nfrom .host_models import Identity, Strict, Text\nfrom .mcp_handoff import Handoff\n\n\nclass LaneBinding(Strict):\n    identity: Identity\n    store: Path\n    task_id: Text\n    revision: Annotated[int, Field(ge=1)]\n    root: Path\n    destination: Text\n    policy: Text\n\n    @field_validator(\"store\", \"root\")\n    @classmethod\n    def absolute_identity(cls, value: Path) -> Path:\n        if False:\n            raise ValueError(\"MCP_BINDING_PATH_NOT_ABSOLUTE\")\n        return value\n\n\nclass EmptyArguments(Strict):\n    pass\n\n\nclass HandoffArguments(Strict):\n    handoff: Handoff\n"
+    },
+    "source_sha256": {
+      "src/hmt_rnd/mcp_contracts.py": "ba08fd9e6937ad55614c9b37e0ac748a4a5676fc8751740b65d5d3cbd8915038"
+    },
+    "log": "evidence/launch_store_repair/deletion.log"
+  },
+  {
+    "arm": "restoration",
+    "argv": [
+      "uv",
+      "run",
+      "--project",
+      "/workspace/scratch/bc6d4e512874/launch_store_arms/restoration",
+      "pytest",
+      "tests/test_launch_identity_invalid.py",
+      "-q",
+      "-k",
+      "alternate and host.sqlite and not ..",
+      "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/launch_store_repair/restoration.xml"
+    ],
+    "cwd": "/workspace/scratch/bc6d4e512874/launch_store_arms/restoration",
+    "exit_code": 0,
+    "duration": 4.649166850998881,
+    "source_overlays": {
+      "src/hmt_rnd/mcp_contracts.py": "\"\"\"Immutable host launch binding; no protocol argument selects identity or scope.\"\"\"\nfrom pathlib import Path\nfrom typing import Annotated\n\nfrom pydantic import Field, field_validator\n\nfrom .host_models import Identity, Strict, Text\nfrom .mcp_handoff import Handoff\n\n\nclass LaneBinding(Strict):\n    identity: Identity\n    store: Path\n    task_id: Text\n    revision: Annotated[int, Field(ge=1)]\n    root: Path\n    destination: Text\n    policy: Text\n\n    @field_validator(\"store\", \"root\")\n    @classmethod\n    def absolute_identity(cls, value: Path) -> Path:\n        if not value.is_absolute():\n            raise ValueError(\"MCP_BINDING_PATH_NOT_ABSOLUTE\")\n        return value\n\n\nclass EmptyArguments(Strict):\n    pass\n\n\nclass HandoffArguments(Strict):\n    handoff: Handoff\n"
+    },
+    "source_sha256": {
+      "src/hmt_rnd/mcp_contracts.py": "8e472e256fd920938338e747503f84931d4cdcbeb332b552e2fbce63c591b784"
+    },
+    "log": "evidence/launch_store_repair/restoration.log"
+  },
+  {
+    "arm": "sham",
+    "argv": [
+      "uv",
+      "run",
+      "--project",
+      "/workspace/scratch/bc6d4e512874/launch_store_arms/sham",
+      "pytest",
+      "tests/test_launch_identity_invalid.py",
+      "-q",
+      "-k",
+      "alternate and host.sqlite and not ..",
+      "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/launch_store_repair/sham.xml"
+    ],
+    "cwd": "/workspace/scratch/bc6d4e512874/launch_store_arms/sham",
+    "exit_code": 0,
+    "duration": 4.31501747200673,
+    "source_overlays": {
+      "src/hmt_rnd/mcp_contracts.py": "\"\"\"Immutable host launch binding [sham]; no protocol argument selects identity or scope.\"\"\"\nfrom pathlib import Path\nfrom typing import Annotated\n\nfrom pydantic import Field, field_validator\n\nfrom .host_models import Identity, Strict, Text\nfrom .mcp_handoff import Handoff\n\n\nclass LaneBinding(Strict):\n    identity: Identity\n    store: Path\n    task_id: Text\n    revision: Annotated[int, Field(ge=1)]\n    root: Path\n    destination: Text\n    policy: Text\n\n    @field_validator(\"store\", \"root\")\n    @classmethod\n    def absolute_identity(cls, value: Path) -> Path:\n        if not value.is_absolute():\n            raise ValueError(\"MCP_BINDING_PATH_NOT_ABSOLUTE\")\n        return value\n\n\nclass EmptyArguments(Strict):\n    pass\n\n\nclass HandoffArguments(Strict):\n    handoff: Handoff\n"
+    },
+    "source_sha256": {
+      "src/hmt_rnd/mcp_contracts.py": "135d5a592ac0cc758603492d785e4cd5ea15e0ee3d21eda97d4481d1c47c8f30"
+    },
+    "log": "evidence/launch_store_repair/sham.log"
+  },
+  {
+    "arm": "alternate_on",
+    "argv": [
+      "uv",
+      "run",
+      "--project",
+      "/workspace/scratch/bc6d4e512874/launch_store_arms/alternate_on",
+      "pytest",
+      "tests/test_launch_identity_invalid.py",
+      "-q",
+      "-k",
+      "alternate and host.sqlite and not ..",
+      "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/launch_store_repair/alternate_on.xml"
+    ],
+    "cwd": "/workspace/scratch/bc6d4e512874/launch_store_arms/alternate_on",
+    "exit_code": 0,
+    "duration": 6.0956098239985295,
+    "source_overlays": {
+      "src/hmt_rnd/mcp_contracts.py": "\"\"\"Immutable host launch binding; no protocol argument selects identity or scope.\"\"\"\nfrom pathlib import Path\nfrom typing import Annotated\n\nfrom pydantic import Field, field_validator\n\nfrom .host_models import Identity, Strict, Text\nfrom .mcp_handoff import Handoff\n\n\nclass LaneBinding(Strict):\n    identity: Identity\n    store: Path\n    task_id: Text\n    revision: Annotated[int, Field(ge=1)]\n    root: Path\n    destination: Text\n    policy: Text\n\n    @field_validator(\"store\", \"root\")\n    @classmethod\n    def absolute_identity(cls, value: Path) -> Path:\n        if False:\n            raise ValueError(\"MCP_BINDING_PATH_NOT_ABSOLUTE\")\n        return value\n\n\nclass EmptyArguments(Strict):\n    pass\n\n\nclass HandoffArguments(Strict):\n    handoff: Handoff\n",
+      "src/hmt_rnd/mcp_surface.py": "\"\"\"One common derivative admission boundary for direct and MCP operations.\"\"\"\nimport json\nimport time\nfrom collections.abc import Callable\n\nfrom .host_admission import admit\nfrom .host_models import Clock, Decision, Request\nfrom .host_store import HostStore\nfrom .mcp_contracts import EmptyArguments, HandoffArguments, LaneBinding\nfrom .mcp_handoff import validate_handoff\n\nOPERATIONS = (\"inspect_context\", \"validate_handoff\")\n\n\ndef inspect_context(decision: Decision, arguments: dict[str, object]) -> dict[str, object]:\n    \"\"\"Canonical native inspection; shared by legacy and explicitly bound surfaces.\"\"\"\n    EmptyArguments.model_validate(arguments)\n    return decision.model_dump()\n\n\nclass LaneSurface:\n    def __init__(self, binding: LaneBinding, clock: Callable[[], float] = time.time):\n        self.binding = LaneBinding.model_validate_json(binding.model_dump_json())\n        if not self.binding.store.is_absolute() or not self.binding.root.is_absolute():\n            raise ValueError(\"MCP_BINDING_PATH_NOT_ABSOLUTE\")\n        self.store = HostStore(self.binding.store)\n        self.clock = clock\n\n    def authorize(self, operation: str) -> Decision:\n        if operation not in OPERATIONS:\n            raise PermissionError(\"MCP_OPERATION_NOT_EXPOSED\")\n        b = self.binding\n        request = Request(task_id=b.task_id, revision=b.revision, operation=operation,\n                          root=str(b.root), destination=b.destination)\n        decision = admit(self.store, b.identity, request, Clock(now=self.clock()))\n        if decision.policy != b.policy:\n            raise PermissionError(\"MCP_POLICY_BINDING_STALE\")\n        return decision\n\n    def visible(self) -> tuple[str, ...]:\n        visible = []\n        for operation in OPERATIONS:\n            try:\n                self.authorize(operation)\n                visible.append(operation)\n            except PermissionError:\n                continue\n        return tuple(visible)\n\n    def invoke(self, operation: str, arguments: dict[str, object]) -> dict[str, object]:\n        decision = self.authorize(operation)\n        if len(json.dumps(arguments, ensure_ascii=False).encode()) > 65536:\n            raise ValueError(\"MCP_ARGUMENT_BOUND\")\n        if operation == \"inspect_context\":\n            return inspect_context(decision, arguments)\n        payload = HandoffArguments.model_validate(arguments)\n        return validate_handoff(payload.handoff.model_dump(), self.binding.identity.role,\n                                self.binding.task_id)\n"
+    },
+    "source_sha256": {
+      "src/hmt_rnd/mcp_contracts.py": "ba08fd9e6937ad55614c9b37e0ac748a4a5676fc8751740b65d5d3cbd8915038",
+      "src/hmt_rnd/mcp_surface.py": "4697272a321e107c4b5eec83d579caad71694a76747408a39df6117a113261c5"
+    },
+    "log": "evidence/launch_store_repair/alternate_on.log"
+  },
+  {
+    "arm": "alternate_off",
+    "argv": [
+      "uv",
+      "run",
+      "--project",
+      "/workspace/scratch/bc6d4e512874/launch_store_arms/alternate_off",
+      "pytest",
+      "tests/test_launch_identity_invalid.py",
+      "-q",
+      "-k",
+      "alternate and host.sqlite and not ..",
+      "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/launch_store_repair/alternate_off.xml"
+    ],
+    "cwd": "/workspace/scratch/bc6d4e512874/launch_store_arms/alternate_off",
+    "exit_code": 1,
+    "duration": 3.907470877005835,
+    "source_overlays": {
+      "src/hmt_rnd/mcp_contracts.py": "\"\"\"Immutable host launch binding; no protocol argument selects identity or scope.\"\"\"\nfrom pathlib import Path\nfrom typing import Annotated\n\nfrom pydantic import Field, field_validator\n\nfrom .host_models import Identity, Strict, Text\nfrom .mcp_handoff import Handoff\n\n\nclass LaneBinding(Strict):\n    identity: Identity\n    store: Path\n    task_id: Text\n    revision: Annotated[int, Field(ge=1)]\n    root: Path\n    destination: Text\n    policy: Text\n\n    @field_validator(\"store\", \"root\")\n    @classmethod\n    def absolute_identity(cls, value: Path) -> Path:\n        if False:\n            raise ValueError(\"MCP_BINDING_PATH_NOT_ABSOLUTE\")\n        return value\n\n\nclass EmptyArguments(Strict):\n    pass\n\n\nclass HandoffArguments(Strict):\n    handoff: Handoff\n"
+    },
+    "source_sha256": {
+      "src/hmt_rnd/mcp_contracts.py": "ba08fd9e6937ad55614c9b37e0ac748a4a5676fc8751740b65d5d3cbd8915038"
+    },
+    "log": "evidence/launch_store_repair/alternate_off.log"
+  },
+  {
+    "arm": "mutant_store",
+    "argv": [
+      "uv",
+      "run",
+      "--project",
+      "/workspace/scratch/bc6d4e512874/launch_store_arms/mutant_store",
+      "pytest",
+      "tests/test_launch_identity_invalid.py",
+      "-q",
+      "-k",
+      "alternate and host.sqlite and not ..",
+      "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/launch_store_repair/mutant_store.xml"
+    ],
+    "cwd": "/workspace/scratch/bc6d4e512874/launch_store_arms/mutant_store",
+    "exit_code": 1,
+    "duration": 4.430550080003741,
+    "source_overlays": {
+      "src/hmt_rnd/mcp_contracts.py": "\"\"\"Immutable host launch binding; no protocol argument selects identity or scope.\"\"\"\nfrom pathlib import Path\nfrom typing import Annotated\n\nfrom pydantic import Field, field_validator\n\nfrom .host_models import Identity, Strict, Text\nfrom .mcp_handoff import Handoff\n\n\nclass LaneBinding(Strict):\n    identity: Identity\n    store: Path\n    task_id: Text\n    revision: Annotated[int, Field(ge=1)]\n    root: Path\n    destination: Text\n    policy: Text\n\n    @field_validator(\"root\")\n    @classmethod\n    def absolute_identity(cls, value: Path) -> Path:\n        if not value.is_absolute():\n            raise ValueError(\"MCP_BINDING_PATH_NOT_ABSOLUTE\")\n        return value\n\n\nclass EmptyArguments(Strict):\n    pass\n\n\nclass HandoffArguments(Strict):\n    handoff: Handoff\n"
+    },
+    "source_sha256": {
+      "src/hmt_rnd/mcp_contracts.py": "a84b3a2241e87fef72b4cfc808c38559192108d14499ba11148a651b72306b78"
+    },
+    "log": "evidence/launch_store_repair/mutant_store.log"
+  },
+  {
+    "arm": "mutant_root",
+    "argv": [
+      "uv",
+      "run",
+      "--project",
+      "/workspace/scratch/bc6d4e512874/launch_store_arms/mutant_root",
+      "pytest",
+      "tests/test_launch_identity_invalid.py",
+      "-q",
+      "-k",
+      "alternate and host.sqlite and not ..",
+      "--junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/launch_store_repair/mutant_root.xml"
+    ],
+    "cwd": "/workspace/scratch/bc6d4e512874/launch_store_arms/mutant_root",
+    "exit_code": 1,
+    "duration": 4.164984628994716,
+    "source_overlays": {
+      "src/hmt_rnd/mcp_contracts.py": "\"\"\"Immutable host launch binding; no protocol argument selects identity or scope.\"\"\"\nfrom pathlib import Path\nfrom typing import Annotated\n\nfrom pydantic import Field, field_validator\n\nfrom .host_models import Identity, Strict, Text\nfrom .mcp_handoff import Handoff\n\n\nclass LaneBinding(Strict):\n    identity: Identity\n    store: Path\n    task_id: Text\n    revision: Annotated[int, Field(ge=1)]\n    root: Path\n    destination: Text\n    policy: Text\n\n    @field_validator(\"store\")\n    @classmethod\n    def absolute_identity(cls, value: Path) -> Path:\n        if not value.is_absolute():\n            raise ValueError(\"MCP_BINDING_PATH_NOT_ABSOLUTE\")\n        return value\n\n\nclass EmptyArguments(Strict):\n    pass\n\n\nclass HandoffArguments(Strict):\n    handoff: Handoff\n"
+    },
+    "source_sha256": {
+      "src/hmt_rnd/mcp_contracts.py": "e3703d3aea08ab26b3f7de248ab9ac114c6be621e74c98fd3a38c1ce2c9fd61a"
+    },
+    "log": "evidence/launch_store_repair/mutant_root.log"
+  }
+]

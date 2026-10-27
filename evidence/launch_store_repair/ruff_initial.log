@@ -1,0 +1,12 @@
+E501 Line too long (113 > 100)
+  --> tests/test_launch_identity_invalid.py:22:101
+   |
+20 |                 else startup(config, tmp_path, cwd))
+21 |     after = [snapshot(p) for p in paths]
+22 |     name = f"invalid-{transport}-{field}-{['', '.', 'host.sqlite', '../host.sqlite'].index(spelling)}-{cwd_name}"
+   |                                                                                                     ^^^^^^^^^^^^^
+23 |     export(tmp_path, name, dict(raw=raw, observed=observed, before=before, after=after,
+24 |         config_sha256=hashlib.sha256(encoded).hexdigest(), cwd=str(cwd)))
+   |
+
+Found 1 error.

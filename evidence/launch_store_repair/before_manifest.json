@@ -1,0 +1,12 @@
+{
+  "parent": "f0f6115b745a26071650c5a8b6c54c65c39aa5bd",
+  "sha256": {
+    "src/hmt_rnd/mcp_contracts.py": "728521617e0c48c3bafa3bdf9ee719de3a357055f05485cb62ee5dc97cc667e6",
+    "tests/test_launch_identity_invalid.py": "0e4ecdd3d861598284139dbbb0fb68137556c15afd69ff117120afb8657b6ca6",
+    "tests/test_launch_identity_controls.py": "64d1f2f541607f85d40221d9bd319311b38f901b6cc95d76eb5d0be9725153d0",
+    "tests/test_launch_identity_contract.py": "36b051c1efa6be6f31d9c34cd037dcb2edaae05ed77395c62e326b041d3d6a99",
+    "tests/test_launch_identity_support.py": "cecf29035308545395f82eeab4615887fa4aba0c6ac82bf4c8f679d47f8b0b25",
+    "tests/test_launch_identity_observer.py": "54e8709bd803ec936cc40e44679a590d642b6811835c55166e011f5d19bdc7e5",
+    "tests/launch_identity_worker.py": "c7391e4de59c4916bbd9976c5c3d9773c5d486760c100bc2d21d3318f81a1553"
+  }
+}

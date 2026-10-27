@@ -1,5 +1,14 @@
 # Operator runbook
 
+RC-LAUNCH-STORE-01 repair candidate: see `docs/launch_store_identity_repair.md`
+and `evidence/launch_store_repair/case.json`. Store and root in host launch bindings
+must be absolute before serialization/admission. A relative launch fails with
+`MCP_BINDING_PATH_NOT_ABSOLUTE` before any HostStore opens. Preserve invalid
+launches and request corrected host-owned absolute bindings; never infer a base
+from the working directory, reroute, or rewrite historical receipts. Replay with
+`uv run pytest tests/test_launch_identity*.py -q`. Outside acceptance is pending;
+integration remains blocked.
+
 Current bounded milestone: `docs/local_inspection_binding.md` and
 `evidence/inspection_case.json`, under the committed out-of-band continuation
 order. Replay its declared cases with `uv run --group dev python -m pytest
