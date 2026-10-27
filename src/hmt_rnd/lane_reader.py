@@ -7,15 +7,23 @@ from pathlib import Path
 def scoped_descriptor(path: Path, root: Path) -> int:
     if ".." in path.parts or ".." in root.parts:
         raise OSError("parent traversal is not an artifact identity")
-    absolute = Path(os.path.abspath(path))
-    scope = Path(os.path.abspath(root))
+    try:
+        absolute = Path(os.path.abspath(path))
+        scope = Path(os.path.abspath(root))
+    except OSError as error:
+        raise OSError("artifact root unavailable") from error
     if absolute == scope or not absolute.is_relative_to(scope):
         raise OSError("outside artifact root")
     flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
     directory = os.open(absolute.anchor, flags)
     try:
-        for name in absolute.parts[1:-1]:
-            child = os.open(name, flags, dir_fd=directory)
+        for index, name in enumerate(absolute.parts[1:-1], 1):
+            try:
+                child = os.open(name, flags, dir_fd=directory)
+            except FileNotFoundError as error:
+                if index < len(scope.parts):
+                    raise OSError("artifact root unavailable") from error
+                raise
             os.close(directory)
             directory = child
         return os.open(absolute.name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK,

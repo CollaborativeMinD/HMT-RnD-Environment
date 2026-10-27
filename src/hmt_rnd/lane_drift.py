@@ -6,12 +6,12 @@ from .lane_models import Receipt
 
 
 def source_changed(path: Path, expected: str, root: Path) -> bool:
-    resolved = path.resolve()
-    if not resolved.is_relative_to(root.resolve()):
-        raise PermissionError("LANE_ARTIFACT_SCOPE")
-    if not resolved.exists():
-        return True
-    return digest_file(resolved, root) != expected
+    try:
+        return digest_file(path, root) != expected
+    except PermissionError as error:
+        if isinstance(error.__cause__, FileNotFoundError):
+            return True
+        raise
 
 
 def artifact_changed(receipt: Receipt, root: Path) -> bool:
