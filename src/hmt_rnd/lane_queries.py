@@ -50,6 +50,10 @@ def check_parent(db: sqlite3.Connection, candidate: Candidate, root: Path,
             raise PermissionError("LANE_PREDECESSOR_ORDER")
         if (receipt.gate.policy, receipt.gate.epoch) != (policy, epoch):
             raise PermissionError("LANE_PREDECESSOR_POLICY_STALE")
+        assignment = db.execute("SELECT principal,revision FROM host_tasks WHERE task_id=?",
+                                (receipt.task_id,)).fetchone()
+        if assignment is None or tuple(assignment) != (receipt.principal, receipt.task_revision):
+            raise PermissionError("LANE_PREDECESSOR_ASSIGNMENT_STALE")
         verify_receipt_artifacts(receipt, root)
         immediate = immediate or receipt.receipt_sha256
         expected_stage = predecessor(parent.stage)

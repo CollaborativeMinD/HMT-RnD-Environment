@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="18" skipped="0" tests="22" time="1.824" timestamp="2026-10-26T21:04:34.725474-04:00" hostname="812233b2011d"><testcase classname="tests.test_ancestor_freshness_guards" name="test_stale_assignment_blocks_before_evaluator[False-revision-1]" time="0.081"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_stale_assignment_blocks_b0')
+depth = 1, change = 'revision', restart = False
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_stale_assignment_blocks_before_evaluator(tmp_path, depth, change, restart):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+        calls = []
+    
+        def observed_gate(context):
+            calls.append(context)
+            return execute_gate(context)
+    
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_guards.py:27: Failed</failure></testcase><testcase classname="tests.test_ancestor_freshness_guards" name="test_stale_assignment_blocks_before_evaluator[False-revision-2]" time="0.064"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_stale_assignment_blocks_b1')
+depth = 2, change = 'revision', restart = False
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_stale_assignment_blocks_before_evaluator(tmp_path, depth, change, restart):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+        calls = []
+    
+        def observed_gate(context):
+            calls.append(context)
+            return execute_gate(context)
+    
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_guards.py:27: Failed</failure></testcase><testcase classname="tests.test_ancestor_freshness_guards" name="test_stale_assignment_blocks_before_evaluator[False-reassigned-1]" time="0.067"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_stale_assignment_blocks_b2')
+depth = 1, change = 'reassigned', restart = False
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_stale_assignment_blocks_before_evaluator(tmp_path, depth, change, restart):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+        calls = []
+    
+        def observed_gate(context):
+            calls.append(context)
+            return execute_gate(context)
+    
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_guards.py:27: Failed</failure></testcase><testcase classname="tests.test_ancestor_freshness_guards" name="test_stale_assignment_blocks_before_evaluator[False-reassigned-2]" time="0.089"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_stale_assignment_blocks_b3')
+depth = 2, change = 'reassigned', restart = False
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_stale_assignment_blocks_before_evaluator(tmp_path, depth, change, restart):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+        calls = []
+    
+        def observed_gate(context):
+            calls.append(context)
+            return execute_gate(context)
+    
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_guards.py:27: Failed</failure></testcase><testcase classname="tests.test_ancestor_freshness_guards" name="test_stale_assignment_blocks_before_evaluator[False-missing-1]" time="0.052"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_stale_assignment_blocks_b4')
+depth = 1, change = 'missing', restart = False
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_stale_assignment_blocks_before_evaluator(tmp_path, depth, change, restart):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+        calls = []
+    
+        def observed_gate(context):
+            calls.append(context)
+            return execute_gate(context)
+    
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_guards.py:27: Failed</failure></testcase><testcase classname="tests.test_ancestor_freshness_guards" name="test_stale_assignment_blocks_before_evaluator[False-missing-2]" time="0.066"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_stale_assignment_blocks_b5')
+depth = 2, change = 'missing', restart = False
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_stale_assignment_blocks_before_evaluator(tmp_path, depth, change, restart):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+        calls = []
+    
+        def observed_gate(context):
+            calls.append(context)
+            return execute_gate(context)
+    
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_guards.py:27: Failed</failure></testcase><testcase classname="tests.test_ancestor_freshness_guards" name="test_stale_assignment_blocks_before_evaluator[False-principal-only-1]" time="0.066"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_stale_assignment_blocks_b6')
+depth = 1, change = 'principal-only', restart = False
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_stale_assignment_blocks_before_evaluator(tmp_path, depth, change, restart):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+        calls = []
+    
+        def observed_gate(context):
+            calls.append(context)
+            return execute_gate(context)
+    
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_guards.py:27: Failed</failure></testcase><testcase classname="tests.test_ancestor_freshness_guards" name="test_stale_assignment_blocks_before_evaluator[False-principal-only-2]" time="0.078"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_stale_assignment_blocks_b7')
+depth = 2, change = 'principal-only', restart = False
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_stale_assignment_blocks_before_evaluator(tmp_path, depth, change, restart):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+        calls = []
+    
+        def observed_gate(context):
+            calls.append(context)
+            return execute_gate(context)
+    
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_guards.py:27: Failed</failure></testcase><testcase classname="tests.test_ancestor_freshness_guards" name="test_stale_assignment_blocks_before_evaluator[True-revision-1]" time="0.055"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_stale_assignment_blocks_b8')
+depth = 1, change = 'revision', restart = True
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_stale_assignment_blocks_before_evaluator(tmp_path, depth, change, restart):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+        calls = []
+    
+        def observed_gate(context):
+            calls.append(context)
+            return execute_gate(context)
+    
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_guards.py:27: Failed</failure></testcase><testcase classname="tests.test_ancestor_freshness_guards" name="test_stale_assignment_blocks_before_evaluator[True-revision-2]" time="0.077"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_stale_assignment_blocks_b9')
+depth = 2, change = 'revision', restart = True
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_stale_assignment_blocks_before_evaluator(tmp_path, depth, change, restart):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+        calls = []
+    
+        def observed_gate(context):
+            calls.append(context)
+            return execute_gate(context)
+    
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_guards.py:27: Failed</failure></testcase><testcase classname="tests.test_ancestor_freshness_guards" name="test_stale_assignment_blocks_before_evaluator[True-reassigned-1]" time="0.063"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_stale_assignment_blocks_b10')
+depth = 1, change = 'reassigned', restart = True
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_stale_assignment_blocks_before_evaluator(tmp_path, depth, change, restart):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+        calls = []
+    
+        def observed_gate(context):
+            calls.append(context)
+            return execute_gate(context)
+    
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_guards.py:27: Failed</failure></testcase><testcase classname="tests.test_ancestor_freshness_guards" name="test_stale_assignment_blocks_before_evaluator[True-reassigned-2]" time="0.070"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_stale_assignment_blocks_b11')
+depth = 2, change = 'reassigned', restart = True
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_stale_assignment_blocks_before_evaluator(tmp_path, depth, change, restart):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+        calls = []
+    
+        def observed_gate(context):
+            calls.append(context)
+            return execute_gate(context)
+    
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_guards.py:27: Failed</failure></testcase><testcase classname="tests.test_ancestor_freshness_guards" name="test_stale_assignment_blocks_before_evaluator[True-missing-1]" time="0.062"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_stale_assignment_blocks_b12')
+depth = 1, change = 'missing', restart = True
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_stale_assignment_blocks_before_evaluator(tmp_path, depth, change, restart):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+        calls = []
+    
+        def observed_gate(context):
+            calls.append(context)
+            return execute_gate(context)
+    
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_guards.py:27: Failed</failure></testcase><testcase classname="tests.test_ancestor_freshness_guards" name="test_stale_assignment_blocks_before_evaluator[True-missing-2]" time="0.071"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_stale_assignment_blocks_b13')
+depth = 2, change = 'missing', restart = True
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_stale_assignment_blocks_before_evaluator(tmp_path, depth, change, restart):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+        calls = []
+    
+        def observed_gate(context):
+            calls.append(context)
+            return execute_gate(context)
+    
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_guards.py:27: Failed</failure></testcase><testcase classname="tests.test_ancestor_freshness_guards" name="test_stale_assignment_blocks_before_evaluator[True-principal-only-1]" time="0.062"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_stale_assignment_blocks_b14')
+depth = 1, change = 'principal-only', restart = True
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_stale_assignment_blocks_before_evaluator(tmp_path, depth, change, restart):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+        calls = []
+    
+        def observed_gate(context):
+            calls.append(context)
+            return execute_gate(context)
+    
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_guards.py:27: Failed</failure></testcase><testcase classname="tests.test_ancestor_freshness_guards" name="test_stale_assignment_blocks_before_evaluator[True-principal-only-2]" time="0.059"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_stale_assignment_blocks_b15')
+depth = 2, change = 'principal-only', restart = True
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_stale_assignment_blocks_before_evaluator(tmp_path, depth, change, restart):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+        calls = []
+    
+        def observed_gate(context):
+            calls.append(context)
+            return execute_gate(context)
+    
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_guards.py:27: Failed</failure></testcase><testcase classname="tests.test_ancestor_freshness_guards" name="test_unchanged_ancestry_and_unrelated_assignment_allow_progress[False-1]" time="0.052" /><testcase classname="tests.test_ancestor_freshness_guards" name="test_unchanged_ancestry_and_unrelated_assignment_allow_progress[False-2]" time="0.096" /><testcase classname="tests.test_ancestor_freshness_guards" name="test_unchanged_ancestry_and_unrelated_assignment_allow_progress[True-1]" time="0.067" /><testcase classname="tests.test_ancestor_freshness_guards" name="test_unchanged_ancestry_and_unrelated_assignment_allow_progress[True-2]" time="0.077" /><testcase classname="tests.test_ancestor_freshness_recheck" name="test_same_transaction_assignment_change_is_detected_after_evaluator[1]" time="0.061"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_same_transaction_assignme0')
+depth = 1
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    def test_same_transaction_assignment_change_is_detected_after_evaluator(tmp_path, depth):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        before = snapshot(host)
+        calls = []
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_recheck.py:16: Failed</failure></testcase><testcase classname="tests.test_ancestor_freshness_recheck" name="test_same_transaction_assignment_change_is_detected_after_evaluator[2]" time="0.082"><failure message="Failed: DID NOT RAISE PermissionError">tmp_path = PosixPath('/tmp/pytest-of-root/pytest-127/test_same_transaction_assignme1')
+depth = 2
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    def test_same_transaction_assignment_change_is_detected_after_evaluator(tmp_path, depth):
+        host, store, receipts, owner, request, candidate = chain(tmp_path, depth)
+        before = snapshot(host)
+        calls = []
+&gt;       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_recheck.py:16: Failed</failure></testcase></testsuite></testsuites>

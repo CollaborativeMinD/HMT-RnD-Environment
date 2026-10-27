@@ -1,0 +1,116 @@
+[
+  {
+    "depth": 1,
+    "change": "revision",
+    "current_assignment": [
+      "alice",
+      2
+    ],
+    "recorded_assignment": [
+      "alice",
+      1
+    ],
+    "downstream_outcome": "SEALED",
+    "evaluator_calls": 1,
+    "predecessor_receipt_unchanged": true
+  },
+  {
+    "depth": 1,
+    "change": "reassigned",
+    "current_assignment": [
+      "bob",
+      2
+    ],
+    "recorded_assignment": [
+      "alice",
+      1
+    ],
+    "downstream_outcome": "SEALED",
+    "evaluator_calls": 1,
+    "predecessor_receipt_unchanged": true
+  },
+  {
+    "depth": 1,
+    "change": "missing",
+    "current_assignment": null,
+    "recorded_assignment": [
+      "alice",
+      1
+    ],
+    "downstream_outcome": "SEALED",
+    "evaluator_calls": 1,
+    "predecessor_receipt_unchanged": true
+  },
+  {
+    "depth": 1,
+    "change": "principal-only",
+    "current_assignment": [
+      "bob",
+      1
+    ],
+    "recorded_assignment": [
+      "alice",
+      1
+    ],
+    "downstream_outcome": "SEALED",
+    "evaluator_calls": 1,
+    "predecessor_receipt_unchanged": true
+  },
+  {
+    "depth": 2,
+    "change": "revision",
+    "current_assignment": [
+      "alice",
+      2
+    ],
+    "recorded_assignment": [
+      "alice",
+      1
+    ],
+    "downstream_outcome": "SEALED",
+    "evaluator_calls": 1,
+    "predecessor_receipt_unchanged": true
+  },
+  {
+    "depth": 2,
+    "change": "reassigned",
+    "current_assignment": [
+      "bob",
+      2
+    ],
+    "recorded_assignment": [
+      "alice",
+      1
+    ],
+    "downstream_outcome": "SEALED",
+    "evaluator_calls": 1,
+    "predecessor_receipt_unchanged": true
+  },
+  {
+    "depth": 2,
+    "change": "missing",
+    "current_assignment": null,
+    "recorded_assignment": [
+      "alice",
+      1
+    ],
+    "downstream_outcome": "SEALED",
+    "evaluator_calls": 1,
+    "predecessor_receipt_unchanged": true
+  },
+  {
+    "depth": 2,
+    "change": "principal-only",
+    "current_assignment": [
+      "bob",
+      1
+    ],
+    "recorded_assignment": [
+      "alice",
+      1
+    ],
+    "downstream_outcome": "SEALED",
+    "evaluator_calls": 1,
+    "predecessor_receipt_unchanged": true
+  }
+]
