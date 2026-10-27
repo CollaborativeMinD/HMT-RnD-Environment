@@ -1,0 +1,26 @@
+[
+  {
+    "original": "evidence/path_identity_supervisor.json",
+    "preserved_at": "evidence/path_identity_supervisor_preformat.json",
+    "sha256": "ec0cb7d16db8774924655666468e08519fdc05a842fd1e5f0d687e58c2314f3f",
+    "scope": "Preformat behavior only; final V2 qualification recorded separately"
+  },
+  {
+    "original": "evidence/path_identity_supervisor.xml",
+    "preserved_at": "evidence/path_identity_supervisor_preformat.xml",
+    "sha256": "a54c8df2b363b57caf6868c9dc4c27b0c5228e4d85b03d6f629767de1d7b2d94",
+    "scope": "Preformat behavior only; final V2 qualification recorded separately"
+  },
+  {
+    "original": "evidence/path_identity_supervisor.log",
+    "preserved_at": "evidence/path_identity_supervisor_preformat.log",
+    "sha256": "be2dad424229f1bf4aa0188e698f2ff81e74ec19406d880ef88ee65771394637",
+    "scope": "Preformat behavior only; final V2 qualification recorded separately"
+  },
+  {
+    "original": "evidence/path_identity_coverage_tests.xml",
+    "preserved_at": "evidence/path_identity_coverage_tests_preformat.xml",
+    "sha256": "d7b2c1c5bb917e737a7665cefba280c050276066f8bcef9e8f0c26d02b2e9d0a",
+    "scope": "Preformat behavior only; final V2 qualification recorded separately"
+  }
+]

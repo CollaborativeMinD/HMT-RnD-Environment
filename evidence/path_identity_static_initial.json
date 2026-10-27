@@ -1,0 +1,22 @@
+{
+  "scope": "Pre-format candidate",
+  "command": "uv run --no-sync ruff check src tests scripts && uv run --no-sync pyrefly check src && PYTHONPATH=src uv run --no-sync python scripts/check_structure.py",
+  "ruff_exit_code": 1,
+  "findings": [
+    {
+      "code": "I001",
+      "path": "tests/test_path_identity_tracer.py",
+      "line": 2
+    },
+    {
+      "code": "E501",
+      "path": "tests/test_path_identity_tracer.py",
+      "line": 8,
+      "observed_columns": 101,
+      "limit": 100
+    }
+  ],
+  "pyrefly": "NOT_RUN due preceding Ruff failure",
+  "structure": "NOT_RUN due preceding Ruff failure",
+  "disposition": "Retain; format import layout, preserve original candidate, then run exact final gates. No suppression."
+}

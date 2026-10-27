@@ -1,0 +1,189 @@
+{
+  "schema": "hmt.manual-assurance-review.v1",
+  "as_of": "2026-10-27T00:51:35.410Z",
+  "primary_disposition": "HOLD",
+  "case_id": "RC-PATH-01",
+  "baseline": "3492b6f2f86f7757706d470a0f5e119c1069d013",
+  "candidate": "fa8161270454ec3697bcaa5a1e26d0a6ad62e6c9",
+  "method": "Manual mission-assurance skill-guided read-only source/evidence review, GitHub blob identity comparison and stdlib JSON/XML/CSV/gzip/in-memory SQLite audit. No target/test execution, repair or native assurance MCP invocation.",
+  "claim_scope": "Original pathname interpretation for a controlled symlink-plus-parent component across native evaluator, guarded digest and snapshot; rejection of literal parent components before normalization/open. No global filesystem or pipeline qualification.",
+  "expected_observations": "Recorded before reviewing results in path_identity_assurance_initial.json; original path and root rejection, actual native/evaluator versus normalized-reader distinction, atomic denial and valid path controls retained.",
+  "finding": {
+    "id": 4383918244,
+    "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383918244",
+    "cause": "abspath removed the original '..' component lexically before no-follow traversal, hiding the symlink. GateContext retained the original spelling, so native evaluator and guarded reads selected distinct files.",
+    "baseline_observation": {
+      "tests": 3,
+      "failures": 3,
+      "native_and_evaluator_bytes": "outside evaluated artifact",
+      "native_and_evaluator_sha256": "6911073fcca8555708061db2a2b9d938f5710f8cfe7427d56dc43413d71f7b9b",
+      "guarded_digest_and_snapshot_bytes": "inside approved artifact",
+      "guarded_digest_and_snapshot_sha256": "1dab3147626c762c3428ac6ae755a9098a8aec3eaa89a845016f0904b658f42e",
+      "submission": "SEALED; one candidate and two snapshots; host clock advanced. Evidence records actual mismatch, not only a source inference."
+    }
+  },
+  "repair": {
+    "source": "src/hmt_rnd/lane_reader.py",
+    "scope": "Two production lines reject '..' in original path.parts or root.parts before abspath/open; all other production files unchanged in this patch.",
+    "semantic_delta": "Ordinary in-scope parent traversal is also rejected. Relative and absolute paths without parent components remain supported. This explicit tightening is not parity for every previously accepted pathname.",
+    "postconditions": [
+      "Both digest and snapshot report native scope reason; raw native fixture still reads outside bytes, proving the case was not normalized away in the observer.",
+      "Submission denies before evaluator invocation; no receipt or snapshot; six lane table counts and host clock unchanged.",
+      "Revocation proceeds and subsequent store wrapper submission asserts exact HOST_GRANT_DENIED.",
+      "Absolute and relative valid controls agree on evaluator bytes, declared digest and preserved snapshot.",
+      "Both path/root x ordinary directory/symlink-parent x digest/snapshot controls pass; sentinel patches prove rejected input never reaches abspath or os.open."
+    ]
+  },
+  "evidence_result": {
+    "focused_v2_tests": 15,
+    "full_isolated_v2_tests": 270,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "static_gates": "Supervisor Ruff, Pyrefly basic and structure exit0.",
+    "bounded_disposition": "Declared RC-PATH-01 observations match retained witnesses; REPAIR_VERIFIED_HOLD_PENDING_OUT_OF_BAND_REVIEW."
+  },
+  "continuity": "Original three failures, V1 snapshot, Ruff I001/E501 failure and preformat270 behavioral run remain retained. V1→V2 executable change is import layout only; V2 received a fresh isolated full run and fresh coverage. Preformat records are not relabeled as final qualification.",
+  "candidate_audit": {
+    "files": 126,
+    "baseline_plus_patch_matches_current": true,
+    "published_mismatches": [],
+    "runtime_mismatches": [],
+    "results_match_runtime": true,
+    "unchanged_after": true,
+    "junit_sha_matches": true,
+    "suite": [
+      {
+        "name": "pytest",
+        "errors": "0",
+        "failures": "0",
+        "skipped": "0",
+        "tests": "270",
+        "time": "30.594",
+        "timestamp": "2026-10-26T20:46:12.868552-04:00",
+        "hostname": "812233b2011d"
+      }
+    ],
+    "coverage": {
+      "exact_changed_set": true,
+      "files": 31,
+      "covered": 241,
+      "total": 256,
+      "excluded": 0,
+      "raw_hash_matches": true,
+      "summary_mismatches": []
+    }
+  },
+  "baseline_and_retention_audit": {
+    "baseline_source_mismatches": [],
+    "embedded_hash_mismatches": [],
+    "v2_current_mismatches": [],
+    "retained_preformat_mismatches": []
+  },
+  "worker_reference_audit": {
+    "checked": 24,
+    "mismatches": []
+  },
+  "ledger_audit": {
+    "hash_mismatches": [],
+    "tables": {
+      "Cumulative_Gate_Ledger": {
+        "rows": 60,
+        "all_eight_columns": true,
+        "attestation_blanks": 0,
+        "csv_sqlite_exact": true,
+        "historical_prefix_exact": true,
+        "historical_rows": 52,
+        "worker_rows": 5,
+        "missing_worker_rows": [],
+        "hash_ref_mismatches": []
+      },
+      "Reverse_RCA_Ledger": {
+        "rows": 124,
+        "all_eight_columns": true,
+        "attestation_blanks": 0,
+        "csv_sqlite_exact": true,
+        "historical_prefix_exact": true,
+        "historical_rows": 116,
+        "worker_rows": 4,
+        "missing_worker_rows": [],
+        "hash_ref_mismatches": []
+      }
+    },
+    "sqlite_integrity": "ok",
+    "register": {
+      "historical_exact": true,
+      "prior_pending_exact": true,
+      "active_status": "REPAIR_VERIFIED_HOLD_PENDING_OUT_OF_BAND_REVIEW",
+      "case_reference_matches": true,
+      "regression_reference_matches": true,
+      "separate_findings": {
+        "4383956251": "OPEN_REVIEW_HOLD",
+        "4383956285": "OPEN_REVIEW_HOLD"
+      }
+    },
+    "archive_mismatches": []
+  },
+  "coverage_scope": "Independently recomputed changed31file denominator against9a5eb22;241/256branches=94.140625%, zero exclusions, summaries match raw coverage. Full N11 remains NOT_EXECUTED.",
+  "separate_open_findings": [
+    {
+      "id": 4383956251,
+      "status": "OPEN_REVIEW_HOLD",
+      "title": "Ancestor receipt not fenced by current task assignment",
+      "source": "src/hmt_rnd/lane_queries.py",
+      "observation_status": "Reviewer source finding retained; not reproduced/refuted or repaired in this bounded campaign."
+    },
+    {
+      "id": 4383956285,
+      "status": "OPEN_REVIEW_HOLD",
+      "title": "Drift resolution removes original symlink components before guard",
+      "source": "src/hmt_rnd/lane_drift.py",
+      "observation_status": "Reviewer source finding retained; not reproduced/refuted or repaired in this bounded campaign. RC-PATH-01 does not certify drift callers."
+    }
+  ],
+  "limitations": [
+    "Execution is attested by worker/supervisor and inspected here; assurance did not run target code. Hashes prove integrity, not producer authenticity.",
+    "Deterministic local POSIX pathname fixture only; not arbitrary filesystem race, hard-link, mount, global root identity or evaluator isolation qualification.",
+    "Atomic denial observer covers six lane table counts and host clock, not an exhaustive bytewise snapshot of every host table; separate revoke-state assertion is explicit.",
+    "Restart observer recreates LaneStore around persisted host data; no process-kill or power-loss claim.",
+    "Previous absent lane.reauthorize-grant direct fixture remains absent; this campaign does not upgrade prior source-composition inference.",
+    "Full N11, whole Forge acceptance and operational qualification remain unestablished; prior passing evidence cannot close new findings."
+  ],
+  "failure_disposition": "Contradictory tracers reopen the affected requirement/case explicitly. Preserve old witnesses and boundaries; no silent supersession, scope shrink or success redefinition.",
+  "release_condition": "User continuation HOLD remains. Only the reserved outside reviewer may disposition the exact candidate and prior conditions. The two separate OPEN_REVIEW_HOLD findings remain open regardless of this bounded repair result. No integration/deployment release.",
+  "evidence_sha256": {
+    "evidence/path_identity_supervisor.json": "bbdf74ccb49d4b08e2bd72f2fc4e994d86f43e6b5848ec166504903178ac7416",
+    "evidence/path_identity_supervisor_case.json": "5cb66bc8eeab13cebf0007df1833802a9b5dccbb683dc73e62af6d7a0fd55fce",
+    "evidence/path_identity_snapshot.json": "f5fc97f2e17dfc5cfe8d3ccd3973ce41bc84d5b80bd50c25306f0dc8e8f58fa3",
+    "evidence/path_identity_worker_summary.json": "c5b6ceaacc02bed9c8fb1b26aff9d028994feb721ff29974124423cc7ba3dffd",
+    "evidence/path_identity_inventory_v2.json": "ee47ea9f1fa20a859da82e5fadd99454c1fadc711289b9b50f039d69edc4f594",
+    "evidence/path_identity_case.json": "02b2918a54b9b89163794f42b09a5444d1a39a92c41a4d58637bd4480093b7c7",
+    "evidence/path_identity_supervisor_preformat.json": "ec0cb7d16db8774924655666468e08519fdc05a842fd1e5f0d687e58c2314f3f",
+    "evidence/path_identity_handoff.json": "42c6f30420289033e147a54dcfc88accf6297cec29c4ba93bf2702161f6a566d",
+    "evidence/path_identity_ledger_manifest.json": "6838508c19cce90976a52fa14fa93fe5db8e0fe5cf4367e0782826371845c0f4",
+    "evidence/path_identity_coverage.json": "f0d3e8ec7553b267a789bb2617b77dae9854da25411d02f062f472a56117368f",
+    "evidence/path_identity_summary.json": "917f5be7ca04beb74ea957b787ca22ed6e2659264c99a5a2c063cc6f6dfefbc4",
+    "evidence/path_identity_assurance_initial.json": "e23f615cac4954d90fe4cddb2d565c33467761d85b27e1765f1dc99e12cd18a3",
+    "evidence/path_identity_preformat_continuity.json": "e016d814bf3025bf67445ad582b0089f8e67c8d4687176d1d7a4f003b62820dd",
+    "evidence/path_identity_archives.json": "d7111c16bcd21c420ddbe1555bd5c52e21ebc2a01481577216fa794b35167458",
+    "evidence/path_identity_inventory_before.json": "cfabfa2a18bfe9f6fde0eb5d3c3040f65b27d408347977b0f93bdb082b0ce5ba",
+    "evidence/path_identity_supervisor_results.json": "b3bf0af0bcf939c1f481693afec1172ebe8534a6db4a4d8d684aa3646d36e094",
+    "evidence/path_identity_baseline.json": "5aba522caaa96028dee16b1b561d0b30a8e58f52498aba673de57fb7e1d1dea0",
+    "evidence/path_identity_case_register.json": "2c776bf409a2d66966a259af04c6d1eabb4e53548ac5950bf686f186da893556",
+    "evidence/path_identity_static_initial.json": "1649b4837cfe98c325d1c45efb1936428afffd628899f4695924c959069c34af",
+    "evidence/path_identity_snapshot_v2.json": "34c2f0684147521123583ff69b0984c263a2e81f199c591b9010d683786bf44a",
+    "evidence/path_identity_changed_coverage.json": "a8b4a6a9b255065c8c6dc1d9e3807d0b07f77a6a350ed8188d8615657bb4d763",
+    "evidence/path_identity_commit_register.json": "ebd4b2e542d1960c9bea210b74d6624548e130e3f830c5b46f9a1a007b54bd86",
+    "evidence/path_identity_v2_observed.json": "234f02ee5d1708357366267a53ccdd930dee3452915171feb2affa4473cc7c9b",
+    "evidence/path_identity_inventory_initial_after.json": "cfabfa2a18bfe9f6fde0eb5d3c3040f65b27d408347977b0f93bdb082b0ce5ba",
+    "evidence/path_identity_before.xml": "4bf3d4ac7975d6315cc1d8494b0bc49bded8a8dc919ca110ad2661298917d1d6",
+    "evidence/path_identity_before.log": "264af1d13cfa36e93b975cc9ffc1e547901b437535c7da4bed22a5d63a413079",
+    "evidence/path_identity_v2_tests.xml": "68a97f3d7c6dc7ec542fbb55c85c62b187cfb86409c1da3771b0a73f00d6cafa",
+    "evidence/path_identity_supervisor.xml": "21fbbb1d812008574d3ba357ac1e2f12edc367982dab8b6bb77048c17ab2f678",
+    "evidence/path_identity_coverage_tests.xml": "d7b2c1c5bb917e737a7665cefba280c050276066f8bcef9e8f0c26d02b2e9d0a",
+    "evidence/Cumulative_Gate_Ledger.csv": "7b00ee2d64bee5e5a491f3ec1ba448b77cc089ad5b31e75bb02db464e7345e66",
+    "evidence/Reverse_RCA_Ledger.csv": "51b9dc7f62e42ddb60a4a5ca16e83f50cc588b5def571aba9f60f83fa48a9ea2",
+    "evidence/build_ledgers.sqlite.gz": "9361b88d1e7926e092dc8e1c9b30e043e99b0f4088d6642a4436134683309bb1",
+    "contracts/CR-PATH-IDENTITY-007.json": "5c8314da60683c5ffd487795d1295319ab030f3a606d7aab14b3fcf466dc1f46"
+  }
+}

@@ -8,7 +8,9 @@ Implementation is in progress. Repository-owned host, custody, voice, and verifi
 
 All supplied HMT implementations are read-only references. This repository owns the derivatives and retains/extends the necessary behaviors and invariants; it does not depend on a separately deployed reference host.
 
-Current review checkpoint: 255 tests passed with zero failures/errors/skips. Changed first-party executable code covers 239/254 branches (94.09%) across 31 changed files, with zero exclusions. Ruff, Pyrefly basic, and structural gates passed. Reopening issuance rejects an origin task-revision mismatch before mutation; digest verification and snapshot preservation share a bounded nonblocking descriptor reader. See `evidence/latest_review_case_register.json`, `docs/revision_issuance_reconciliation.md`, and `docs/artifact_fifo_reconciliation.md`. Reconciliation HOLD remains pending the original out-of-band reviewer's exact-candidate clearance.
+Current bounded path-identity checkpoint: 270 tests passed with zero failures/errors/skips. Changed first-party executable code covers 241/256 branches (94.14%) across 31 changed files, with zero exclusions. Ruff, Pyrefly basic, and structural gates passed. The reader rejects literal parent components in the original path and root before normalization, preventing the demonstrated evaluator/verifier byte mismatch. See `evidence/path_identity_case_register.json` and `docs/path_identity_reconciliation.md`. Reconciliation HOLD remains active.
+
+Two separate review findings remain OPEN_REVIEW_HOLD: ancestor assignment freshness (`4383956251`) and drift detection resolving away symlink components (`4383956285`). They were not reproduced or refuted in the bounded path-identity campaign. No broader continuation or integration clearance follows from these passing tests.
 
 The earlier successor-reservation and reopening policy/epoch repairs remain recorded in `evidence/oob_case_register.json`. Both earlier pending cases remain visible alongside the three latest cases; internal evidence does not release continuation.
 

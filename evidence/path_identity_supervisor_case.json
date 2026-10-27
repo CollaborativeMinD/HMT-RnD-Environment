@@ -1,0 +1,49 @@
+{
+  "case_id": "RC-PATH-01",
+  "baseline": "3492b6f2f86f7757706d470a0f5e119c1069d013",
+  "repair_commit": "fa8161270454ec3697bcaa5a1e26d0a6ad62e6c9",
+  "requirements": [
+    "HMT-F02",
+    "HMT-B07",
+    "HMT-N04",
+    "HMT-B14",
+    "HMT-F14"
+  ],
+  "expected": "Verification, evaluator and snapshot must share the admitted input identity; ambiguous parent/symlink spelling must deny before evaluator or durable mutation.",
+  "observed_before": "Real original-path/native evaluator read OUTSIDE bytes; lexical verifier and snapshot selected distinct INSIDE bytes; baseline SEALED one candidate and two snapshots. Three retained failing tests.",
+  "causal_chain": [
+    "Candidate retains original path spelling for GateContext/evaluator.",
+    "Guarded descriptor reader calls abspath before component traversal.",
+    "abspath removes .. lexically and hides a symlink component.",
+    "Native original spelling resolves symlink first, then .., selecting different bytes.",
+    "Verifier/snapshot accepted normalized input while evaluator consumed original input."
+  ],
+  "correction": "Reject original parent components in path and root before normalization or opening; retain all-component nofollow and descriptor-regular/byte/digest checks.",
+  "postcondition": "Original ambiguous path denied; no evaluator call, receipt, blob, closure or clock mutation; canonical absolute/relative controls accepted, revoke/restart denial retained.",
+  "evidence": {
+    "evidence/path_identity_baseline.json": "5aba522caaa96028dee16b1b561d0b30a8e58f52498aba673de57fb7e1d1dea0",
+    "evidence/path_identity_before.xml": "4bf3d4ac7975d6315cc1d8494b0bc49bded8a8dc919ca110ad2661298917d1d6",
+    "evidence/path_identity_snapshot.json": "f5fc97f2e17dfc5cfe8d3ccd3973ce41bc84d5b80bd50c25306f0dc8e8f58fa3",
+    "evidence/path_identity_snapshot_v2.json": "34c2f0684147521123583ff69b0984c263a2e81f199c591b9010d683786bf44a",
+    "evidence/path_identity_v2_observed.json": "234f02ee5d1708357366267a53ccdd930dee3452915171feb2affa4473cc7c9b",
+    "evidence/path_identity_supervisor.json": "bbdf74ccb49d4b08e2bd72f2fc4e994d86f43e6b5848ec166504903178ac7416",
+    "evidence/path_identity_supervisor_results.json": "b3bf0af0bcf939c1f481693afec1172ebe8534a6db4a4d8d684aa3646d36e094"
+  },
+  "candidate_tests": 270,
+  "native_failures_retained": true,
+  "format_failure": "evidence/path_identity_static_initial.json",
+  "preformat_continuity": "evidence/path_identity_preformat_continuity.json",
+  "supersession": "V2 changes import layout only; same requirement, input boundary, failure mechanism, and assertions are retained. Old failures and preformat behavior remain preserved.",
+  "limitations": [
+    "This is bounded path-spelling evidence, not an arbitrary filesystem sandbox or immutable input snapshot transport.",
+    "The ancestor-assignment freshness and drift pre-resolution findings remain separate OPEN_REVIEW_HOLD.",
+    "Full requirement/mutation qualification remains incomplete."
+  ],
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; HOLD_PENDING_OUT_OF_BAND_REVIEW",
+  "sub_agent_task_attestation": {
+    "repair_owner": "/root/custody_reconciliation",
+    "supervisor": "/root",
+    "reviewer": "/root/assurance_reconciliation",
+    "unsigned": true
+  }
+}

@@ -1,0 +1,5 @@
+{"mode": "digest", "native_hex": "6f757473696465206576616c7561746564206172746966616374", "native_sha256": "6911073fcca8555708061db2a2b9d938f5710f8cfe7427d56dc43413d71f7b9b", "normalized_hex": "696e7369646520617070726f766564206172746966616374", "guarded_sha256": null, "denial": "LANE_ARTIFACT_SCOPE"}
+.{"mode": "snapshot", "native_hex": "6f757473696465206576616c7561746564206172746966616374", "native_sha256": "6911073fcca8555708061db2a2b9d938f5710f8cfe7427d56dc43413d71f7b9b", "normalized_hex": "696e7369646520617070726f766564206172746966616374", "guarded_sha256": null, "denial": "LANE_SNAPSHOT_SCOPE"}
+.{"evaluated_hex": [], "snapshot_hex": null, "denial": "LANE_ARTIFACT_SCOPE", "receipt_outcome": null, "before": {"lane_candidates": 0, "lane_artifacts": 0, "lane_closures": 0, "lane_reopens": 0, "lane_invalidations": 0, "lane_reauthorizations": 0, "last_clock": 0.0}, "after": {"lane_candidates": 0, "lane_artifacts": 0, "lane_closures": 0, "lane_reopens": 0, "lane_invalidations": 0, "lane_reauthorizations": 0, "last_clock": 0.0}}
+.
+3 passed in 0.20s

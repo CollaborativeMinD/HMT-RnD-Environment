@@ -1,0 +1,22 @@
+{
+  "id": "CR-PATH-IDENTITY-007",
+  "case": "RC-PATH-01",
+  "affected_requirements": [
+    "HMT-F02",
+    "HMT-B07",
+    "HMT-N04",
+    "HMT-B14",
+    "HMT-F14",
+    "HMT-N11",
+    "HMT-N12",
+    "HMT-B11"
+  ],
+  "trigger": "Native original/evaluator path selected different bytes from lexically normalized verification/snapshot path.",
+  "correction": "Reject any literal parent component in original Path and root before abspath/open; existing symlink, descriptor, byte and digest checks retained.",
+  "criteria": "No acceptance weakened; canonical and relative paths without parent components remain supported; parent spellings explicitly unsupported.",
+  "separate_open_reviews": [
+    4383956251,
+    4383956285
+  ],
+  "release": "HOLD_PENDING_OUT_OF_BAND_REVIEW"
+}

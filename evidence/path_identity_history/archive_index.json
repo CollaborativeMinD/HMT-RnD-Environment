@@ -1,0 +1,43 @@
+[
+  {
+    "original": "evidence/build_ledgers.sqlite",
+    "stored": "evidence/build_ledgers.sqlite.gz",
+    "sha256": "7e76b965630bc96f9938b16075c583051151ee18debfd3053c97d342cd2599e3",
+    "compressed_sha256": "e327db594d93e817c6b8c72c928d57db3a1d9269974fad47bb77ee092b51ee9d",
+    "bytes": 118784,
+    "all_rows_preserved": true,
+    "prior_exact_archive": "evidence/latest_review_history/build_ledgers.sqlite.gz"
+  },
+  {
+    "original": "evidence/verification_candidate_ledger.csv",
+    "stored": "evidence/verification_candidate_ledger.csv.gz",
+    "sha256": "6da2cba23b208d59152a4c1008481d40126fdbea1a9bea87d1586e9ab2c668ec",
+    "compressed_sha256": "f332ddc9dee1acb7ac21857077e8f4ae18079fb97a7c0cc5b0d73ade33f257dd",
+    "bytes": 1270467,
+    "all_rows_preserved": true
+  },
+  {
+    "original": "evidence/verification_candidate_ledger.sqlite",
+    "stored": "evidence/verification_candidate_ledger.sqlite.gz",
+    "sha256": "f57a6e5160b5006a10663198ac5f078e1819c630f56f0df9d7f434cd52fb030e",
+    "compressed_sha256": "0640c8f1381b455f1c9a4e72202ac5a308843d0fea3df2f456a9ec1ee6fd1e47",
+    "bytes": 1740800,
+    "all_rows_preserved": true
+  },
+  {
+    "original": "evidence/verification_history/CR-REFERENCE-DERIVATION-003-parent/verification_candidate_ledger.csv",
+    "stored": "evidence/verification_history/CR-REFERENCE-DERIVATION-003-parent/verification_candidate_ledger.csv.gz",
+    "sha256": "6da2cba23b208d59152a4c1008481d40126fdbea1a9bea87d1586e9ab2c668ec",
+    "compressed_sha256": "f332ddc9dee1acb7ac21857077e8f4ae18079fb97a7c0cc5b0d73ade33f257dd",
+    "bytes": 1270467,
+    "all_rows_preserved": true
+  },
+  {
+    "original": "evidence/verification_history/CR-REFERENCE-DERIVATION-003-parent/verification_candidate_ledger.sqlite",
+    "stored": "evidence/verification_history/CR-REFERENCE-DERIVATION-003-parent/verification_candidate_ledger.sqlite.gz",
+    "sha256": "fd907edf1868ce2c50776b7093f1d01fa789e556b1d8be2564ba4e40153bceb0",
+    "compressed_sha256": "7862afa7346eb9d7dba3a22add9d0fee6a12f21a76aa3b8ed644ca85ca47d204",
+    "bytes": 1740800,
+    "all_rows_preserved": true
+  }
+]
