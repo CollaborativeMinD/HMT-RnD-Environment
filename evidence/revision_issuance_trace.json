@@ -1,0 +1,9 @@
+{
+  "origin_revision": 1,
+  "accepted_event_revision": 2,
+  "event_count": 1,
+  "invalidation_count": 1,
+  "successor_denial": "LANE_REOPEN_TASK_BINDING",
+  "architect_reauthorization_denial": "LANE_REOPEN_TASK_BINDING",
+  "closure_count": 0
+}
