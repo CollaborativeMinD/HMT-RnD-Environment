@@ -1,0 +1,349 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.7.0
+rootdir: /workspace/scratch/bc6d4e512874/HMT-RnD-Environment
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collected 20 items
+
+tests/test_ancestor_freshness_issuance.py FFFFFFFFFFFFFFFF....           [100%]
+
+=================================== FAILURES ===================================
+_ test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[False-revision-1] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-137/test_reopen_denies_before_muta0')
+depth = 1, change = 'revision', restart = False
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale(
+            tmp_path, depth, change, restart):
+        host, store, ancestors, owner, request, scoped, change_event, origin = prepare(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_issuance.py:22: Failed
+_ test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[False-revision-2] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-137/test_reopen_denies_before_muta1')
+depth = 2, change = 'revision', restart = False
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale(
+            tmp_path, depth, change, restart):
+        host, store, ancestors, owner, request, scoped, change_event, origin = prepare(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_issuance.py:22: Failed
+_ test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[False-reassigned-1] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-137/test_reopen_denies_before_muta2')
+depth = 1, change = 'reassigned', restart = False
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale(
+            tmp_path, depth, change, restart):
+        host, store, ancestors, owner, request, scoped, change_event, origin = prepare(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_issuance.py:22: Failed
+_ test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[False-reassigned-2] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-137/test_reopen_denies_before_muta3')
+depth = 2, change = 'reassigned', restart = False
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale(
+            tmp_path, depth, change, restart):
+        host, store, ancestors, owner, request, scoped, change_event, origin = prepare(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_issuance.py:22: Failed
+_ test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[False-missing-1] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-137/test_reopen_denies_before_muta4')
+depth = 1, change = 'missing', restart = False
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale(
+            tmp_path, depth, change, restart):
+        host, store, ancestors, owner, request, scoped, change_event, origin = prepare(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_issuance.py:22: Failed
+_ test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[False-missing-2] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-137/test_reopen_denies_before_muta5')
+depth = 2, change = 'missing', restart = False
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale(
+            tmp_path, depth, change, restart):
+        host, store, ancestors, owner, request, scoped, change_event, origin = prepare(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_issuance.py:22: Failed
+_ test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[False-principal-only-1] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-137/test_reopen_denies_before_muta6')
+depth = 1, change = 'principal-only', restart = False
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale(
+            tmp_path, depth, change, restart):
+        host, store, ancestors, owner, request, scoped, change_event, origin = prepare(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_issuance.py:22: Failed
+_ test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[False-principal-only-2] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-137/test_reopen_denies_before_muta7')
+depth = 2, change = 'principal-only', restart = False
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale(
+            tmp_path, depth, change, restart):
+        host, store, ancestors, owner, request, scoped, change_event, origin = prepare(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_issuance.py:22: Failed
+_ test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[True-revision-1] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-137/test_reopen_denies_before_muta8')
+depth = 1, change = 'revision', restart = True
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale(
+            tmp_path, depth, change, restart):
+        host, store, ancestors, owner, request, scoped, change_event, origin = prepare(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_issuance.py:22: Failed
+_ test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[True-revision-2] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-137/test_reopen_denies_before_muta9')
+depth = 2, change = 'revision', restart = True
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale(
+            tmp_path, depth, change, restart):
+        host, store, ancestors, owner, request, scoped, change_event, origin = prepare(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_issuance.py:22: Failed
+_ test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[True-reassigned-1] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-137/test_reopen_denies_before_muta10')
+depth = 1, change = 'reassigned', restart = True
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale(
+            tmp_path, depth, change, restart):
+        host, store, ancestors, owner, request, scoped, change_event, origin = prepare(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_issuance.py:22: Failed
+_ test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[True-reassigned-2] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-137/test_reopen_denies_before_muta11')
+depth = 2, change = 'reassigned', restart = True
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale(
+            tmp_path, depth, change, restart):
+        host, store, ancestors, owner, request, scoped, change_event, origin = prepare(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_issuance.py:22: Failed
+_ test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[True-missing-1] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-137/test_reopen_denies_before_muta12')
+depth = 1, change = 'missing', restart = True
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale(
+            tmp_path, depth, change, restart):
+        host, store, ancestors, owner, request, scoped, change_event, origin = prepare(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_issuance.py:22: Failed
+_ test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[True-missing-2] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-137/test_reopen_denies_before_muta13')
+depth = 2, change = 'missing', restart = True
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale(
+            tmp_path, depth, change, restart):
+        host, store, ancestors, owner, request, scoped, change_event, origin = prepare(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_issuance.py:22: Failed
+_ test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[True-principal-only-1] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-137/test_reopen_denies_before_muta14')
+depth = 1, change = 'principal-only', restart = True
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale(
+            tmp_path, depth, change, restart):
+        host, store, ancestors, owner, request, scoped, change_event, origin = prepare(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_issuance.py:22: Failed
+_ test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[True-principal-only-2] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-137/test_reopen_denies_before_muta15')
+depth = 2, change = 'principal-only', restart = True
+
+    @pytest.mark.parametrize("depth", [1, 2])
+    @pytest.mark.parametrize("change", ["revision", "reassigned", "missing", "principal-only"])
+    @pytest.mark.parametrize("restart", [False, True])
+    def test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale(
+            tmp_path, depth, change, restart):
+        host, store, ancestors, owner, request, scoped, change_event, origin = prepare(tmp_path, depth)
+        drift(host, "CMAD1", change)
+        if restart:
+            store = LaneStore(HostStore(host.path))
+        before = snapshot(host)
+>       with pytest.raises(PermissionError, match="LANE_PREDECESSOR_ASSIGNMENT_STALE"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE PermissionError
+
+tests/test_ancestor_freshness_issuance.py:22: Failed
+- generated xml file: /workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/ancestor_freshness_issuance_before.xml -
+=========================== short test summary info ============================
+FAILED tests/test_ancestor_freshness_issuance.py::test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[False-revision-1]
+FAILED tests/test_ancestor_freshness_issuance.py::test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[False-revision-2]
+FAILED tests/test_ancestor_freshness_issuance.py::test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[False-reassigned-1]
+FAILED tests/test_ancestor_freshness_issuance.py::test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[False-reassigned-2]
+FAILED tests/test_ancestor_freshness_issuance.py::test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[False-missing-1]
+FAILED tests/test_ancestor_freshness_issuance.py::test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[False-missing-2]
+FAILED tests/test_ancestor_freshness_issuance.py::test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[False-principal-only-1]
+FAILED tests/test_ancestor_freshness_issuance.py::test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[False-principal-only-2]
+FAILED tests/test_ancestor_freshness_issuance.py::test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[True-revision-1]
+FAILED tests/test_ancestor_freshness_issuance.py::test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[True-revision-2]
+FAILED tests/test_ancestor_freshness_issuance.py::test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[True-reassigned-1]
+FAILED tests/test_ancestor_freshness_issuance.py::test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[True-reassigned-2]
+FAILED tests/test_ancestor_freshness_issuance.py::test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[True-missing-1]
+FAILED tests/test_ancestor_freshness_issuance.py::test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[True-missing-2]
+FAILED tests/test_ancestor_freshness_issuance.py::test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[True-principal-only-1]
+FAILED tests/test_ancestor_freshness_issuance.py::test_reopen_denies_before_mutation_when_ancestor_assignment_is_stale[True-principal-only-2]
+========================= 16 failed, 4 passed in 1.98s =========================

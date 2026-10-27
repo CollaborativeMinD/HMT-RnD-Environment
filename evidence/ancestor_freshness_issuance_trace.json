@@ -1,0 +1,20 @@
+[
+  {
+    "ancestor_depth": 1,
+    "event_issued": true,
+    "required_stage": "CMAD2",
+    "persisted_events": 1,
+    "persisted_invalidations": 1,
+    "successor_denial": "LANE_PREDECESSOR_ASSIGNMENT_STALE",
+    "closures": 0
+  },
+  {
+    "ancestor_depth": 2,
+    "event_issued": true,
+    "required_stage": "CMAD3",
+    "persisted_events": 1,
+    "persisted_invalidations": 1,
+    "successor_denial": "LANE_PREDECESSOR_ASSIGNMENT_STALE",
+    "closures": 0
+  }
+]

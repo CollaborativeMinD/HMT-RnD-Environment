@@ -7,7 +7,7 @@ from .host_models import Identity, Request
 from .lane_discovery import discover_changes
 from .lane_drift import artifact_changed
 from .lane_models import Receipt, Reopen, ReopenEvent
-from .lane_queries import read_receipt
+from .lane_queries import check_parent, read_receipt
 from .lane_reservation import require_available
 from .lane_stages import STAGES, lane
 from .lane_submission import ClockProvider, check_stage
@@ -64,6 +64,7 @@ def reopen_candidate(db: sqlite3.Connection, identity: Identity, request: Reques
                          issued_at=now.now, policy=authority.policy, epoch=authority.epoch,
                          task_id=request.task_id, task_revision=request.revision)
     authorize_and_checkpoint(db, identity, request, clock())
+    check_parent(db, earliest.candidate, Path(request.root), authority.policy, authority.epoch)
     db.execute("INSERT INTO lane_reopens VALUES(?,?,?,?,?)", (event.event_id,
                event.lineage_id, stage, event.successor_candidate_id, result.model_dump_json()))
     db.executemany("INSERT INTO lane_invalidations VALUES(?,?)",
