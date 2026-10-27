@@ -1,0 +1,946 @@
+[
+  {
+    "depth": 1,
+    "stage": "CMAD1",
+    "expiry": "grant",
+    "time": "unchanged",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "2cd8c9de2b3038113f7749b0c1eacbb2188ce3e29c2680ebb8c4b291af1f72cd",
+    "after": "632557ed49d919279a799cda09d3963c2ce276f713309c5e16fe4f3f2edc69dd",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD2",
+    "expiry": "grant",
+    "time": "unchanged",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "35f2b5c55a21237066da1bb870e0061b47ecc1b2614b3d0e3c41b84db23f7a2b",
+    "after": "c2d630efe4769f787ccb0f65abc6ffdd9c9c1c1049580284f17c96251b1796e5",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD2",
+    "expiry": "evidence",
+    "time": "below",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "1e4d2a0723aa666caede98aa8c678f2624c348f5e51e0931b33f96a6dc938447",
+    "after": "c3d9434ab2f35b0d19b0221b2d17227b7e7cffce2456cea6faafe3f62a6eca19",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD1",
+    "expiry": "evidence",
+    "time": "below",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "c9eba892bfde8d2c7e0ca15b470b146ef323228bb3033b9875f7141ee7f9ed45",
+    "after": "3f421c57a74adb4c67e9f912defafa6dde0b1fb5aca6af0cc5b383b4acd6e68c",
+    "unchanged": false
+  },
+  {
+    "depth": 1,
+    "stage": "CMAD1",
+    "expiry": "grant",
+    "time": "equal",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "291f3bde5a5389352b649fa83ed426b8e7242fbbc58e7d4e80c73587ea0d75f8",
+    "after": "424a52d0031d079e000f2f10c5e5b0124ae0a57dc989f23ac6a1ddff21ca0de3",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD2",
+    "expiry": "grant",
+    "time": "equal",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "47d900a39d0930f82703a2e043b2716fcfc7d3df2c4e03e507dc19528692e517",
+    "after": "11e0d79c13bcac240e73254b459d882fb8291f7ad1dfde14ce8b80e8849f8663",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD1",
+    "expiry": "grant",
+    "time": "equal",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "7065ad4d88c6463f6c1fd20275b14924595ea8b1d78622d51f7a083ecd5ef045",
+    "after": "e8d565dfb289423378c7a2ac503947ec1f14edac710f1d0aea5d77443efc7900",
+    "unchanged": false
+  },
+  {
+    "depth": 1,
+    "stage": "CMAD1",
+    "expiry": "evidence",
+    "time": "equal",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "ca53e3f269dc0c2bee4774d77aa44e668f49e735eb25cd39cb828d2f278cb93d",
+    "after": "bd2d2066d9aea58564f7631296642f2cd03ef6055df7b979e4c602c468510ec5",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD2",
+    "expiry": "evidence",
+    "time": "equal",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "681ae05689bc3e049abf28f4ae8f2a3ee73ab0024604fa14b470c471fb67dd80",
+    "after": "fafcaa8606cbcc202de93b10b7e2e8824a365b69430fa96b345b8b2b5611a61e",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD1",
+    "expiry": "evidence",
+    "time": "equal",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "0106a3b6473e27665251458b49f8ba9be8779fdc54ebef396a466cd7dfd35062",
+    "after": "be86e0c01809eb0a5853d106c63c8381e4413efbbdb17e818914f19a97155b6c",
+    "unchanged": false
+  },
+  {
+    "depth": 1,
+    "stage": "CMAD1",
+    "expiry": "grant",
+    "time": "above",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "82ed78540eb47ef1d32192095c6935148112f55a57471c04fbdc6f5aa431ce0d",
+    "after": "b66736df037aeb4fdfac84d22b415dce29466e5d6a9e5fa4b475d2b4dcb7b6d6",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD2",
+    "expiry": "grant",
+    "time": "above",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "c20cbaa1a6a07bbf652ba92281f3f1e0caceb7b8e841f72ff9e798ca729c9477",
+    "after": "7ca57fa40b20b3d62156a6376a1bf91cceeacbe253cf023a72eeca6b7964152c",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD1",
+    "expiry": "grant",
+    "time": "unchanged",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "0ce5eb10a1931c25aa3e0edd3a5dd2291cfe865bde5bc1421b4413071f445aaa",
+    "after": "47bdf2379f83e7372a91ac8ef5da28d947c12565aa6d82da59ffb71295c0c6c4",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD1",
+    "expiry": "grant",
+    "time": "above",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "fdd81943d3decdd69b0d52919eca2ca1f0c2b8aeef37e3cdca8bd3d87e3053c9",
+    "after": "55ab06de6e70ab1497522db9666bdf8eb26a9329dce2c704ad7750622afa0ae5",
+    "unchanged": false
+  },
+  {
+    "depth": 1,
+    "stage": "CMAD1",
+    "expiry": "evidence",
+    "time": "above",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "de59a954c4b106d3b8f72e5f12fab748d57ecba36d4a420b69f3e388a96cff1f",
+    "after": "6f745c6328abf315e570ec3a737c4b0f3988e6bb7f9a872453b6725a16d24cfc",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD2",
+    "expiry": "evidence",
+    "time": "above",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "91c99e1ae8158104684987670ebd01064b04d1e946d2bee8515c78c36c0b0c01",
+    "after": "770d076e053edfa479eabc0c0ddecfdbd99a4884e15d0d7e79d8ab280bc3f0ca",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD1",
+    "expiry": "evidence",
+    "time": "above",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "9708ba7c65bb57fd0202fbbc9cb5a88b06bae2c3dfbb1420a149dc636cd7d1f9",
+    "after": "00ca28d95f12532f06907a5c16653f482185d09a66488b7a5e3390f921ecb93b",
+    "unchanged": false
+  },
+  {
+    "depth": 1,
+    "stage": "CMAD1",
+    "expiry": "grant",
+    "time": "unchanged",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "20b37d317b057c5b16807998266a5fd11f6cf3d529351860ac7c69fc1bf9469a",
+    "after": "ae820dda045d37450b885e0a5998e70a6603e7226f5b692d8c8ef1aff7851244",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD2",
+    "expiry": "grant",
+    "time": "unchanged",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "8a9836908f7ff1fe49a557b1d29a6d09369812005025b026d4b01ee3bfdac866",
+    "after": "b13478a24a64668abf8f3a0e24e81e89ade709439d94a122931bbabf612c6bf5",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD1",
+    "expiry": "grant",
+    "time": "unchanged",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "f9f8301756dc56c6f3e7cf16a5090946e438fd4aa2b096f3346c72ad3b68b426",
+    "after": "b6cd673a856fd5a2584ea825f32a85d97272e20007d8b0fbf5f4a243601a4453",
+    "unchanged": false
+  },
+  {
+    "depth": 1,
+    "stage": "CMAD1",
+    "expiry": "evidence",
+    "time": "unchanged",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "9c63349c957d7e01c85b3850c23e18a13d98b6a67965014fdd3212c05bd43d2e",
+    "after": "b70ba979f080b6781d3fdf4f23784d4810e350f53ef5177602c2432bbd273b07",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD2",
+    "expiry": "evidence",
+    "time": "unchanged",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "dc6212615a47c8685dab225334dc1440485cc55fb5b9b7cfc38e13af9a3ac8e7",
+    "after": "1484423dbf7be67544911609fe73414ef990ca83042889340b62e20624bbd59a",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD1",
+    "expiry": "evidence",
+    "time": "unchanged",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "8d403832fc7dd28ee3794023ecf619dd646c82a0c8dc6820a046f12ffcdd11ad",
+    "after": "e8ba1f519f103f970b046a71046523dba989dcff4cec9f1b908eb97d1d83abc0",
+    "unchanged": false
+  },
+  {
+    "depth": 1,
+    "stage": "CMAD1",
+    "expiry": "evidence",
+    "time": "unchanged",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "ba3a98845a603c8959ff924eeb785912932319502c98a1d52d5444b7602ed73f",
+    "after": "c42c4e409c118d1b0fd463149479861a5427252596f91a74fec53a2e94ac178a",
+    "unchanged": false
+  },
+  {
+    "depth": 1,
+    "stage": "CMAD1",
+    "expiry": "grant",
+    "time": "below",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "1d4a0b86e5fd1c0e75780bc075f2d6320fa912452ee69f91fe3dea5d43f18864",
+    "after": "d15274136013166f11d748fe0f42498dc0844117c52a06fb31f385794ee088eb",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD2",
+    "expiry": "grant",
+    "time": "below",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "ae4aceb27e9bc23727ed01174b32e4edcbcf0d1c10fcea0e9345d495128ee5fb",
+    "after": "51cee3474ea28ab1e7968cf5ceef03a5d4a816728a34a4c6f9fdd8879903d016",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD1",
+    "expiry": "grant",
+    "time": "below",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "91d315a07bb4d78cef6c54091cd50f9ae51157a30f981f2e1ff362189434e401",
+    "after": "d8b2e8ad42ca891c9079929ae146ed83906afcc8eb367edb5a8cc6c1c1942907",
+    "unchanged": false
+  },
+  {
+    "depth": 1,
+    "stage": "CMAD1",
+    "expiry": "evidence",
+    "time": "below",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "cfdc53ccf36b489e16608644260d2b5d6bbe55995f08c06c4e89210cf8349f71",
+    "after": "3d2bded11e14c2d7d296278a3144817768e2f0f643f7119fd9fe24e7a699de97",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD2",
+    "expiry": "evidence",
+    "time": "below",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "a9bf389a4fb252d7804ce781838b46399549df4c558311a9c9409c2cb38d8b2e",
+    "after": "2beea3a5e2f668309d24942b812f5efca29119fbceef9f43c572c4728c58d8f2",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD1",
+    "expiry": "evidence",
+    "time": "below",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "797e91065149e0c10541ffc28e161a8aea279398748935ffd0e9932b9d16bf43",
+    "after": "309605e6f5e9b50489128f0f5d08c3453d8f7388c1e3aafaa845d7ba167a0098",
+    "unchanged": false
+  },
+  {
+    "depth": 1,
+    "stage": "CMAD1",
+    "expiry": "grant",
+    "time": "equal",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "939af71cc71a8802d7db274c15fe04ec5bc366e4a769537a671c16528ccbc376",
+    "after": "c9ec0d66cb4ec2022816d05c576915cd232710ee827791e5bf4183d2322ca486",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD2",
+    "expiry": "grant",
+    "time": "equal",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "6cc5a3bf4724b940e032fc81219a84a89b61288336bed9fe69f43c8c9c0ff080",
+    "after": "bdf577464650fed5c38f7e98e874ef9b7274b52b09a79cb27bdd1804f6eba67d",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD1",
+    "expiry": "grant",
+    "time": "equal",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "d7e18b965b8a90b78f12876276a3327b85a0e4ba281e819169099a479ee6615c",
+    "after": "83879ca37dce059a86479b662f6883874a76e719e632da98993d8b82200851f4",
+    "unchanged": false
+  },
+  {
+    "depth": 1,
+    "stage": "CMAD1",
+    "expiry": "evidence",
+    "time": "equal",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "baf6aa7575bd6fa3b0597a979e47989bbaa92f8e1f2952e69912e5c3e2cb9c8a",
+    "after": "e19df8f59fcb5ad7019d7f41ca0ac146b78750aabeb8de8d3050bd2cd0eced76",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD2",
+    "expiry": "evidence",
+    "time": "unchanged",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "f0d1e9f9eda450917c274157624da41a64036e94ac2d233037d88b8bc547f2b1",
+    "after": "26ce164dce486a735a343ae24edbe131196ccb6adc5f0ab0af85b91eb61edfbc",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD2",
+    "expiry": "evidence",
+    "time": "equal",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "27cc8f889d2dad06956a4e2cb637996ff71d8e64e576b7392321fbb3a61869db",
+    "after": "dfdaca73b7f1042a041feae672eacd890af644d79faf08a696722bc943e433c2",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD1",
+    "expiry": "evidence",
+    "time": "equal",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "dff9232ebe3e2d34bb2eb6cbb2e73a62a385a8d67f6d0c8db4a814ad8445b8c1",
+    "after": "42eca08684a3dcbbb9a09cb5f1a3f78644ea9d43a386938d29a4a0e77590ef28",
+    "unchanged": false
+  },
+  {
+    "depth": 1,
+    "stage": "CMAD1",
+    "expiry": "grant",
+    "time": "above",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "024abd9250e36b5391831ed2553adb7b32699af574131d6b64fa2b9b58c5d68d",
+    "after": "dca4d615be6bcc059baadd926001d014ee636e540b3de598def74ec065c49562",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD2",
+    "expiry": "grant",
+    "time": "above",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "3a7f16f24a7c1bce011a4b318bb2d8d68927bd66b93306ef200bc17f7838f012",
+    "after": "e69d59e89cbe72493a17d7f5e9ccbd5d95ab2dd25c9a01f570084001fd97e9c8",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD1",
+    "expiry": "grant",
+    "time": "above",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "70675e0bd34ebedab420be021037513bdcc63c40099dbecf7b89973082e4a7d5",
+    "after": "03e24e45e5904d8886df3b72cd3ed13bb009459df25bc017154c89608c1fd4c9",
+    "unchanged": false
+  },
+  {
+    "depth": 1,
+    "stage": "CMAD1",
+    "expiry": "evidence",
+    "time": "above",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "4cd599453e031d104f0f90605fee046c82a9ddef770ca97835f0733666c45eff",
+    "after": "38617e9cf6f508d4e9286c8f0a876065dc44c342845bc75d90febd43fe49be32",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD2",
+    "expiry": "evidence",
+    "time": "above",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "2919d4e95926ac0ff4614dab1d245b861c51866e1e1c0fddf7ac1728250a73ae",
+    "after": "57f4a413c857c7266e2ec795af4e227270736c67530e3657e59f3ab19d49d5e8",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD1",
+    "expiry": "evidence",
+    "time": "above",
+    "restart": true,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "29e8314e8919bdbc6410ef055c52f6b3a3daf2ae46707723de4cb750ac29acb6",
+    "after": "16e5fff80f0758d64d53a6455c29d884fd7d66e736d7ec3f3bd6911170b38254",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD1",
+    "expiry": "evidence",
+    "time": "unchanged",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "27d1401191530bcaa50fd61dac308d8962e5f7824e79c736d8cb4215c7b5dca0",
+    "after": "2decefc4f29aa5d156adb135381e93194b2c46c5606232984f67577f19d0b8a1",
+    "unchanged": false
+  },
+  {
+    "depth": 1,
+    "stage": "CMAD1",
+    "expiry": "grant",
+    "time": "below",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "849e549b928745b51193938442ebb0c1e17f23bcd0db25e4b44eae7536f3b92d",
+    "after": "0965eb0ad94bea68ce100b5679f5f2b9135eb55c4f73aea1d061f30da2739011",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD2",
+    "expiry": "grant",
+    "time": "below",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "643fe460e3f2a35a98700b3da2a646ed9a13e14c2e7f1bf52530e8b1c872c9dc",
+    "after": "f95d99b20b0905635ada9981e3f764f369789cea6723b10770f5047badea59f5",
+    "unchanged": false
+  },
+  {
+    "depth": 2,
+    "stage": "CMAD1",
+    "expiry": "grant",
+    "time": "below",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD2",
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "497a6701fa28a70c21d5ae1433b411a417ca71d3ca9f859d40dc2dd26778e1df",
+    "after": "4d5b7eef0a9109ad845552216faf2c2610b71976ed700f82ad57dd75565a6d3a",
+    "unchanged": false
+  },
+  {
+    "depth": 1,
+    "stage": "CMAD1",
+    "expiry": "evidence",
+    "time": "below",
+    "restart": false,
+    "clock_calls": [
+      12.0,
+      12.0
+    ],
+    "verified_stages": [
+      "CMAD1"
+    ],
+    "error": null,
+    "issued": true,
+    "before": "634427e01a3f342d2f9e0d37f97fae2bbfbb20256a7269c5f6740377bcdba0dc",
+    "after": "73fdaa09f902ace24ef8d5bfec7f8ba0c05dde918df6034c6b4ae7d866bf974f",
+    "unchanged": false
+  }
+]

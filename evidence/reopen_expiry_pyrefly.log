@@ -1,0 +1,4 @@
+ INFO 0 errors
+No `pyrefly.toml` found — using preset `basic`.
+Run `pyrefly init` to continue setting up Pyrefly.
+Docs: https://pyrefly.org/en/docs/installation/

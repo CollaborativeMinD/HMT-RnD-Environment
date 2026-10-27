@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/scripts/check_structure.py", line 4, in <module>
+    from hmt_rnd.verification_complexity import inspect_source
+ModuleNotFoundError: No module named 'hmt_rnd'
