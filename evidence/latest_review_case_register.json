@@ -1,0 +1,438 @@
+{
+  "as_of": "2026-10-27T00:18:34.936652+00:00",
+  "baseline": "c922345c520db598f4b1f6afff2598c0770f0bba",
+  "historical_scoped_closures": [
+    {
+      "case_id": "RC-CUSTODY-01",
+      "worker_alias": "RC-CUSTODY-001",
+      "owner": "custody_reconciliation",
+      "requirements": [
+        "HMT-F18",
+        "HMT-B04"
+      ],
+      "title": "Cancelled reservation changes payload under same effect identity",
+      "status": "CLOSED_SCOPED_RECONCILIATION",
+      "investigation": {
+        "path": "evidence/reconcile_custody_case.json",
+        "sha256": "d746d5d814640755819bb8eec58c523a8bb639fc79a8f64005b6ae4b51da61a7"
+      },
+      "regression": {
+        "path": "evidence/reconcile_sequence_custody.json",
+        "sha256": "cd0d996a95c2cbcb9b9d2bcdbc42a4834aa8ae6d35b1cdb4628f57a5e96e9f9e"
+      },
+      "commits": [
+        "c968ddf000c206bdef0393f5f94446ed925dbef6"
+      ],
+      "independent_review": {
+        "path": "evidence/reconciliation_assurance_final.json",
+        "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377"
+      },
+      "failure_disposition": "Reopen this case and affected requirement if the same boundary contradicts; preserve all prior evidence.",
+      "qualification_limit": "Specific reported failure mechanism and declared test boundaries only; full requirement qualification remains unchanged."
+    },
+    {
+      "case_id": "RC-HOST-01",
+      "worker_alias": "RC-HOST-01",
+      "owner": "supervisor",
+      "requirements": [
+        "HMT-F02",
+        "HMT-N04"
+      ],
+      "title": "Relative grant roots expand after cwd change",
+      "status": "CLOSED_SCOPED_RECONCILIATION",
+      "investigation": {
+        "path": "evidence/reconcile_host_case.json",
+        "sha256": "96761d780f72e27cd82b31ed15b2bcd4e7ac6a280c4e92c9d945c1e68406e342"
+      },
+      "regression": {
+        "path": "evidence/reconcile_host_exact.json",
+        "sha256": "e834c6e7796fcfc558865dabfd3d8ee868894e9e6dd77196e863d41a7ca7ba49"
+      },
+      "commits": [
+        "f3189c2b2f7f5ad9d32be3a3793322c8077b47e1"
+      ],
+      "independent_review": {
+        "path": "evidence/reconciliation_assurance_final.json",
+        "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377"
+      },
+      "failure_disposition": "Reopen this case and affected requirement if the same boundary contradicts; preserve all prior evidence.",
+      "qualification_limit": "Specific reported failure mechanism and declared test boundaries only; full requirement qualification remains unchanged."
+    },
+    {
+      "case_id": "RC-VOICE-01",
+      "worker_alias": "RC-VOICE-01",
+      "owner": "voice_reconciliation",
+      "requirements": [
+        "HMT-N02",
+        "HMT-N03",
+        "HMT-V09"
+      ],
+      "title": "FIFO blocks before process timeout",
+      "status": "CLOSED_SCOPED_RECONCILIATION",
+      "investigation": {
+        "path": "evidence/reconcile_voice_case_1.json",
+        "sha256": "a1f5dd44af27b4987cdf70c0403de635583d43ee577ac1de9d698a28053c219f"
+      },
+      "regression": {
+        "path": "evidence/reconcile_sequence_voice1.json",
+        "sha256": "df0c2e5e6ee08453b4fb8b88f9c660fa2a2f080443badcc9039bc50935e5267b"
+      },
+      "commits": [
+        "514987959637f06ad81c6c7725448671e5eb0ef2"
+      ],
+      "independent_review": {
+        "path": "evidence/reconciliation_assurance_final.json",
+        "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377"
+      },
+      "failure_disposition": "Reopen this case and affected requirement if the same boundary contradicts; preserve all prior evidence.",
+      "qualification_limit": "Specific reported failure mechanism and declared test boundaries only; full requirement qualification remains unchanged."
+    },
+    {
+      "case_id": "RC-VOICE-02",
+      "worker_alias": "RC-VOICE-02",
+      "owner": "voice_reconciliation",
+      "requirements": [
+        "HMT-N03",
+        "HMT-B14",
+        "HMT-V09"
+      ],
+      "title": "Successful parent leaves descendants",
+      "status": "CLOSED_SCOPED_RECONCILIATION",
+      "investigation": {
+        "path": "evidence/reconcile_voice_case_2.json",
+        "sha256": "d1ba3b9ff7e06f54b2971e3ef029a2686503d606da665c2a4baa29709309d129"
+      },
+      "regression": {
+        "path": "evidence/reconcile_sequence_voice2.json",
+        "sha256": "5e9ac111f5879fb93886b3a2bb4f75010448a79828ef163c82400b2aa2394320"
+      },
+      "commits": [
+        "e8293e3548b890a09b8ebd149fa3c23a91b0e5e1"
+      ],
+      "independent_review": {
+        "path": "evidence/reconciliation_assurance_final.json",
+        "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377"
+      },
+      "failure_disposition": "Reopen this case and affected requirement if the same boundary contradicts; preserve all prior evidence.",
+      "qualification_limit": "Specific reported failure mechanism and declared test boundaries only; full requirement qualification remains unchanged."
+    },
+    {
+      "case_id": "RC-VOICE-03",
+      "worker_alias": "RC-VOICE-03",
+      "owner": "voice_reconciliation",
+      "requirements": [
+        "HMT-F03",
+        "HMT-N03",
+        "HMT-V09"
+      ],
+      "title": "Closed pipes change timeout contract",
+      "status": "CLOSED_SCOPED_RECONCILIATION",
+      "investigation": {
+        "path": "evidence/reconcile_voice_case_3.json",
+        "sha256": "1fb4ff9bba15dda58b3c2de5dc15f46792e867482a6283ad61ff88183dcca773"
+      },
+      "regression": {
+        "path": "evidence/reconcile_sequence_voice3.json",
+        "sha256": "478be23b64f736f36d5c42b39a20d30feb819170330e74e564423416d4a81da0"
+      },
+      "commits": [
+        "9f7a32e7a356f8361b6758b9b0566e14ad1af318"
+      ],
+      "independent_review": {
+        "path": "evidence/reconciliation_assurance_final.json",
+        "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377"
+      },
+      "failure_disposition": "Reopen this case and affected requirement if the same boundary contradicts; preserve all prior evidence.",
+      "qualification_limit": "Specific reported failure mechanism and declared test boundaries only; full requirement qualification remains unchanged."
+    },
+    {
+      "case_id": "RC-LEDGER-01",
+      "worker_alias": "R-VERIFY-ID-001",
+      "owner": "verification_reconciliation",
+      "requirements": [
+        "HMT-F03",
+        "HMT-N10",
+        "HMT-N12"
+      ],
+      "title": "Normalized invariant IDs collide",
+      "status": "CLOSED_SCOPED_RECONCILIATION",
+      "investigation": {
+        "path": "evidence/reconcile_verification_identity_case.json",
+        "sha256": "97f2d5f0508e75da84f771cd7b96a18adc67d54b4f02f306ecc6a08ace67e656"
+      },
+      "regression": {
+        "path": "evidence/reconcile_sequence_identity.json",
+        "sha256": "9cef5b2780264ea0af68b04c0973c6814eef2147a01bd5c34f80a43b81773dd5"
+      },
+      "commits": [
+        "c131e11d9271d0135e99dcbaca60fe2b4bd39f21"
+      ],
+      "independent_review": {
+        "path": "evidence/reconciliation_assurance_final.json",
+        "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377"
+      },
+      "failure_disposition": "Reopen this case and affected requirement if the same boundary contradicts; preserve all prior evidence.",
+      "qualification_limit": "Specific reported failure mechanism and declared test boundaries only; full requirement qualification remains unchanged."
+    },
+    {
+      "case_id": "RC-LANE-01",
+      "worker_alias": "LANE-DRIFT-001",
+      "owner": "lane_reconciliation",
+      "requirements": [
+        "HMT-B07"
+      ],
+      "title": "Gate evidence or missing source cannot reopen",
+      "status": "CLOSED_SCOPED_RECONCILIATION",
+      "investigation": {
+        "path": "evidence/reconcile_lane_case_1.json",
+        "sha256": "418adcb38e54c7de5a9eaa464fa22cbb8483d48c1c328839601842b49cd680bd"
+      },
+      "regression": {
+        "path": "evidence/reconcile_sequence_lane1.json",
+        "sha256": "e26ad3a5baa52c4677d403e381a3bfd05dd32e1876a2fde6c28caca98b5a1c9f"
+      },
+      "commits": [
+        "57ba6cc0ec5d03143936ddaf82d9c70f19b48562",
+        "8be0680019bbf417dcabb147518f3f739b55c95a"
+      ],
+      "independent_review": {
+        "path": "evidence/reconciliation_assurance_final.json",
+        "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377"
+      },
+      "failure_disposition": "Reopen this case and affected requirement if the same boundary contradicts; preserve all prior evidence.",
+      "qualification_limit": "Specific reported failure mechanism and declared test boundaries only; full requirement qualification remains unchanged."
+    },
+    {
+      "case_id": "RC-LANE-02",
+      "worker_alias": "LANE-HISTORY-001",
+      "owner": "lane_reconciliation",
+      "requirements": [
+        "HMT-B07"
+      ],
+      "title": "Invalidated historical references invalidate healthy successor",
+      "status": "CLOSED_SCOPED_RECONCILIATION",
+      "investigation": {
+        "path": "evidence/reconcile_lane_case_2.json",
+        "sha256": "7aaaa0da4bed7cf9d141fe4986b2893a2ba1ba6fc905e5162e55cc6379a382d6"
+      },
+      "regression": {
+        "path": "evidence/reconcile_sequence_lane2.json",
+        "sha256": "717be442148e30b6ddd5e02c22e4c67a9da3596f8322db02bc7eaed196c268f3"
+      },
+      "commits": [
+        "e3d30c03d1cd887a285dc03e9d565d2536639cb3",
+        "8be0680019bbf417dcabb147518f3f739b55c95a"
+      ],
+      "independent_review": {
+        "path": "evidence/reconciliation_assurance_final.json",
+        "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377"
+      },
+      "failure_disposition": "Reopen this case and affected requirement if the same boundary contradicts; preserve all prior evidence.",
+      "qualification_limit": "Specific reported failure mechanism and declared test boundaries only; full requirement qualification remains unchanged."
+    },
+    {
+      "case_id": "RC-LANE-03",
+      "worker_alias": "LANE-AUTHORITY-001",
+      "owner": "lane_reconciliation",
+      "requirements": [
+        "HMT-B07",
+        "HMT-F02"
+      ],
+      "title": "Mixed drift bypasses architect or earliest owner",
+      "status": "CLOSED_SCOPED_RECONCILIATION",
+      "investigation": {
+        "path": "evidence/reconcile_lane_case_3.json",
+        "sha256": "45ee38cc5240ea879d4ba9e6036d623913919049886ccf6bd1cc1ad6c0615b06"
+      },
+      "regression": {
+        "path": "evidence/reconcile_sequence_lane3.json",
+        "sha256": "adc07f58de7ea33a370df2ef27a36d1f230c289d98458600b467cbc3edbed89d"
+      },
+      "commits": [
+        "370863cc378ee011d46654e102739f09d82d3282",
+        "8be0680019bbf417dcabb147518f3f739b55c95a"
+      ],
+      "independent_review": {
+        "path": "evidence/reconciliation_assurance_final.json",
+        "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377"
+      },
+      "failure_disposition": "Reopen this case and affected requirement if the same boundary contradicts; preserve all prior evidence.",
+      "qualification_limit": "Specific reported failure mechanism and declared test boundaries only; full requirement qualification remains unchanged."
+    },
+    {
+      "case_id": "RC-LANE-04",
+      "worker_alias": "LANE-SUCCESSOR-001",
+      "owner": "lane_reconciliation",
+      "requirements": [
+        "HMT-B07"
+      ],
+      "title": "Pending stage successor bypass via older parent closure",
+      "status": "CLOSED_SCOPED_RECONCILIATION",
+      "investigation": {
+        "path": "evidence/reconcile_lane_case_4.json",
+        "sha256": "627a56c4e092a67f30dc34943dda98aa5f0dd54af449f5b235fd019bacf7922a"
+      },
+      "regression": {
+        "path": "evidence/reconcile_sequence_lane4.json",
+        "sha256": "e15b85fd21fa3996aa9dde3c4cf302cced9223210fe8ad754f2e768f1c67278f"
+      },
+      "commits": [
+        "a3006d56837bf981cd84e36503cf48e60ed088ce",
+        "8be0680019bbf417dcabb147518f3f739b55c95a"
+      ],
+      "independent_review": {
+        "path": "evidence/reconciliation_assurance_final.json",
+        "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377"
+      },
+      "failure_disposition": "Reopen this case and affected requirement if the same boundary contradicts; preserve all prior evidence.",
+      "qualification_limit": "Specific reported failure mechanism and declared test boundaries only; full requirement qualification remains unchanged."
+    },
+    {
+      "case_id": "RC-COVERAGE-01",
+      "worker_alias": "R-COVERAGE-001",
+      "owner": "verification_reconciliation",
+      "requirements": [
+        "HMT-N11",
+        "HMT-N12",
+        "HMT-B10"
+      ],
+      "title": "Aggregate coverage mistaken for changed-code gate",
+      "status": "CLOSED_SCOPED_RECONCILIATION",
+      "investigation": {
+        "path": "evidence/reconcile_verification_coverage_correction.json",
+        "sha256": "583f2efcdcb239fdcb7f3891e0b60205204559f3310c6fa463bb9a7c462c23c1"
+      },
+      "regression": {
+        "path": "evidence/reconciliation_changed_coverage.json",
+        "sha256": "5e6a5de568d65395471cd2f08f95ab6875132400c6238eb2fcab90f24a3dd609"
+      },
+      "commits": [
+        "343aff8339c59faa0d86d5682fc05d1b907d3f4b"
+      ],
+      "independent_review": {
+        "path": "evidence/reconciliation_assurance_final.json",
+        "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377"
+      },
+      "failure_disposition": "Reopen this case and affected requirement if the same boundary contradicts; preserve all prior evidence.",
+      "qualification_limit": "Specific reported failure mechanism and declared test boundaries only; full requirement qualification remains unchanged."
+    },
+    {
+      "case_id": "RC-HARNESS-01",
+      "worker_alias": "RC-HARNESS-01",
+      "owner": "supervisor",
+      "requirements": [
+        "HMT-N12",
+        "HMT-B10",
+        "HMT-B11",
+        "HMT-B15"
+      ],
+      "title": "Sequential replay candidate precondition",
+      "status": "CLOSED_SCOPED_RECONCILIATION",
+      "investigation": {
+        "path": "evidence/reconcile_harness_case.json",
+        "sha256": "06eec9692a97dbbcda1669732e609eafe19824998574e47c80a36c387804685e"
+      },
+      "regression": {
+        "path": "evidence/reconciliation_sequence_validation.json",
+        "sha256": "560f9d4e5404198395ed95255168856c2bc719e5cb2d7d0d44ff26d8596098f4"
+      },
+      "commits": [
+        "ce754d63cc9f8541da945e6636f519a17e04aefb"
+      ],
+      "independent_review": {
+        "path": "evidence/reconciliation_assurance_final.json",
+        "sha256": "784281953329b04ff1eb3e25730c40eea57b4658da0db904f665954ff72c4377"
+      },
+      "failure_disposition": "Reopen this case and affected requirement if the same boundary contradicts; preserve all prior evidence.",
+      "qualification_limit": "Specific reported failure mechanism and declared test boundaries only; full requirement qualification remains unchanged."
+    }
+  ],
+  "prior_pending_cases": [
+    {
+      "case_id": "RC-LANE-05",
+      "status": "REPAIR_VERIFIED_HOLD_PENDING_OUT_OF_BAND_REVIEW",
+      "requirements": [
+        "HMT-B07",
+        "HMT-F02",
+        "HMT-F14"
+      ],
+      "commit": "8a3f93a43777be949aab9c9bdffc593d68ec02fe",
+      "case_record": "evidence/oob_lane_case05.json",
+      "case_sha256": "e4032b7a1e4d80f10a15dc9bd87bc1a40f519b8dbf09d9d507bb63c2e37f98ee",
+      "regression": "evidence/oob_supervisor_stage1.json",
+      "regression_sha256": "368d48550273eae79e719c567ee22b0b70fb803e649cd419141bcf1aa88e7100"
+    },
+    {
+      "case_id": "RC-LANE-06",
+      "status": "REPAIR_VERIFIED_HOLD_PENDING_OUT_OF_BAND_REVIEW",
+      "requirements": [
+        "HMT-B07",
+        "HMT-F02",
+        "HMT-F14"
+      ],
+      "commit": "0892ba269597be15e49eb3310a76918f8ce77ff0",
+      "case_record": "evidence/oob_lane_case06.json",
+      "case_sha256": "b2796f883789d875ab40e650f9a62b8d64d3e4941e0c8f566c1baba51d03e03d",
+      "regression": "evidence/oob_supervisor_stage2.json",
+      "regression_sha256": "b0c2496d62429e03348bbaaf8e4f246438782e80572bbbc0f967f8195d3b8eb7"
+    }
+  ],
+  "active_cases": [
+    {
+      "case_id": "RC-LANE-07",
+      "status": "REPAIR_VERIFIED_HOLD_PENDING_OUT_OF_BAND_REVIEW",
+      "commit": "6f5961c60c54caa2d4a92eefd1bfa672e2304c91",
+      "case_record": "evidence/revision_issuance_case.json",
+      "sha256": "09d47aba6668ce50482cbae4b5b1c759ae360ce0d1099286708a5e3a23200dce",
+      "regression": "evidence/latest_supervisor_revision_issuance_snapshot.json",
+      "regression_sha256": "937f512b59fa721e907fcb2b4ec1a43ac0c3b6368494e650f6f9c439ebb7fb03",
+      "owner": "/root/lane_reconciliation",
+      "requirements": [
+        "HMT-F02",
+        "HMT-B07",
+        "HMT-F14"
+      ]
+    },
+    {
+      "case_id": "RC-ARTIFACT-01",
+      "status": "REPAIR_VERIFIED_HOLD_PENDING_OUT_OF_BAND_REVIEW",
+      "commit": "95649e428d4cbdbe7b1706f1cfb6c3983ed0456a",
+      "case_record": "evidence/artifact_fifo_step1_case.json",
+      "sha256": "3ee1049b7e06cfe0d78fe1e757509f5d9e728a0447355e7695bf2ce15e2f0b34",
+      "regression": "evidence/latest_supervisor_artifact_fifo_step1.json",
+      "regression_sha256": "9c7b02daa23d8fc9c485267fbe6115ad8e44f8a56c8f5497ff8c4def79fba0f5",
+      "owner": "/root/custody_reconciliation",
+      "requirements": [
+        "HMT-N02",
+        "HMT-N03",
+        "HMT-N04",
+        "HMT-N05",
+        "HMT-B01",
+        "HMT-B14",
+        "HMT-F14"
+      ]
+    },
+    {
+      "case_id": "RC-ARTIFACT-02",
+      "status": "REPAIR_VERIFIED_HOLD_PENDING_OUT_OF_BAND_REVIEW",
+      "commit": "b8f8fac8a9ac55fed6e77f4363c39cd113555091",
+      "case_record": "evidence/artifact_fifo_step2_case.json",
+      "sha256": "73870fa55c5d4e618d59c14682b7417d85ea47a81f5abeffc3ff99ad83b58b33",
+      "regression": "evidence/latest_supervisor_artifact_fifo_step2.json",
+      "regression_sha256": "771b10bc64f86134357c82ab3b300ec21e594c6d9092c0035d43a3ab7446c0ba",
+      "owner": "/root/custody_reconciliation",
+      "requirements": [
+        "HMT-N02",
+        "HMT-N03",
+        "HMT-N04",
+        "HMT-N05",
+        "HMT-B01",
+        "HMT-B14",
+        "HMT-F14"
+      ]
+    }
+  ],
+  "release": "HOLD_PENDING_OUT_OF_BAND_REVIEW",
+  "release_condition": "Original out-of-band reviewer must review exact candidate and prior closure conditions; internal assurance does not clear continuation.",
+  "integration": "Instructions remain withheld; no broader acceptance/deployment release."
+}

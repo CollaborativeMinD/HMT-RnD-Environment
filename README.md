@@ -8,7 +8,9 @@ Implementation is in progress. Repository-owned host, custody, voice, and verifi
 
 All supplied HMT implementations are read-only references. This repository owns the derivatives and retains/extends the necessary behaviors and invariants; it does not depend on a separately deployed reference host.
 
-Current out-of-band reconciliation checkpoint: 224 tests passed with zero failures/errors/skips. Changed first-party executable code covers 235/252 branches (93.25%) across 30 changed files, with zero exclusions. Ruff, Pyrefly basic, and structural gates passed. Global successor reservations and reopening policy/epoch authority have bounded repairs in commits `8a3f93a` and `0892ba2`. See `docs/oob_lane_reconciliation.md` and `evidence/oob_case_register.json`. Reconciliation HOLD remains pending the out-of-band supervisor's review of the exact candidate.
+Current review checkpoint: 255 tests passed with zero failures/errors/skips. Changed first-party executable code covers 239/254 branches (94.09%) across 31 changed files, with zero exclusions. Ruff, Pyrefly basic, and structural gates passed. Reopening issuance rejects an origin task-revision mismatch before mutation; digest verification and snapshot preservation share a bounded nonblocking descriptor reader. See `evidence/latest_review_case_register.json`, `docs/revision_issuance_reconciliation.md`, and `docs/artifact_fifo_reconciliation.md`. Reconciliation HOLD remains pending the original out-of-band reviewer's exact-candidate clearance.
+
+The earlier successor-reservation and reopening policy/epoch repairs remain recorded in `evidence/oob_case_register.json`. Both earlier pending cases remain visible alongside the three latest cases; internal evidence does not release continuation.
 
 The previous twelve scoped case closures remain historical evidence in `docs/reconciliation_checkpoint.md` and `evidence/reconciliation_closure_register.json`. The two new findings explicitly reopen affected requirement evidence; passing prior scenarios does not establish their boundaries.
 

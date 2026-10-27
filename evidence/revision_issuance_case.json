@@ -1,0 +1,95 @@
+{
+  "case_id": "RC-LANE-07",
+  "requirements": [
+    "HMT-B07@1",
+    "HMT-B10@1"
+  ],
+  "baseline": "c922345",
+  "as_of": "2026-10-27T00:13:09.292844+00:00",
+  "source_findings": [
+    "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383644741",
+    "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#issuecomment-6429843245"
+  ],
+  "initiating_condition": "Seal taskoriginrevision1, advance same task/principal assignment torevision2, issue fresh revision2 grants, request reopening revision1origin.",
+  "retained_observation": {
+    "origin_revision": 1,
+    "accepted_event_revision": 2,
+    "event_count": 1,
+    "invalidation_count": 1,
+    "successor_denial": "LANE_REOPEN_TASK_BINDING",
+    "architect_reauthorization_denial": "LANE_REOPEN_TASK_BINDING",
+    "closure_count": 0
+  },
+  "causal_chain": [
+    "Current host authorizes validrevision2request and checkpoints time in SQLite transaction.",
+    "Writer compares taskID only; omits originrevision equality and constructs event.task_revision from requestrevision2.",
+    "Writer persists event plus origin invalidation although originreceipt remains immutable revision1.",
+    "Successor and architectreauthorization readers both require origin/event/request taskrevision equality and deny event, leaving no supported recovery path."
+  ],
+  "corrective_task": "Reject unsupported crossrevision issuance before event construction/insertion/invalidation using LANE_REOPEN_REVISION_MISMATCH. Retain failclosed reader comparison unchanged.",
+  "change_scope": "Only2lines added to lane_reopen.py; newtests/support. No schema/config/reference or feature changes.",
+  "candidate_snapshot": {
+    "path": "evidence/revision_issuance_snapshot.json",
+    "sha256": "2cc3a479fb49510996457aee2de9cd275f7a114f48a93054f133a49ba4335287"
+  },
+  "targeted": {
+    "before": {
+      "tests": 7,
+      "failures": 2,
+      "passed": 5
+    },
+    "after": {
+      "tests": 7,
+      "failures": 0,
+      "skips": 0
+    }
+  },
+  "controls": [
+    "Valid currentrev2grant cannot invalidate rev1origin, with/without fresh LaneStore/HostStore objects.",
+    "All SQLite tablecontents including hostclock exactly unchanged afterdenial and subsequent database reopen.",
+    "Unchangedrevision1 event persists and successor closes after database reopen.",
+    "Differenttask currentgrant, stalegrant revision, revokedgrant remain denied without statechange."
+  ],
+  "restart_limit": "Connection/HostStore/LaneStore reinstantiation with persisted SQLite data, not processkill or powerloss.",
+  "mixed_full_run": {
+    "passed": 231,
+    "failed": 2,
+    "failing_tests": [
+      "test_artifact_fifo_race.py::test_fifo_replacement_denies_and_releases_host_fence[digest]",
+      "test_artifact_fifo_race.py::test_fifo_replacement_denies_and_releases_host_fence[snapshot]"
+    ],
+    "qualification": "NOT_CANDIDATE_QUALIFIED: concurrent otherworker lane_evidence.py changes detected; failures retained; supervisor isolatedbaseline replay required."
+  },
+  "static_gates": {
+    "ruff": "PASS",
+    "pyrefly": "PASS basic",
+    "structure": "PASS"
+  },
+  "evidence": {
+    "evidence/revision_issuance_before.xml": "3c72f3943edf72a66edef89b43cbd2481f13c75b4b8c2df3465e97fd8abeac06",
+    "evidence/revision_issuance_before.log": "921fecc4935a3823854d4dc9512f7157557643f779dc6e9e10dbb9454e33daab",
+    "evidence/revision_issuance_before_sources.json": "ecfcd48da5b17daf5514839d2c4e92e388b07c36da953ebac50e97c87c6a214f",
+    "evidence/revision_issuance_before_tests.json": "159dfa5f5137113dcbd0f3ca7a0f55f73f57a1228fb40b1fb01f5da0268c96ba",
+    "evidence/revision_issuance_trace.py": "b62c8a4d7b2cb117fc2832a48c7c5303db4ced0a736f4a8ebb04e0a8570136d0",
+    "evidence/revision_issuance_trace.json": "e25b1ff18eaeb7bd969cebaa9f59752e6f49de36f302bcb4de69bddffe80a375",
+    "evidence/revision_issuance_after.xml": "d89b8864f182e779db46b4654ed9408ce86f9f6bcbccd1217e4c96ea87d2db31",
+    "evidence/revision_issuance_after.log": "a0f03b444b7a9fa6037c4eadaf8d792ad227b74e85131c894328421d40356374",
+    "evidence/revision_issuance_full_regression.xml": "43a05aa85ae2a21fc7202d5d59879d63defdbd4885124acf01f128f6cdd1e857",
+    "evidence/revision_issuance_full_regression.log": "8bcd6b3abc94338ed69eeb82ccd1c85cb843f4ff9df404f2d145ed5b5697b641",
+    "evidence/revision_issuance_runtime_inventory.json": "e5f0b6a1d3973d698aa52e752f9dea01114bd671fca41840bafb821f31401e2b",
+    "evidence/revision_issuance_runtime_changes.json": "9893a374bf7deae8a07b47e462ab2d11ba333b0f0e0be077c9ed9e75bf67e692"
+  },
+  "disposition": "INVESTIGATION_COMPLETE; SOLUTION_CANDIDATE_APPLIED; HOLD pending isolated supervisor regression and outside review",
+  "sub_agent_task_attestation": {
+    "agent": "/root/lane_reconciliation",
+    "task": "RC-LANE-07",
+    "source_ownership": [
+      "src/hmt_rnd/lane_reopen.py",
+      "tests/test_revision_issuance*.py",
+      "evidence/revision_issuance*",
+      "docs/revision_issuance*"
+    ],
+    "unsigned": true,
+    "limitations": "No final release authority; no assurancecertification; references readonly."
+  }
+}

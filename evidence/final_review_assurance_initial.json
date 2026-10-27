@@ -1,0 +1,71 @@
+{
+  "primary_disposition": "HOLD",
+  "method": "Manual skill-guided read-only assurance; no target execution or repair",
+  "baseline": "c922345c520db598f4b1f6afff2598c0770f0bba",
+  "release_condition": "Original out-of-band supervisor reviews exact candidate and retained evidence; this evaluator cannot release HOLD. Integration remains withheld.",
+  "historical_evidence": "Prior 224 tests do not cover these newly declared boundaries.",
+  "cases": [
+    {
+      "id": "RC-LANE-07",
+      "references": [
+        4383644741,
+        6429843245
+      ],
+      "requirements": [
+        "HMT-F01",
+        "HMT-F02",
+        "HMT-B07",
+        "HMT-N05",
+        "HMT-N12"
+      ],
+      "expected": [
+        "Revision-1 origin with fresh revision-2 assignment/grants is denied with typed revision mismatch before issuance/invalidation; exact database snapshot unchanged before/after restart.",
+        "Unchanged-revision event records origin task/revision and remains usable by designated successor across restart.",
+        "Existing downstream origin checks remain fail-closed; no implicit cross-revision migration or reauthorization."
+      ]
+    },
+    {
+      "id": "RC-ARTIFACT-01",
+      "references": [
+        4383677867
+      ],
+      "requirements": [
+        "HMT-N02",
+        "HMT-N03",
+        "HMT-N04",
+        "HMT-N05",
+        "HMT-B01",
+        "HMT-B14"
+      ],
+      "expected": [
+        "Independent digest read: regular source replaced with FIFO at open seam under actual host transaction yields typed bounded denial.",
+        "Witness proves host lock held at race, rollback, subsequent revocation succeeds, restart observes revocation.",
+        "Regular-file digest identity, byte cap, root scope and descriptor cleanup preserved; symlink policy explicit."
+      ]
+    },
+    {
+      "id": "RC-ARTIFACT-02",
+      "references": [
+        4383677827
+      ],
+      "requirements": [
+        "HMT-N02",
+        "HMT-N03",
+        "HMT-N04",
+        "HMT-N05",
+        "HMT-B01",
+        "HMT-B14"
+      ],
+      "expected": [
+        "Independent snapshot read after earlier checks: regular source replaced with FIFO at snapshot open seam yields typed bounded denial.",
+        "Witness proves host lock held at race, no durable partial snapshot, subsequent revocation succeeds and restart observes revocation.",
+        "Shared guarded reader used; exact preserved bytes/digest, per-operation total byte cap and scope checks preserved."
+      ]
+    }
+  ],
+  "limitations": [
+    "Assessment of execution is by retained worker/supervisor witnesses only.",
+    "Deterministic local FIFO seam does not qualify arbitrary filesystem timing or all platform I/O latency.",
+    "Full N11 and whole Forge qualification remain unestablished."
+  ]
+}

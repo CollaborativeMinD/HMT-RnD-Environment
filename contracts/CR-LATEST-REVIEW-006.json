@@ -1,0 +1,26 @@
+{
+  "id": "CR-LATEST-REVIEW-006",
+  "baseline": "c922345c520db598f4b1f6afff2598c0770f0bba",
+  "cases": [
+    "RC-LANE-07",
+    "RC-ARTIFACT-01",
+    "RC-ARTIFACT-02"
+  ],
+  "affected_requirements": [
+    "HMT-B01",
+    "HMT-B07",
+    "HMT-B11",
+    "HMT-B14",
+    "HMT-F02",
+    "HMT-F14",
+    "HMT-N02",
+    "HMT-N03",
+    "HMT-N04",
+    "HMT-N05",
+    "HMT-N11",
+    "HMT-N12"
+  ],
+  "criteria": "Existing acceptance retained; new witnesses reopen affected evidence. Crossrevision recovery unsupported: deny before mutation. Digest/snapshot share descriptor regularfile reads and original bounds/digest checks. All-component symlink rejection is explicit tightened policy.",
+  "register": "evidence/latest_review_case_register.json",
+  "release": "HOLD_PENDING_OUT_OF_BAND_REVIEW"
+}
