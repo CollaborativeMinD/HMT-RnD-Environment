@@ -1,0 +1,172 @@
+FFFF                                                                     [100%]
+=================================== FAILURES ===================================
+_ test_expiry_during_absolute_spelling_denies_before_mutation[grant-artifact] __
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-152/test_expiry_during_absolute_sp0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f020f48aea0>
+source = 'artifact', expiry = 'grant'
+
+    @pytest.mark.parametrize("source", ["artifact", "evidence"])
+    @pytest.mark.parametrize("expiry", ["grant", "evidence"])
+    def test_expiry_during_absolute_spelling_denies_before_mutation(
+            tmp_path, monkeypatch, source, expiry):
+        scope = tmp_path / "scope"
+        scope.mkdir()
+        monkeypatch.chdir(tmp_path)
+        host, owner, request = setup_host(scope)
+        expiring_grant(host, owner, request, expiry)
+        store = LaneStore(host)
+        candidate = make_candidate(scope).model_copy(update={"artifact": Path("scope/first.txt")})
+        target = candidate.artifact if source == "artifact" else Path("scope/first.evidence")
+        now, calls = [10.0], []
+        original = Path.absolute
+    
+        def absolute(path):
+            value = original(path)
+            if path == target:
+                calls.append(str(path))
+                now[0] = 50.0
+            return value
+    
+        before = snapshot(host)
+        monkeypatch.setattr(Path, "absolute", absolute)
+        receipt, error = None, None
+        try:
+            receipt = store.submit(owner, request, candidate, lambda: Clock(now=now[0]), execute_gate)
+        except PermissionError as failure:
+            error = str(failure)
+        observe(tmp_path, operation="absolute_expiry", source=source, expiry=expiry, error=error,
+                issued=receipt is not None, tables_unchanged=snapshot(host) == before)
+>       assert error == "HOST_LEASE_OR_EVIDENCE_EXPIRED" and receipt is None
+E       AssertionError: assert (None == 'HOST_LEASE_OR_EVIDENCE_EXPIRED')
+
+/workspace/scratch/bc6d4e512874/supervisor_receipt_path_replay/tests/test_receipt_path_expiry.py:45: AssertionError
+_ test_expiry_during_absolute_spelling_denies_before_mutation[grant-evidence] __
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-152/test_expiry_during_absolute_sp1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f020f48ab10>
+source = 'evidence', expiry = 'grant'
+
+    @pytest.mark.parametrize("source", ["artifact", "evidence"])
+    @pytest.mark.parametrize("expiry", ["grant", "evidence"])
+    def test_expiry_during_absolute_spelling_denies_before_mutation(
+            tmp_path, monkeypatch, source, expiry):
+        scope = tmp_path / "scope"
+        scope.mkdir()
+        monkeypatch.chdir(tmp_path)
+        host, owner, request = setup_host(scope)
+        expiring_grant(host, owner, request, expiry)
+        store = LaneStore(host)
+        candidate = make_candidate(scope).model_copy(update={"artifact": Path("scope/first.txt")})
+        target = candidate.artifact if source == "artifact" else Path("scope/first.evidence")
+        now, calls = [10.0], []
+        original = Path.absolute
+    
+        def absolute(path):
+            value = original(path)
+            if path == target:
+                calls.append(str(path))
+                now[0] = 50.0
+            return value
+    
+        before = snapshot(host)
+        monkeypatch.setattr(Path, "absolute", absolute)
+        receipt, error = None, None
+        try:
+            receipt = store.submit(owner, request, candidate, lambda: Clock(now=now[0]), execute_gate)
+        except PermissionError as failure:
+            error = str(failure)
+        observe(tmp_path, operation="absolute_expiry", source=source, expiry=expiry, error=error,
+                issued=receipt is not None, tables_unchanged=snapshot(host) == before)
+>       assert error == "HOST_LEASE_OR_EVIDENCE_EXPIRED" and receipt is None
+E       AssertionError: assert (None == 'HOST_LEASE_OR_EVIDENCE_EXPIRED')
+
+/workspace/scratch/bc6d4e512874/supervisor_receipt_path_replay/tests/test_receipt_path_expiry.py:45: AssertionError
+_ test_expiry_during_absolute_spelling_denies_before_mutation[evidence-artifact] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-152/test_expiry_during_absolute_sp2')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f020f4fd7f0>
+source = 'artifact', expiry = 'evidence'
+
+    @pytest.mark.parametrize("source", ["artifact", "evidence"])
+    @pytest.mark.parametrize("expiry", ["grant", "evidence"])
+    def test_expiry_during_absolute_spelling_denies_before_mutation(
+            tmp_path, monkeypatch, source, expiry):
+        scope = tmp_path / "scope"
+        scope.mkdir()
+        monkeypatch.chdir(tmp_path)
+        host, owner, request = setup_host(scope)
+        expiring_grant(host, owner, request, expiry)
+        store = LaneStore(host)
+        candidate = make_candidate(scope).model_copy(update={"artifact": Path("scope/first.txt")})
+        target = candidate.artifact if source == "artifact" else Path("scope/first.evidence")
+        now, calls = [10.0], []
+        original = Path.absolute
+    
+        def absolute(path):
+            value = original(path)
+            if path == target:
+                calls.append(str(path))
+                now[0] = 50.0
+            return value
+    
+        before = snapshot(host)
+        monkeypatch.setattr(Path, "absolute", absolute)
+        receipt, error = None, None
+        try:
+            receipt = store.submit(owner, request, candidate, lambda: Clock(now=now[0]), execute_gate)
+        except PermissionError as failure:
+            error = str(failure)
+        observe(tmp_path, operation="absolute_expiry", source=source, expiry=expiry, error=error,
+                issued=receipt is not None, tables_unchanged=snapshot(host) == before)
+>       assert error == "HOST_LEASE_OR_EVIDENCE_EXPIRED" and receipt is None
+E       AssertionError: assert (None == 'HOST_LEASE_OR_EVIDENCE_EXPIRED')
+
+/workspace/scratch/bc6d4e512874/supervisor_receipt_path_replay/tests/test_receipt_path_expiry.py:45: AssertionError
+_ test_expiry_during_absolute_spelling_denies_before_mutation[evidence-evidence] _
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-152/test_expiry_during_absolute_sp3')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f020f32a360>
+source = 'evidence', expiry = 'evidence'
+
+    @pytest.mark.parametrize("source", ["artifact", "evidence"])
+    @pytest.mark.parametrize("expiry", ["grant", "evidence"])
+    def test_expiry_during_absolute_spelling_denies_before_mutation(
+            tmp_path, monkeypatch, source, expiry):
+        scope = tmp_path / "scope"
+        scope.mkdir()
+        monkeypatch.chdir(tmp_path)
+        host, owner, request = setup_host(scope)
+        expiring_grant(host, owner, request, expiry)
+        store = LaneStore(host)
+        candidate = make_candidate(scope).model_copy(update={"artifact": Path("scope/first.txt")})
+        target = candidate.artifact if source == "artifact" else Path("scope/first.evidence")
+        now, calls = [10.0], []
+        original = Path.absolute
+    
+        def absolute(path):
+            value = original(path)
+            if path == target:
+                calls.append(str(path))
+                now[0] = 50.0
+            return value
+    
+        before = snapshot(host)
+        monkeypatch.setattr(Path, "absolute", absolute)
+        receipt, error = None, None
+        try:
+            receipt = store.submit(owner, request, candidate, lambda: Clock(now=now[0]), execute_gate)
+        except PermissionError as failure:
+            error = str(failure)
+        observe(tmp_path, operation="absolute_expiry", source=source, expiry=expiry, error=error,
+                issued=receipt is not None, tables_unchanged=snapshot(host) == before)
+>       assert error == "HOST_LEASE_OR_EVIDENCE_EXPIRED" and receipt is None
+E       AssertionError: assert (None == 'HOST_LEASE_OR_EVIDENCE_EXPIRED')
+
+/workspace/scratch/bc6d4e512874/supervisor_receipt_path_replay/tests/test_receipt_path_expiry.py:45: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_receipt_path_expiry.py::test_expiry_during_absolute_spelling_denies_before_mutation[grant-artifact]
+FAILED tests/test_receipt_path_expiry.py::test_expiry_during_absolute_spelling_denies_before_mutation[grant-evidence]
+FAILED tests/test_receipt_path_expiry.py::test_expiry_during_absolute_spelling_denies_before_mutation[evidence-artifact]
+FAILED tests/test_receipt_path_expiry.py::test_expiry_during_absolute_spelling_denies_before_mutation[evidence-evidence]
+4 failed in 1.31s

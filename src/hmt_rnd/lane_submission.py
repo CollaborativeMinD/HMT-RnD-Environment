@@ -69,6 +69,9 @@ def submit(db: sqlite3.Connection, identity: Identity, request: Request, candida
     verify_result(context, result, root)
     check_parent(db, candidate, root, authority.policy, authority.epoch)
     preserve(db, candidate, result, root)
+    candidate = candidate.model_copy(update={"artifact": candidate.artifact.absolute()})
+    result = result.model_copy(update={"evidence": tuple(
+        item.model_copy(update={"path": item.path.absolute()}) for item in result.evidence)})
     final_clock = clock()
     authorize_and_checkpoint(db, identity, request, final_clock)
     return record(db, identity, request, candidate, result, final_clock.now)

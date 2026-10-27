@@ -1,0 +1,31 @@
+{
+  "id": "CR-RECEIPT-PATH-011",
+  "case": "RC-RECEIPT-PATH-01",
+  "parent": "f0e671acd513be3bfdb72e546d422839fdfbbf2e",
+  "requirements": [
+    "HMT-F02@1",
+    "HMT-F03@1",
+    "HMT-F14@1",
+    "HMT-N07@1",
+    "HMT-N11@1",
+    "HMT-N12@1",
+    "HMT-B07@1",
+    "HMT-B10@1",
+    "HMT-B11@1",
+    "HMT-B12@1",
+    "HMT-B15@1"
+  ],
+  "requirement_revisions_changed": false,
+  "contradiction": "Hash-valid relative source locators do not preserve interpretation across cwd/restart.",
+  "bounded_change": "Absolute spelling after original guards and preservation, before final clock/admission in existing submit path. No resolve, new schema, authority or historical migration.",
+  "evidence": "evidence/receipt_path_case.json",
+  "status": "IMPLEMENTED_AND_PERSONALLY_VERIFIED_READY_FOR_REVIEW",
+  "forbidden": [
+    "integration",
+    "merge",
+    "deployment",
+    "historical receipt rewrite",
+    "symlink/parent normalization bypass",
+    "full-work-package promotion"
+  ]
+}

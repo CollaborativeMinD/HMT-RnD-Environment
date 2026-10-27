@@ -1,0 +1,472 @@
+{
+  "parent": "f0e671acd513be3bfdb72e546d422839fdfbbf2e",
+  "finding": 4384864734,
+  "files": {
+    "src/hmt_rnd/lane_submission.py": {
+      "text": "\"\"\"Atomic stage progression requires current host admission and bound gate evidence.\"\"\"\nimport sqlite3\nfrom collections.abc import Callable\nfrom pathlib import Path\n\nfrom .host_admission import authorize_and_checkpoint\nfrom .host_models import Clock, Identity, Request\nfrom .lane_artifacts import preserve\nfrom .lane_event_authority import check_event_authority\nfrom .lane_evidence import verify_artifact, verify_result\nfrom .lane_models import Candidate, GateContext, GateResult, Receipt\nfrom .lane_queries import check_parent\nfrom .lane_records import record\nfrom .lane_stages import ROLE_CEILINGS\nfrom .lane_successor import check_pending\n\nEvaluator = Callable[[GateContext], GateResult]\nClockProvider = Callable[[], Clock]\n\n\ndef check_stage(identity: Identity, request: Request, stage: str, operation: str) -> None:\n    if request.operation != operation or identity.stage != stage:\n        raise PermissionError(\"LANE_STAGE_OR_OPERATION_DENIED\")\n    role = identity.role.lower().replace(\"_\", \"\").replace(\"-\", \"\")\n    if role in ROLE_CEILINGS:\n        raise PermissionError(\"LANE_EVALUATOR_ROLE_CANNOT_PROGRESS\")\n    if identity.lane != (\"Build\" if stage.startswith(\"B\") else stage.rstrip(\"123\")):\n        raise PermissionError(\"LANE_OWNER_DENIED\")\n\n\ndef check_successor(db: sqlite3.Connection, candidate: Candidate) -> None:\n    check_pending(db, candidate)\n    current = db.execute(\"SELECT id FROM lane_candidates WHERE lineage=? AND stage=? \"\n                         \"AND id NOT IN(SELECT candidate FROM lane_invalidations)\",\n                         (candidate.lineage_id, candidate.stage)).fetchall()\n    if current:\n        raise PermissionError(\"LANE_TYPED_REOPEN_REQUIRED\")\n    previous = db.execute(\"SELECT id FROM lane_candidates WHERE lineage=? AND stage=?\",\n                          (candidate.lineage_id, candidate.stage)).fetchall()\n    if previous and candidate.reopen_id is None:\n        from .lane_successor import has_reopen_ancestor\n        if not has_reopen_ancestor(db, candidate.predecessor_id):\n            raise PermissionError(\"LANE_TYPED_SUCCESSOR_REQUIRED\")\n    if candidate.reopen_id is not None:\n        row = db.execute(\"SELECT stage,successor FROM lane_reopens WHERE id=? AND lineage=?\",\n                         (candidate.reopen_id, candidate.lineage_id)).fetchone()\n        if row is None or tuple(row) != (candidate.stage, candidate.candidate_id):\n            raise PermissionError(\"LANE_SUCCESSOR_BINDING\")\n\n\ndef submit(db: sqlite3.Connection, identity: Identity, request: Request, candidate: Candidate,\n           clock: ClockProvider, evaluator: Evaluator | None) -> Receipt:\n    candidate = Candidate.model_validate_json(candidate.model_dump_json())\n    if evaluator is None:\n        raise PermissionError(\"LANE_EVALUATOR_UNBOUND\")\n    check_stage(identity, request, candidate.stage, \"lane.seal\")\n    authority = authorize_and_checkpoint(db, identity, request, clock())\n    check_successor(db, candidate)\n    check_event_authority(db, candidate, request, authority)\n    root = Path(request.root)\n    verify_artifact(candidate, root)\n    parent = check_parent(db, candidate, root, authority.policy, authority.epoch)\n    context = GateContext(candidate=candidate, predecessor_sha256=parent,\n                          policy=authority.policy, epoch=authority.epoch,\n                          principal=identity.principal, task_id=request.task_id,\n                          task_revision=request.revision)\n    result = GateResult.model_validate_json(evaluator(context).model_dump_json())\n    verify_artifact(candidate, root)\n    verify_result(context, result, root)\n    check_parent(db, candidate, root, authority.policy, authority.epoch)\n    preserve(db, candidate, result, root)\n    final_clock = clock()\n    authorize_and_checkpoint(db, identity, request, final_clock)\n    return record(db, identity, request, candidate, result, final_clock.now)\n",
+      "sha256": "6d8531a8663602fbc8d4db79ea6fcd3243f17c8d4e3b0dad9cbaf035126f0df3"
+    },
+    "src/hmt_rnd/lane_records.py": {
+      "text": "\"\"\"Immutable receipt insertion shares the artifact/host transaction.\"\"\"\nimport json\nimport sqlite3\n\nfrom .host_models import Identity, Request\nfrom .lane_models import Candidate, GateResult, Receipt\nfrom .lane_queries import receipt_digest\n\n\ndef record(db: sqlite3.Connection, identity: Identity, request: Request,\n           candidate: Candidate, result: GateResult, issued_at: float) -> Receipt:\n    body = dict(candidate=candidate.model_dump(mode=\"json\"), gate=result.model_dump(mode=\"json\"),\n                principal=identity.principal, task_id=request.task_id,\n                task_revision=request.revision, issued_at=issued_at)\n    sealed = {**body, \"receipt_sha256\": receipt_digest(body)}\n    receipt = Receipt.model_validate_json(json.dumps(sealed))\n    db.execute(\"INSERT INTO lane_candidates VALUES(?,?,?,?,?)\", (candidate.candidate_id,\n               candidate.lineage_id, candidate.stage, receipt.model_dump_json(),\n               receipt.receipt_sha256))\n    if candidate.reopen_id:\n        db.execute(\"INSERT INTO lane_closures VALUES(?,?,?)\", (candidate.reopen_id,\n                   candidate.candidate_id, receipt.receipt_sha256))\n    return receipt\n",
+      "sha256": "386597142f6a6dffa7c59f19de92e29c97cfa653828b9d70ee9878503d5577b7"
+    },
+    "src/hmt_rnd/lane_reader.py": {
+      "text": "\"\"\"Descriptor-bound regular-file reads; every traversed component rejects symlinks.\"\"\"\nimport os\nimport stat\nfrom pathlib import Path\n\n\ndef scoped_descriptor(path: Path, root: Path) -> int:\n    if \"..\" in path.parts or \"..\" in root.parts:\n        raise OSError(\"parent traversal is not an artifact identity\")\n    try:\n        absolute = Path(os.path.abspath(path))\n        scope = Path(os.path.abspath(root))\n    except OSError as error:\n        raise OSError(\"artifact root unavailable\") from error\n    if absolute == scope or not absolute.is_relative_to(scope):\n        raise OSError(\"outside artifact root\")\n    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW\n    directory = os.open(absolute.anchor, flags)\n    try:\n        for index, name in enumerate(absolute.parts[1:-1], 1):\n            try:\n                child = os.open(name, flags, dir_fd=directory)\n            except FileNotFoundError as error:\n                if index < len(scope.parts):\n                    raise OSError(\"artifact root unavailable\") from error\n                raise\n            os.close(directory)\n            directory = child\n        return os.open(absolute.name, os.O_RDONLY | os.O_NOFOLLOW | os.O_NONBLOCK,\n                       dir_fd=directory)\n    finally:\n        os.close(directory)\n\n\ndef read_regular(path: Path, root: Path, limit: int, scope_reason: str,\n                 bound_reason: str) -> bytes:\n    try:\n        descriptor = scoped_descriptor(path, root)\n        try:\n            if not stat.S_ISREG(os.fstat(descriptor).st_mode):\n                raise OSError(\"artifact is not a regular file\")\n            with os.fdopen(descriptor, \"rb\", closefd=False) as stream:\n                body = stream.read(limit + 1)\n        finally:\n            os.close(descriptor)\n    except OSError as error:\n        raise PermissionError(scope_reason) from error\n    if len(body) > limit:\n        raise PermissionError(bound_reason)\n    return body\n",
+      "sha256": "6f7449459955157ab804de4e6d43c6dcfe6b699d46be64e1c6e4eb4ad32006d0"
+    },
+    "tests/test_receipt_path_support.py": {
+      "text": "\"\"\"Issue relative/absolute path fixtures; preserve real evaluator and reader behavior.\"\"\"\nimport json\nimport os\nimport subprocess\nimport sys\nfrom pathlib import Path\n\nfrom test_lane_tracer import execute_gate, make_candidate, setup_host\n\nfrom hmt_rnd.host_models import Clock\nfrom hmt_rnd.lane_store import LaneStore\n\n\ndef prepare(root, monkeypatch, artifact_relative, evidence_relative, outcome=\"SEALED\"):\n    scope = root / \"scope\"\n    scope.mkdir()\n    monkeypatch.chdir(root)\n    host, owner, request = setup_host(scope)\n    store = LaneStore(host)\n    candidate = make_candidate(scope)\n    if artifact_relative:\n        candidate = candidate.model_copy(update={\"artifact\": Path(\"scope/first.txt\")})\n    seen = []\n\n    def evaluator(context):\n        seen.append(str(context.candidate.artifact))\n        result = execute_gate(context)\n        item = result.evidence[0]\n        path = Path(\"scope/first.evidence\") if evidence_relative else scope / \"first.evidence\"\n        reasons = (\"CONTROLLED_DENIAL\",) if outcome == \"DENIED\" else ()\n        return result.model_copy(update={\"evidence\": (item.model_copy(update={\"path\": path}),),\n                                         \"outcome\": outcome, \"reasons\": reasons})\n\n    first = store.submit(owner, request, candidate, lambda: Clock(now=10.0), evaluator)\n    elsewhere = root / \"elsewhere\"\n    elsewhere.mkdir()\n    return scope, host, owner, request, store, first, candidate, seen, elsewhere\n\n\ndef observe(root, **values):\n    (root / \"receipt_path_observation.json\").write_text(json.dumps(values, indent=2) + \"\\n\")\n\n\ndef invoke(scope, mode, cwd, child):\n    if not child:\n        from receipt_path_worker import perform\n        return perform(scope, mode)\n    script = Path(__file__).with_name(\"receipt_path_worker.py\").absolute()\n    env = dict(os.environ, PYTHONPATH=str(script.parent.parent / \"src\"))\n    result = subprocess.run([sys.executable, str(script), str(scope), mode], cwd=cwd,\n                            env=env, text=True, capture_output=True, timeout=15)\n    assert result.returncode == 0, result.stderr\n    return json.loads(result.stdout)\n",
+      "sha256": "a4bece52ab185145c74d84d6847ebf8eb6c9f9763448307b9aab59c1786be1f9"
+    },
+    "tests/receipt_path_worker.py": {
+      "text": "\"\"\"Test-only fresh-process receipt verification/consumption from another cwd.\"\"\"\nimport hashlib\nimport json\nimport sys\nfrom pathlib import Path\n\nfrom test_lane_tracer import execute_gate, make_candidate, setup_host\n\nfrom hmt_rnd.host_models import Clock\nfrom hmt_rnd.host_store import HostStore\nfrom hmt_rnd.lane_evidence import verify_receipt_artifacts\nfrom hmt_rnd.lane_store import LaneStore\n\n\ndef perform(scope, mode):\n    store = LaneStore(HostStore(scope / \"host.sqlite\"))\n    try:\n        receipt = store.receipt(\"first\")\n        if mode == \"consume\":\n            _, owner, request = setup_host(scope, \"CMAD2\")\n            result = store.submit(owner, request,\n                                  make_candidate(scope, \"second\", \"CMAD2\", \"first\"),\n                                  lambda: Clock(now=11.0), execute_gate)\n            return {\"outcome\": result.gate.outcome, \"parent\": result.gate.predecessor_sha256}\n        verify_receipt_artifacts(receipt, scope)\n        digests = [receipt.candidate.artifact_sha256]\n        digests += [item.sha256 for item in receipt.gate.evidence]\n        assert all(hashlib.sha256(store.snapshot(value)).hexdigest() == value for value in digests)\n        return {\"error\": None, \"receipt\": receipt.receipt_sha256, \"snapshots\": digests}\n    except PermissionError as error:\n        return {\"error\": str(error)}\n\n\nif __name__ == \"__main__\":\n    print(json.dumps(perform(Path(sys.argv[1]), sys.argv[2])))\n",
+      "sha256": "f5d84822b37fc65d0fae6dc0cef271f549dbbdb55ba1f7afcec0c660324a44af"
+    },
+    "tests/test_receipt_path_restart.py": {
+      "text": "\"\"\"RC-RECEIPT-PATH-01: working-directory changes must not rebind saved paths.\"\"\"\nimport pytest\nfrom test_receipt_path_support import invoke, observe, prepare\nfrom test_revision_issuance_support import snapshot\n\n\n@pytest.mark.parametrize(\"artifact_relative\", [False, True])\n@pytest.mark.parametrize(\"evidence_relative\", [False, True])\n@pytest.mark.parametrize(\"outcome\", [\"SEALED\", \"DENIED\"])\n@pytest.mark.parametrize(\"child\", [False, True])\ndef test_receipt_paths_survive_cwd_change_and_process_restart(\n        tmp_path, monkeypatch, artifact_relative, evidence_relative, outcome, child):\n    scope, host, owner, request, store, first, candidate, seen, other = prepare(\n        tmp_path, monkeypatch, artifact_relative, evidence_relative, outcome)\n    before = snapshot(host)\n    monkeypatch.chdir(other)\n    actual = invoke(scope, \"verify\", other, child)\n    observe(tmp_path, operation=\"verify\", artifact_relative=artifact_relative,\n            evidence_relative=evidence_relative, outcome=outcome, child=child, actual=actual,\n            artifact=str(first.candidate.artifact), evidence=str(first.gate.evidence[0].path))\n    assert actual.get(\"error\") is None\n    assert actual[\"receipt\"] == first.receipt_sha256\n    assert first.candidate.artifact == scope / \"first.txt\"\n    assert first.gate.evidence[0].path == scope / \"first.evidence\"\n    assert seen == [str(candidate.artifact)]\n    assert store.receipt(\"first\") == first and snapshot(host) == before\n\n\n@pytest.mark.parametrize(\"artifact_relative\", [False, True])\n@pytest.mark.parametrize(\"evidence_relative\", [False, True])\n@pytest.mark.parametrize(\"child\", [False, True])\ndef test_downstream_consumes_original_receipt_from_new_cwd(\n        tmp_path, monkeypatch, artifact_relative, evidence_relative, child):\n    scope, host, owner, request, store, first, candidate, seen, other = prepare(\n        tmp_path, monkeypatch, artifact_relative, evidence_relative)\n    monkeypatch.chdir(other)\n    actual = invoke(scope, \"consume\", other, child)\n    observe(tmp_path, operation=\"consume\", artifact_relative=artifact_relative,\n            evidence_relative=evidence_relative, child=child, actual=actual)\n    assert actual.get(\"error\") is None\n    assert actual[\"outcome\"] == \"SEALED\" and actual[\"parent\"] == first.receipt_sha256\n    assert store.receipt(\"first\") == first\n",
+      "sha256": "02a4a9970ed286095282b7f750b1330a2fa9c9b0aee29acfb40928d5e691498b"
+    },
+    "tests/test_receipt_path_drift.py": {
+      "text": "\"\"\"Absolute saved spellings support genuine drift recovery after cwd changes.\"\"\"\nimport pytest\nfrom test_lane_reopen import reopen_request\nfrom test_lane_tracer import execute_gate, make_candidate\nfrom test_receipt_path_support import observe, prepare\nfrom test_reconcile_lane_support import event\n\nfrom hmt_rnd.host_models import Clock\nfrom hmt_rnd.host_store import HostStore\nfrom hmt_rnd.lane_store import LaneStore\n\n\n@pytest.mark.parametrize(\"artifact_relative\", [False, True])\n@pytest.mark.parametrize(\"evidence_relative\", [False, True])\n@pytest.mark.parametrize(\"source\", [\"artifact\", \"evidence\"])\n@pytest.mark.parametrize(\"missing\", [False, True])\ndef test_reopen_and_reseal_original_source_from_new_cwd(\n        tmp_path, monkeypatch, artifact_relative, evidence_relative, source, missing):\n    scope, host, owner, request, store, first, candidate, seen, other = prepare(\n        tmp_path, monkeypatch, artifact_relative, evidence_relative)\n    path = scope / (\"first.txt\" if source == \"artifact\" else \"first.evidence\")\n    original = store.snapshot(first.candidate.artifact_sha256)\n    path.unlink() if missing else path.write_bytes(b\"changed source\")\n    scoped = reopen_request(host, owner, request)\n    monkeypatch.chdir(other)\n    store = LaneStore(HostStore(host.path))\n    opened, error = None, None\n    try:\n        opened = store.reopen(owner, scoped, event(), lambda: Clock(now=11.0))\n    except PermissionError as failure:\n        error = str(failure)\n    observe(tmp_path, operation=\"reopen\", artifact_relative=artifact_relative,\n            evidence_relative=evidence_relative, source=source, missing=missing,\n            error=error, issued=opened is not None)\n    assert error is None and opened is not None\n    assert opened.required_stage == \"CMAD1\" and opened.invalidated_candidates == (\"first\",)\n    fixed = store.submit(owner, request, make_candidate(scope, \"fixed\", reopen=\"repair\"),\n                         lambda: Clock(now=12.0), execute_gate)\n    assert fixed.gate.outcome == \"SEALED\"\n    assert store.receipt(\"first\") == first\n    assert store.snapshot(first.candidate.artifact_sha256) == original\n",
+      "sha256": "60ebfb66834cb461028ec0dc3e0c24f78df89c15162511edbbe15b6cd9583415"
+    }
+  },
+  "observations": [
+    {
+      "operation": "consume",
+      "artifact_relative": false,
+      "evidence_relative": false,
+      "child": false,
+      "actual": {
+        "outcome": "SEALED",
+        "parent": "2867fc7c809422dc2e97e4e4ad5b58f460b4642c45b5503c2aae55475564dc42"
+      }
+    },
+    {
+      "operation": "consume",
+      "artifact_relative": true,
+      "evidence_relative": false,
+      "child": false,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      }
+    },
+    {
+      "operation": "consume",
+      "artifact_relative": false,
+      "evidence_relative": true,
+      "child": false,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      }
+    },
+    {
+      "operation": "consume",
+      "artifact_relative": true,
+      "evidence_relative": true,
+      "child": false,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      }
+    },
+    {
+      "operation": "consume",
+      "artifact_relative": false,
+      "evidence_relative": false,
+      "child": true,
+      "actual": {
+        "outcome": "SEALED",
+        "parent": "2442dc35aa0c8853dd0b975f52dcf7e886bb3c4af4fb31ce6d47da52bbd6fe4f"
+      }
+    },
+    {
+      "operation": "consume",
+      "artifact_relative": true,
+      "evidence_relative": false,
+      "child": true,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      }
+    },
+    {
+      "operation": "consume",
+      "artifact_relative": false,
+      "evidence_relative": true,
+      "child": true,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      }
+    },
+    {
+      "operation": "consume",
+      "artifact_relative": true,
+      "evidence_relative": true,
+      "child": true,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      }
+    },
+    {
+      "operation": "verify",
+      "artifact_relative": false,
+      "evidence_relative": false,
+      "outcome": "SEALED",
+      "child": false,
+      "actual": {
+        "error": null,
+        "receipt": "8b8cf71964bf45d6e41a19765fba14f1f077a019a1e32fe4e60606ce78f2fe55",
+        "snapshots": [
+          "247780967f77c124b4f3b57ad7efe3de7ddcbcde88286d96e1fed952d99a1a90",
+          "668a07934edcef1010634df12b2d97235b00804413c2b0d4376bd8c43733e0f0"
+        ]
+      },
+      "artifact": "/tmp/hmt-receipt-path-before/test_receipt_paths_survive_cwd0/scope/first.txt",
+      "evidence": "/tmp/hmt-receipt-path-before/test_receipt_paths_survive_cwd0/scope/first.evidence"
+    },
+    {
+      "operation": "verify",
+      "artifact_relative": true,
+      "evidence_relative": false,
+      "outcome": "SEALED",
+      "child": false,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      },
+      "artifact": "scope/first.txt",
+      "evidence": "/tmp/hmt-receipt-path-before/test_receipt_paths_survive_cwd1/scope/first.evidence"
+    },
+    {
+      "operation": "verify",
+      "artifact_relative": false,
+      "evidence_relative": true,
+      "outcome": "SEALED",
+      "child": true,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      },
+      "artifact": "/tmp/hmt-receipt-path-before/test_receipt_paths_survive_cwd10/scope/first.txt",
+      "evidence": "scope/first.evidence"
+    },
+    {
+      "operation": "verify",
+      "artifact_relative": true,
+      "evidence_relative": true,
+      "outcome": "SEALED",
+      "child": true,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      },
+      "artifact": "scope/first.txt",
+      "evidence": "scope/first.evidence"
+    },
+    {
+      "operation": "verify",
+      "artifact_relative": false,
+      "evidence_relative": false,
+      "outcome": "DENIED",
+      "child": true,
+      "actual": {
+        "error": null,
+        "receipt": "9edf9898a448bc504113a40b31c7d714159239c225705807eb85b9cb4e9358ab",
+        "snapshots": [
+          "247780967f77c124b4f3b57ad7efe3de7ddcbcde88286d96e1fed952d99a1a90",
+          "668a07934edcef1010634df12b2d97235b00804413c2b0d4376bd8c43733e0f0"
+        ]
+      },
+      "artifact": "/tmp/hmt-receipt-path-before/test_receipt_paths_survive_cwd12/scope/first.txt",
+      "evidence": "/tmp/hmt-receipt-path-before/test_receipt_paths_survive_cwd12/scope/first.evidence"
+    },
+    {
+      "operation": "verify",
+      "artifact_relative": true,
+      "evidence_relative": false,
+      "outcome": "DENIED",
+      "child": true,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      },
+      "artifact": "scope/first.txt",
+      "evidence": "/tmp/hmt-receipt-path-before/test_receipt_paths_survive_cwd13/scope/first.evidence"
+    },
+    {
+      "operation": "verify",
+      "artifact_relative": false,
+      "evidence_relative": true,
+      "outcome": "DENIED",
+      "child": true,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      },
+      "artifact": "/tmp/hmt-receipt-path-before/test_receipt_paths_survive_cwd14/scope/first.txt",
+      "evidence": "scope/first.evidence"
+    },
+    {
+      "operation": "verify",
+      "artifact_relative": true,
+      "evidence_relative": true,
+      "outcome": "DENIED",
+      "child": true,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      },
+      "artifact": "scope/first.txt",
+      "evidence": "scope/first.evidence"
+    },
+    {
+      "operation": "verify",
+      "artifact_relative": false,
+      "evidence_relative": true,
+      "outcome": "SEALED",
+      "child": false,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      },
+      "artifact": "/tmp/hmt-receipt-path-before/test_receipt_paths_survive_cwd2/scope/first.txt",
+      "evidence": "scope/first.evidence"
+    },
+    {
+      "operation": "verify",
+      "artifact_relative": true,
+      "evidence_relative": true,
+      "outcome": "SEALED",
+      "child": false,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      },
+      "artifact": "scope/first.txt",
+      "evidence": "scope/first.evidence"
+    },
+    {
+      "operation": "verify",
+      "artifact_relative": false,
+      "evidence_relative": false,
+      "outcome": "DENIED",
+      "child": false,
+      "actual": {
+        "error": null,
+        "receipt": "73813fff24152da6552bacf0b61e5105103c4ff13bbf41d5013c9a4993dbce9e",
+        "snapshots": [
+          "247780967f77c124b4f3b57ad7efe3de7ddcbcde88286d96e1fed952d99a1a90",
+          "668a07934edcef1010634df12b2d97235b00804413c2b0d4376bd8c43733e0f0"
+        ]
+      },
+      "artifact": "/tmp/hmt-receipt-path-before/test_receipt_paths_survive_cwd4/scope/first.txt",
+      "evidence": "/tmp/hmt-receipt-path-before/test_receipt_paths_survive_cwd4/scope/first.evidence"
+    },
+    {
+      "operation": "verify",
+      "artifact_relative": true,
+      "evidence_relative": false,
+      "outcome": "DENIED",
+      "child": false,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      },
+      "artifact": "scope/first.txt",
+      "evidence": "/tmp/hmt-receipt-path-before/test_receipt_paths_survive_cwd5/scope/first.evidence"
+    },
+    {
+      "operation": "verify",
+      "artifact_relative": false,
+      "evidence_relative": true,
+      "outcome": "DENIED",
+      "child": false,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      },
+      "artifact": "/tmp/hmt-receipt-path-before/test_receipt_paths_survive_cwd6/scope/first.txt",
+      "evidence": "scope/first.evidence"
+    },
+    {
+      "operation": "verify",
+      "artifact_relative": true,
+      "evidence_relative": true,
+      "outcome": "DENIED",
+      "child": false,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      },
+      "artifact": "scope/first.txt",
+      "evidence": "scope/first.evidence"
+    },
+    {
+      "operation": "verify",
+      "artifact_relative": false,
+      "evidence_relative": false,
+      "outcome": "SEALED",
+      "child": true,
+      "actual": {
+        "error": null,
+        "receipt": "975a916d05d5237d9cad450a3f0a0a047f6dfd03f9b9d3e1349212df1a934bfd",
+        "snapshots": [
+          "247780967f77c124b4f3b57ad7efe3de7ddcbcde88286d96e1fed952d99a1a90",
+          "668a07934edcef1010634df12b2d97235b00804413c2b0d4376bd8c43733e0f0"
+        ]
+      },
+      "artifact": "/tmp/hmt-receipt-path-before/test_receipt_paths_survive_cwd8/scope/first.txt",
+      "evidence": "/tmp/hmt-receipt-path-before/test_receipt_paths_survive_cwd8/scope/first.evidence"
+    },
+    {
+      "operation": "verify",
+      "artifact_relative": true,
+      "evidence_relative": false,
+      "outcome": "SEALED",
+      "child": true,
+      "actual": {
+        "error": "LANE_ARTIFACT_SCOPE"
+      },
+      "artifact": "scope/first.txt",
+      "evidence": "/tmp/hmt-receipt-path-before/test_receipt_paths_survive_cwd9/scope/first.evidence"
+    },
+    {
+      "operation": "reopen",
+      "artifact_relative": false,
+      "evidence_relative": false,
+      "source": "artifact",
+      "missing": false,
+      "error": null,
+      "issued": true
+    },
+    {
+      "operation": "reopen",
+      "artifact_relative": true,
+      "evidence_relative": false,
+      "source": "artifact",
+      "missing": false,
+      "error": "LANE_ARTIFACT_SCOPE",
+      "issued": false
+    },
+    {
+      "operation": "reopen",
+      "artifact_relative": false,
+      "evidence_relative": true,
+      "source": "artifact",
+      "missing": true,
+      "error": "LANE_ARTIFACT_SCOPE",
+      "issued": false
+    },
+    {
+      "operation": "reopen",
+      "artifact_relative": true,
+      "evidence_relative": true,
+      "source": "artifact",
+      "missing": true,
+      "error": "LANE_ARTIFACT_SCOPE",
+      "issued": false
+    },
+    {
+      "operation": "reopen",
+      "artifact_relative": false,
+      "evidence_relative": false,
+      "source": "evidence",
+      "missing": true,
+      "error": null,
+      "issued": true
+    },
+    {
+      "operation": "reopen",
+      "artifact_relative": true,
+      "evidence_relative": false,
+      "source": "evidence",
+      "missing": true,
+      "error": "LANE_ARTIFACT_SCOPE",
+      "issued": false
+    },
+    {
+      "operation": "reopen",
+      "artifact_relative": false,
+      "evidence_relative": true,
+      "source": "evidence",
+      "missing": true,
+      "error": "LANE_ARTIFACT_SCOPE",
+      "issued": false
+    },
+    {
+      "operation": "reopen",
+      "artifact_relative": true,
+      "evidence_relative": true,
+      "source": "evidence",
+      "missing": true,
+      "error": "LANE_ARTIFACT_SCOPE",
+      "issued": false
+    },
+    {
+      "operation": "reopen",
+      "artifact_relative": false,
+      "evidence_relative": true,
+      "source": "artifact",
+      "missing": false,
+      "error": "LANE_ARTIFACT_SCOPE",
+      "issued": false
+    },
+    {
+      "operation": "reopen",
+      "artifact_relative": true,
+      "evidence_relative": true,
+      "source": "artifact",
+      "missing": false,
+      "error": "LANE_ARTIFACT_SCOPE",
+      "issued": false
+    },
+    {
+      "operation": "reopen",
+      "artifact_relative": false,
+      "evidence_relative": false,
+      "source": "evidence",
+      "missing": false,
+      "error": null,
+      "issued": true
+    },
+    {
+      "operation": "reopen",
+      "artifact_relative": true,
+      "evidence_relative": false,
+      "source": "evidence",
+      "missing": false,
+      "error": "LANE_ARTIFACT_SCOPE",
+      "issued": false
+    },
+    {
+      "operation": "reopen",
+      "artifact_relative": false,
+      "evidence_relative": true,
+      "source": "evidence",
+      "missing": false,
+      "error": "LANE_ARTIFACT_SCOPE",
+      "issued": false
+    },
+    {
+      "operation": "reopen",
+      "artifact_relative": true,
+      "evidence_relative": true,
+      "source": "evidence",
+      "missing": false,
+      "error": "LANE_ARTIFACT_SCOPE",
+      "issued": false
+    },
+    {
+      "operation": "reopen",
+      "artifact_relative": false,
+      "evidence_relative": false,
+      "source": "artifact",
+      "missing": true,
+      "error": null,
+      "issued": true
+    },
+    {
+      "operation": "reopen",
+      "artifact_relative": true,
+      "evidence_relative": false,
+      "source": "artifact",
+      "missing": true,
+      "error": "LANE_ARTIFACT_SCOPE",
+      "issued": false
+    }
+  ],
+  "result": {
+    "failures": 30,
+    "absolute_controls_passed": 10
+  },
+  "expected": "Persisted source identity survives cwd change; no symlink/parent normalization bypass.",
+  "actual": "Valid original relative paths cannot verify/consume/reopen from a different cwd."
+}

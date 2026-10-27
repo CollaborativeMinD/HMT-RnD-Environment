@@ -2,12 +2,12 @@
   {
     "original": "evidence/build_ledgers.sqlite",
     "stored": "evidence/build_ledgers.sqlite.gz",
-    "sha256": "0f825a286a14401d987a00c69cc1d98e3531bc025236e685be98b1880c34c7b0",
-    "compressed_sha256": "6367c43d574fc8a1d0a394d5b3ac455bf290a3abb9d97b9f0db5ad0b81fe73e5",
-    "bytes": 151552,
+    "sha256": "787925a875d2380c166f884a9cdf381ca9a622faa14d8643e8f7cadb9e171ea9",
+    "compressed_sha256": "22e5fc2ad03635e3e8da8b9f6e8e5026d79ff638d61611a57092d4f452b17857",
+    "bytes": 163840,
     "all_rows_preserved": true,
     "prior_exact_archive": "evidence/supervision_history/build_ledgers.sqlite.gz",
-    "prior_exact_archive_git_ref": "4f30bf36e4e4cdaee1806d5f55ba01d9f466c833:evidence/build_ledgers.sqlite.gz"
+    "prior_exact_archive_git_ref": "f0e671acd513be3bfdb72e546d422839fdfbbf2e:evidence/build_ledgers.sqlite.gz"
   },
   {
     "original": "evidence/verification_candidate_ledger.csv",
