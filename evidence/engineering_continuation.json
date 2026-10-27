@@ -1,0 +1,133 @@
+{
+  "id": "CONTINUATION-6432712455",
+  "as_of": "2026-10-27T03:19:05.442874+00:00",
+  "owner": "/root",
+  "disposition_source": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#issuecomment-6432712455",
+  "accepted_candidate": "351d5081536e3a968dd449e874281e75475d22fd",
+  "technical_reconciliation": "RELEASED_SCOPED_BY_OUT_OF_BAND_REVIEW",
+  "integration": "BLOCKED",
+  "merge_deployment": "NOT_AUTHORIZED",
+  "remaining_holds": "Production, governance, operational, and complete mission qualification HOLDs remain; no work package marked complete.",
+  "historical_registers": [
+    "evidence/supervision_reconciliation.json",
+    "evidence/remaining_holds_case_register.json"
+  ],
+  "traceability_addendum": {
+    "case": "RC-REOPEN-EXPIRY-01",
+    "requirement": {
+      "id": "HMT-N07",
+      "revision": 1,
+      "category": "Nonfunctional",
+      "owner": "Host",
+      "reviewer": "MissionAssurance + owning upstream/downstream lane",
+      "title": "Temporal authority",
+      "acceptance": "Expiry is exclusive; full clock uncertainty interval must fit grant interval. Revoke and dispatch admission serialize within their authority domain. No admission after committed revoke; stale worker leases cannot commit. Unknown clock trust or rollback yields HOLD.",
+      "verification_method": "Exact-expiry, skew, rollback and revoke-race boundary tests",
+      "required_evidence": [
+        "Clock interval",
+        "ordered revoke/admission records",
+        "lease fence",
+        "endpoint grant check"
+      ],
+      "failure_disposition": {
+        "operation": "Preserve native DENIED/HOLD/OUTCOME_UNCERTAIN as applicable; no effect or promotion beyond proved state",
+        "qualification": "HOLD affected package; retain failure and open RRCA/change record",
+        "missing_evidence": "INSUFFICIENT_EVIDENCE; no qualification"
+      },
+      "gate_id": "G-AUTH",
+      "mechanisms": [
+        "control",
+        "auth",
+        "timeout"
+      ],
+      "assertion_id": "A-N07",
+      "qualification_status": "NOT_EXECUTED",
+      "threshold_status": "PINNED_ENGINEERING_TARGET_UNMEASURED",
+      "source_refs": [
+        "USER-REQ-2026-10-26",
+        "PLAN-REV2",
+        "LLD-0.1.0"
+      ],
+      "falsifier": "Any execution contradicting this acceptance statement, or any required evidence missing/invalid, prevents satisfaction.",
+      "supporting_owners": [
+        "CSSI"
+      ],
+      "verification_executor": "Quality with the owning implementation lane; mission assurance consumes resulting evidence only.",
+      "claim_conditions": {
+        "state": "Pinned input/predecessor, assigned task and phase, exact implementation, and declared starting state of the selected use sequence.",
+        "evidence": [
+          "Clock interval",
+          "ordered revoke/admission records",
+          "lease fence",
+          "endpoint grant check"
+        ],
+        "causal_path": "Authenticated ingress -> current admission -> exact bounded operation -> independently observed effect/result -> durable receipt -> permitted handoff; include negative cut points.",
+        "authority": "Host-authenticated principal and current grant/lease/policy for this exact operation; architecture change and final closeout stay human-bound.",
+        "timing_freshness": "Current policy/epoch at use; expiry exclusive; exact-candidate evidence; binding-specific evidence age and LOCAL-CTRL-1 or pinned model profile.",
+        "invariant": "Expiry is exclusive; full clock uncertainty interval must fit grant interval. Revoke and dispatch admission serialize within their authority domain. No admission after committed revoke; stale worker leases cannot commit. Unknown clock trust or rollback yields HOLD.",
+        "impossible_if": "Any observed effect or result contradicts the acceptance predicate; missing an indispensable causal edge makes the claimed explanation unproved.",
+        "hold_if_missing": "Any required witness, target/source pin, authoritative proof, resource profile, owner, or applicable assertion."
+      }
+    },
+    "assertion": "tests/test_reopen_expiry.py::test_reopen_authority_after_real_parent_reads",
+    "boundaries": [
+      "grant and evidence exclusive expiry",
+      "unchanged and nextafter below expiry controls",
+      "equal and nextafter above expiry denials",
+      "immediate/deep real ancestor reads",
+      "database-object reconstruction",
+      "all table logical state unchanged on denial and receipts immutable"
+    ],
+    "receipts": [
+      {
+        "path": "evidence/reopen_expiry_before_observations.json",
+        "sha256": "feb6460220b4cc33546ffc7c2552cafa178a0d63a7d79322d030580fc857fc19"
+      },
+      {
+        "path": "evidence/reopen_expiry_after_observations.json",
+        "sha256": "0df33edd738764da9c6cb1142389983e058f1ba128c3fbdcc7fdf29aa7a7cbb8"
+      }
+    ],
+    "relation": "Add HMT-N07@1 alongside HMT-F02@1; no changed test/contract, and no supersession.",
+    "nonclaim": "This does not qualify full uncertainty interval, unknown clock trust, or all revoke-race clauses of HMT-N07."
+  },
+  "personal_verification": {
+    "inspected": [
+      "disposition contents and exact accepted head",
+      "HMT-N07@1 acceptance and actual 48-case assertions",
+      "exclusive comparison in host_checks.py",
+      "authority-after-parent-read ordering",
+      "historical evidence retained"
+    ],
+    "executed_now": {
+      "cumulative_pytest": 387,
+      "failures_errors_skips": 0,
+      "verification_unittest": 27,
+      "ruff_exit": 0,
+      "pyrefly_basic_exit": 0,
+      "structure_exit": 0
+    },
+    "source_pre_post_pins": 141,
+    "source_mismatches": 0,
+    "manifest": "evidence/reopen_expiry_candidate.json",
+    "scope": "Existing accepted executable bytes; trace/docs only. Outside review consumed producer-run evidence, not independent execution."
+  },
+  "regression": {
+    "command": "PYTHONPATH=src uv run --project /workspace/scratch/bc6d4e512874/HMT-RnD-Environment --no-sync python -m pytest -q --junitxml=/workspace/scratch/bc6d4e512874/HMT-RnD-Environment/evidence/disposition_6432712455_regression.xml",
+    "cwd": "/workspace/scratch/bc6d4e512874/supervisor_expiry_replay",
+    "log": "evidence/disposition_6432712455_regression.log",
+    "original_xml_sha256": "c10da74183623daa66892df1ff6cb5eefd711943f442b6aa7df3cbb29b6c002d",
+    "archive": "evidence/disposition_6432712455_regression.xml.gz",
+    "archive_sha256": "5e341af856067cdfd8c7b43a9ac46392fd8889c17f243b3e36daaa7a2d51357a"
+  },
+  "next_bounded_task": {
+    "case": "RC-CUSTODY-INDEX-01",
+    "review_id": 4384097209,
+    "owner": "/root",
+    "packages": [
+      "WP-03",
+      "WP-09"
+    ],
+    "scope": "Reservation conflict lookup index; new/existing provisioning and preserved identity/cancellation semantics. No runtime integration."
+  }
+}

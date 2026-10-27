@@ -26,7 +26,7 @@ Run full source type checks with `uv run --group dev pyrefly check src`. The pri
 
 ## Reconciliation and HOLD procedure
 
-The active continuation record is `evidence/supervision_reconciliation.json`; `evidence/remaining_holds_case_register.json` retains prior pending cases. Ancestor-assignment and drift-symlink repairs remain subject to outside review. The subsequent authority-after-ancestor-I/O finding is RC-REOPEN-EXPIRY-01. Internal passing tests or review records do not release continuation. Integration is explicitly blocked.
+The active continuation record is `evidence/engineering_continuation.json`. Out-of-band disposition 6432712455 releases the scoped technical reconciliation HOLD at exact candidate `351d5081536e3a968dd449e874281e75475d22fd`. Previously authorized bounded engineering may resume with personal source/evidence verification. The older supervision/case registers retain their historical pending statuses. This release does not close production, governance, or operational HOLDs, qualify complete work packages, authorize integration, or approve merge/deployment.
 
 When `LANE_PREDECESSOR_ASSIGNMENT_STALE` occurs, preserve the receipt and compare its recorded principal/revision with the current `host_tasks` assignment for every ancestor. Submission checks the chain before and after evaluation. Reopening verifies the chain, then rechecks current host authority immediately before inserting the event or invalidations. If grant/evidence expiry is reached during those reads, `HOST_LEASE_OR_EVIDENCE_EXPIRED` must leave the full database state unchanged. No assignment migration, rerouting, or receipt rewrite is inferred. Escalate unsupported recovery to the owning lane and architecture process while retaining HOLD.
 
