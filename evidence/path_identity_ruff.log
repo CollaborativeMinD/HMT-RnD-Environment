@@ -1,0 +1,43 @@
+I001 [*] Import block is un-sorted or un-formatted
+  --> tests/test_path_identity_tracer.py:2:1
+   |
+ 1 |   """RC-PATH-01: the original spelling must not select different evaluator bytes."""
+ 2 | / import hashlib
+ 3 | | import json
+ 4 | |
+ 5 | | import pytest
+ 6 | | from test_artifact_fifo_support import observe
+ 7 | | from test_lane_tracer import setup_host
+ 8 | | from test_path_identity_support import INSIDE, OUTSIDE, alias_fixture, candidate_for, gate_for, state
+ 9 | |
+10 | | from hmt_rnd.host_models import Clock
+11 | | from hmt_rnd.lane_store import LaneStore
+   | |________________________________________^
+help: Organize imports
+   |
+7  | from test_lane_tracer import setup_host
+   - from test_path_identity_support import INSIDE, OUTSIDE, alias_fixture, candidate_for, gate_for, state
+8  + from test_path_identity_support import (
+9  +     INSIDE,
+10 +     OUTSIDE,
+11 +     alias_fixture,
+12 +     candidate_for,
+13 +     gate_for,
+14 +     state,
+15 + )
+16 |
+   |
+
+E501 Line too long (101 > 100)
+  --> tests/test_path_identity_tracer.py:8:101
+   |
+ 6 | from test_artifact_fifo_support import observe
+ 7 | from test_lane_tracer import setup_host
+ 8 | from test_path_identity_support import INSIDE, OUTSIDE, alias_fixture, candidate_for, gate_for, state
+   |                                                                                                     ^
+ 9 |
+10 | from hmt_rnd.host_models import Clock
+   |
+
+Found 2 errors.
+[*] 1 fixable with `--fix`.

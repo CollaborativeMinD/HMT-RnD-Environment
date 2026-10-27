@@ -1,0 +1,88 @@
+FFF                                                                      [100%]
+=================================== FAILURES ===================================
+_____ test_parent_component_rejects_native_guarded_identity_split[digest] ______
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-118/test_parent_component_rejects_0')
+mode = 'digest'
+
+    @pytest.mark.parametrize("mode", ["digest", "snapshot"])
+    def test_parent_component_rejects_native_guarded_identity_split(tmp_path, mode):
+        root, alias = alias_fixture(tmp_path)
+        native = alias.read_bytes()
+        assert native == OUTSIDE
+        observed, denial = None, None
+        try:
+            observed = observe(mode, alias, root, INSIDE)
+        except PermissionError as error:
+            denial = str(error)
+        witness = {"mode": mode, "native_hex": native.hex(),
+                   "native_sha256": hashlib.sha256(native).hexdigest(),
+                   "normalized_hex": INSIDE.hex(), "guarded_sha256": observed, "denial": denial}
+        (tmp_path / "path_identity_observed.json").write_text(json.dumps(witness))
+        print(json.dumps(witness))
+        expected = "LANE_ARTIFACT_SCOPE" if mode == "digest" else "LANE_SNAPSHOT_SCOPE"
+>       assert denial == expected
+E       AssertionError: assert None == 'LANE_ARTIFACT_SCOPE'
+
+tests/test_path_identity_tracer.py:30: AssertionError
+----------------------------- Captured stdout call -----------------------------
+{"mode": "digest", "native_hex": "6f757473696465206576616c7561746564206172746966616374", "native_sha256": "6911073fcca8555708061db2a2b9d938f5710f8cfe7427d56dc43413d71f7b9b", "normalized_hex": "696e7369646520617070726f766564206172746966616374", "guarded_sha256": "1dab3147626c762c3428ac6ae755a9098a8aec3eaa89a845016f0904b658f42e", "denial": null}
+____ test_parent_component_rejects_native_guarded_identity_split[snapshot] _____
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-118/test_parent_component_rejects_1')
+mode = 'snapshot'
+
+    @pytest.mark.parametrize("mode", ["digest", "snapshot"])
+    def test_parent_component_rejects_native_guarded_identity_split(tmp_path, mode):
+        root, alias = alias_fixture(tmp_path)
+        native = alias.read_bytes()
+        assert native == OUTSIDE
+        observed, denial = None, None
+        try:
+            observed = observe(mode, alias, root, INSIDE)
+        except PermissionError as error:
+            denial = str(error)
+        witness = {"mode": mode, "native_hex": native.hex(),
+                   "native_sha256": hashlib.sha256(native).hexdigest(),
+                   "normalized_hex": INSIDE.hex(), "guarded_sha256": observed, "denial": denial}
+        (tmp_path / "path_identity_observed.json").write_text(json.dumps(witness))
+        print(json.dumps(witness))
+        expected = "LANE_ARTIFACT_SCOPE" if mode == "digest" else "LANE_SNAPSHOT_SCOPE"
+>       assert denial == expected
+E       AssertionError: assert None == 'LANE_SNAPSHOT_SCOPE'
+
+tests/test_path_identity_tracer.py:30: AssertionError
+----------------------------- Captured stdout call -----------------------------
+{"mode": "snapshot", "native_hex": "6f757473696465206576616c7561746564206172746966616374", "native_sha256": "6911073fcca8555708061db2a2b9d938f5710f8cfe7427d56dc43413d71f7b9b", "normalized_hex": "696e7369646520617070726f766564206172746966616374", "guarded_sha256": "1dab3147626c762c3428ac6ae755a9098a8aec3eaa89a845016f0904b658f42e", "denial": null}
+_________ test_submission_denies_alias_before_evaluator_and_rolls_back _________
+
+tmp_path = PosixPath('/tmp/pytest-of-root/pytest-118/test_submission_denies_alias_b0')
+
+    def test_submission_denies_alias_before_evaluator_and_rolls_back(tmp_path):
+        root, alias = alias_fixture(tmp_path)
+        host, identity, request = setup_host(root)
+        store, evaluated = LaneStore(host), []
+        before = state(host)
+        receipt, denial = None, None
+        try:
+            receipt = store.submit(identity, request, candidate_for(alias), lambda: Clock(now=10.0),
+                                   lambda context: gate_for(context, root, evaluated))
+        except PermissionError as error:
+            denial = str(error)
+        snapshot = None if receipt is None else store.snapshot(receipt.candidate.artifact_sha256).hex()
+        witness = {"evaluated_hex": evaluated, "snapshot_hex": snapshot, "denial": denial,
+                   "receipt_outcome": None if receipt is None else receipt.gate.outcome,
+                   "before": before, "after": state(host)}
+        (tmp_path / "path_identity_observed.json").write_text(json.dumps(witness))
+        print(json.dumps(witness))
+>       assert denial == "LANE_ARTIFACT_SCOPE"
+E       AssertionError: assert None == 'LANE_ARTIFACT_SCOPE'
+
+tests/test_path_identity_tracer.py:50: AssertionError
+----------------------------- Captured stdout call -----------------------------
+{"evaluated_hex": ["6f757473696465206576616c7561746564206172746966616374"], "snapshot_hex": "696e7369646520617070726f766564206172746966616374", "denial": null, "receipt_outcome": "SEALED", "before": {"lane_candidates": 0, "lane_artifacts": 0, "lane_closures": 0, "lane_reopens": 0, "lane_invalidations": 0, "lane_reauthorizations": 0, "last_clock": 0.0}, "after": {"lane_candidates": 1, "lane_artifacts": 2, "lane_closures": 0, "lane_reopens": 0, "lane_invalidations": 0, "lane_reauthorizations": 0, "last_clock": 10.0}}
+=========================== short test summary info ============================
+FAILED tests/test_path_identity_tracer.py::test_parent_component_rejects_native_guarded_identity_split[digest]
+FAILED tests/test_path_identity_tracer.py::test_parent_component_rejects_native_guarded_identity_split[snapshot]
+FAILED tests/test_path_identity_tracer.py::test_submission_denies_alias_before_evaluator_and_rolls_back
+3 failed in 0.25s

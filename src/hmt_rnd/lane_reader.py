@@ -5,6 +5,8 @@ from pathlib import Path
 
 
 def scoped_descriptor(path: Path, root: Path) -> int:
+    if ".." in path.parts or ".." in root.parts:
+        raise OSError("parent traversal is not an artifact identity")
     absolute = Path(os.path.abspath(path))
     scope = Path(os.path.abspath(root))
     if absolute == scope or not absolute.is_relative_to(scope):
