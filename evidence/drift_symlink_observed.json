@@ -1,0 +1,310 @@
+{
+  "test_discovery_never_hides_inv5": {
+    "location": "same_receipt",
+    "dangling": true,
+    "denial": "LANE_ARTIFACT_SCOPE",
+    "invalidated": null,
+    "before": {
+      "sha256": "fcd51372ef51206de29489cf1258f421ddf40770d19d6f5dfc70c26aed3a1e4e",
+      "counts": {
+        "lane_candidates": 2,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 11.0
+      }
+    },
+    "after": {
+      "sha256": "fcd51372ef51206de29489cf1258f421ddf40770d19d6f5dfc70c26aed3a1e4e",
+      "counts": {
+        "lane_candidates": 2,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 11.0
+      }
+    }
+  },
+  "test_declared_symlink_drift_de3": {
+    "source": "evidence",
+    "dangling": true,
+    "drift": null,
+    "drift_denial": "LANE_ARTIFACT_SCOPE",
+    "reopen_denial": "LANE_ARTIFACT_SCOPE",
+    "invalidated": null,
+    "before": {
+      "sha256": "7292ff9bd056c2bba795a416b2b7bc8de2fb9942d6c00a50eb8ad0096e31eeb8",
+      "counts": {
+        "lane_candidates": 1,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 10.0
+      }
+    },
+    "after": {
+      "sha256": "7292ff9bd056c2bba795a416b2b7bc8de2fb9942d6c00a50eb8ad0096e31eeb8",
+      "counts": {
+        "lane_candidates": 1,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 10.0
+      }
+    }
+  },
+  "test_discovery_never_hides_inv0": {
+    "location": "earlier_undeclared",
+    "dangling": false,
+    "denial": "LANE_ARTIFACT_SCOPE",
+    "invalidated": null,
+    "before": {
+      "sha256": "470aedc26fdc68dfdafe2097eda6642db621886ce2c27f24b38b24792b04c242",
+      "counts": {
+        "lane_candidates": 2,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 11.0
+      }
+    },
+    "after": {
+      "sha256": "470aedc26fdc68dfdafe2097eda6642db621886ce2c27f24b38b24792b04c242",
+      "counts": {
+        "lane_candidates": 2,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 11.0
+      }
+    }
+  },
+  "test_discovery_never_hides_inv3": {
+    "location": "later_undeclared",
+    "dangling": true,
+    "denial": "LANE_ARTIFACT_SCOPE",
+    "invalidated": null,
+    "before": {
+      "sha256": "a91e4bfe7839729e5027649bf9df2ca76da6a00fd834fc5dfd0dfb6e785a4130",
+      "counts": {
+        "lane_candidates": 2,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 11.0
+      }
+    },
+    "after": {
+      "sha256": "a91e4bfe7839729e5027649bf9df2ca76da6a00fd834fc5dfd0dfb6e785a4130",
+      "counts": {
+        "lane_candidates": 2,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 11.0
+      }
+    }
+  },
+  "test_discovery_never_hides_inv1": {
+    "location": "earlier_undeclared",
+    "dangling": true,
+    "denial": "LANE_ARTIFACT_SCOPE",
+    "invalidated": null,
+    "before": {
+      "sha256": "4b1e1e3a87fc52bbba1b84803cc96a31529ee39b0eabedd418307c3b385b999a",
+      "counts": {
+        "lane_candidates": 2,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 11.0
+      }
+    },
+    "after": {
+      "sha256": "4b1e1e3a87fc52bbba1b84803cc96a31529ee39b0eabedd418307c3b385b999a",
+      "counts": {
+        "lane_candidates": 2,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 11.0
+      }
+    }
+  },
+  "test_discovery_never_hides_inv4": {
+    "location": "same_receipt",
+    "dangling": false,
+    "denial": "LANE_ARTIFACT_SCOPE",
+    "invalidated": null,
+    "before": {
+      "sha256": "2b4226fe2955e5c0c6ddc4adf8ad955c05d4999b7e6be9195cae7f2c9349b735",
+      "counts": {
+        "lane_candidates": 2,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 11.0
+      }
+    },
+    "after": {
+      "sha256": "2b4226fe2955e5c0c6ddc4adf8ad955c05d4999b7e6be9195cae7f2c9349b735",
+      "counts": {
+        "lane_candidates": 2,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 11.0
+      }
+    }
+  },
+  "test_declared_symlink_drift_de0": {
+    "source": "artifact",
+    "dangling": false,
+    "drift": null,
+    "drift_denial": "LANE_ARTIFACT_SCOPE",
+    "reopen_denial": "LANE_ARTIFACT_SCOPE",
+    "invalidated": null,
+    "before": {
+      "sha256": "a6f08847403b7318305989c49ded4690b2971c1b71ce61291bd40c53eb972e7d",
+      "counts": {
+        "lane_candidates": 1,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 10.0
+      }
+    },
+    "after": {
+      "sha256": "a6f08847403b7318305989c49ded4690b2971c1b71ce61291bd40c53eb972e7d",
+      "counts": {
+        "lane_candidates": 1,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 10.0
+      }
+    }
+  },
+  "test_discovery_never_hides_inv2": {
+    "location": "later_undeclared",
+    "dangling": false,
+    "denial": "LANE_ARTIFACT_SCOPE",
+    "invalidated": null,
+    "before": {
+      "sha256": "d5a089f245cb388d3be0c997a899be2bb0bb14a9996bb89ea335cca8c133ccd3",
+      "counts": {
+        "lane_candidates": 2,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 11.0
+      }
+    },
+    "after": {
+      "sha256": "d5a089f245cb388d3be0c997a899be2bb0bb14a9996bb89ea335cca8c133ccd3",
+      "counts": {
+        "lane_candidates": 2,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 11.0
+      }
+    }
+  },
+  "test_declared_symlink_drift_de2": {
+    "source": "artifact",
+    "dangling": true,
+    "drift": null,
+    "drift_denial": "LANE_ARTIFACT_SCOPE",
+    "reopen_denial": "LANE_ARTIFACT_SCOPE",
+    "invalidated": null,
+    "before": {
+      "sha256": "283e45f0b7dad240eb25c7e3eebedf6390d5712fe1f9d66597738755b0e9d13d",
+      "counts": {
+        "lane_candidates": 1,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 10.0
+      }
+    },
+    "after": {
+      "sha256": "283e45f0b7dad240eb25c7e3eebedf6390d5712fe1f9d66597738755b0e9d13d",
+      "counts": {
+        "lane_candidates": 1,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 10.0
+      }
+    }
+  },
+  "test_declared_symlink_drift_de1": {
+    "source": "evidence",
+    "dangling": false,
+    "drift": null,
+    "drift_denial": "LANE_ARTIFACT_SCOPE",
+    "reopen_denial": "LANE_ARTIFACT_SCOPE",
+    "invalidated": null,
+    "before": {
+      "sha256": "d836a6043547be9bc0fea09a0d7d3e5e733520d34b2a71dd642154c9645ea27a",
+      "counts": {
+        "lane_candidates": 1,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 10.0
+      }
+    },
+    "after": {
+      "sha256": "d836a6043547be9bc0fea09a0d7d3e5e733520d34b2a71dd642154c9645ea27a",
+      "counts": {
+        "lane_candidates": 1,
+        "lane_artifacts": 2,
+        "lane_reopens": 0,
+        "lane_invalidations": 0,
+        "lane_closures": 0,
+        "lane_reauthorizations": 0,
+        "last_clock": 10.0
+      }
+    }
+  }
+}

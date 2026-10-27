@@ -1,0 +1,82 @@
+[
+  {
+    "sha": "cdef1fd1dafd1cc8e8e08c1bf8e25408ca57ff7d",
+    "cases": [
+      "RC-ANCESTOR-01"
+    ],
+    "paths": [
+      "src/hmt_rnd/lane_queries.py",
+      "tests/test_ancestor_freshness_guards.py",
+      "tests/test_ancestor_freshness_recheck.py",
+      "tests/test_ancestor_freshness_support.py",
+      "evidence/ancestor_freshness_snapshot.json",
+      "evidence/ancestor_freshness_before_sources.json",
+      "evidence/ancestor_freshness_before_tests.json",
+      "evidence/ancestor_freshness_before.xml",
+      "evidence/ancestor_freshness_before.log",
+      "evidence/ancestor_freshness_trace.py",
+      "evidence/ancestor_freshness_trace.json",
+      "evidence/remaining_supervisor_ancestor_freshness_snapshot.json",
+      "evidence/remaining_supervisor_ancestor_freshness_snapshot.xml.gz",
+      "evidence/remaining_supervisor_ancestor_freshness_snapshot.log",
+      "evidence/remaining_holds_archives.json",
+      "evidence/remaining_holds_handoff.json"
+    ]
+  },
+  {
+    "sha": "b7b02089f85607ce2654659d14ff709634cbcf4e",
+    "cases": [
+      "RC-DRIFT-01"
+    ],
+    "paths": [
+      "src/hmt_rnd/lane_drift.py",
+      "src/hmt_rnd/lane_reader.py",
+      "tests/test_drift_symlink_boundaries.py",
+      "tests/test_drift_symlink_discovery.py",
+      "tests/test_drift_symlink_recovery.py",
+      "tests/test_drift_symlink_root.py",
+      "tests/test_drift_symlink_support.py",
+      "tests/test_drift_symlink_tracer.py",
+      "evidence/drift_symlink_baseline.json",
+      "evidence/drift_symlink_before.xml",
+      "evidence/drift_symlink_before.log",
+      "evidence/drift_symlink_discovery_before.xml",
+      "evidence/drift_symlink_discovery_before.log",
+      "evidence/drift_symlink_after.xml",
+      "evidence/drift_symlink_after.log",
+      "evidence/drift_symlink_ruff.log",
+      "evidence/drift_symlink_pyrefly.log",
+      "evidence/drift_symlink_structure.log",
+      "evidence/drift_symlink_snapshot.json",
+      "evidence/remaining_supervisor_drift_symlink_snapshot.json",
+      "evidence/remaining_supervisor_drift_symlink_snapshot.xml.gz",
+      "evidence/remaining_supervisor_drift_symlink_snapshot.log",
+      "evidence/remaining_holds_archives.json"
+    ]
+  },
+  {
+    "sha": "3a875e8eaf29bb767b63bf02b41fbf1d138200f9",
+    "cases": [
+      "RC-ANCESTOR-01"
+    ],
+    "paths": [
+      "src/hmt_rnd/lane_reopen.py",
+      "tests/test_ancestor_freshness_issuance.py",
+      "tests/test_ancestor_freshness_issuance_support.py",
+      "evidence/ancestor_freshness_issuance_snapshot.json",
+      "evidence/ancestor_freshness_issuance_before_sources.json",
+      "evidence/ancestor_freshness_issuance_before_tests.json",
+      "evidence/ancestor_freshness_issuance_before.xml",
+      "evidence/ancestor_freshness_issuance_before.log",
+      "evidence/ancestor_freshness_issuance_trace.py",
+      "evidence/ancestor_freshness_issuance_trace.json",
+      "evidence/remaining_supervisor_ancestor_freshness_issuance_snapshot.json",
+      "evidence/remaining_supervisor_ancestor_freshness_issuance_snapshot.xml.gz",
+      "evidence/remaining_supervisor_ancestor_freshness_issuance_snapshot.log",
+      "evidence/remaining_holds_coverage.json.gz",
+      "evidence/remaining_holds_changed_coverage.json",
+      "evidence/remaining_holds_supervisor_results.json",
+      "evidence/remaining_holds_archives.json"
+    ]
+  }
+]

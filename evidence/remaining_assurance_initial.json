@@ -1,0 +1,59 @@
+{
+  "schema": "hmt.manual-assurance-review.v1",
+  "baseline": "608e3bdf",
+  "primary_disposition": "HOLD",
+  "method": "Read-only mission-assurance; no target execution or repair.",
+  "sources": [
+    {
+      "id": 4383956251,
+      "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383956251",
+      "body": "Advancing an upstream task does not fence its existing receipt here. For example, after sealing CMAD1 at revision 1 and assigning CMAD1 revision 2, a currently authorized CMAD2 submission can still use the revision-1 predecessor: these checks only compare policy/epoch and artifact bytes, and neither discovery nor assignment advancement invalidates that receipt. This lets downstream stages seal against superseded task evidence. Check each ancestor's recorded principal/revision against its current host_tasks assignment before accepting it.",
+      "path": "src/hmt_rnd/lane_queries.py"
+    },
+    {
+      "id": 4383956285,
+      "url": "https://github.com/CollaborativeMinD/HMT-RnD-Environment/pull/3#discussion_r4383956285",
+      "body": "Resolving the path here removes symlink components before the guarded reader can reject them. An artifact replaced by an in-scope symlink is rejected by `digest_file(original_path, root)`, but `source_changed` returns `True`; a dangling in-scope symlink also returns `True`. Consequently, reopening can accept these paths and persist invalidations despite the newly enforced symlink-denial policy. Pass the original path to the guarded reader and recognize missing-source drift only when its underlying failure is `FileNotFoundError`, preserving scope denials for symlinks.",
+      "path": "src/hmt_rnd/lane_drift.py"
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "RC-ANCESTOR-01",
+      "finding": 4383956251,
+      "status": "REVIEW_IN_PROGRESS",
+      "requirements": [
+        "HMT-F01",
+        "HMT-F02",
+        "HMT-B07",
+        "HMT-N05",
+        "HMT-N07"
+      ],
+      "expected": [
+        "Before accepting an ancestor receipt, current host_tasks principal and revision equal immutable receipt principal/revision for every chain ancestor.",
+        "Checks occur inside the existing shared host transaction and persist no rewritten history or partial downstream effects on denial.",
+        "Immediate and nonimmediate revision change, missing assignment, principal reassignment and persisted restart deny; unchanged assignments and unrelated task changes remain valid.",
+        "Matched baseline failure and candidate correction are source-bound; no invented ancestor migration or implicit recovery authority."
+      ]
+    },
+    {
+      "case_id": "RC-DRIFT-01",
+      "finding": 4383956285,
+      "status": "REVIEW_IN_PROGRESS",
+      "requirements": [
+        "HMT-N04",
+        "HMT-B07",
+        "HMT-F01",
+        "HMT-N05"
+      ],
+      "expected": [
+        "Original source path reaches the guarded reader; no resolve/normalization removes forbidden components before validation.",
+        "Only genuine missing-source FileNotFoundError under valid root classifies as drift; symlink, dangling link, parent traversal and invalid root refusals propagate.",
+        "Explicitly listed changes and discovered omitted changes enforce the same policy and earliest owner.",
+        "A changed earlier source does not mask forbidden later evidence; immutable history and mutation rollback preserved.",
+        "Unchanged source=false, changed regular source=true and genuine missing source=true controls preserve supported recovery."
+      ]
+    }
+  ],
+  "release_condition": "Both formerly open findings are now authorized bounded investigation/repair targets. No completion inferred until current evidence reviewed. Original outside review controls HOLD release; integration remains withheld."
+}
